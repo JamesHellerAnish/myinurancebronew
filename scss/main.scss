@@ -1,0 +1,288 @@
+/* Ditto Home — Clone (SCSS source)
+   Compile: sass --no-source-map scss/main.scss css/main.css
+*/
+
+/* =========================
+   Variables
+========================= */
+$brand-primary: #3b82f6; /* blue-500 */
+$brand-secondary: #7c3aed; /* violet-600 */
+$brand-primary-600: #2563eb;
+$text-color: #0f172a; /* slate-900 */
+$text-secondary: #64748b; /* slate-500 */
+$surface: #ffffff;
+$surface-2: #f8fafc; /* slate-50 */
+$ring: rgba(59, 130, 246, 0.35);
+
+$font-body: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+$font-heading: Manrope, Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+
+/* Also expose as CSS variables for theming parity with compiled CSS */
+:root {
+  --brand-primary: #{$brand-primary};
+  --brand-secondary: #{$brand-secondary};
+  --brand-primary-600: #{$brand-primary-600};
+  --text-color: #{$text-color};
+  --text-secondary: #{$text-secondary};
+  --surface: #{$surface};
+  --surface-2: #{$surface-2};
+  --ring: #{$ring};
+}
+
+/* =========================
+   Mixins
+========================= */
+@mixin gradient-primary($angle: 90deg) {
+  background-image: linear-gradient($angle, var(--brand-primary), var(--brand-secondary));
+}
+
+@mixin focus-ring($color: $ring) {
+  box-shadow: 0 0 0 .2rem $color;
+}
+
+@mixin card-radius {
+  border-radius: 1rem;
+}
+
+/* =========================
+   Base
+========================= */
+html, body {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-body;
+  color: $text-color;
+  background-color: #fff;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: $font-heading;
+  letter-spacing: -0.015em;
+}
+
+.lead { color: $text-secondary; }
+
+/* Utilities */
+.pt-7 { padding-top: 5rem !important; }
+.pb-6 { padding-bottom: 4rem !important; }
+.py-6 { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+
+@media (min-width: 992px) {
+  .pt-lg-9 { padding-top: 7rem !important; }
+  .p-lg-6 { padding: 4rem !important; }
+}
+
+/* Gradient text */
+.gradient-text {
+  @include gradient-primary(90deg);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* =========================
+   Buttons
+========================= */
+.btn-primary {
+  @include gradient-primary(90deg);
+  border: 0;
+
+  &:hover { filter: brightness(0.95); }
+}
+
+.btn-outline-primary {
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+
+  &:hover {
+    background-color: var(--brand-primary);
+    color: #fff;
+  }
+}
+
+/* =========================
+   Navbar
+========================= */
+.app-navbar {
+  transition: background-color .2s ease, box-shadow .2s ease, padding .2s ease;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: saturate(180%) blur(8px);
+  -webkit-backdrop-filter: saturate(180%) blur(8px);
+
+  &.scrolled {
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+  }
+
+  .navbar-brand .brand-text {
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-link {
+    color: $text-color;
+    opacity: .8;
+    padding: .5rem .75rem;
+
+    &:hover,
+    &:focus { opacity: 1; }
+  }
+
+  .btn { box-shadow: 0 6px 16px rgba(59,130,246,.25); }
+
+  /* Ensure toggler icon visibility */
+  .navbar-toggler {
+    border-color: rgba(15, 23, 42, 0.15);
+
+    &:focus { @include focus-ring(); }
+  }
+
+  .navbar-toggler-icon {
+    // Same data-URL as compiled CSS
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(15,23,42,0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  }
+}
+
+/* =========================
+   Hero
+========================= */
+.hero {
+  position: relative;
+
+  h1 { line-height: 1.15; }
+
+  .hero-art img {
+    max-height: 440px;
+  }
+
+  .shape-blur {
+    position: absolute;
+    inset: -10% -10% auto -10%;
+    height: 60%;
+    background: radial-gradient(
+      50% 50% at 50% 50%,
+      rgba(59,130,246,.20) 0%,
+      rgba(124,58,237,.20) 50%,
+      rgba(255,255,255,0) 100%
+    );
+    filter: blur(60px);
+    z-index: -1;
+  }
+}
+
+/* =========================
+   Trust strip
+========================= */
+.trust {
+  .press-logo {
+    font-weight: 700;
+    color: #94a3b8;
+    opacity: .9;
+    text-transform: none;
+  }
+}
+
+/* =========================
+   Features
+========================= */
+.card.feature { @include card-radius; }
+
+.icon-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+/* =========================
+   Steps
+========================= */
+.step {
+  background: $surface;
+  border: 1px solid #eef2f7;
+  border-radius: 1rem;
+}
+
+.step-num {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  margin: 0 auto;
+  font-weight: 700;
+  color: #fff;
+  @include gradient-primary(90deg);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 8px 20px rgba(59,130,246,.25);
+}
+
+/* =========================
+   Testimonials
+========================= */
+#testimonialCarousel {
+  .card { @include card-radius; }
+}
+
+/* =========================
+   FAQ
+========================= */
+#faq {
+  .accordion-item {
+    border-radius: .75rem;
+    overflow: hidden;
+    border: 1px solid #eef2f7;
+  }
+
+  .accordion-button {
+    padding: 1rem 1.25rem;
+
+    &:not(.collapsed) {
+      color: $brand-primary-600;
+      background: #f8fbff;
+      box-shadow: inset 0 -1px 0 rgba(0,0,0,0.05);
+    }
+
+    &:focus { @include focus-ring(); }
+  }
+}
+
+/* =========================
+   CTA
+========================= */
+.bg-gradient-primary { @include gradient-primary(135deg); }
+
+.cta-box {
+  box-shadow: 0 20px 60px rgba(59,130,246,.25);
+
+  .btn.btn-light { color: $brand-primary-600; }
+}
+
+/* =========================
+   Footer
+========================= */
+footer {
+  background: #fff;
+
+  a:hover { color: var(--brand-primary); }
+}
+
+/* =========================
+   Helpers
+========================= */
+.text-secondary { color: $text-secondary !important; }
+.opacity-75 { opacity: .75 !important; }
+
+/* =========================
+   Responsive tweaks
+========================= */
+@media (max-width: 991.98px) {
+  .app-navbar { background: rgba(255, 255, 255, 0.9); }
+  .hero .hero-art img { max-height: 360px; }
+}
