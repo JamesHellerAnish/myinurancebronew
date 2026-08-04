@@ -302,35 +302,58 @@
 
     <!-- ═══════════ 2b. INSURER MARQUEE ═══════════ -->
     <div class="marquee" aria-label="Insurers we compare and place policies with">
+      <!-- Logos are the insurers' own brand icons, served from assets/logos/
+           and registered in policyData.brands. The alt is empty because the
+           insurer's name follows as text — see the note in compare.js. -->
       <div class="marquee-track">
-        <span class="marquee-item"><span class="monogram" style="background:#7C3AED">AM</span> Axis Max Life</span>
-        <span class="marquee-item"><span class="monogram" style="background:#0EA5E9">HL</span> HDFC Life</span>
-        <span class="marquee-item"><span class="monogram" style="background:#F97316">IP</span> ICICI Prudential</span>
-        <span class="marquee-item"><span class="monogram" style="background:#0891B2">BL</span> Bajaj Life</span>
-        <span class="marquee-item"><span class="monogram" style="background:#DC2626">HE</span> HDFC ERGO</span>
-        <span class="marquee-item"><span class="monogram" style="background:#16A34A">CH</span> Care Health</span>
-        <span class="marquee-item"><span class="monogram" style="background:#DB2777">AB</span> Aditya Birla Health</span>
-        <span class="marquee-item"><span class="monogram" style="background:#2563EB">NB</span> Niva Bupa</span>
-        <span class="marquee-item"><span class="monogram" style="background:#7C3AED">SB</span> SBI General</span>
-        <!-- duplicated for the seamless -50% loop -->
-        <span class="marquee-item" aria-hidden="true"><span class="monogram" style="background:#7C3AED">AM</span> Axis
-          Max Life</span>
-        <span class="marquee-item" aria-hidden="true"><span class="monogram" style="background:#0EA5E9">HL</span> HDFC
-          Life</span>
-        <span class="marquee-item" aria-hidden="true"><span class="monogram" style="background:#F97316">IP</span> ICICI
+        <span class="marquee-item"><span class="monogram has-logo"><img class="brand-logo"
+              src="assets/logos/axismax.png" alt="" width="34" height="34" loading="lazy"></span> Axis Max Life</span>
+        <span class="marquee-item"><span class="monogram has-logo"><img class="brand-logo"
+              src="assets/logos/hdfclife.png" alt="" width="34" height="34" loading="lazy"></span> HDFC Life</span>
+        <span class="marquee-item"><span class="monogram has-logo"><img class="brand-logo"
+              src="assets/logos/icicipru.png" alt="" width="34" height="34" loading="lazy"></span> ICICI
           Prudential</span>
-        <span class="marquee-item" aria-hidden="true"><span class="monogram" style="background:#0891B2">BL</span> Bajaj
-          Life</span>
-        <span class="marquee-item" aria-hidden="true"><span class="monogram" style="background:#DC2626">HE</span> HDFC
-          ERGO</span>
-        <span class="marquee-item" aria-hidden="true"><span class="monogram" style="background:#16A34A">CH</span> Care
+        <span class="marquee-item"><span class="monogram has-logo"><img class="brand-logo"
+              src="assets/logos/bajajlife.png" alt="" width="34" height="34" loading="lazy"></span> Bajaj Life</span>
+        <span class="marquee-item"><span class="monogram has-logo"><img class="brand-logo"
+              src="assets/logos/tataaia.png" alt="" width="34" height="34" loading="lazy"></span> Tata AIA</span>
+        <span class="marquee-item"><span class="monogram has-logo"><img class="brand-logo"
+              src="assets/logos/hdfcergo.png" alt="" width="34" height="34" loading="lazy"></span> HDFC ERGO</span>
+        <span class="marquee-item"><span class="monogram has-logo"><img class="brand-logo" src="assets/logos/care.png"
+              alt="" width="34" height="34" loading="lazy"></span> Care Health</span>
+        <span class="marquee-item"><span class="monogram has-logo"><img class="brand-logo" src="assets/logos/abhi.png"
+              alt="" width="34" height="34" loading="lazy"></span> Aditya Birla Health</span>
+        <span class="marquee-item"><span class="monogram has-logo"><img class="brand-logo"
+              src="assets/logos/nivabupa.png" alt="" width="34" height="34" loading="lazy"></span> Niva Bupa</span>
+        <span class="marquee-item"><span class="monogram has-logo"><img class="brand-logo" src="assets/logos/star.png"
+              alt="" width="34" height="34" loading="lazy"></span> Star Health</span>
+        <span class="marquee-item"><span class="monogram has-logo"><img class="brand-logo"
+              src="assets/logos/sbigeneral.png" alt="" width="34" height="34" loading="lazy"></span> SBI General</span>
+        <!-- duplicated for the seamless -50% loop -->
+        <span class="marquee-item" aria-hidden="true"><span class="monogram has-logo"><img class="brand-logo"
+              src="assets/logos/axismax.png" alt="" width="34" height="34" loading="lazy"></span> Axis Max Life</span>
+        <span class="marquee-item" aria-hidden="true"><span class="monogram has-logo"><img class="brand-logo"
+              src="assets/logos/hdfclife.png" alt="" width="34" height="34" loading="lazy"></span> HDFC Life</span>
+        <span class="marquee-item" aria-hidden="true"><span class="monogram has-logo"><img class="brand-logo"
+              src="assets/logos/icicipru.png" alt="" width="34" height="34" loading="lazy"></span> ICICI
+          Prudential</span>
+        <span class="marquee-item" aria-hidden="true"><span class="monogram has-logo"><img class="brand-logo"
+              src="assets/logos/bajajlife.png" alt="" width="34" height="34" loading="lazy"></span> Bajaj Life</span>
+        <span class="marquee-item" aria-hidden="true"><span class="monogram has-logo"><img class="brand-logo"
+              src="assets/logos/tataaia.png" alt="" width="34" height="34" loading="lazy"></span> Tata AIA</span>
+        <span class="marquee-item" aria-hidden="true"><span class="monogram has-logo"><img class="brand-logo"
+              src="assets/logos/hdfcergo.png" alt="" width="34" height="34" loading="lazy"></span> HDFC ERGO</span>
+        <span class="marquee-item" aria-hidden="true"><span class="monogram has-logo"><img class="brand-logo"
+              src="assets/logos/care.png" alt="" width="34" height="34" loading="lazy"></span> Care Health</span>
+        <span class="marquee-item" aria-hidden="true"><span class="monogram has-logo"><img class="brand-logo"
+              src="assets/logos/abhi.png" alt="" width="34" height="34" loading="lazy"></span> Aditya Birla
           Health</span>
-        <span class="marquee-item" aria-hidden="true"><span class="monogram" style="background:#DB2777">AB</span> Aditya
-          Birla Health</span>
-        <span class="marquee-item" aria-hidden="true"><span class="monogram" style="background:#2563EB">NB</span> Niva
-          Bupa</span>
-        <span class="marquee-item" aria-hidden="true"><span class="monogram" style="background:#7C3AED">SB</span> SBI
-          General</span>
+        <span class="marquee-item" aria-hidden="true"><span class="monogram has-logo"><img class="brand-logo"
+              src="assets/logos/nivabupa.png" alt="" width="34" height="34" loading="lazy"></span> Niva Bupa</span>
+        <span class="marquee-item" aria-hidden="true"><span class="monogram has-logo"><img class="brand-logo"
+              src="assets/logos/star.png" alt="" width="34" height="34" loading="lazy"></span> Star Health</span>
+        <span class="marquee-item" aria-hidden="true"><span class="monogram has-logo"><img class="brand-logo"
+              src="assets/logos/sbigeneral.png" alt="" width="34" height="34" loading="lazy"></span> SBI General</span>
       </div>
     </div>
 
@@ -413,21 +436,24 @@
             <aside class="persona-aside">
               <h4>Plans that fit this stage</h4>
               <div class="persona-plan">
-                <span class="monogram" style="background:#DB2777">AB</span>
+                <span class="monogram has-logo"><img class="brand-logo" src="assets/logos/abhi.png"
+                    alt="Aditya Birla Health" width="34" height="34" loading="lazy"></span>
                 <div>
                   <div class="persona-plan-name">Activ One MAX</div>
                   <div class="persona-plan-meta">Cheapest health cover on our list</div>
                 </div>
               </div>
               <div class="persona-plan">
-                <span class="monogram" style="background:#0891B2">BL</span>
+                <span class="monogram has-logo"><img class="brand-logo" src="assets/logos/bajajlife.png"
+                    alt="Bajaj Life" width="34" height="34" loading="lazy"></span>
                 <div>
                   <div class="persona-plan-name">Bajaj eTouch II</div>
                   <div class="persona-plan-meta">Cheapest ₹2 Cr term cover</div>
                 </div>
               </div>
               <div class="persona-plan">
-                <span class="monogram" style="background:#2563EB">NB</span>
+                <span class="monogram has-logo"><img class="brand-logo" src="assets/logos/nivabupa.png"
+                    alt="Niva Bupa" width="34" height="34" loading="lazy"></span>
                 <div>
                   <div class="persona-plan-name">ReAssure 2.0 Platinum+</div>
                   <div class="persona-plan-meta">Rewards buying young — locks in your entry age</div>
@@ -488,21 +514,24 @@
             <aside class="persona-aside">
               <h4>Plans that fit this stage</h4>
               <div class="persona-plan">
-                <span class="monogram" style="background:#DC2626">HE</span>
+                <span class="monogram has-logo"><img class="brand-logo" src="assets/logos/hdfcergo.png"
+                    alt="HDFC ERGO" width="34" height="34" loading="lazy"></span>
                 <div>
                   <div class="persona-plan-name">Optima Secure+</div>
                   <div class="persona-plan-meta">Parenthood maternity rider available</div>
                 </div>
               </div>
               <div class="persona-plan">
-                <span class="monogram" style="background:#7C3AED">AM</span>
+                <span class="monogram has-logo"><img class="brand-logo" src="assets/logos/axismax.png"
+                    alt="Axis Max Life" width="34" height="34" loading="lazy"></span>
                 <div>
                   <div class="persona-plan-name">Smart Term Plan Plus</div>
                   <div class="persona-plan-meta">99.71% claim settlement — the highest in India</div>
                 </div>
               </div>
               <div class="persona-plan">
-                <span class="monogram" style="background:#0EA5E9">HL</span>
+                <span class="monogram has-logo"><img class="brand-logo" src="assets/logos/hdfclife.png"
+                    alt="HDFC Life" width="34" height="34" loading="lazy"></span>
                 <div>
                   <div class="persona-plan-name">Click2Protect Supreme Plus</div>
                   <div class="persona-plan-meta">Raises cover at childbirth, no fresh medicals</div>
@@ -563,21 +592,24 @@
             <aside class="persona-aside">
               <h4>Plans that fit this stage</h4>
               <div class="persona-plan">
-                <span class="monogram" style="background:#7C3AED">SB</span>
+                <span class="monogram has-logo"><img class="brand-logo" src="assets/logos/sbigeneral.png"
+                    alt="SBI General" width="34" height="34" loading="lazy"></span>
                 <div>
                   <div class="persona-plan-name">Super Health Platinum Infinite</div>
                   <div class="persona-plan-meta">2-year pre-existing wait — a full year less than the rest</div>
                 </div>
               </div>
               <div class="persona-plan">
-                <span class="monogram" style="background:#DC2626">HE</span>
+                <span class="monogram has-logo"><img class="brand-logo" src="assets/logos/hdfcergo.png"
+                    alt="HDFC ERGO" width="34" height="34" loading="lazy"></span>
                 <div>
                   <div class="persona-plan-name">Optima Secure+</div>
                   <div class="persona-plan-meta">Best claims record in health insurance</div>
                 </div>
               </div>
               <div class="persona-plan">
-                <span class="monogram" style="background:#DC2626">AB</span>
+                <span class="monogram has-logo"><img class="brand-logo" src="assets/logos/absl.png"
+                    alt="Aditya Birla Sun Life" width="34" height="34" loading="lazy"></span>
                 <div>
                   <div class="persona-plan-name">ABSL Super Term Plan</div>
                   <div class="persona-plan-meta">Critical illness cover built into the base plan</div>
@@ -1359,9 +1391,46 @@
             </button>
             <div class="faq-answer">
               <div class="faq-answer-inner">
-                We are an IRDAI-registered corporate agent (composite) and work with leading insurers including HDFC
-                Life, ICICI Prudential, Max Life, Tata AIA, Niva Bupa, HDFC Ergo, Care Health, Star Health, and more. We
-                continuously evaluate insurers to recommend only the best-performing ones.
+                We are an IRDAI-registered corporate agent (composite) and work with leading insurers across life and
+                health. We continuously evaluate them on claim settlement, complaint volume and servicing, and recommend
+                only the ones that hold up.
+                <!-- The accordion measures its own height, so adding this row is safe —
+                     see the FAQ block in main.js. -->
+                <div class="brand-row">
+                  <span class="brand-chip"><span class="brand-tile xs has-logo"><img class="brand-logo"
+                        src="assets/logos/hdfclife.png" alt="" width="22" height="22" loading="lazy"></span> HDFC
+                    Life</span>
+                  <span class="brand-chip"><span class="brand-tile xs has-logo"><img class="brand-logo"
+                        src="assets/logos/icicipru.png" alt="" width="22" height="22" loading="lazy"></span> ICICI
+                    Prudential</span>
+                  <span class="brand-chip"><span class="brand-tile xs has-logo"><img class="brand-logo"
+                        src="assets/logos/axismax.png" alt="" width="22" height="22" loading="lazy"></span> Axis Max
+                    Life</span>
+                  <span class="brand-chip"><span class="brand-tile xs has-logo"><img class="brand-logo"
+                        src="assets/logos/tataaia.png" alt="" width="22" height="22" loading="lazy"></span> Tata
+                    AIA</span>
+                  <span class="brand-chip"><span class="brand-tile xs has-logo"><img class="brand-logo"
+                        src="assets/logos/bajajlife.png" alt="" width="22" height="22" loading="lazy"></span> Bajaj
+                    Life</span>
+                  <span class="brand-chip"><span class="brand-tile xs has-logo"><img class="brand-logo"
+                        src="assets/logos/nivabupa.png" alt="" width="22" height="22" loading="lazy"></span> Niva
+                    Bupa</span>
+                  <span class="brand-chip"><span class="brand-tile xs has-logo"><img class="brand-logo"
+                        src="assets/logos/hdfcergo.png" alt="" width="22" height="22" loading="lazy"></span> HDFC
+                    ERGO</span>
+                  <span class="brand-chip"><span class="brand-tile xs has-logo"><img class="brand-logo"
+                        src="assets/logos/care.png" alt="" width="22" height="22" loading="lazy"></span> Care
+                    Health</span>
+                  <span class="brand-chip"><span class="brand-tile xs has-logo"><img class="brand-logo"
+                        src="assets/logos/abhi.png" alt="" width="22" height="22" loading="lazy"></span> Aditya
+                    Birla</span>
+                  <span class="brand-chip"><span class="brand-tile xs has-logo"><img class="brand-logo"
+                        src="assets/logos/star.png" alt="" width="22" height="22" loading="lazy"></span> Star
+                    Health</span>
+                  <span class="brand-chip"><span class="brand-tile xs has-logo"><img class="brand-logo"
+                        src="assets/logos/sbigeneral.png" alt="" width="22" height="22" loading="lazy"></span> SBI
+                    General</span>
+                </div>
               </div>
             </div>
           </div>

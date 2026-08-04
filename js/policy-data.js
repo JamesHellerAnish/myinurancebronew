@@ -131,6 +131,47 @@ var policyData = {
     ]
   },
 
+  /* ── Insurer logos ──────────────────────────────────────────
+     Keyed by the exact insurer string used elsewhere in this file, so
+     `companies[]`, `plans[].insurer` and the static markup in index.html
+     all resolve to the same logo.
+
+     `logo` is a file in assets/logos/ — each insurer's own brand icon,
+     downloaded from their site and served locally. Never hotlink these:
+     the insurers' CDNs can and do block cross-site requests, and a broken
+     partner logo on a broker's site looks like a dead partnership.
+
+     `accent` and `initials` are the fallback tile for an insurer we have
+     no logo file for — `brandFor()` returns them for anything unknown, so
+     a new insurer renders as a coloured monogram rather than a broken
+     image. Both are also what the pre-logo design used.
+
+     These are registered trademarks. We display them as the insurers'
+     appointed corporate agent, which is normal practice — but see §11 of
+     the handoff before adding any insurer we do not actually place.
+     ──────────────────────────────────────────────────────────── */
+  brands: {
+    'Axis Max Life':         { logo: 'axismax.png',      accent: '#7C3AED', initials: 'AM' },
+    'Max Life':              { logo: 'axismax.png',      accent: '#7C3AED', initials: 'ML' },
+    'HDFC Life':             { logo: 'hdfclife.png',     accent: '#0EA5E9', initials: 'HL' },
+    'HDFC ERGO':             { logo: 'hdfcergo.png',     accent: '#DC2626', initials: 'HE' },
+    'ICICI Prudential':      { logo: 'icicipru.png',     accent: '#F97316', initials: 'IP' },
+    'ICICI Lombard':         { logo: 'icicilombard.png', accent: '#B45309', initials: 'IL' },
+    'Bajaj Life':            { logo: 'bajajlife.png',    accent: '#0891B2', initials: 'BL' },
+    'Bajaj General':         { logo: 'bajajgeneral.png', accent: '#0E7490', initials: 'BG' },
+    'SBI Life':              { logo: 'sbilife.png',      accent: '#1E3A8A', initials: 'SL' },
+    'SBI General':           { logo: 'sbigeneral.png',   accent: '#1E3A8A', initials: 'SG' },
+    'Aditya Birla Sun Life': { logo: 'absl.png',         accent: '#DB2777', initials: 'AB' },
+    'Aditya Birla Health':   { logo: 'abhi.png',         accent: '#DB2777', initials: 'AB' },
+    'Care Health':           { logo: 'care.png',         accent: '#16A34A', initials: 'CH' },
+    'Niva Bupa':             { logo: 'nivabupa.png',     accent: '#2563EB', initials: 'NB' },
+    'Go Digit':              { logo: 'godigit.png',      accent: '#0D9488', initials: 'GD' },
+    'Generali Central':      { logo: 'generali.png',     accent: '#9F1239', initials: 'GC' },
+    'TATA AIG':              { logo: 'tataaig.png',      accent: '#1E293B', initials: 'TA' },
+    'Tata AIA':              { logo: 'tataaia.png',      accent: '#1E293B', initials: 'TA' },
+    'Star Health':           { logo: 'star.png',         accent: '#C2410C', initials: 'SH' }
+  },
+
   /* ── Life-stage personas used by the Explore filter ─────────── */
   personas: [
     { key: 'genz', label: 'Just started earning', age: '22–28' },
@@ -834,4 +875,36 @@ var policyData = {
     acc[plan.id] = plan;
     return acc;
   }, {});
+
+  /* ── Brand lookup ─────────────────────────────────────────────
+     Case- and punctuation-insensitive, because the same insurer is
+     written "HDFC ERGO" in the dataset and "HDFC Ergo" in the FAQ copy.
+     Always returns something renderable: an insurer we hold no logo for
+     falls back to a coloured monogram, never a broken image. */
+  var byKey = {};
+  Object.keys(data.brands).forEach(function (name) {
+    byKey[name.toLowerCase().replace(/[^a-z0-9]/g, '')] = data.brands[name];
+  });
+
+  data.brandFor = function (name) {
+    var brand = byKey[String(name || '').toLowerCase().replace(/[^a-z0-9]/g, '')];
+    if (brand) return brand;
+    return {
+      logo: null,
+      accent: '#475569',
+      initials: String(name || '?').replace(/[^A-Za-z ]/g, '')
+        .split(/\s+/).slice(0, 2).map(function (w) { return w.charAt(0).toUpperCase(); }).join('')
+    };
+  };
+
+  /* The registry is the single source of truth for insurer branding, so
+     reconcile the per-plan values against it. Without this an insurer can
+     drift between the plan card and the league table — SBI actually had,
+     sharing Axis Max Life's violet. */
+  data.allPlans.forEach(function (plan) {
+    var brand = data.brandFor(plan.insurer);
+    plan.accent = brand.accent;
+    plan.monogram = brand.initials;
+    plan.logo = brand.logo;
+  });
 })(policyData);
