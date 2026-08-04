@@ -950,6 +950,12 @@
   align-items: center;
 }
 
+/* Groups the chips for assistive tech without becoming a flex item itself —
+   the chips have to keep flowing and wrapping individually. */
+.filter-group {
+  display: contents;
+}
+
 .cmp-filters .filter-label {
   font-size: var(--text-xs);
   font-weight: 700;

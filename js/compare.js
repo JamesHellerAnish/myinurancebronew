@@ -190,7 +190,12 @@
      RENDER — FILTER CHIPS
      ═══════════════════════════════════════════════════════ */
   function renderFilters() {
-    var html = '<span class="filter-label">Life stage</span>';
+    /* Each chip set is a labelled group, so a screen reader announces
+       "Life stage, group" rather than a bare run of toggle buttons.
+       .filter-group is display:contents — the chips must stay flex items
+       of .cmp-filters or each set would wrap as a block on mobile. */
+    var html = '<div class="filter-group" role="group" aria-labelledby="cmpPersonaLabel">' +
+      '<span class="filter-label" id="cmpPersonaLabel">Life stage</span>';
 
     policyData.personas.forEach(function (p) {
       var on = state.personas.indexOf(p.key) !== -1;
@@ -198,13 +203,16 @@
         ' aria-pressed="' + on + '">' + esc(p.label) + ' <span style="opacity:.6">' + esc(p.age) + '</span></button>';
     });
 
-    html += '<span class="filter-label" style="margin-left:var(--space-4)">What matters</span>';
+    html += '</div><div class="filter-group" role="group" aria-labelledby="cmpNeedLabel">' +
+      '<span class="filter-label" id="cmpNeedLabel" style="margin-left:var(--space-4)">What matters</span>';
 
     NEEDS[state.product].forEach(function (n) {
       var on = state.needs.indexOf(n.key) !== -1;
       html += '<button type="button" class="chip" data-filter="need" data-key="' + n.key + '"' +
         ' aria-pressed="' + on + '">' + esc(n.label) + '</button>';
     });
+
+    html += '</div>';
 
     if (state.personas.length || state.needs.length) {
       html += '<button type="button" class="chip-clear" data-filter="clear">Clear filters</button>';

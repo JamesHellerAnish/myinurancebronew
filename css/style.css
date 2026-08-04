@@ -1368,61 +1368,8 @@ h6 {
 }
 
 /* ═══════════════════════════════════════════════════════
-   8. UNDERSTAND YOUR POLICY
-   ═══════════════════════════════════════════════════════ */
-.policy-widget-card {
-  max-width: 640px;
-  margin: 0 auto;
-  background: var(--color-card-bg);
-  border-radius: var(--radius-lg);
-  padding: var(--space-10);
-  box-shadow: var(--shadow-elevated);
-  border: 1px solid var(--color-border);
-}
-
-.policy-widget-card .form-group {
-  margin-bottom: var(--space-5);
-}
-
-.policy-widget-card label {
-  display: block;
-  font-size: 0.875rem;
-  font-weight: 600;
-  margin-bottom: var(--space-2);
-  color: var(--color-text);
-}
-
-.policy-widget-card select {
-  width: 100%;
-  padding: var(--space-3) var(--space-4);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-md);
-  font-family: var(--font-family);
-  font-size: 0.9375rem;
-  color: var(--color-text);
-  background: var(--color-bg);
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748b' stroke-width='2' fill='none'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 16px center;
-  transition: border-color var(--transition-fast);
-  cursor: pointer;
-}
-
-.policy-widget-card select:focus {
-  outline: none;
-  border-color: var(--color-primary-dark);
-}
-
-.policy-description {
-  font-size: 0.9375rem;
-  color: var(--color-text-secondary);
-  margin-bottom: var(--space-6);
-  line-height: 1.6;
-}
-
-/* ═══════════════════════════════════════════════════════
-   8b. POLICY REVIEW PANEL (Ditto-style)
+   8. POLICY REVIEW PANEL
+   Rendered by compare.js deep dive — .pr-* classes are live.
    ═══════════════════════════════════════════════════════ */
 .policy-review-panel {
   max-width: 800px;
@@ -2145,10 +2092,6 @@ h6 {
 
   .product-card,
   .experience-card {
-    padding: var(--space-6);
-  }
-
-  .policy-widget-card {
     padding: var(--space-6);
   }
 
