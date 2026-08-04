@@ -123,7 +123,14 @@ function mib_dashboard_config()
         return null;
     }
 
+    // This file is created by hand on the server, so it very easily picks up a
+    // UTF-8 BOM or a trailing newline outside the PHP tags. That counts as output:
+    // headers are then already sent, the 401 and WWW-Authenticate never reach the
+    // client (so no login prompt appears) and PHP prints a warning exposing the
+    // absolute server path. Swallow anything the include emits.
+    ob_start();
     $cfg = include $file;
+    ob_end_clean();
 
     if (!is_array($cfg) || empty($cfg['user']) || empty($cfg['hash'])) {
         return null;
