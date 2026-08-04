@@ -19,26 +19,192 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <!-- Hero portrait is the LCP element; start it before the CSS resolves. -->
+  <link rel="preload" as="image" href="assets/images/chief-advisor.png" fetchpriority="high">
 </head>
 
 <body>
+
+  <!-- ═══════════ 0. SVG ICON SPRITE ═══════════ -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true" focusable="false">
+    <symbol id="i-shield" viewBox="0 0 24 24">
+      <path d="M12 2.5 4.5 5.8v5.4c0 4.6 3.2 8.9 7.5 10.3 4.3-1.4 7.5-5.7 7.5-10.3V5.8Z" />
+    </symbol>
+    <symbol id="i-heart-pulse" viewBox="0 0 24 24">
+      <path d="M20.4 5.9a5 5 0 0 0-7.1 0L12 7.2l-1.3-1.3a5 5 0 1 0-7.1 7.1l1.3 1.3L12 21.2l7.1-6.9 1.3-1.3a5 5 0 0 0 0-7.1Z" />
+      <path d="M3.7 12.5h3.4l1.6-2.8 2.3 5 1.8-3.2h4" />
+    </symbol>
+    <symbol id="i-users" viewBox="0 0 24 24">
+      <path d="M16 20v-1.8a3.7 3.7 0 0 0-3.7-3.7H5.7A3.7 3.7 0 0 0 2 18.2V20" />
+      <circle cx="9" cy="7.3" r="3.5" />
+      <path d="M22 20v-1.8a3.7 3.7 0 0 0-2.8-3.6M15.6 4a3.7 3.7 0 0 1 0 7.1" />
+    </symbol>
+    <symbol id="i-baby" viewBox="0 0 24 24">
+      <path d="M9 12.5h.01M15 12.5h.01M10 16.5a3.2 3.2 0 0 0 4 0" />
+      <path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17Z" />
+      <path d="M9.5 3.9a3 3 0 0 1 5 0" />
+    </symbol>
+    <symbol id="i-briefcase" viewBox="0 0 24 24">
+      <rect x="2.5" y="7.5" width="19" height="12.5" rx="2" />
+      <path d="M8.5 7.5V5.8a1.8 1.8 0 0 1 1.8-1.8h3.4a1.8 1.8 0 0 1 1.8 1.8v1.7M2.5 12.5h19" />
+    </symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24">
+      <path
+        d="M21.5 16.9v2.6a1.8 1.8 0 0 1-2 1.8 17.6 17.6 0 0 1-7.7-2.7 17.3 17.3 0 0 1-5.3-5.3A17.6 17.6 0 0 1 3.8 5.5a1.8 1.8 0 0 1 1.8-2h2.6a1.8 1.8 0 0 1 1.8 1.5c.1.9.3 1.7.6 2.5a1.8 1.8 0 0 1-.4 1.9l-1.1 1.1a14 14 0 0 0 5.3 5.3l1.1-1.1a1.8 1.8 0 0 1 1.9-.4c.8.3 1.6.5 2.5.6a1.8 1.8 0 0 1 1.6 1.5Z" />
+    </symbol>
+    <symbol id="i-message-circle" viewBox="0 0 24 24">
+      <path d="M21 11.5a8.4 8.4 0 0 1-9 8.5 8.9 8.9 0 0 1-4-1L3 20.5l1.5-5a8.9 8.9 0 0 1-1-4 8.4 8.4 0 0 1 8.5-9 8.4 8.4 0 0 1 9 8.5Z" />
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24">
+      <path d="m4.5 12.5 5 5 10-11" />
+    </symbol>
+    <symbol id="i-check-circle" viewBox="0 0 24 24">
+      <path d="M21.5 11.1V12a9.5 9.5 0 1 1-5.6-8.7" />
+      <path d="m8 11.5 3.5 3.5 10-10" />
+    </symbol>
+    <symbol id="i-x" viewBox="0 0 24 24">
+      <path d="M18.5 5.5l-13 13M5.5 5.5l13 13" />
+    </symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24">
+      <path d="M4 12h16M13.5 5.5 20 12l-6.5 6.5" />
+    </symbol>
+    <symbol id="i-star" viewBox="0 0 24 24">
+      <path d="m12 2.8 2.9 5.9 6.5.9-4.7 4.6 1.1 6.5-5.8-3-5.8 3 1.1-6.5-4.7-4.6 6.5-.9Z" />
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9.5" />
+      <path d="M12 6.5V12l3.5 2" />
+    </symbol>
+    <symbol id="i-file-text" viewBox="0 0 24 24">
+      <path d="M14 2.5H6.5a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V8Z" />
+      <path d="M14 2.5V8h5.5M8.5 13h7M8.5 17h7M8.5 9h2" />
+    </symbol>
+    <symbol id="i-trending-up" viewBox="0 0 24 24">
+      <path d="m2.5 17.5 6.5-6.5 4 4 8.5-8.5" />
+      <path d="M15.5 6.5h6v6" />
+    </symbol>
+    <symbol id="i-alert-triangle" viewBox="0 0 24 24">
+      <path d="M10.3 3.6 1.9 17.5a2 2 0 0 0 1.7 3h16.8a2 2 0 0 0 1.7-3L13.7 3.6a2 2 0 0 0-3.4 0Z" />
+      <path d="M12 9v4.5M12 17.5h.01" />
+    </symbol>
+    <symbol id="i-building" viewBox="0 0 24 24">
+      <rect x="4.5" y="2.5" width="15" height="19" rx="2" />
+      <path d="M9 7h1.5M13.5 7H15M9 11h1.5M13.5 11H15M9 15h1.5M13.5 15H15M10 21.5v-3h4v3" />
+    </symbol>
+    <symbol id="i-wallet" viewBox="0 0 24 24">
+      <path d="M20.5 8.5V6.8a1.8 1.8 0 0 0-1.8-1.8H5.3A2.8 2.8 0 0 0 2.5 7.8v9.4A2.8 2.8 0 0 0 5.3 20h13.4a1.8 1.8 0 0 0 1.8-1.8v-1.7" />
+      <path d="M21.5 11.5h-5a2.5 2.5 0 0 0 0 5h5Z" />
+    </symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24">
+      <path d="m10 3.5 1.8 4.7 4.7 1.8-4.7 1.8L10 16.5l-1.8-4.7L3.5 10l4.7-1.8Z" />
+      <path d="M18 3v4M20 5h-4M17.5 15.5l.9 2.3 2.3.9-2.3.9-.9 2.3-.9-2.3-2.3-.9 2.3-.9Z" />
+    </symbol>
+    <symbol id="i-scale" viewBox="0 0 24 24">
+      <path d="M12 3.5v17M7 20.5h10M12 6.5l7 1.5M12 6.5 5 8" />
+      <path d="M5 8 2.5 14.5a3 3 0 0 0 5 0Zm14 0-2.5 6.5a3 3 0 0 0 5 0Z" />
+    </symbol>
+    <symbol id="i-bar-chart" viewBox="0 0 24 24">
+      <path d="M12 20V10M18.5 20V4M5.5 20v-6" />
+    </symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24">
+      <path d="M14.4 6.4a4.5 4.5 0 0 0 5.9 5.9l-8.5 8.5a2.5 2.5 0 0 1-3.6-3.6Z" />
+      <path d="M14.4 6.4 18 2.8a4.5 4.5 0 0 1 3.2 8.5" />
+    </symbol>
+    <symbol id="i-target" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9.5" />
+      <circle cx="12" cy="12" r="5.5" />
+      <circle cx="12" cy="12" r="1.5" />
+    </symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24">
+      <path d="M20.4 5.9a5 5 0 0 0-7.1 0L12 7.2l-1.3-1.3a5 5 0 1 0-7.1 7.1L12 21.2l8.4-8.2a5 5 0 0 0 0-7.1Z" />
+    </symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24">
+      <rect x="4" y="10.5" width="16" height="11" rx="2" />
+      <path d="M7.8 10.5v-3a4.2 4.2 0 0 1 8.4 0v3" />
+    </symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9.5" />
+      <path d="M2.5 12h19M12 2.5a14 14 0 0 1 0 19 14 14 0 0 1 0-19Z" />
+    </symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24">
+      <path d="M13.5 2.5 4 13.8h7l-.5 7.7L20 10.2h-7Z" />
+    </symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24">
+      <rect x="3.5" y="5" width="17" height="16.5" rx="2" />
+      <path d="M16 2.5V7M8 2.5V7M3.5 10.5h17" />
+    </symbol>
+    <symbol id="i-umbrella" viewBox="0 0 24 24">
+      <path d="M12 12v6.5a2.8 2.8 0 0 1-5.6 0" />
+      <path d="M21.5 12a9.5 9.5 0 0 0-19 0Z" />
+      <path d="M12 2.5V4" />
+    </symbol>
+    <symbol id="i-search" viewBox="0 0 24 24">
+      <circle cx="10.5" cy="10.5" r="7" />
+      <path d="m20.5 20.5-5-5" />
+    </symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24">
+      <path d="M4 20v-6M4 10.5V4M12 20v-9M12 7.5V4M20 20v-4M20 12.5V4" />
+      <path d="M1.5 14h5M9.5 7.5h5M17.5 16h5" />
+    </symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24">
+      <path d="m12 2.5 9.5 5-9.5 5-9.5-5Z" />
+      <path d="m2.5 16.5 9.5 5 9.5-5M2.5 12l9.5 5 9.5-5" />
+    </symbol>
+    <symbol id="i-download" viewBox="0 0 24 24">
+      <path d="M21 15.5v3.5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3.5" />
+      <path d="m7.5 10.5 4.5 4.5 4.5-4.5M12 15V2.5" />
+    </symbol>
+    <symbol id="i-award" viewBox="0 0 24 24">
+      <circle cx="12" cy="9" r="6.5" />
+      <path d="m8.2 14.4-1.2 7 5-3 5 3-1.2-7" />
+    </symbol>
+    <symbol id="i-life-buoy" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9.5" />
+      <circle cx="12" cy="12" r="4" />
+      <path d="m5.3 5.3 3.9 3.9M14.8 14.8l3.9 3.9M18.7 5.3l-3.9 3.9M9.2 14.8l-3.9 3.9" />
+    </symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24">
+      <path d="m5.5 9 6.5 6.5L18.5 9" />
+    </symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24">
+      <path d="M12 4.5v15M4.5 12h15" />
+    </symbol>
+    <symbol id="i-rupee" viewBox="0 0 24 24">
+      <path d="M6.5 3.5h11M6.5 8.5h11M15.5 3.5a5 5 0 0 1 0 10h-9l9 7" />
+    </symbol>
+    <symbol id="i-home" viewBox="0 0 24 24">
+      <path d="m3 10 9-7.5 9 7.5v9.5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" />
+      <path d="M9.5 21.5V13h5v8.5" />
+    </symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24">
+      <path d="M3 21l1.6-5.2A8.6 8.6 0 1 1 8.4 19.4Z" />
+      <path d="M9 8.5c-.3 1.4 1 3.6 2.2 4.7 1.2 1.1 3 1.9 3.9 1.5.5-.2.8-.9.9-1.4l-2-1-.8.9a6 6 0 0 1-2.3-2.3l.9-.8-1-2c-.5.1-1.2.4-1.4.9Z" />
+    </symbol>
+  </svg>
+
+  <!-- Reading progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
 
   <!-- ═══════════ 1. NAVBAR ═══════════ -->
   <header class="navbar" id="navbar">
     <div class="container">
       <a href="#" class="nav-brand">
-        <img src="assets/images/logo.png" alt="Myinsurancebro Logo">
+        <img src="assets/images/logo.png" alt="Myinsurancebro Logo" width="134" height="136">
         <span>Myinsurancebro</span>
       </a>
 
       <nav class="nav-links" id="navLinks">
-        <a href="#health-insurance">Health Insurance</a>
-        <a href="#term-insurance">Term Insurance</a>
-        <a href="#how-it-works">How It Works</a>
+        <a href="#personas">For You</a>
+        <a href="#compare">Compare Plans</a>
+        <a href="#claim-support">Claim Support</a>
         <a href="#reviews">Reviews</a>
         <a href="#faq">FAQ</a>
       </nav>
@@ -56,9 +222,9 @@
 
     <!-- Mobile Drawer -->
     <div class="mobile-drawer" id="mobileDrawer">
-      <a href="#health-insurance">Health Insurance</a>
-      <a href="#term-insurance">Term Insurance</a>
-      <a href="#how-it-works">How It Works</a>
+      <a href="#personas">For You</a>
+      <a href="#compare">Compare Plans</a>
+      <a href="#claim-support">Claim Support</a>
       <a href="#reviews">Reviews</a>
       <a href="#faq">FAQ</a>
       <a href="#cta" class="btn btn-primary">Get Free Advice</a>
@@ -71,106 +237,354 @@
     <section class="hero" id="hero">
       <div class="hero-bg-blob"></div>
       <div class="hero-bg-blob-2"></div>
+      <div class="hero-mesh" aria-hidden="true"><span></span><span></span><span></span></div>
 
       <div class="container">
         <div class="hero-content fade-up">
-          <h1>The Ultimate<br><span class="highlight">Insurance Buying</span><br>Experience</h1>
-          <p>Personalized, unbiased advice on Health & Term insurance. Zero spam. Lifetime claim support.</p>
+          <span class="eyebrow"><svg class="icon"><use href="#i-sparkles"></use></svg> IRDAI-licensed · Zero spam</span>
+          <h1>Insurance that<br><span class="highlight">actually pays out</span><br>when you need it</h1>
+          <p>Compare term and health plans on the numbers that decide your claim — not the ad. Then get one advisor who
+            stays with you for life, even for the policy you bought somewhere else.</p>
 
           <div class="hero-actions">
-            <a href="#cta" class="btn btn-primary btn-lg" id="heroCtaPrimary">Talk to an Advisor</a>
-            <a href="#products" class="btn btn-outline btn-lg" id="heroCtaSecondary">Explore Plans</a>
+            <a href="#compare" class="btn btn-primary btn-lg" id="heroCtaPrimary">Compare Plans</a>
+            <a href="#personas" class="btn btn-outline btn-lg" id="heroCtaSecondary">Find My Cover</a>
           </div>
 
           <div class="hero-trust">
-            <span class="stars">⭐</span>
+            <span class="stars"><svg class="icon icon-fill"><use href="#i-star"></use></svg></span>
             <span>Trusted by <strong>10,000+</strong> happy customers</span>
           </div>
         </div>
 
         <div class="hero-visual fade-up">
-          <!-- Inline SVG: Insurance Shield / Protection Illustration -->
-          <div class="hero-illustration">
-            <svg viewBox="0 0 500 450" fill="none" xmlns="http://www.w3.org/2000/svg" role="img"
-              aria-label="Insurance protection illustration">
-              <!-- Shield body -->
-              <defs>
-                <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#FFEB3C" />
-                  <stop offset="100%" stop-color="#F2C200" />
-                </linearGradient>
-                <linearGradient id="circleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#FFF9C4" stop-opacity="0.5" />
-                  <stop offset="100%" stop-color="#FFEB3C" stop-opacity="0.2" />
-                </linearGradient>
-                <filter id="shadow1" x="-20%" y="-20%" width="140%" height="140%">
-                  <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#F2C200" flood-opacity="0.25" />
-                </filter>
-              </defs>
+          <!-- Hero Advisor Visual displaying Chief Advisor & Owner DP -->
+          <div class="hero-advisor-visual">
+            <div class="advisor-bg-glow"></div>
+            <div class="advisor-bg-circle"></div>
 
-              <!-- Background circles -->
-              <circle cx="250" cy="225" r="180" fill="url(#circleGrad)" />
-              <circle cx="250" cy="225" r="140" fill="none" stroke="#FFEB3C" stroke-width="1" stroke-dasharray="8 6"
-                opacity="0.4" />
+            <div class="advisor-card-container">
+              <div class="advisor-img-wrapper">
+                <img src="assets/images/chief-advisor.png" alt="Chief Advisor & Owner - Myinsurancebro" class="advisor-img"
+                  width="1471" height="1809" fetchpriority="high" decoding="async">
+              </div>
 
-              <!-- People figures -->
-              <!-- Person 1 (Adult) -->
-              <g transform="translate(150, 200)">
-                <circle cx="0" cy="-40" r="18" fill="#334155" />
-                <path d="M-22 0 C-22 -15 22 -15 22 0 L22 50 C22 55 -22 55 -22 50 Z" fill="#475569" />
-                <rect x="-8" y="50" width="8" height="35" rx="4" fill="#334155" />
-                <rect x="0" y="50" width="8" height="35" rx="4" fill="#334155" />
-              </g>
+              <!-- Floating Trust Badges -->
+              <div class="hero-floating-badge badge-top">
+                <div class="badge-icon-wrap">
+                  <span class="badge-icon"><svg class="icon"><use href="#i-shield"></use></svg></span>
+                </div>
+                <div class="badge-content">
+                  <span class="badge-title">Chief Advisor & Owner</span>
+                  <span class="badge-subtitle">100% Unbiased Advice</span>
+                </div>
+              </div>
 
-              <!-- Person 2 (Adult) -->
-              <g transform="translate(200, 190)">
-                <circle cx="0" cy="-45" r="20" fill="#1e293b" />
-                <path d="M-25 0 C-25 -18 25 -18 25 0 L25 55 C25 60 -25 60 -25 55 Z" fill="#334155" />
-                <rect x="-10" y="55" width="9" height="40" rx="4" fill="#1e293b" />
-                <rect x="1" y="55" width="9" height="40" rx="4" fill="#1e293b" />
-              </g>
+              <div class="hero-floating-badge badge-bottom">
+                <div class="badge-icon-wrap gold">
+                  <span class="badge-icon"><svg class="icon icon-fill"><use href="#i-star"></use></svg></span>
+                </div>
+                <div class="badge-content">
+                  <span class="badge-title">Direct Lifetime Support</span>
+                  <span class="badge-subtitle">★ 4.9/5 • 10,000+ Advised</span>
+                </div>
+              </div>
 
-              <!-- Person 3 (Child) -->
-              <g transform="translate(245, 230)">
-                <circle cx="0" cy="-25" r="14" fill="#475569" />
-                <path d="M-16 0 C-16 -10 16 -10 16 0 L16 30 C16 34 -16 34 -16 30 Z" fill="#64748b" />
-                <rect x="-6" y="30" width="6" height="22" rx="3" fill="#475569" />
-                <rect x="0" y="30" width="6" height="22" rx="3" fill="#475569" />
-              </g>
+              <div class="hero-floating-badge badge-side">
+                <span class="pulse-dot"></span>
+                <span>Online for Consultations</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-              <!-- Shield -->
-              <g filter="url(#shadow1)">
-                <path d="M310 120
-                  C310 120 340 100 370 100
-                  C400 100 420 115 420 115
-                  L420 220
-                  C420 280 370 320 365 323
-                  C360 326 310 280 310 220
-                  Z" fill="url(#shieldGrad)" opacity="0.9" />
-                <!-- Checkmark -->
-                <path d="M345 195 L360 210 L390 175" stroke="#0f172a" stroke-width="6" stroke-linecap="round"
-                  stroke-linejoin="round" fill="none" />
-              </g>
+    <!-- ═══════════ 2b. INSURER MARQUEE ═══════════ -->
+    <div class="marquee" aria-label="Insurers we compare and place policies with">
+      <div class="marquee-track">
+        <span class="marquee-item"><span class="monogram" style="background:#7C3AED">AM</span> Axis Max Life</span>
+        <span class="marquee-item"><span class="monogram" style="background:#0EA5E9">HL</span> HDFC Life</span>
+        <span class="marquee-item"><span class="monogram" style="background:#F97316">IP</span> ICICI Prudential</span>
+        <span class="marquee-item"><span class="monogram" style="background:#0891B2">BL</span> Bajaj Life</span>
+        <span class="marquee-item"><span class="monogram" style="background:#DC2626">HE</span> HDFC ERGO</span>
+        <span class="marquee-item"><span class="monogram" style="background:#16A34A">CH</span> Care Health</span>
+        <span class="marquee-item"><span class="monogram" style="background:#DB2777">AB</span> Aditya Birla Health</span>
+        <span class="marquee-item"><span class="monogram" style="background:#2563EB">NB</span> Niva Bupa</span>
+        <span class="marquee-item"><span class="monogram" style="background:#7C3AED">SB</span> SBI General</span>
+        <!-- duplicated for the seamless -50% loop -->
+        <span class="marquee-item" aria-hidden="true"><span class="monogram" style="background:#7C3AED">AM</span> Axis
+          Max Life</span>
+        <span class="marquee-item" aria-hidden="true"><span class="monogram" style="background:#0EA5E9">HL</span> HDFC
+          Life</span>
+        <span class="marquee-item" aria-hidden="true"><span class="monogram" style="background:#F97316">IP</span> ICICI
+          Prudential</span>
+        <span class="marquee-item" aria-hidden="true"><span class="monogram" style="background:#0891B2">BL</span> Bajaj
+          Life</span>
+        <span class="marquee-item" aria-hidden="true"><span class="monogram" style="background:#DC2626">HE</span> HDFC
+          ERGO</span>
+        <span class="marquee-item" aria-hidden="true"><span class="monogram" style="background:#16A34A">CH</span> Care
+          Health</span>
+        <span class="marquee-item" aria-hidden="true"><span class="monogram" style="background:#DB2777">AB</span> Aditya
+          Birla Health</span>
+        <span class="marquee-item" aria-hidden="true"><span class="monogram" style="background:#2563EB">NB</span> Niva
+          Bupa</span>
+        <span class="marquee-item" aria-hidden="true"><span class="monogram" style="background:#7C3AED">SB</span> SBI
+          General</span>
+      </div>
+    </div>
 
-              <!-- Heart -->
-              <g transform="translate(120, 130)">
-                <path
-                  d="M15 8 C15 2 8 0 8 0 C8 0 0 2 0 8 C0 16 15 26 15 26 C15 26 30 16 30 8 C30 2 22 0 22 0 C22 0 15 2 15 8 Z"
-                  fill="#EF4444" opacity="0.6" />
-              </g>
+    <!-- ═══════════ 2c. PERSONAS / PAIN POINTS ═══════════ -->
+    <section class="section-padding" id="personas">
+      <div class="container">
+        <div class="section-header fade-up">
+          <span class="eyebrow"><svg class="icon"><use href="#i-target"></use></svg> Built for your stage</span>
+          <h2>What's actually at risk <span class="highlight">right now</span></h2>
+          <p>Insurance advice that ignores your life stage is just a sales pitch. Pick the one that sounds like you.</p>
+        </div>
 
-              <!-- Plus sign (medical) -->
-              <g transform="translate(380, 160)">
-                <rect x="8" y="0" width="8" height="24" rx="3" fill="#10B981" opacity="0.6" />
-                <rect x="0" y="8" width="24" height="8" rx="3" fill="#10B981" opacity="0.6" />
-              </g>
+        <div class="persona-picker" role="tablist" aria-label="Choose your life stage">
+          <button class="persona-card" role="tab" id="persona-tab-genz" aria-controls="persona-panel-genz"
+            aria-selected="true" data-persona="genz">
+            <span class="icon-tile"><svg class="icon"><use href="#i-briefcase"></use></svg></span>
+            <span class="persona-age">Age 22–28</span>
+            <h3>Just started earning</h3>
+            <p>First job, first salary — and cover that quietly belongs to your employer, not to you.</p>
+          </button>
 
-              <!-- Floating dots -->
-              <circle cx="100" cy="280" r="6" fill="#FFEB3C" opacity="0.5" />
-              <circle cx="400" cy="80" r="4" fill="#10B981" opacity="0.5" />
-              <circle cx="80" cy="160" r="3" fill="#F59E0B" opacity="0.4" />
-              <circle cx="430" cy="300" r="5" fill="#FFEB3C" opacity="0.3" />
-            </svg>
+          <button class="persona-card" role="tab" id="persona-tab-newparent" aria-controls="persona-panel-newparent"
+            aria-selected="false" tabindex="-1" data-persona="newparent">
+            <span class="icon-tile teal"><svg class="icon"><use href="#i-baby"></use></svg></span>
+            <span class="persona-age">Age 28–38</span>
+            <h3>New or expecting parent</h3>
+            <p>A second person now depends on your income, and the clock on maternity waiting periods has already
+              started.</p>
+          </button>
+
+          <button class="persona-card" role="tab" id="persona-tab-sandwich" aria-controls="persona-panel-sandwich"
+            aria-selected="false" tabindex="-1" data-persona="sandwich">
+            <span class="icon-tile warm"><svg class="icon"><use href="#i-users"></use></svg></span>
+            <span class="persona-age">Age 45–60</span>
+            <h3>Kids and parents to cover</h3>
+            <p>You are holding up two generations at once — and you are the single point of failure for both.</p>
+          </button>
+        </div>
+
+        <!-- ── Panel: Gen-Z ─────────────────────────────── -->
+        <div class="persona-panel active" id="persona-panel-genz" role="tabpanel" aria-labelledby="persona-tab-genz">
+          <div class="persona-panel-head">
+            <h3>You are covered — until the day you resign</h3>
+            <p>Group cover from your employer feels like a solved problem. It is the single most common gap we fix,
+              because it disappears exactly when your income does.</p>
+          </div>
+          <div class="persona-panel-body">
+            <div class="pain-list">
+              <div class="pain">
+                <span class="icon-tile sm danger"><svg class="icon"><use href="#i-briefcase"></use></svg></span>
+                <div>
+                  <h4>Your group cover ends the day you leave</h4>
+                  <p>Employer health cover is not portable. It does not follow you to the next job, it does not cover
+                    you through a notice period gap, and it ends immediately if you are laid off — which is the exact
+                    moment a hospital bill would hurt most.</p>
+                </div>
+              </div>
+              <div class="pain">
+                <span class="icon-tile sm danger"><svg class="icon"><use href="#i-users"></use></svg></span>
+                <div>
+                  <h4>You have aged off your parents' family floater</h4>
+                  <p>Most family floaters drop dependent children at 25. Many people discover this at a claim, not at
+                    renewal. If nobody has bought you a plan in your own name, you are uninsured and do not know it
+                    yet.</p>
+                </div>
+              </div>
+              <div class="pain">
+                <span class="icon-tile sm danger"><svg class="icon"><use href="#i-clock"></use></svg></span>
+                <div>
+                  <h4>Waiting periods only start counting once you buy</h4>
+                  <p>Every health policy makes you wait 2–3 years before pre-existing and named illnesses are covered.
+                    Those years pass whether or not you have a policy — so the cheapest year to start serving them is
+                    this one, while you are healthy and premiums are at their lowest.</p>
+                  <span class="pain-stat">A 25-year-old pays ₹10,149/yr — the same cover at 45 costs several times
+                    more</span>
+                </div>
+              </div>
+            </div>
+
+            <aside class="persona-aside">
+              <h4>Plans that fit this stage</h4>
+              <div class="persona-plan">
+                <span class="monogram" style="background:#DB2777">AB</span>
+                <div>
+                  <div class="persona-plan-name">Activ One MAX</div>
+                  <div class="persona-plan-meta">Cheapest health cover on our list</div>
+                </div>
+              </div>
+              <div class="persona-plan">
+                <span class="monogram" style="background:#0891B2">BL</span>
+                <div>
+                  <div class="persona-plan-name">Bajaj eTouch II</div>
+                  <div class="persona-plan-meta">Cheapest ₹2 Cr term cover</div>
+                </div>
+              </div>
+              <div class="persona-plan">
+                <span class="monogram" style="background:#2563EB">NB</span>
+                <div>
+                  <div class="persona-plan-name">ReAssure 2.0 Platinum+</div>
+                  <div class="persona-plan-meta">Rewards buying young — locks in your entry age</div>
+                </div>
+              </div>
+              <a href="#compare" class="btn btn-primary" data-persona-jump="genz">Compare these plans</a>
+            </aside>
+          </div>
+        </div>
+
+        <!-- ── Panel: New parent ────────────────────────── -->
+        <div class="persona-panel" id="persona-panel-newparent" role="tabpanel"
+          aria-labelledby="persona-tab-newparent">
+          <div class="persona-panel-head">
+            <h3>The cover has to exist before you need it</h3>
+            <p>Maternity and newborn benefits are the one part of health insurance you cannot buy on demand. Almost
+              every gap we see at this stage comes down to timing.</p>
+          </div>
+          <div class="persona-panel-body">
+            <div class="pain-list">
+              <div class="pain">
+                <span class="icon-tile sm danger"><svg class="icon"><use href="#i-calendar"></use></svg></span>
+                <div>
+                  <h4>Maternity waiting periods run 2–4 years</h4>
+                  <p>You have to buy the cover well before you start planning, not once you are expecting. None of the
+                    five plans we rate covers maternity in its base policy — HDFC ERGO offers it through the Parenthood
+                    rider, and Aditya Birla needs a separate product entirely.</p>
+                  <span class="pain-stat">Buy after conception and maternity is simply not covered</span>
+                </div>
+              </div>
+              <div class="pain">
+                <span class="icon-tile sm danger"><svg class="icon"><use href="#i-baby"></use></svg></span>
+                <div>
+                  <h4>Newborns need cover from day one</h4>
+                  <p>A newborn can be admitted to the NICU within hours of birth, and that is one of the most expensive
+                    admissions in Indian healthcare. Cover for the child has to already be in place, structured
+                    correctly, before the delivery.</p>
+                </div>
+              </div>
+              <div class="pain">
+                <span class="icon-tile sm danger"><svg class="icon"><use href="#i-home"></use></svg></span>
+                <div>
+                  <h4>Your term cover now has to clear 20 years of liability</h4>
+                  <p>A child means roughly two decades of dependency, and for most people it arrives alongside a home
+                    loan. The cover you bought as a single 25-year-old was not sized for either.</p>
+                </div>
+              </div>
+              <div class="pain">
+                <span class="icon-tile sm danger"><svg class="icon"><use href="#i-scale"></use></svg></span>
+                <div>
+                  <h4>Both spouses are usually under-covered</h4>
+                  <p>Cover typically gets bought for the higher earner only. If the other parent is uninsured, the
+                    household is still one event away from a crisis — including the cost of replacing unpaid care.</p>
+                </div>
+              </div>
+            </div>
+
+            <aside class="persona-aside">
+              <h4>Plans that fit this stage</h4>
+              <div class="persona-plan">
+                <span class="monogram" style="background:#DC2626">HE</span>
+                <div>
+                  <div class="persona-plan-name">Optima Secure+</div>
+                  <div class="persona-plan-meta">Parenthood maternity rider available</div>
+                </div>
+              </div>
+              <div class="persona-plan">
+                <span class="monogram" style="background:#7C3AED">AM</span>
+                <div>
+                  <div class="persona-plan-name">Smart Term Plan Plus</div>
+                  <div class="persona-plan-meta">99.71% claim settlement — the highest in India</div>
+                </div>
+              </div>
+              <div class="persona-plan">
+                <span class="monogram" style="background:#0EA5E9">HL</span>
+                <div>
+                  <div class="persona-plan-name">Click2Protect Supreme Plus</div>
+                  <div class="persona-plan-meta">Raises cover at childbirth, no fresh medicals</div>
+                </div>
+              </div>
+              <a href="#compare" class="btn btn-primary" data-persona-jump="newparent">Compare these plans</a>
+            </aside>
+          </div>
+        </div>
+
+        <!-- ── Panel: Sandwich generation ───────────────── -->
+        <div class="persona-panel" id="persona-panel-sandwich" role="tabpanel"
+          aria-labelledby="persona-tab-sandwich">
+          <div class="persona-panel-head">
+            <h3>Two generations, one income, no margin for error</h3>
+            <p>This is the hardest stage to insure and the one where getting the details wrong is most expensive.
+              Senior-parent cover in particular rewards precision.</p>
+          </div>
+          <div class="persona-panel-body">
+            <div class="pain-list">
+              <div class="pain">
+                <span class="icon-tile sm danger"><svg class="icon"><use href="#i-alert-triangle"></use></svg></span>
+                <div>
+                  <h4>Parents over 60 face co-pays, loading and full waiting periods</h4>
+                  <p>Premiums rise steeply, insurers add a co-payment share, and pre-existing conditions — which most
+                    people over 60 have — sit behind a 2 to 3 year wait. Which insurer you pick decides whether that
+                    wait is two years or three.</p>
+                  <span class="pain-stat">A senior couple costs ₹66,505–₹78,923/yr at ₹15 L cover</span>
+                </div>
+              </div>
+              <div class="pain">
+                <span class="icon-tile sm danger"><svg class="icon"><use href="#i-briefcase"></use></svg></span>
+                <div>
+                  <h4>Your corporate floater will not take them</h4>
+                  <p>Most employer plans either exclude parents outright or price them as a punitive add-on with thin
+                    limits. And like all group cover, it ends the day you change jobs — taking your parents' only
+                    protection with it.</p>
+                </div>
+              </div>
+              <div class="pain">
+                <span class="icon-tile sm danger"><svg class="icon"><use href="#i-trending-up"></use></svg></span>
+                <div>
+                  <h4>Your kids' education corpus is exposed</h4>
+                  <p>College costs are a fixed future liability sitting on a single income. Without term cover sized to
+                    it, that corpus is the first thing that gets liquidated.</p>
+                </div>
+              </div>
+              <div class="pain">
+                <span class="icon-tile sm danger"><svg class="icon"><use href="#i-users"></use></svg></span>
+                <div>
+                  <h4>You are the single point of failure for two generations</h4>
+                  <p>Parents above you, children below, and both financially dependent on you continuing to earn. That
+                    is the definition of a risk that has to be transferred rather than absorbed.</p>
+                </div>
+              </div>
+            </div>
+
+            <aside class="persona-aside">
+              <h4>Plans that fit this stage</h4>
+              <div class="persona-plan">
+                <span class="monogram" style="background:#7C3AED">SB</span>
+                <div>
+                  <div class="persona-plan-name">Super Health Platinum Infinite</div>
+                  <div class="persona-plan-meta">2-year pre-existing wait — a full year less than the rest</div>
+                </div>
+              </div>
+              <div class="persona-plan">
+                <span class="monogram" style="background:#DC2626">HE</span>
+                <div>
+                  <div class="persona-plan-name">Optima Secure+</div>
+                  <div class="persona-plan-meta">Best claims record in health insurance</div>
+                </div>
+              </div>
+              <div class="persona-plan">
+                <span class="monogram" style="background:#DC2626">AB</span>
+                <div>
+                  <div class="persona-plan-name">ABSL Super Term Plan</div>
+                  <div class="persona-plan-meta">Critical illness cover built into the base plan</div>
+                </div>
+              </div>
+              <a href="#compare" class="btn btn-primary" data-persona-jump="sandwich">Compare these plans</a>
+            </aside>
           </div>
         </div>
       </div>
@@ -186,19 +600,286 @@
 
         <div class="product-grid">
           <div class="product-card fade-up" id="term-insurance">
-            <div class="product-card-icon">🛡️</div>
+            <div class="product-card-icon"><svg class="icon"><use href="#i-shield"></use></svg></div>
             <h3>Term Life Insurance</h3>
-            <p>Your family gets ₹1 Crore or more if something happens to you. We help you pick the right cover at the
-              best price.</p>
+            <p>Your family gets a lump sum if you are not around. The cheapest way to buy a large cover — and the one
+              product where the insurer's claim record matters more than the price.</p>
             <a href="#cta" class="btn btn-primary" id="termCta">Talk to an Advisor</a>
           </div>
 
           <div class="product-card fade-up" id="health-insurance">
-            <div class="product-card-icon">🏥</div>
+            <div class="product-card-icon"><svg class="icon"><use href="#i-heart-pulse"></use></svg></div>
             <h3>Health Insurance</h3>
-            <p>Medical bills covered when you're hospitalized. Compare plans from top insurers & choose what's right for
-              you.</p>
+            <p>Hospital bills covered without touching your savings. We compare the waiting periods and room-rent
+              clauses that decide whether a claim actually gets paid.</p>
             <a href="#cta" class="btn btn-primary" id="healthCta">Talk to an Advisor</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 3b. COMPARISON ENGINE ═══════════ -->
+    <section class="section-padding cmp section-alt" id="compare">
+      <div class="container">
+        <div class="section-header fade-up">
+          <span class="eyebrow"><svg class="icon"><use href="#i-scale"></use></svg> Compare on the real numbers</span>
+          <h2>Every plan, <span class="highlight">side by side</span></h2>
+          <p>Claim settlement ratios, complaint volumes, waiting periods and premiums for the plans we actually
+            recommend — sourced from IRDAI disclosures and insurer policy wordings, not brochures.</p>
+        </div>
+
+        <div class="cmp-toolbar">
+          <div class="segmented ink" role="tablist" aria-label="Choose a product">
+            <button type="button" role="tab" data-product="term" aria-selected="true">
+              <svg class="icon"><use href="#i-shield"></use></svg> Term Life
+            </button>
+            <button type="button" role="tab" data-product="health" aria-selected="false" tabindex="-1">
+              <svg class="icon"><use href="#i-heart-pulse"></use></svg> Health
+            </button>
+          </div>
+
+          <div class="segmented" role="tablist" aria-label="Choose a view">
+            <button type="button" role="tab" data-mode="explore" aria-selected="true">
+              <svg class="icon"><use href="#i-sliders"></use></svg> Explore
+            </button>
+            <button type="button" role="tab" data-mode="compare" aria-selected="false" tabindex="-1">
+              <svg class="icon"><use href="#i-layers"></use></svg> Compare
+            </button>
+            <button type="button" role="tab" data-mode="deepdive" aria-selected="false" tabindex="-1">
+              <svg class="icon"><use href="#i-search"></use></svg> Deep dive
+            </button>
+          </div>
+        </div>
+
+        <!-- ── Mode: Explore ────────────────────────────── -->
+        <div class="cmp-panel active" id="cmpExplore">
+          <div class="cmp-filters" id="cmpFilters"></div>
+          <div class="cmp-grid" id="cmpGrid"></div>
+        </div>
+
+        <!-- ── Mode: Compare ────────────────────────────── -->
+        <div class="cmp-panel" id="cmpCompare">
+          <div id="cmpMatrixHost"></div>
+        </div>
+
+        <!-- ── Mode: Deep dive ──────────────────────────── -->
+        <div class="cmp-panel" id="cmpDeepdive">
+          <div class="cmp-deepdive-picker" id="cmpDeepPicker"></div>
+          <div id="cmpDeepBody"></div>
+        </div>
+
+        <!-- ── Premium illustrations ────────────────────── -->
+        <div class="cmp-subsection">
+          <h3>What it actually costs</h3>
+          <p class="sub" id="cmpPremiumNote"></p>
+          <div id="cmpPremiumHost"></div>
+        </div>
+
+        <!-- ── Insurer league table ─────────────────────── -->
+        <div class="cmp-subsection">
+          <h3>Insurer league table</h3>
+          <p class="sub">The plan matters, but the company behind it decides whether your claim gets paid. These are the
+            insurers ranked on their own track record.</p>
+          <div id="cmpLeagueHost"></div>
+        </div>
+
+        <!-- ── Methodology ──────────────────────────────── -->
+        <div class="cmp-subsection">
+          <h3>How we score plans</h3>
+          <p class="sub">No insurer pays us for a higher rank. Here is exactly what goes into a score, and what each
+            part is worth.</p>
+          <div id="cmpMethodHost"></div>
+        </div>
+
+        <!-- ── Disclaimer ───────────────────────────────── -->
+        <div class="policy-disclaimer fade-up">
+          <p><strong><svg class="icon"><use href="#i-alert-triangle"></use></svg> Disclaimer:</strong> Figures shown
+            here are compiled from IRDAI annual reports and public grievance disclosures, and from insurer public
+            disclosures and policy wordings. Claim settlement ratios and complaint volumes are three-year averages for
+            FY 2024–26. <strong>Premiums are indicative illustrations for the stated profile, not quotes</strong> — your
+            actual premium depends on your age, health, city, habits and underwriting. Scores are Myinsurancebro's own
+            assessment. Always read the official policy document and speak to an advisor before buying.
+            Myinsurancebro is an IRDAI-licensed insurance advisor — we do not manufacture or underwrite any insurance
+            product.</p>
+        </div>
+      </div>
+
+      <!-- Sticky selection tray -->
+      <div class="cmp-tray" id="cmpTray" role="region" aria-live="polite" aria-label="Plans selected for comparison">
+        <span class="cmp-tray-count" id="cmpTrayCount"></span>
+        <div class="cmp-tray-chips" id="cmpTrayChips"></div>
+        <button type="button" class="btn btn-primary btn-sm" id="cmpTrayGo">Compare</button>
+      </div>
+    </section>
+
+    <!-- ═══════════ 3c. STAT BAND ═══════════ -->
+    <section class="stat-band" id="stats">
+      <div class="container">
+        <div class="stat-grid">
+          <div class="stat">
+            <div class="stat-value" data-count="10000" data-suffix="+">0</div>
+            <div class="stat-label">People advised</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" data-count="99.71" data-suffix="%" data-decimals="2">0</div>
+            <div class="stat-label">Best claim settlement ratio we place</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" data-count="22100" data-suffix="+">0</div>
+            <div class="stat-label">Cashless hospitals in network</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" data-count="0" data-prefix="₹">0</div>
+            <div class="stat-label">What our advice costs you</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 3d. CHIEF ADVISOR ═══════════ -->
+    <section class="section-padding advisor" id="advisor">
+      <div class="container">
+        <div class="advisor-layout">
+          <div class="advisor-portrait fade-up">
+            <img src="assets/images/chief-advisor.png" alt="Chief Advisor & Owner, Myinsurancebro" loading="lazy"
+              width="1471" height="1809" decoding="async">
+            <span class="advisor-chip top">
+              <svg class="icon"><use href="#i-message-circle"></use></svg> Answers every query personally
+            </span>
+            <span class="advisor-chip bottom">
+              <svg class="icon"><use href="#i-life-buoy"></use></svg> Claim help, any hour
+            </span>
+          </div>
+
+          <div class="fade-up">
+            <span class="eyebrow"><svg class="icon"><use href="#i-award"></use></svg> The person behind the advice</span>
+            <h2>One advisor. Yours for life.</h2>
+            <p style="color:var(--color-on-ink-muted); font-size:var(--text-lg); max-width:56ch; margin-top:var(--space-4)">
+              Most platforms hand you a call centre and a ticket number. Here you get one Chief Advisor who knows your
+              file, picks up when you call, and is still the same person when you claim eight years from now.</p>
+
+            <div class="advisor-promises">
+              <div class="promise">
+                <span class="icon-tile"><svg class="icon"><use href="#i-message-circle"></use></svg></span>
+                <div>
+                  <h4>Your questions get answered by a human</h4>
+                  <p>No bots, no queue, no being handed to whoever is free. Ask anything — before you buy, and for as
+                    long as you hold the policy.</p>
+                </div>
+              </div>
+              <div class="promise">
+                <span class="icon-tile"><svg class="icon"><use href="#i-life-buoy"></use></svg></span>
+                <div>
+                  <h4>Claim support at any hour</h4>
+                  <p>Hospitals do not admit people at convenient times. When a claim happens we handle the paperwork,
+                    the pre-authorisation and the insurer — while you deal with what matters.</p>
+                </div>
+              </div>
+              <div class="promise">
+                <span class="icon-tile"><svg class="icon"><use href="#i-umbrella"></use></svg></span>
+                <div>
+                  <h4>Even if you bought it somewhere else</h4>
+                  <p>Policy from another agent, a bank, or straight off an app? We still help you claim on it. No
+                    charge, no obligation to switch.</p>
+                </div>
+              </div>
+              <div class="promise">
+                <span class="icon-tile"><svg class="icon"><use href="#i-scale"></use></svg></span>
+                <div>
+                  <h4>Advice that survives a conflict of interest</h4>
+                  <p>We will tell you when the cheaper plan is the better one, and when you do not need the cover at
+                    all. If we only recommended what pays us most, none of the rest would mean anything.</p>
+                </div>
+              </div>
+            </div>
+
+            <blockquote
+              style="border-left:3px solid var(--color-primary); padding-left:var(--space-5); color:var(--color-on-ink-muted); font-size:1.0625rem; line-height:1.7; font-style:italic;">
+              We built Myinsurancebro to be an insurance platform free of conflicts, mis-selling and spam — with
+              advisors who handhold people through the whole journey, from understanding what they need to helping them
+              file a claim years later.
+              <cite style="display:block; margin-top:var(--space-3); font-style:normal; font-weight:700; color:var(--color-on-ink); font-size:0.875rem;">— Chief Advisor &amp; Owner, Myinsurancebro</cite>
+            </blockquote>
+
+            <div class="advisor-credentials">
+              <span class="credential">IRDAI-licensed advisor</span>
+              <span class="credential">10,000+ people advised</span>
+              <span class="credential">Zero-spam guarantee</span>
+              <span class="credential">Free for life</span>
+            </div>
+
+            <div class="hero-actions" style="margin-top:var(--space-8)">
+              <a href="#cta" class="btn btn-primary btn-lg">Talk to the Chief Advisor</a>
+              <a href="https://wa.me/919910963123" class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener">
+                <svg class="icon"><use href="#i-whatsapp"></use></svg> WhatsApp us
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 3e. CLAIM SUPPORT FOR POLICIES BOUGHT ELSEWHERE ═══════════ -->
+    <section class="section-padding" id="claim-support">
+      <div class="container">
+        <div class="orphan-card fade-up">
+          <div class="orphan-copy">
+            <span class="eyebrow warm"><svg class="icon"><use href="#i-life-buoy"></use></svg> Didn't buy from us? Still
+              covered.</span>
+            <h2>We'll help you claim on a policy you bought somewhere else</h2>
+            <p>Bought through a bank, an agent who has stopped answering, or an app that only exists as a chat window?
+              Bring us the policy. We will fight the claim with you anyway.</p>
+
+            <ul class="orphan-points">
+              <li><svg class="icon"><use href="#i-check-circle"></use></svg> Any insurer, any policy — health or
+                term</li>
+              <li><svg class="icon"><use href="#i-check-circle"></use></svg> No fee, and no requirement to move your
+                policy to us</li>
+              <li><svg class="icon"><use href="#i-check-circle"></use></svg> We handle documentation, pre-authorisation
+                and insurer follow-ups</li>
+              <li><svg class="icon"><use href="#i-check-circle"></use></svg> Rejected claim? We read the wording and
+                tell you whether it is worth contesting</li>
+            </ul>
+
+            <div class="hero-actions">
+              <a href="#cta" class="btn btn-dark btn-lg" data-claim-elsewhere="1">Get claim help now</a>
+              <a href="https://wa.me/919910963123?text=I%20need%20help%20with%20a%20claim%20on%20a%20policy%20I%20bought%20elsewhere"
+                class="btn btn-outline btn-lg" target="_blank" rel="noopener">
+                <svg class="icon"><use href="#i-whatsapp"></use></svg> WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div class="orphan-visual">
+            <h4>How it works</h4>
+            <div class="orphan-step">
+              <span class="orphan-step-num">1</span>
+              <div>
+                <strong>Send us the policy</strong>
+                <p>A PDF or even a photo of the schedule page is enough to start.</p>
+              </div>
+            </div>
+            <div class="orphan-step">
+              <span class="orphan-step-num">2</span>
+              <div>
+                <strong>We read the wording</strong>
+                <p>We tell you plainly what is covered, what is excluded, and where this claim actually stands.</p>
+              </div>
+            </div>
+            <div class="orphan-step">
+              <span class="orphan-step-num">3</span>
+              <div>
+                <strong>We file and follow up</strong>
+                <p>Documentation, pre-authorisation, and chasing the insurer until there is a decision.</p>
+              </div>
+            </div>
+            <div class="orphan-step">
+              <span class="orphan-step-num">4</span>
+              <div>
+                <strong>Rejected? We escalate</strong>
+                <p>Insurer grievance cell first, then the Insurance Ombudsman if the rejection does not hold up.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -212,38 +893,56 @@
           <p>From choosing the right plan to lifetime claim support — we're with you at every step.</p>
         </div>
 
-        <div class="experience-grid">
-          <div class="experience-card fade-up">
-            <div class="experience-card-icon">🎯</div>
-            <h3>End-to-End Assistance</h3>
-            <p>We don't just help you buy — we help you understand what you're buying and why it matters.</p>
-            <div class="experience-card-links">
-              <a href="#">Understand Your Policy <span class="arrow">→</span></a>
-              <a href="#">Compare Policies <span class="arrow">→</span></a>
+        <div class="bento stagger">
+          <div class="bento-item wide ink">
+            <span class="icon-tile"><svg class="icon"><use href="#i-target"></use></svg></span>
+            <h3>We start with what you actually need</h3>
+            <p>Before any plan gets mentioned, we work out your real cover requirement — income, liabilities,
+              dependants, existing group cover and what your parents already have. Half the people who come to us need
+              less cover than they were about to buy.</p>
+          </div>
+
+          <div class="bento-item">
+            <span class="icon-tile teal"><svg class="icon"><use href="#i-scale"></use></svg></span>
+            <h3>Compared on numbers, not brochures</h3>
+            <p>Settlement ratios, complaint volumes and waiting periods — the figures that decide a claim.</p>
+          </div>
+
+          <div class="bento-item">
+            <span class="icon-tile warm"><svg class="icon"><use href="#i-file-text"></use></svg></span>
+            <h3>Policy wording in plain English</h3>
+            <p>We read the exclusions out loud before you buy, so nothing is a surprise at claim time.</p>
+          </div>
+
+          <div class="bento-item wide">
+            <span class="icon-tile danger"><svg class="icon"><use href="#i-life-buoy"></use></svg></span>
+            <h3>Lifetime claim support — including on policies you bought elsewhere</h3>
+            <p>Filing a claim is the worst possible time to be figuring out paperwork alone. We handle documentation,
+              pre-authorisation and insurer follow-ups, and escalate to the Ombudsman if a rejection does not hold up.
+              This applies even if you never bought anything from us.</p>
+            <div class="experience-card-links" style="margin-top:var(--space-4)">
+              <a href="#claim-support">How claim support works <span class="arrow">→</span></a>
             </div>
           </div>
 
-          <div class="experience-card fade-up">
-            <div class="experience-card-icon">❤️</div>
-            <h3>Lifetime Claim Support</h3>
-            <p>Filing a claim is stressful. Our team guides you through the entire process — from documentation to
-              settlement.</p>
-            <div class="experience-card-links">
-              <a href="#">Register Your Claim <span class="arrow">→</span></a>
-              <a href="#">Track Claim Status <span class="arrow">→</span></a>
-            </div>
+          <div class="bento-item">
+            <span class="icon-tile"><svg class="icon"><use href="#i-lock"></use></svg></span>
+            <h3>Zero spam, ever</h3>
+            <p>Your number is not a lead to be resold. One advisor, and only when you ask.</p>
           </div>
-        </div>
 
-        <!-- Founder Quote -->
-        <div class="founder-quote fade-up">
-          <span class="quote-mark">"</span>
-          <blockquote>
-            We built Myinsurancebro to be an insurance platform free of conflicts, mis-selling, spam, and most
-            importantly, with advisors to handhold people through the purchase journey — from understanding what they
-            need, to helping them file claims years later.
-          </blockquote>
-          <cite>— Founder, Myinsurancebro</cite>
+          <div class="bento-item">
+            <span class="icon-tile teal"><svg class="icon"><use href="#i-wallet"></use></svg></span>
+            <h3>Free, and it stays free</h3>
+            <p>Insurers pay our commission. You pay the same premium either way — you just get an advisor with it.</p>
+          </div>
+
+          <div class="bento-item wide">
+            <span class="icon-tile warm"><svg class="icon"><use href="#i-calendar"></use></svg></span>
+            <h3>We check in at renewal, not just at the sale</h3>
+            <p>Cover needs change when you marry, have a child, take a home loan or your parents cross 60. We revisit
+              the file at every renewal instead of letting it quietly go stale.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -268,85 +967,187 @@
             <div class="journey-col others">
               <div class="journey-col-header">
                 <div class="badge">👎</div>
-                <h4>Others</h4>
+                <div>
+                  <h4>Traditional Brokers & Others</h4>
+                  <span class="col-subtitle">Generic & Commission-Driven</span>
+                </div>
               </div>
-              <ul>
-                <li>Generic, one-size-fits-all recommendations</li>
-                <li>Commission-driven product suggestions</li>
-                <li>No personalized needs analysis</li>
-                <li>Confusing jargon-heavy comparisons</li>
+              <ul class="journey-list">
+                <li>
+                  <span class="icon">✕</span>
+                  <div>
+                    <strong>One-Size-Fits-All Push:</strong> Generic policy options pushed without evaluating your personal health & financial profile.
+                  </div>
+                </li>
+                <li>
+                  <span class="icon">✕</span>
+                  <div>
+                    <strong>Commission Bias:</strong> Product recommendations biased toward higher agent payouts rather than your actual coverage needs.
+                  </div>
+                </li>
+                <li>
+                  <span class="icon">✕</span>
+                  <div>
+                    <strong>Confusing Fine Print:</strong> Jargon-heavy terms left unexplained, concealing sub-limits and room-rent caps.
+                  </div>
+                </li>
               </ul>
             </div>
             <div class="journey-col brand">
               <div class="journey-col-header">
                 <div class="badge">👍</div>
-                <h4>Myinsurancebro</h4>
+                <div>
+                  <h4>The Myinsurancebro Advantage</h4>
+                  <span class="col-subtitle">Personalized & 100% Unbiased</span>
+                </div>
               </div>
-              <ul>
-                <li>Personalized, needs-based analysis</li>
-                <li>Unbiased recommendations — no push selling</li>
-                <li>Plain-English policy comparisons</li>
-                <li>Dedicated advisor for your profile</li>
+              <ul class="journey-list">
+                <li>
+                  <span class="icon">✓</span>
+                  <div>
+                    <strong>Deep Situation Analysis:</strong> We conduct a 1-on-1 personalized discussion to understand your unique health, family, & financial situation.
+                  </div>
+                </li>
+                <li>
+                  <span class="icon">✓</span>
+                  <div>
+                    <strong>Unbiased Market Comparison:</strong> We analyze the entire insurance market to curate and present the best-fitting policy for you.
+                  </div>
+                </li>
+                <li>
+                  <span class="icon">✓</span>
+                  <div>
+                    <strong>Zero Sales Pressure:</strong> Plain-English explanations of benefits, waiting periods, and caps so you make an empowered choice.
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
         </div>
 
-        <!-- Tab 2: Application -->
+        <!-- Tab 2: Application & Payment -->
         <div class="journey-panel fade-up" id="panel-application">
           <div class="journey-comparison">
             <div class="journey-col others">
               <div class="journey-col-header">
                 <div class="badge">👎</div>
-                <h4>Others</h4>
+                <div>
+                  <h4>Traditional Brokers & Others</h4>
+                  <span class="col-subtitle">Stressful & Prone to Errors</span>
+                </div>
               </div>
-              <ul>
-                <li>No guidance during application</li>
-                <li>Higher risk of rejection due to errors</li>
-                <li>No review of medical disclosures</li>
-                <li>Left on your own during payment</li>
+              <ul class="journey-list">
+                <li>
+                  <span class="icon">✕</span>
+                  <div>
+                    <strong>Zero Form Guidance:</strong> Left alone to decipher complicated medical questions and personal disclosures.
+                  </div>
+                </li>
+                <li>
+                  <span class="icon">✕</span>
+                  <div>
+                    <strong>High Rejection Risk:</strong> Missed disclosures or errors in paperwork leading to delayed issuance or claim rejections.
+                  </div>
+                </li>
+                <li>
+                  <span class="icon">✕</span>
+                  <div>
+                    <strong>Hidden Costs:</strong> Opaque checkout processes with surprise add-ons inserted without clear disclosure.
+                  </div>
+                </li>
               </ul>
             </div>
             <div class="journey-col brand">
               <div class="journey-col-header">
                 <div class="badge">👍</div>
-                <h4>Myinsurancebro</h4>
+                <div>
+                  <h4>The Myinsurancebro Advantage</h4>
+                  <span class="col-subtitle">Guided & 100% Transparent</span>
+                </div>
               </div>
-              <ul>
-                <li>Advisor reviews your form before submission</li>
-                <li>Accurate medical disclosure guidance</li>
-                <li>Step-by-step payment assistance</li>
-                <li>Minimized chances of claim rejection</li>
+              <ul class="journey-list">
+                <li>
+                  <span class="icon">✓</span>
+                  <div>
+                    <strong>Step-by-Step Process:</strong> We guide you through every stage of application & payment so you are never confused.
+                  </div>
+                </li>
+                <li>
+                  <span class="icon">✓</span>
+                  <div>
+                    <strong>Boring Details Handled:</strong> Our team completes and double-checks all tedious form details and medical disclosures accurately.
+                  </div>
+                </li>
+                <li>
+                  <span class="icon">✓</span>
+                  <div>
+                    <strong>100% Transparency:</strong> Complete breakdown of premium breakdown, policy terms, and riders before any payment is made.
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
         </div>
 
-        <!-- Tab 3: Policy Issuance -->
+        <!-- Tab 3: Policy Issuance & Support -->
         <div class="journey-panel fade-up" id="panel-issuance">
           <div class="journey-comparison">
             <div class="journey-col others">
               <div class="journey-col-header">
                 <div class="badge">👎</div>
-                <h4>Others</h4>
+                <div>
+                  <h4>Traditional Brokers & Others</h4>
+                  <span class="col-subtitle">Abandoned Post-Purchase</span>
+                </div>
               </div>
-              <ul>
-                <li>No follow-up after purchase</li>
-                <li>Zero claims assistance</li>
-                <li>No renewal reminders</li>
-                <li>You're on your own when you need help most</li>
+              <ul class="journey-list">
+                <li>
+                  <span class="icon">✕</span>
+                  <div>
+                    <strong>Disappear After Sale:</strong> Agents disappear immediately after payment is collected, leaving you stranded.
+                  </div>
+                </li>
+                <li>
+                  <span class="icon">✕</span>
+                  <div>
+                    <strong>Unverified Communications:</strong> Policy details sent from unknown third-party channels with delayed verification.
+                  </div>
+                </li>
+                <li>
+                  <span class="icon">✕</span>
+                  <div>
+                    <strong>No Claim Help:</strong> Forced to navigate complex hospital claim desks and paperwork alone during emergencies.
+                  </div>
+                </li>
               </ul>
             </div>
             <div class="journey-col brand">
               <div class="journey-col-header">
                 <div class="badge">👍</div>
-                <h4>Myinsurancebro</h4>
+                <div>
+                  <h4>The Myinsurancebro Advantage</h4>
+                  <span class="col-subtitle">Official Issuance & Lifetime Touch</span>
+                </div>
               </div>
-              <ul>
-                <li>Policy tracking & document management</li>
-                <li>Re-application help if needed</li>
-                <li>Timely renewal reminders</li>
-                <li>Lifetime claims support — we're always here</li>
+              <ul class="journey-list">
+                <li>
+                  <span class="icon">✓</span>
+                  <div>
+                    <strong>Official Insurer Delivery:</strong> Receive all policy documents directly from the official email address of the issuing insurance company.
+                  </div>
+                </li>
+                <li>
+                  <span class="icon">✓</span>
+                  <div>
+                    <strong>Stay Onboarded & In Touch:</strong> We remain onboarded with you continuously for all future questions, policy tweaks, and updates.
+                  </div>
+                </li>
+                <li>
+                  <span class="icon">✓</span>
+                  <div>
+                    <strong>Lifetime Claim Management:</strong> Dedicated 24/7 claim assistance anytime you or your family need hospital claim settlement.
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
@@ -445,7 +1246,7 @@
 
         <div class="checklist-grid">
           <a href="#" class="checklist-card fade-up" id="termChecklist">
-            <div class="checklist-card-icon">📋</div>
+            <div class="checklist-card-icon"><svg class="icon"><use href="#i-file-text"></use></svg></div>
             <div>
               <h3>Term Insurance Checklist</h3>
               <p style="color:var(--color-text-secondary); font-size:0.875rem; margin-top:4px;">7 things to check before
@@ -455,7 +1256,7 @@
           </a>
 
           <a href="#" class="checklist-card fade-up" id="healthChecklist">
-            <div class="checklist-card-icon">📋</div>
+            <div class="checklist-card-icon"><svg class="icon"><use href="#i-download"></use></svg></div>
             <div>
               <h3>Health Insurance Checklist</h3>
               <p style="color:var(--color-text-secondary); font-size:0.875rem; margin-top:4px;">9 must-knows before you
@@ -463,57 +1264,6 @@
             </div>
             <span class="arrow">→</span>
           </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════ 8. UNDERSTAND YOUR POLICY ═══════════ -->
-    <section class="section-padding" id="policy-review">
-      <div class="container">
-        <div class="section-header fade-up">
-          <h2>Understand Your Policy</h2>
-          <p>Terms & conditions explained in plain English — so you know exactly what you're covered for.</p>
-        </div>
-
-        <div class="policy-widget-card fade-up">
-          <div class="form-group">
-            <label for="policyProduct">Select Product</label>
-            <select id="policyProduct">
-              <option value="" disabled selected>Choose a product…</option>
-              <option value="term">Term Life Insurance</option>
-              <option value="health">Health Insurance</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="policyInsurer">Select Insurer</label>
-            <select id="policyInsurer" disabled>
-              <option value="" disabled selected>First select a product…</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="policyName">Select Plan</label>
-            <select id="policyName" disabled>
-              <option value="" disabled selected>First select an insurer…</option>
-            </select>
-          </div>
-
-          <p class="policy-description" id="policyDescription">
-            Select a product, insurer, and plan above to read our detailed, plain-English review.
-          </p>
-        </div>
-
-        <!-- Detailed Policy Review Panel (rendered by JS) -->
-        <div class="policy-review-panel" id="policyReviewPanel" style="display:none;"></div>
-
-        <!-- Disclaimer -->
-        <div class="policy-disclaimer fade-up">
-          <p><strong>⚠️ Disclaimer:</strong> Policy information shown here is sourced from publicly available insurer
-            brochures, IRDAI annual reports, and reputed advisory platforms. Details are indicative and may not reflect
-            the latest updates, riders, or pricing changes. Always refer to the official policy document and speak with
-            an advisor before purchasing. Myinsurancebro is an IRDAI-licensed insurance advisor — we do not manufacture
-            or underwrite any insurance product.</p>
         </div>
       </div>
     </section>
@@ -565,6 +1315,39 @@
                 Absolutely. Claims support is where we truly stand out. Whether it's 6 months or 6 years after you
                 bought the policy, our team will assist you with documentation, follow-ups with the insurer,
                 escalations, and settlement tracking — at no extra cost. This is what "lifetime claim support" means.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" id="faq8">
+            <button class="faq-question">
+              I bought my policy somewhere else. Will you still help me claim?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Yes — and there is no charge and no catch. If you bought through a bank, another agent, or directly from
+                an app, send us the policy document and we will help you file and follow up on the claim as though you
+                were our own customer. You are not required to move the policy to us, now or later. We do this because
+                the moment someone actually needs a claim is the moment good advice matters most, and far too many
+                people find their original seller has gone quiet by then.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" id="faq9">
+            <button class="faq-question">
+              My claim was rejected. Is there anything I can still do?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Often, yes. A rejection is not the end of the process. We start by reading the rejection letter against
+                the actual policy wording, because a meaningful share of rejections cite a clause that does not apply
+                or a waiting period that has already been served. If the rejection does not hold up, we take it to the
+                insurer's grievance cell, and then to the Insurance Ombudsman — a free, statutory forum whose decisions
+                bind the insurer. Send us the policy and the rejection letter and we will tell you honestly whether it
+                is worth contesting.
               </div>
             </div>
           </div>
@@ -629,16 +1412,64 @@
       </div>
     </section>
 
-    <!-- ═══════════ 10. FINAL CTA ═══════════ -->
+    <!-- ═══════════ 10. FINAL CTA / BOOK A CALL ═══════════ -->
     <section class="final-cta" id="cta">
       <div class="container">
         <div class="final-cta-card fade-up">
-          <h2>Ready to Find the Right Insurance?</h2>
-          <p>100% free consultation. No spam, no jargon — just honest advice from experts who care.</p>
-          <a href="#" class="btn btn-white btn-lg" id="finalCtaBtn">Book a Free Call</a>
+          <div class="cta-header">
+            <h2>Book a Free 1-on-1 Consultation</h2>
+            <p>100% free call with our Chief Advisor & team. Zero spam, no pressure — just honest advice tailored to you.</p>
+          </div>
+
+          <form class="booking-form" id="bookingForm" action="send-mail.php" method="POST">
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="bookName">Full Name *</label>
+                <input type="text" id="bookName" name="name" placeholder="e.g. Rahul Sharma" required>
+              </div>
+
+              <div class="form-field">
+                <label for="bookPhone">Phone / WhatsApp *</label>
+                <input type="tel" id="bookPhone" name="phone" placeholder="e.g. +91 98765 43210" required>
+              </div>
+
+              <div class="form-field">
+                <label for="bookEmail">Email Address</label>
+                <input type="email" id="bookEmail" name="email" placeholder="e.g. rahul@example.com">
+              </div>
+
+              <div class="form-field">
+                <label for="bookProduct">Interested In</label>
+                <select id="bookProduct" name="product">
+                  <option value="Health Insurance">Health Insurance</option>
+                  <option value="Term Life Insurance">Term Life Insurance</option>
+                  <option value="Both Health & Term">Both Health & Term Insurance</option>
+                  <option value="General Advice">General Insurance Advice</option>
+                </select>
+              </div>
+
+              <div class="form-field full-width">
+                <label for="bookTime">Preferred Call Time</label>
+                <select id="bookTime" name="preferred_time">
+                  <option value="As soon as possible">As soon as possible (Next 15 mins)</option>
+                  <option value="Morning (9 AM - 12 PM)">Morning (9 AM - 12 PM)</option>
+                  <option value="Afternoon (12 PM - 4 PM)">Afternoon (12 PM - 4 PM)</option>
+                  <option value="Evening (4 PM - 8 PM)">Evening (4 PM - 8 PM)</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg booking-submit-btn">
+              <span class="btn-text">📞 Book Free Call Now</span>
+              <span class="btn-spinner" style="display:none;">⏳ Submitting...</span>
+            </button>
+
+            <div class="form-response-msg" style="display:none;"></div>
+          </form>
+
           <div class="final-cta-contact">
-            <span>📞 <a href="tel:+919910963123">+91 99109 63123</a></span>
-            <span>✉️ <a href="mailto:hello@myinsurancebro.com">hello@myinsurancebro.com</a></span>
+            <span>📞 Direct Call: <a href="tel:+919910963123">+91 99109 63123</a></span>
+            <span>✉️ Email Us: <a href="mailto:support@myinsurancebro.com">support@myinsurancebro.com</a></span>
           </div>
         </div>
       </div>
@@ -652,7 +1483,7 @@
       <div class="footer-grid">
         <div>
           <div class="footer-brand">
-            <img src="assets/images/logo.png" alt="Myinsurancebro">
+            <img src="assets/images/logo.png" alt="Myinsurancebro" width="134" height="136" loading="lazy" decoding="async">
             <span>Myinsurancebro</span>
           </div>
           <p class="footer-tagline">Your trusted insurance advisory partner. We compare, you choose — with zero spam and
@@ -685,7 +1516,7 @@
           <ul>
             <li><a href="#">About Us</a></li>
             <li><a href="#">Careers</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><a href="#cta">Contact Us</a></li>
             <li><a href="#">Privacy Policy</a></li>
           </ul>
         </div>
@@ -726,8 +1557,80 @@
     </div>
   </footer>
 
+  <!-- ═══════════ BOOKING MODAL POPUP ═══════════ -->
+  <div class="booking-modal-overlay" id="bookingModal" aria-hidden="true">
+    <div class="booking-modal-card">
+      <button class="modal-close-btn" id="closeModalBtn" aria-label="Close modal">✕</button>
+      
+      <div class="modal-header">
+        <div class="modal-badge">📞 Free Consultation</div>
+        <h3>Talk to Our Chief Advisor</h3>
+        <p>Fill out your details below and our expert will call you at your preferred time.</p>
+      </div>
+
+      <form class="booking-form" id="modalBookingForm" action="send-mail.php" method="POST">
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="modalBookName">Full Name *</label>
+            <input type="text" id="modalBookName" name="name" placeholder="e.g. Rahul Sharma" required>
+          </div>
+
+          <div class="form-field">
+            <label for="modalBookPhone">Phone / WhatsApp *</label>
+            <input type="tel" id="modalBookPhone" name="phone" placeholder="e.g. +91 98765 43210" required>
+          </div>
+
+          <div class="form-field">
+            <label for="modalBookEmail">Email Address</label>
+            <input type="email" id="modalBookEmail" name="email" placeholder="e.g. rahul@example.com">
+          </div>
+
+          <div class="form-field">
+            <label for="modalBookProduct">Interested In</label>
+            <select id="modalBookProduct" name="product">
+              <option value="Health Insurance">Health Insurance</option>
+              <option value="Term Life Insurance">Term Life Insurance</option>
+              <option value="Both Health &amp; Term">Both Health &amp; Term Insurance</option>
+              <option value="General Advice">General Insurance Advice</option>
+              <option value="Claim support (policy bought elsewhere)">Claim help on a policy I bought elsewhere
+              </option>
+            </select>
+          </div>
+
+          <div class="form-field full-width">
+            <label for="modalBookTime">Preferred Call Time</label>
+            <select id="modalBookTime" name="preferred_time">
+              <option value="As soon as possible">As soon as possible (Next 15 mins)</option>
+              <option value="Morning (9 AM - 12 PM)">Morning (9 AM - 12 PM)</option>
+              <option value="Afternoon (12 PM - 4 PM)">Afternoon (12 PM - 4 PM)</option>
+              <option value="Evening (4 PM - 8 PM)">Evening (4 PM - 8 PM)</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg booking-submit-btn">
+          <span class="btn-text">📞 Confirm Call Booking</span>
+          <span class="btn-spinner" style="display:none;">⏳ Submitting...</span>
+        </button>
+
+        <div class="form-response-msg" style="display:none;"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ═══════════ STICKY MOBILE CONTACT BAR ═══════════ -->
+  <div class="sticky-cta">
+    <a href="https://wa.me/919910963123" class="btn btn-whatsapp" target="_blank" rel="noopener">
+      <svg class="icon"><use href="#i-whatsapp"></use></svg> WhatsApp
+    </a>
+    <a href="tel:+919910963123" class="btn btn-primary">
+      <svg class="icon"><use href="#i-phone"></use></svg> Call Advisor
+    </a>
+  </div>
+
   <!-- Scripts -->
   <script src="js/policy-data.js"></script>
+  <script src="js/compare.js"></script>
   <script src="js/main.js"></script>
 </body>
 

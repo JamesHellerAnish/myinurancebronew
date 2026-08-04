@@ -1,0 +1,9 @@
+# Customer PII — must never enter version control.
+leads.json
+*-config.php
+
+# Hostinger placeholder
+default.php
+
+.DS_Store
+Thumbs.db

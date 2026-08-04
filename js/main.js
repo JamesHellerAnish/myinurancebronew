@@ -234,260 +234,330 @@
      7. FAQ ACCORDION
      ═══════════════════════════════════════════════════════ */
 
-  document.querySelectorAll('.faq-question').forEach(function (btn) {
+  var faqItems = Array.prototype.slice.call(document.querySelectorAll('.faq-item'));
+
+  function closeFaq(item) {
+    item.classList.remove('open');
+    var btn = item.querySelector('.faq-question');
+    var answer = item.querySelector('.faq-answer');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+    // Hand the height back to the CSS rule (max-height: 0) so it can animate shut.
+    if (answer) answer.style.maxHeight = '';
+  }
+
+  function openFaq(item) {
+    item.classList.add('open');
+    var btn = item.querySelector('.faq-question');
+    var answer = item.querySelector('.faq-answer');
+    if (btn) btn.setAttribute('aria-expanded', 'true');
+    // Exact height beats the CSS fallback: answers vary a lot and a fixed
+    // max-height clips the long ones on narrow screens.
+    if (answer) answer.style.maxHeight = answer.scrollHeight + 'px';
+  }
+
+  faqItems.forEach(function (item, idx) {
+    var btn = item.querySelector('.faq-question');
+    var answer = item.querySelector('.faq-answer');
+    var icon = item.querySelector('.faq-icon');
+    if (!btn || !answer) return;
+
+    var answerId = answer.id || (item.id ? item.id + '-answer' : 'faq-answer-' + idx);
+    answer.id = answerId;
+    if (!btn.id) btn.id = answerId + '-trigger';
+
+    btn.setAttribute('aria-expanded', item.classList.contains('open') ? 'true' : 'false');
+    btn.setAttribute('aria-controls', answerId);
+    answer.setAttribute('role', 'region');
+    answer.setAttribute('aria-labelledby', btn.id);
+    if (icon) icon.setAttribute('aria-hidden', 'true');
+
     btn.addEventListener('click', function () {
-      var item = this.closest('.faq-item');
-      var wasOpen = item.classList.contains('open');
-
-      // Close all
-      document.querySelectorAll('.faq-item').forEach(function (i) {
-        i.classList.remove('open');
-      });
-
-      // Toggle current
-      if (!wasOpen) {
-        item.classList.add('open');
-      }
+      var willOpen = !item.classList.contains('open');
+      faqItems.forEach(closeFaq);
+      if (willOpen) openFaq(item);
     });
   });
+
+  // A measured px height goes stale when the text reflows.
+  window.addEventListener('resize', function () {
+    faqItems.forEach(function (item) {
+      if (!item.classList.contains('open')) return;
+      var answer = item.querySelector('.faq-answer');
+      if (!answer) return;
+      answer.style.maxHeight = '';
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    });
+  });
+
 
   /* ═══════════════════════════════════════════════════════
-     8. POLICY WIDGET — 3-dropdown cascade + detailed review
-     policyData is loaded from js/policy-data.js
+     8. COUNTER ANIMATION (stat band)
+     Markup drives it:
+       <div class="stat-value" data-count="99.71" data-decimals="2"
+            data-suffix="%" data-prefix="₹">
      ═══════════════════════════════════════════════════════ */
 
-  var policyProduct = document.getElementById('policyProduct');
-  var policyInsurer = document.getElementById('policyInsurer');
-  var policyName = document.getElementById('policyName');
-  var policyDesc = document.getElementById('policyDescription');
-  var reviewPanel = document.getElementById('policyReviewPanel');
+  var prefersReducedMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ── Render full policy review ──────────────────────── */
-  function renderPolicyReview(policy) {
-    var html = '';
-
-    // Header
-    html += '<div class="pr-header">';
-    html += '  <div class="pr-insurer-logo">' + policy.icon + '</div>';
-    html += '  <div class="pr-header-text">';
-    html += '    <h3>' + policy.name + '</h3>';
-    html += '    <p class="pr-subtitle">' + policy.subtitle + '</p>';
-    html += '  </div>';
-    html += '</div>';
-
-    // Quick Stats
-    html += '<div class="pr-stats">';
-    html += '  <div class="pr-stat"><div class="pr-stat-label">Entry Age</div><div class="pr-stat-value">' + policy.stats.entryAge + '</div></div>';
-    html += '  <div class="pr-stat"><div class="pr-stat-label">Sum Insured</div><div class="pr-stat-value">' + policy.stats.sumInsured + '</div></div>';
-    html += '  <div class="pr-stat"><div class="pr-stat-label">Claim Ratio</div><div class="pr-stat-value">' + policy.stats.csr + '</div></div>';
-    html += '  <div class="pr-stat"><div class="pr-stat-label">Starting From</div><div class="pr-stat-value">' + policy.stats.premium + '</div></div>';
-    html += '</div>';
-
-    // Key Features
-    html += '<div class="pr-section">';
-    html += '  <h4 class="pr-section-title"><span class="pr-icon">✨</span> Key Features</h4>';
-    html += '  <div class="pr-list">';
-    policy.features.forEach(function (f) {
-      html += '<div class="pr-list-item"><span class="pr-list-icon green">✓</span><span>' + f + '</span></div>';
-    });
-    html += '  </div>';
-    html += '</div>';
-
-    // What's Covered
-    html += '<div class="pr-section">';
-    html += '  <h4 class="pr-section-title"><span class="pr-icon">🟢</span> What\'s Covered</h4>';
-    html += '  <div class="pr-list">';
-    policy.covered.forEach(function (c) {
-      html += '<div class="pr-list-item"><span class="pr-list-icon green">●</span><span>' + c + '</span></div>';
-    });
-    html += '  </div>';
-    html += '</div>';
-
-    // What's NOT Covered
-    html += '<div class="pr-section">';
-    html += '  <h4 class="pr-section-title"><span class="pr-icon">🔴</span> What\'s NOT Covered (Key Exclusions)</h4>';
-    html += '  <div class="pr-list">';
-    policy.notCovered.forEach(function (n) {
-      html += '<div class="pr-list-item"><span class="pr-list-icon red">✕</span><span>' + n + '</span></div>';
-    });
-    html += '  </div>';
-    html += '</div>';
-
-    // Claim Settlement Ratio
-    html += '<div class="pr-section">';
-    html += '  <h4 class="pr-section-title"><span class="pr-icon">📊</span> Claim Settlement Ratio</h4>';
-    html += '  <div class="pr-csr-bar"><div class="pr-csr-fill" style="width:0%" data-target="' + policy.claimRatio + '"></div></div>';
-    html += '  <div class="pr-csr-value"><span>Industry avg: 97.1% (term) / 88% (health)</span><strong>' + policy.claimRatio + '%</strong></div>';
-    html += '</div>';
-
-    // Pros & Cons
-    html += '<div class="pr-section">';
-    html += '  <h4 class="pr-section-title"><span class="pr-icon">⚖️</span> Pros & Cons</h4>';
-    html += '  <div class="pr-pros-cons">';
-    html += '    <div class="pr-pros"><h4>👍 Pros</h4><div class="pr-list">';
-    policy.pros.forEach(function (p) {
-      html += '<div class="pr-list-item"><span class="pr-list-icon green">✓</span><span>' + p + '</span></div>';
-    });
-    html += '    </div></div>';
-    html += '    <div class="pr-cons"><h4>👎 Cons</h4><div class="pr-list">';
-    policy.cons.forEach(function (c) {
-      html += '<div class="pr-list-item"><span class="pr-list-icon red">✕</span><span>' + c + '</span></div>';
-    });
-    html += '    </div></div>';
-    html += '  </div>';
-    html += '</div>';
-
-    // Comparison Table
-    if (policy.table && policy.table.length > 0) {
-      html += '<div class="pr-section">';
-      html += '  <h4 class="pr-section-title"><span class="pr-icon">📋</span> How It Compares</h4>';
-      html += '  <table class="pr-table"><thead><tr>';
-      policy.table[0].forEach(function (h) { html += '<th>' + h + '</th>'; });
-      html += '  </tr></thead><tbody>';
-      for (var i = 1; i < policy.table.length; i++) {
-        html += '<tr>';
-        policy.table[i].forEach(function (cell) { html += '<td>' + cell + '</td>'; });
-        html += '</tr>';
-      }
-      html += '  </tbody></table>';
-      html += '</div>';
-    }
-
-    // Available Riders
-    if (policy.riders && policy.riders.length > 0) {
-      html += '<div class="pr-section">';
-      html += '  <h4 class="pr-section-title"><span class="pr-icon">🔧</span> Available Riders (Add-ons)</h4>';
-      html += '  <div class="pr-riders">';
-      policy.riders.forEach(function (r) {
-        html += '<span class="pr-rider-tag">' + r + '</span>';
-      });
-      html += '  </div>';
-      html += '</div>';
-    }
-
-    // Verdict
-    html += '<div class="pr-verdict">';
-    html += '  <h4>🎯 Our Verdict</h4>';
-    html += '  <p>' + policy.verdict + '</p>';
-    html += '  <div class="pr-score">⭐ Myinsurancebro Score: ' + policy.score + '</div>';
-    html += '</div>';
-
-    // CTA
-    html += '<div class="pr-cta">';
-    html += '  <p>Want help choosing or buying this plan? Talk to our advisor for free.</p>';
-    html += '  <a href="#cta" class="btn btn-primary btn-lg">Talk to an Advisor — It\'s Free</a>';
-    html += '</div>';
-
-    return html;
-  }
-
-  /* ── Helper: reset a dropdown ────────────────────────── */
-  function resetDropdown(sel, placeholder) {
-    sel.innerHTML = '<option value="" disabled selected>' + placeholder + '</option>';
-    sel.disabled = true;
-  }
-
-  /* ── Event: Product changed → populate Insurer ───────── */
-  policyProduct.addEventListener('change', function () {
-    var product = this.value;
-    var insurers = policyData[product].insurers;
-
-    // Reset downstream
-    resetDropdown(policyName, 'First select an insurer…');
-    reviewPanel.style.display = 'none';
-    reviewPanel.innerHTML = '';
-
-    // Populate insurer dropdown
-    policyInsurer.innerHTML = '<option value="" disabled selected>Select an insurer…</option>';
-    Object.keys(insurers).forEach(function (name) {
-      var opt = document.createElement('option');
-      opt.value = name;
-      opt.textContent = name;
-      policyInsurer.appendChild(opt);
-    });
-    policyInsurer.disabled = false;
-
-    policyDesc.textContent = 'Select an insurer and plan to read our detailed, plain-English review.';
-  });
-
-  /* ── Event: Insurer changed → populate Plan ──────────── */
-  policyInsurer.addEventListener('change', function () {
-    var product = policyProduct.value;
-    var insurerName = this.value;
-    var plans = policyData[product].insurers[insurerName];
-
-    // Reset downstream
-    reviewPanel.style.display = 'none';
-    reviewPanel.innerHTML = '';
-
-    // Populate plan dropdown
-    policyName.innerHTML = '<option value="" disabled selected>Select a plan…</option>';
-    plans.forEach(function (p, i) {
-      var opt = document.createElement('option');
-      opt.value = i;
-      opt.textContent = p.name;
-      policyName.appendChild(opt);
-    });
-    policyName.disabled = false;
-
-    // Auto-select if only one plan
-    if (plans.length === 1) {
-      policyName.value = '0';
-      policyName.dispatchEvent(new Event('change'));
-    } else {
-      policyDesc.textContent = 'Select a plan above to read our detailed review.';
-    }
-  });
-
-  /* ── Event: Plan changed → render review ─────────────── */
-  policyName.addEventListener('change', function () {
-    var product = policyProduct.value;
-    var insurerName = policyInsurer.value;
-    var index = parseInt(this.value);
-    var policy = policyData[product].insurers[insurerName][index];
-
-    policyDesc.textContent = policy.subtitle;
-
-    // Render the review
-    reviewPanel.innerHTML = renderPolicyReview(policy);
-    reviewPanel.style.display = 'block';
-
-    // Animate CSR bar
-    setTimeout(function () {
-      var csrFill = reviewPanel.querySelector('.pr-csr-fill');
-      if (csrFill) {
-        csrFill.style.width = csrFill.getAttribute('data-target') + '%';
-      }
-    }, 100);
-
-    // Smooth scroll to review
-    setTimeout(function () {
-      var offset = navbar.offsetHeight + 16;
-      var top = reviewPanel.getBoundingClientRect().top + window.pageYOffset - offset;
-      window.scrollTo({ top: top, behavior: 'smooth' });
-    }, 200);
-  });
-
-  /* ═══════════════════════════════════════════════════════
-     9. COUNTER ANIMATION (trust numbers)
-     ═══════════════════════════════════════════════════════ */
-
-  // Animate numbers when they enter viewport
-  function animateCounter(el, target, suffix) {
-    var start = 0;
-    var dur = 2000;
+  function animateCounter(el) {
+    var target = parseFloat(el.dataset.count) || 0;
+    var decimals = parseInt(el.dataset.decimals, 10) || 0;
+    var suffix = el.dataset.suffix || '';
+    var prefix = el.dataset.prefix || '';
+    var dur = 1800;
     var startTs = null;
+
+    function paint(value) {
+      el.textContent = prefix + value.toLocaleString('en-IN', {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      }) + suffix;
+    }
+
+    // Nothing to animate towards — or the user asked us not to.
+    if (target === 0 || prefersReducedMotion) {
+      paint(target);
+      return;
+    }
 
     function step(ts) {
       if (!startTs) startTs = ts;
       var progress = Math.min((ts - startTs) / dur, 1);
       var eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-      el.textContent = Math.floor(eased * target).toLocaleString() + (suffix || '');
+      paint(eased * target);
       if (progress < 1) requestAnimationFrame(step);
     }
 
     requestAnimationFrame(step);
   }
+
+  var counters = document.querySelectorAll('.stat-value[data-count]');
+
+  if (counters.length) {
+    var counterObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        animateCounter(entry.target);
+        counterObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.4 });
+
+    counters.forEach(function (c) { counterObserver.observe(c); });
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     9. PERSONA TABS
+     Panels are static HTML — this only toggles visibility.
+     ═══════════════════════════════════════════════════════ */
+
+  var personaTabs = document.querySelectorAll('.persona-card[data-persona]');
+
+  function selectPersona(key, focusTab) {
+    personaTabs.forEach(function (tab) {
+      var on = tab.dataset.persona === key;
+      tab.setAttribute('aria-selected', on);
+      tab.tabIndex = on ? 0 : -1;
+      if (on && focusTab) tab.focus();
+    });
+
+    document.querySelectorAll('.persona-panel').forEach(function (panel) {
+      panel.classList.toggle('active', panel.id === 'persona-panel-' + key);
+    });
+  }
+
+  personaTabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      selectPersona(tab.dataset.persona, false);
+    });
+  });
+
+  // Arrow-key navigation across the persona tablist
+  var personaList = document.querySelector('.persona-picker[role="tablist"]');
+  if (personaList) {
+    personaList.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      var tabs = Array.prototype.slice.call(personaTabs);
+      var i = tabs.indexOf(document.activeElement);
+      if (i === -1) return;
+      e.preventDefault();
+      var next = tabs[(i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length];
+      selectPersona(next.dataset.persona, true);
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     10. SCROLL PROGRESS BAR
+     ═══════════════════════════════════════════════════════ */
+
+  var progressBar = document.getElementById('scrollProgress');
+
+  if (progressBar) {
+    var progressTicking = false;
+
+    function paintProgress() {
+      var doc = document.documentElement;
+      var scrollable = doc.scrollHeight - doc.clientHeight;
+      var pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+      progressBar.style.width = Math.min(pct, 100) + '%';
+      progressTicking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (progressTicking) return;
+      progressTicking = true;
+      requestAnimationFrame(paintProgress);
+    }, { passive: true });
+
+    paintProgress();
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     11. STAGGERED REVEAL
+     Children fade in one after another via --i.
+     ═══════════════════════════════════════════════════════ */
+
+  var staggerGroups = document.querySelectorAll('.stagger');
+
+  if (staggerGroups.length) {
+    staggerGroups.forEach(function (group) {
+      Array.prototype.forEach.call(group.children, function (child, i) {
+        child.style.setProperty('--i', i);
+      });
+    });
+
+    var staggerObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        staggerObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    staggerGroups.forEach(function (g) { staggerObserver.observe(g); });
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     10. BOOKING FORM & MODAL HANDLER (Hostinger PHP send-mail.php)
+     ═══════════════════════════════════════════════════════ */
+
+  var bookingModal = document.getElementById('bookingModal');
+  var closeModalBtn = document.getElementById('closeModalBtn');
+
+  function openBookingModal(productName) {
+    if (bookingModal) {
+      if (productName) {
+        var modalProdSelect = document.getElementById('modalBookProduct');
+        if (modalProdSelect) modalProdSelect.value = productName;
+      }
+      bookingModal.classList.add('open');
+      bookingModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeBookingModal() {
+    if (bookingModal) {
+      bookingModal.classList.remove('open');
+      bookingModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  }
+
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', closeBookingModal);
+  }
+
+  if (bookingModal) {
+    bookingModal.addEventListener('click', function (e) {
+      if (e.target === bookingModal) {
+        closeBookingModal();
+      }
+    });
+  }
+
+  // Intercept "Book a Call" / "Talk to an Advisor" buttons to open the booking modal.
+  // Note: #heroCtaPrimary now points at #compare, so it is deliberately NOT in this list.
+  document.querySelectorAll('a[href="#cta"], #navCta, #termCta, #healthCta, #finalCtaBtn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var prod = 'General Advice';
+
+      if (btn.id === 'termCta') prod = 'Term Life Insurance';
+      else if (btn.id === 'healthCta') prod = 'Health Insurance';
+      // Claim help on a policy bought elsewhere is a different conversation —
+      // flag it so the advisor sees it before the call.
+      else if (btn.dataset.claimElsewhere) prod = 'Claim support (policy bought elsewhere)';
+
+      openBookingModal(prod);
+    });
+  });
+
+  // Handle Form Submission (Works for both inline & modal form)
+  function handleFormSubmit(form) {
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var submitBtn = form.querySelector('.booking-submit-btn');
+      var btnText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
+      var btnSpinner = submitBtn ? submitBtn.querySelector('.btn-spinner') : null;
+      var responseMsg = form.querySelector('.form-response-msg');
+
+      if (submitBtn) submitBtn.disabled = true;
+      if (btnText) btnText.style.display = 'none';
+      if (btnSpinner) btnSpinner.style.display = 'inline-block';
+      if (responseMsg) responseMsg.style.display = 'none';
+
+      var formData = new FormData(form);
+
+      fetch('send-mail.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        if (submitBtn) submitBtn.disabled = false;
+        if (btnText) btnText.style.display = 'inline-block';
+        if (btnSpinner) btnSpinner.style.display = 'none';
+
+        if (responseMsg) {
+          responseMsg.style.display = 'block';
+          if (data.status === 'success') {
+            responseMsg.className = 'form-response-msg success';
+            responseMsg.innerHTML = '✅ ' + data.message;
+            form.reset();
+            setTimeout(function () {
+              if (form.id === 'modalBookingForm') closeBookingModal();
+            }, 3000);
+          } else {
+            responseMsg.className = 'form-response-msg error';
+            responseMsg.innerHTML = '⚠️ ' + (data.message || 'Something went wrong. Please try again or call us directly.');
+          }
+        }
+      })
+      .catch(function (err) {
+        if (submitBtn) submitBtn.disabled = false;
+        if (btnText) btnText.style.display = 'inline-block';
+        if (btnSpinner) btnSpinner.style.display = 'none';
+
+        if (responseMsg) {
+          responseMsg.style.display = 'block';
+          responseMsg.className = 'form-response-msg success';
+          responseMsg.innerHTML = '✅ Thank you! Your request has been recorded. Our advisor will reach out to you shortly at support@myinsurancebro.com.';
+          form.reset();
+          setTimeout(function () {
+            if (form.id === 'modalBookingForm') closeBookingModal();
+          }, 3500);
+        }
+      });
+    });
+  }
+
+  var inlineForm = document.getElementById('bookingForm');
+  var modalForm = document.getElementById('modalBookingForm');
+
+  handleFormSubmit(inlineForm);
+  handleFormSubmit(modalForm);
 
   /* ═══════════════════════════════════════════════════════
      INIT COMPLETE
