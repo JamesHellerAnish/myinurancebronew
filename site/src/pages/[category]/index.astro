@@ -1,0 +1,213 @@
+---
+// /[category]/ — the product hub. SEO_ASTRO_PLAN.md §6.2.
+//
+// This is the parent every plan page's breadcrumb points at, and the node that makes the
+// plan pages a mesh instead of a set of orphans (§9.3). It is generated only for categories
+// that actually have publishable plans — a hub listing nothing is a thin page, and seven
+// empty hubs is exactly the scaled-content shape §13 warns about.
+//
+// Paths come from publishablePlans() via plansByCategory(), never getCollection('plans').
+import type { GetStaticPaths } from 'astro'
+import Base from '../../layouts/Base.astro'
+import Disclaimer from '../../components/seo/Disclaimer.astro'
+import {
+  publishablePlans,
+  plansByCategory,
+  planPath,
+  categoryPath,
+  CATEGORY_LABELS,
+  type Plan,
+  type PlanCategory,
+} from '../../lib/plans'
+import { breadcrumbSchema, faqSchema } from '../../lib/schema'
+import { fitDescription, fitTitle } from '../../lib/seo'
+import { complaintsPhrase } from '../../lib/format'
+import profiles from '../../data/profiles.json'
+import meta from '../../data/meta.json'
+
+export const getStaticPaths = (async () => {
+  const plans = await publishablePlans()
+
+  // One hub per category that has at least one publishable plan.
+  const categories = [...new Set(plans.map((p) => p.data.category))]
+
+  return Promise.all(
+    categories.map(async (category) => ({
+      params: { category: categoryPath(category) },
+      props: { category, plans: await plansByCategory(category) },
+    })),
+  )
+}) satisfies GetStaticPaths
+
+interface Props {
+  category: PlanCategory
+  plans: Plan[]
+}
+
+const { category, plans } = Astro.props
+const label = CATEGORY_LABELS[category]
+const lower = label.toLowerCase()
+const url = `/${categoryPath(category)}/`
+
+const rupee = new Intl.NumberFormat('en-IN', {
+  style: 'currency',
+  currency: 'INR',
+  maximumFractionDigits: 0,
+})
+
+// The cheapest illustrated profile per plan, so the table has a comparable price column.
+// profiles.json only defines term and health today; other categories get no price column
+// rather than an empty one.
+const profileSet = (profiles as Record<string, { assumption: string; rows: Array<{ key: string; label: string }> }>)[
+  category
+]
+
+function entryPremium(plan: Plan): number | null {
+  const values = (profileSet?.rows ?? [])
+    .map((row) => plan.data.premiums[row.key])
+    .filter((value): value is number => value != null)
+
+  return values.length > 0 ? Math.min(...values) : null
+}
+
+const showPremium = plans.some((plan) => entryPremium(plan) != null)
+
+const best = plans[0]
+const bestCsr = [...plans].sort((a, b) => b.data.metrics.csr - a.data.metrics.csr)[0]
+
+const trail = [
+  { name: 'Home', path: '/' },
+  { name: label, path: url },
+]
+
+const faqs = [
+  {
+    q: `Which ${lower} plan is best in India?`,
+    a:
+      `We score ${best.data.insurer} ${best.data.name} highest at ${best.data.score}/5 of the ` +
+      `${plans.length} ${lower} plans we have reviewed. ${best.data.verdict}`,
+  },
+  {
+    q: `Which ${lower} company settles the most claims?`,
+    a:
+      `${bestCsr.data.insurer}, at ${bestCsr.data.metrics.csr}% — ${meta.period.toLowerCase()} ` +
+      `from IRDAI disclosures, with ${complaintsPhrase(bestCsr.data.metrics.complaints)} per 10,000 claims.`,
+  },
+  {
+    q: `How are these ${lower} plans scored?`,
+    a:
+      `Plan features 45%, insurer strength 45%, premium 10%. The full method, including every ` +
+      `data source, is at /methodology/.`,
+  },
+]
+
+const pageTitle = fitTitle([`Best ${label} Plans Compared`, `Best ${label} Plans`, label])
+
+const description = fitDescription(
+  `${plans.length} ${lower} plans scored on cover, exclusions and claim settlement. ` +
+    `${best.data.insurer} ${best.data.name} leads at ${best.data.score}/5.`,
+  [
+    'Compare premiums, waiting periods and exclusions.',
+    'Compare premiums and exclusions.',
+    'Independent, unpaid.',
+  ],
+)
+---
+
+<Base
+  title={pageTitle}
+  description={description}
+  current={category}
+  keywords={[
+    `best ${lower}`,
+    `${lower} plans India`,
+    `compare ${lower}`,
+    `${lower} claim settlement ratio`,
+  ]}
+  schemas={[breadcrumbSchema(trail), faqSchema(faqs)]}
+>
+  <article class="plan-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><span aria-current="page">{label}</span></li>
+      </ol>
+    </nav>
+
+    <h1>{label} plans, compared</h1>
+    <p class="plan-subtitle">
+      Every plan below is read against its policy wording, not its brochure.
+    </p>
+
+    <p class="answer-block">
+      We have reviewed {plans.length} {lower} {plans.length === 1 ? 'plan' : 'plans'}.
+      {best.data.insurer} {best.data.name} scores highest at {best.data.score}/5.
+      {bestCsr.data.insurer} settles the largest share of claims at {bestCsr.data.metrics.csr}%,
+      {' '}{meta.period.toLowerCase()} from IRDAI disclosures. Premiums shown are illustrations
+      for a stated profile, never quotes.
+    </p>
+
+    <section>
+      <h2>All {lower} plans we have reviewed</h2>
+      <div class="table-scroll">
+        <table>
+          <caption>
+            Sorted by our score. {profileSet ? profileSet.assumption : ''}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Plan</th>
+              <th scope="col">Score</th>
+              <th scope="col">CSR</th>
+              <th scope="col">Complaints<span class="th-note"> per 10,000 claims</span></th>
+              {showPremium && <th scope="col">From</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {plans.map((plan) => {
+              const premium = entryPremium(plan)
+              return (
+                <tr>
+                  <th scope="row" class="cell-prose">
+                    <a href={planPath(plan)}>{plan.data.insurer} {plan.data.name}</a>
+                  </th>
+                  <td>{plan.data.score} / 5</td>
+                  <td>{plan.data.metrics.csr}%</td>
+                  <td>{plan.data.metrics.complaints}</td>
+                  {showPremium && <td>{premium != null ? rupee.format(premium) : '—'}</td>}
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </div>
+      <p class="methodology-link">
+        Scores are plan features 45%, insurer strength 45%, premium 10% —
+        <a href="/methodology/">how we score plans</a>.
+      </p>
+    </section>
+
+    <section>
+      <h2>What separates these plans</h2>
+      <ul>
+        {plans.map((plan) => (
+          <li>
+            <a href={planPath(plan)}>{plan.data.insurer} {plan.data.name}</a> — {plan.data.verdict}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section>
+      <h2>Frequently asked questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary><h3>{faq.q}</h3></summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <Disclaimer />
+  </article>
+</Base>

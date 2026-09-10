@@ -6,6 +6,8 @@
 // truth shared with the legacy site rather than a fork that drifts.
 import SEO from '../components/seo/SEO.astro'
 import JsonLd from '../components/seo/JsonLd.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
 import { organizationSchema } from '../lib/schema'
 
 interface Props {
@@ -17,9 +19,11 @@ interface Props {
   modified?: Date
   /** Extra JSON-LD blocks beyond the sitewide Organization. */
   schemas?: Array<Record<string, unknown>>
+  /** Nav item to mark as current. */
+  current?: string
 }
 
-const { schemas = [], ...seo } = Astro.props
+const { schemas = [], current, ...seo } = Astro.props
 ---
 
 <!doctype html>
@@ -27,6 +31,17 @@ const { schemas = [], ...seo } = Astro.props
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Applies the saved theme before first paint. This has to be inline and blocking:
+         deferred, the page paints light and then flips, which is worse than not having a
+         toggle. Same `mib-theme` key as js/main.js, so a preference set on the legacy
+         one-pager carries over to the generated pages during the migration. -->
+    <script is:inline>
+      try {
+        var t = localStorage.getItem('mib-theme')
+        if (t) document.documentElement.setAttribute('data-theme', t)
+      } catch (e) {}
+    </script>
 
     <SEO {...seo} />
 
@@ -51,10 +66,10 @@ const { schemas = [], ...seo } = Astro.props
   </head>
 
   <body>
-    <slot name="header" />
+    <Header current={current} />
     <main>
       <slot />
     </main>
-    <slot name="footer" />
+    <Footer />
   </body>
 </html>

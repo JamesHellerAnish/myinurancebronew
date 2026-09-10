@@ -4,7 +4,9 @@
 **Branch:** `revamp/audience-redesign-and-compare`
 **Status:** Planning complete · Scope locked (§14) · Research done (§16) · Harvest started (§16.7) ·
 **Astro Phase 0 in progress — shell builds, 10 plan pages, §1.2 thesis verified, plan template
-styled and inspected in a browser, robots/llms.txt shipped. §0a blockers all cleared. See §0b.**
+styled and inspected in a browser, robots/llms.txt shipped, chrome + methodology + category hubs
+live, every internal link resolving. §0a blockers all cleared. Home page port is the last Phase 0
+item. See §0b.**
 **Purpose:** Living handover doc. Update it as work proceeds so progress survives a context reset.
 
 ---
@@ -29,6 +31,13 @@ on the built output of `/health-insurance/hdfc-ergo/optima-secure/` (15.7 KB of 
 
 That last row is the §4.1 payoff: a plan page ships no JS at all.
 
+> **Updated after the chrome landed:** a plan page now carries **6** `<script>` tags — the 4
+> JSON-LD blocks, a 158-byte inline theme setter, and the 895-byte inlined chrome module (nav
+> scroll state, hamburger, theme toggle). Both are inlined by Astro, so it is still **zero
+> JavaScript requests** and nothing above renders content. The content claim in every other row
+> is unchanged; the "no JS at all" phrasing is not, and the trade was made knowingly to fix
+> defect 7. See "What shipped in the third pass".
+
 ### What is on disk
 
 ```
@@ -38,8 +47,9 @@ site/
   tsconfig.json         .gitignore (dist, .astro, node_modules, public/)
   scripts/
     migrate-policy-data.mjs   policy-data.js → content collections
-    sync-public.mjs           css/ assets/ + the 3 PHP files + .htaccess → public/
+    sync-public.mjs           css/ assets/ js/ + 3 PHP + .htaccess + index.html → public/
     make-og-image.mjs         → ../assets/images/og-default.png   (run by hand)
+    make-logo-sizes.mjs       → the display-size logo copies       (run by hand)
   src/
     content.config.ts   Astro 5 loader API, Zod schema + verification refinement
     lib/seo.ts          the ONE title composer — throws on a doubled brand
@@ -50,7 +60,11 @@ site/
     lib/format.ts       complaintsPhrase() and other per-record prose
     layouts/Base.astro
     components/seo/     SEO.astro · JsonLd.astro · Disclaimer.astro
-    pages/[category]/[insurer]/[plan].astro    all 12 §8 blocks, in order
+    components/Header.astro · Footer.astro    legacy classes, absolute links
+    pages/index — NOT an Astro route: the legacy index.html is copied in (interim)
+    pages/methodology.astro                   §13's comparative-claim mitigation
+    pages/[category]/index.astro              product hub, only where plans exist
+    pages/[category]/[insurer]/[plan].astro   all 12 §8 blocks, in order
     pages/robots.txt.ts · llms.txt.ts · llms-full.txt.ts
     content/            10 plans · 19 insurers · 3 personas   (generated — rerun migrate)
     data/               meta · methodology · profiles · compare-rows  (generated)
@@ -102,19 +116,22 @@ visible "Preview only" banner on the page itself.
    `site/scripts/make-og-image.mjs` (run by hand, not a build hook — the file is a committed
    source asset). No logo on it yet: the logo commits are still unmerged (§0a blocker 1).
 4. 🟡 Fonts still load from `fonts.googleapis.com` — §9.1 wants them self-hosted.
-5. 🟡 Route stubs referenced by the internal-link mesh but not yet built: `/methodology/`,
-   `/[category]/`, `/[category]/best-plans/`, `/[category]/companies/[insurer]/`. Links 404 today.
-   `llms.txt` deliberately omits them for the same reason — add them to it as each route ships.
+5. 🟡 **Partly cleared.** `/methodology/` and `/[category]/` are built; the plan template no
+   longer links the two that are not (`/[category]/best-plans/`, `/[category]/companies/[insurer]/`).
+   A build-time link audit confirms every internal href in `dist/` resolves. Still to build:
+   best-plans, insurer pages, glossary — add them to `llms.txt` as each ships.
 6. ✅ **Fixed — the template has now been looked at in a browser**, and it was exactly the
    Perfecplan bug: every class the template emits had no rule. See "The CSS layer" below.
-7. 🟠 **Theme mismatch.** `Base.astro` hardcodes `data-theme="light"`; the legacy site applies the
-   visitor's saved `mib-theme` from `localStorage` in `js/main.js`. A plan page therefore ignores
-   a dark-mode preference set on the legacy site. The palette itself is fine — forcing
-   `data-theme="dark"` renders correctly. The fix is a small inline script in `<head>`, which
-   costs the "zero `<script>` tags except JSON-LD" line in the table above; take that decision
-   with the header/footer chrome, since the toggle lives in the header.
+7. ✅ **Fixed — theme mismatch.** An inline blocking script in `Base.astro` applies the saved
+   `mib-theme` before first paint. Verified across the legacy/Astro boundary in both directions.
+   It cost the "zero `<script>` tags except JSON-LD" line, knowingly — see the note under the
+   §1.2 table.
 8. 🟡 `npm run check` cannot run — `@astrojs/check` and `typescript` are not installed. The build
    only strips types, so nothing type-checks the new libs today.
+10. 🟡 The navbar is cramped between 768 px (where `.nav-links` hides for the hamburger) and
+   ~1050 px — the brand and the first nav link sit flush with no gap. Measured: no overlap, and
+   the legacy one-pager has the same weak spot with its own five items, so this is inherited,
+   not introduced. Fixing it means touching shared `style.css`, which changes the live site too.
 9. 🟡 With 0 verified plans a plain `npm run build` emits **no sitemap at all** (`@astrojs/sitemap`
    has nothing to serialise), while `robots.txt` still advertises `/sitemap-index.xml`. Harmless
    until launch, and self-resolving once any plan verifies — but do not deploy a 0-page build.
@@ -157,11 +174,59 @@ serving `site/dist/`. Build first — it serves the built output, not the source
 `npx astro build` **skips the `prebuild` hook**, so `css/` never reaches `public/`; always use
 `npm run build`.
 
+### What shipped in the third pass — the chrome and the Phase 0 routes
+
+**Header and footer** (`src/components/Header.astro`, `Footer.astro`), wired into `Base.astro`
+so every page gets them. Class names are copied verbatim from `index.html`, so the existing
+rules in `style.css` style them with no new CSS — the only additions were `main { padding-top:
+var(--navbar-height) }` (the navbar is `position: fixed`, so without it the breadcrumb rendered
+underneath it) and two small table helpers.
+
+The links are the one deliberate divergence from the legacy markup. The one-pager's nav is all
+bare `#anchors`, which resolve against the wrong document from a generated page; they are
+absolute here. And the legacy footer's `href="#"` placeholders (Motor, Travel, Articles,
+Careers…) are dropped rather than ported — harmless on one page, but they would have become the
+same dead link repeated across ~2,900.
+
+**Defect 7 is fixed.** `Base.astro` carries a 158-byte inline blocking script that applies the
+saved theme before first paint, reading the same `mib-theme` key as `js/main.js`. Verified
+end-to-end: toggling to dark on the legacy home page and navigating to a generated page arrives
+dark, with the right toggle icon and `--color-bg` — the preference now survives the boundary
+between the two halves of the migration in both directions.
+
+**`/methodology/`** — the page §13 names as the mitigation for comparative-claim risk. Weights
+come from `src/data/methodology.json`, the same file the scoring reads, so the page cannot drift
+from the arithmetic. Covers the plan weights, the per-category insurer weights, data sources and
+averaging period, an explicit independence statement including the commission disclosure, what a
+score cannot tell you, and 4 FAQs with FAQPage schema.
+
+**`/[category]/`** — the product hub, generated only for categories that have publishable plans
+(`src/pages/[category]/index.astro`). A hub listing nothing is a thin page, and seven empty hubs
+is the exact shape §13 warns about. Carries a scored table of every plan in the category with
+CSR, complaints and entry premium, a verdict list, and 3 FAQs.
+
+**Dead links removed from the plan template.** It was emitting `/[category]/best-plans/` and
+`/[category]/companies/[insurer]/`, neither of which is built. The insurer one was worse than an
+ordinary 404: it sat in the breadcrumb trail, so it was also being published inside
+`BreadcrumbList` JSON-LD. The insurer crumb is gone until those pages exist — one line to
+restore.
+
+**A link audit now runs over the build.** Every internal `href` in `dist/` resolves to a real
+file. That check is worth keeping as the page count grows.
+
+**`/` serves the legacy one-pager, as an interim.** `sync-public.mjs` copies `index.html` and
+`js/` into the build. Without it the build had no home page while the nav brand, every
+breadcrumb and every footer linked to `/` — the most-linked URL on the site would have been its
+only 404. It is unmanaged HTML: its own `<head>` and `<title>`, not composed by `Base.astro` or
+checked by the SEO assertions. **Delete that entry from `FILES` the moment
+`src/pages/index.astro` exists.**
+
 ### Next moves, in order
 
-1. Build the Phase 0 static pages: home, `/methodology/`, category hubs — this clears defect 5,
-   the 404s the plan page currently links into, and gives `llms.txt` its hub links.
-2. Decide defect 7 (theme) alongside the header/footer chrome.
+1. **Port the home page** (§12 step 7) — all 15 sections, persona panels data-driven, compare
+   engine as an island with a static fallback table (§12 step 10). This is the last Phase 0
+   route and it removes the interim above.
+2. ~~Decide defect 7 (theme) alongside the header/footer chrome.~~ Done — see above.
 3. Only then: §5 data expansion, which gates everything downstream.
 4. ✅ Done — all three §0a blockers are cleared: committed, merged, logo optimised to 20 KB and
    consolidated onto one path. The OG card now carries the badge. The chrome work in step 1 has

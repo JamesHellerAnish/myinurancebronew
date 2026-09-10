@@ -99,10 +99,13 @@ const faqs = [
   },
 ]
 
+// The insurer crumb is deliberately absent. /[category]/companies/[insurer]/ is not built
+// yet (§6.2), and a breadcrumb is worse than a normal dead link: it also goes into the
+// BreadcrumbList JSON-LD, so a 404 gets published as structured data. Restore the crumb in
+// one line here when the insurer pages ship.
 const trail = [
   { name: 'Home', path: '/' },
   { name: categoryLabel, path: categoryUrl },
-  { name: d.insurer, path: `${categoryUrl}companies/${d.insurerSlug}/` },
   { name: d.name, path: url },
 ]
 
@@ -302,10 +305,11 @@ const description = fitDescription(
           <li><a href={planPath(sibling)}>{sibling.data.insurer} {sibling.data.name}</a></li>
         ))}
       </ul>
+      {/* Only routes that exist. /[category]/best-plans/ and the insurer pages are still
+          unbuilt (§6.2); linking them from every plan page would publish 404s at scale. */}
       <p>
-        <a href={categoryUrl}>All {categoryLabel.toLowerCase()}</a> ·
-        <a href={`${categoryUrl}best-plans/`}>Best {categoryLabel.toLowerCase()} plans</a> ·
-        <a href={`${categoryUrl}companies/${d.insurerSlug}/`}>{d.insurer} review</a>
+        <a href={categoryUrl}>All {categoryLabel.toLowerCase()} plans</a> ·
+        <a href="/methodology/">How we score plans</a>
       </p>
     </section>
 

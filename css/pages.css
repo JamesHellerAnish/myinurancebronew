@@ -15,6 +15,13 @@
 
 /* ── Container ───────────────────────────────────────── */
 
+/* .navbar is `position: fixed` with height var(--navbar-height), so it is out of flow. The
+   legacy one-pager compensates inside the hero section; a content page has no hero, so
+   without this the breadcrumb renders underneath the navbar. */
+main {
+  padding-top: var(--navbar-height);
+}
+
 .plan-page {
   --measure: 72ch;
 
@@ -211,6 +218,15 @@
   border-bottom: 1px solid var(--color-border);
 }
 
+/* A qualifier inside a column heading — "Complaints per 10,000 claims" needs the unit, but
+   the unit should not compete with the label. */
+.plan-page .th-note {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 0.75;
+}
+
 .plan-page thead th {
   font-size: var(--text-xs);
   font-weight: 600;
@@ -229,6 +245,16 @@
   font-family: var(--font-display);
   font-weight: 600;
   white-space: nowrap;
+}
+
+/* A cell holding a sentence rather than a figure — opt out of the numeric treatment above,
+   which is tuned for short values that must not wrap mid-number. */
+.plan-page td.cell-prose {
+  font-family: inherit;
+  font-weight: 400;
+  white-space: normal;
+  color: var(--color-text-secondary);
+  min-width: 18rem;
 }
 
 /* ── 7. Pros and cons ────────────────────────────────── */

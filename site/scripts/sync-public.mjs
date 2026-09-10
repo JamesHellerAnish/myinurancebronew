@@ -20,8 +20,14 @@ const siteRoot = join(here, '..')
 const repoRoot = join(siteRoot, '..')
 const publicDir = join(siteRoot, 'public')
 
-/** Directories copied wholesale from the repo root. */
-const DIRS = ['css', 'assets']
+/**
+ * Directories copied wholesale from the repo root.
+ *
+ * `js/` is here for the legacy home page only — see the index.html note in FILES. When the
+ * home page is ported to Astro (§12 step 7) and the compare engine becomes an island, these
+ * scripts stop being served as-is and this entry goes.
+ */
+const DIRS = ['css', 'assets', 'js']
 
 /**
  * Directory names never copied, at any depth.
@@ -38,7 +44,26 @@ const EXCLUDED_DIRS = new Set(['originals'])
  * rather than globbed — CLAUDE.md invariant 3 keeps customer PII out of the deploy, and a
  * glob is exactly how *-config.php or a stray leads.json ends up shipped by accident.
  */
-const FILES = ['send-mail.php', 'lead-store.php', 'view-leads.php', '.htaccess']
+const FILES = [
+  'send-mail.php',
+  'lead-store.php',
+  'view-leads.php',
+  '.htaccess',
+
+  /**
+   * ⚠ INTERIM — the legacy one-pager, serving as `/` until it is ported (§12 step 7).
+   *
+   * Without it the build has no home page, and `/` is linked from the nav brand, every
+   * breadcrumb and the footer of every generated page — the most-linked URL on the site
+   * would be its only 404. Copying the live page in means the mesh is whole today and the
+   * port can happen on its own schedule rather than as a blocker.
+   *
+   * It is unmanaged HTML: its own <head>, its own <title>, and it does not use Base.astro,
+   * so nothing here composes its title or checks its meta description. Delete this entry
+   * the moment src/pages/index.astro exists.
+   */
+  'index.html',
+]
 
 mkdirSync(publicDir, { recursive: true })
 
