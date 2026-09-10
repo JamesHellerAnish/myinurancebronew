@@ -1,31 +1,62 @@
-    <!-- ═══════════ 3d-bis. MEET OUR TEAM ═══════════ -->
-    <section class="section-padding team" id="team">
-      <div class="container">
-        <div class="section-header fade-up">
-          <span class="eyebrow"><svg class="icon"><use href="#i-users"></use></svg> Meet our team</span>
-          <h2>The people you'll <span class="highlight">actually talk to</span></h2>
-          <p>A small team on purpose. You get the same faces from your first question to your first claim.</p>
-        </div>
+---
+// Section 3d-bis — Meet our team. Ported from index.html:863.
+//
+// CLAUDE.md invariant 7: roles under a real face are a regulated claim on an IRDAI-licensed
+// advisory site, so nothing here is inferred. The specialism and city of each person were
+// given by the owner; the bios describe what that specialism involves and nothing more.
+//
+// Deliberately absent, because nobody has stated them: years of experience, certifications,
+// licence numbers, client or claim counts, previous employers. Do not add any of those
+// without the owner supplying them — they are exactly the claims that turn a bio into a
+// regulated representation.
+const team = [
+  {
+    name: 'Apratim Chatterjee',
+    role: 'Health Insurance Specialist',
+    city: 'Kolkata',
+    image: 'assets/images/team/apratim-chatterjee.webp',
+    bio:
+      'Apratim works on the health side — matching families to the right cover, and reading ' +
+      'the room-rent limits, sub-limits and waiting periods that decide what a policy is ' +
+      'actually worth at claim time.',
+  },
+  {
+    name: 'Isha Raghuvanshi',
+    role: 'Term Insurance Specialist',
+    city: 'Indore',
+    image: 'assets/images/team/isha-raghuvanshi.webp',
+    bio:
+      'Isha works on term life — sizing cover against what a family would actually need, and ' +
+      'walking through the disclosure questions properly, because an honest application is ' +
+      'what keeps a claim from being contested years later.',
+  },
+]
+---
 
-        <!-- TODO: replace the placeholder role + bio under each name before publishing.
-             Deliberately left blank rather than guessed — these are real people on an
-             IRDAI-licensed advisory site, so titles must not be invented. -->
-        <div class="team-grid">
-          <article class="team-card fade-up">
-            <img src="assets/images/team/apratim-chatterjee.webp" alt="Apratim Chatterjee, Myinsurancebro"
-              width="800" height="1000" loading="lazy" decoding="async">
-            <h3 class="team-name">Apratim Chatterjee</h3>
-            <span class="team-role">Role to be added</span>
-            <p class="team-bio">Short bio to be added — what they help clients with, and their background.</p>
-          </article>
+<section class="section-padding team" id="team">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="eyebrow"><svg class="icon"><use href="#i-users"></use></svg> Meet our team</span>
+      <h2>The people you'll <span class="highlight">actually talk to</span></h2>
+      <p>A small team on purpose. You get the same faces from your first question to your first claim.</p>
+    </div>
 
-          <article class="team-card fade-up">
-            <img src="assets/images/team/isha-raghuvanshi.webp" alt="Isha Raghuvanshi, Myinsurancebro"
-              width="800" height="1000" loading="lazy" decoding="async">
-            <h3 class="team-name">Isha Raghuvanshi</h3>
-            <span class="team-role">Role to be added</span>
-            <p class="team-bio">Short bio to be added — what they help clients with, and their background.</p>
-          </article>
-        </div>
-      </div>
-    </section>
+    <div class="team-grid">
+      {team.map((person) => (
+        <article class="team-card fade-up">
+          <img
+            src={person.image}
+            alt={`${person.name}, Myinsurancebro`}
+            width="800"
+            height="1000"
+            loading="lazy"
+            decoding="async"
+          />
+          <h3 class="team-name">{person.name}</h3>
+          <span class="team-role">{person.role} · {person.city}</span>
+          <p class="team-bio">{person.bio}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

@@ -45,15 +45,18 @@ const { schemas = [], current, ...seo } = Astro.props
 
     <SEO {...seo} />
 
-    <!-- TODO(§9.1): self-host Inter and Space Grotesk to kill these two round-trips.
-         Leaving the CDN link for now so the port renders identically to the legacy site;
-         swapping it is a CWV task, not a correctness one. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- §9.1: fonts are self-hosted. Both page types have a text LCP element, so LCP waited
+         on two third-party round-trips — the render-blocking fonts.googleapis.com stylesheet
+         and then the fonts.gstatic.com connection. Same-origin now, and preloadable.
+         Regenerate with site/scripts/fetch-fonts.mjs. -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/assets/fonts/inter-latin.woff2"
+      crossorigin
     />
+    <link rel="stylesheet" href="/css/fonts.css" />
 
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/components.css" />

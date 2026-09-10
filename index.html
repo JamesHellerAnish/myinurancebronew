@@ -25,19 +25,16 @@
   <meta property="og:image:height" content="630">
   <meta property="og:url" content="https://myinsurancebro.com/">
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
-    rel="stylesheet">
+  <!-- Self-hosted fonts — see site/scripts/fetch-fonts.mjs -->
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-latin.woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css">
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/components.css">
 
   <!-- Hero portrait is the LCP element; start it before the CSS resolves. -->
-  <link rel="preload" as="image" href="assets/images/chief-advisor.png" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/images/chief-advisor.webp" fetchpriority="high">
 </head>
 
 <body>
@@ -274,8 +271,8 @@
 
             <div class="advisor-card-container">
               <div class="advisor-img-wrapper">
-                <img src="assets/images/chief-advisor.png" alt="Chief Advisor & Owner - Myinsurancebro" class="advisor-img"
-                  width="1471" height="1809" fetchpriority="high" decoding="async">
+                <img src="assets/images/chief-advisor.webp" alt="Chief Advisor & Owner - Myinsurancebro" class="advisor-img"
+                  width="880" height="1082" fetchpriority="high" decoding="async">
               </div>
 
               <!-- Floating Trust Badges -->
@@ -782,8 +779,8 @@
       <div class="container">
         <div class="advisor-layout">
           <div class="advisor-portrait fade-up">
-            <img src="assets/images/chief-advisor.png" alt="Chief Advisor & Owner, Myinsurancebro" loading="lazy"
-              width="1471" height="1809" decoding="async">
+            <img src="assets/images/chief-advisor.webp" alt="Chief Advisor & Owner, Myinsurancebro" loading="lazy"
+              width="880" height="1082" decoding="async">
             <span class="advisor-chip top">
               <svg class="icon"><use href="#i-message-circle"></use></svg> Answers every query personally
             </span>
@@ -869,24 +866,21 @@
           <p>A small team on purpose. You get the same faces from your first question to your first claim.</p>
         </div>
 
-        <!-- TODO: replace the placeholder role + bio under each name before publishing.
-             Deliberately left blank rather than guessed — these are real people on an
-             IRDAI-licensed advisory site, so titles must not be invented. -->
         <div class="team-grid">
           <article class="team-card fade-up">
             <img src="assets/images/team/apratim-chatterjee.webp" alt="Apratim Chatterjee, Myinsurancebro"
               width="800" height="1000" loading="lazy" decoding="async">
             <h3 class="team-name">Apratim Chatterjee</h3>
-            <span class="team-role">Role to be added</span>
-            <p class="team-bio">Short bio to be added — what they help clients with, and their background.</p>
+            <span class="team-role">Health Insurance Specialist · Kolkata</span>
+            <p class="team-bio">Apratim works on the health side — matching families to the right cover, and reading the room-rent limits, sub-limits and waiting periods that decide what a policy is actually worth at claim time.</p>
           </article>
 
           <article class="team-card fade-up">
             <img src="assets/images/team/isha-raghuvanshi.webp" alt="Isha Raghuvanshi, Myinsurancebro"
               width="800" height="1000" loading="lazy" decoding="async">
             <h3 class="team-name">Isha Raghuvanshi</h3>
-            <span class="team-role">Role to be added</span>
-            <p class="team-bio">Short bio to be added — what they help clients with, and their background.</p>
+            <span class="team-role">Term Insurance Specialist · Indore</span>
+            <p class="team-bio">Isha works on term life — sizing cover against what a family would actually need, and walking through the disclosure questions properly, because an honest application is what keeps a claim from being contested years later.</p>
           </article>
         </div>
       </div>
