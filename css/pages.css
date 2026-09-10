@@ -1,0 +1,468 @@
+/* ═══════════════════════════════════════════════════════
+   MYINSURANCEBRO — Content page layer (Astro)
+   ═══════════════════════════════════════════════════════
+
+   Styles for the statically generated long-form pages in site/ — plan reviews today,
+   the methodology page and category hubs next. The legacy one-pager does not link this
+   file; style.css and components.css stay the shared design system and are not forked.
+
+   SEO_ASTRO_PLAN.md §2.1 lesson 4: Perfecplan shipped 4,000 pages against a template
+   whose 21 classes had no rules. Every class the plan template emits has a rule here.
+
+   Everything below resolves through the tokens in style.css, so light/dark follows
+   [data-theme] with no second palette to maintain.
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Container ───────────────────────────────────────── */
+
+.plan-page {
+  --measure: 72ch;
+
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: var(--space-10) var(--space-5) var(--space-24);
+  font-size: var(--text-lg);
+  line-height: 1.7;
+}
+
+@media (min-width: 768px) {
+  .plan-page {
+    padding-inline: var(--space-8);
+  }
+}
+
+.plan-page > section {
+  margin-block: var(--space-12);
+}
+
+.plan-page h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--space-3);
+}
+
+.plan-page h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: var(--space-10) 0 var(--space-4);
+}
+
+.plan-page h3 {
+  font-size: var(--text-lg);
+  margin: 0;
+}
+
+.plan-page p {
+  margin: 0 0 var(--space-4);
+}
+
+.plan-page ul {
+  margin: 0 0 var(--space-6);
+  padding-left: var(--space-5);
+}
+
+.plan-page li {
+  margin-bottom: var(--space-2);
+}
+
+.plan-page a {
+  color: var(--color-text);
+  text-decoration-color: var(--color-primary-dark);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.plan-page a:hover {
+  color: var(--color-primary-dark);
+}
+
+/* ── 1. Breadcrumbs ──────────────────────────────────── */
+
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-6);
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.breadcrumbs li + li::before {
+  content: '/';
+  margin-right: var(--space-2);
+  color: var(--color-border);
+}
+
+.breadcrumbs a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  color: var(--color-text);
+  text-decoration: underline;
+}
+
+.plan-subtitle {
+  font-size: var(--text-xl);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-6);
+}
+
+/* ── 3. Answer block ─────────────────────────────────── */
+/* The featured-snippet target (§8 block 3). Pulled out visually because it is also the
+   first thing a human reads. */
+
+.answer-block {
+  font-size: var(--text-xl);
+  line-height: 1.55;
+  font-weight: 500;
+  margin: 0 0 var(--space-10);
+  padding: var(--space-5) var(--space-6);
+  border-left: 4px solid var(--color-primary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background: var(--color-surface);
+}
+
+/* ── 4. Key facts ────────────────────────────────────── */
+
+.key-facts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  margin: 0 0 var(--space-12);
+  padding: 0;
+  background: var(--color-border);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .key-facts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.key-facts > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-card-bg);
+}
+
+.key-facts dt {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.key-facts dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* ── 6. Premium table ────────────────────────────────── */
+/* A real <table> is a §8 requirement — it is what gets extracted. It therefore has to
+   survive a 360 px viewport, hence the scroll wrapper rather than a responsive card
+   collapse that would destroy the row structure. */
+
+.table-assumption {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.table-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.plan-page table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-base);
+}
+
+.plan-page caption {
+  caption-side: bottom;
+  padding: var(--space-3) var(--space-5);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  text-align: left;
+}
+
+.plan-page th,
+.plan-page td {
+  padding: var(--space-3) var(--space-5);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.plan-page thead th {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  background: var(--color-surface);
+}
+
+.plan-page tbody tr:last-child th,
+.plan-page tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.plan-page td {
+  font-family: var(--font-display);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ── 7. Pros and cons ────────────────────────────────── */
+
+.pros-cons {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+@media (min-width: 768px) {
+  .pros-cons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.pros-cons > div {
+  padding: var(--space-5) var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-card-bg);
+}
+
+.pros-cons h2 {
+  font-size: var(--text-xl);
+  margin: 0 0 var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.pros-cons > div:first-child h2 {
+  border-bottom-color: var(--color-accent-success);
+}
+
+.pros-cons > div:last-child h2 {
+  border-bottom-color: var(--color-accent-warning);
+}
+
+.pros-cons ul {
+  margin: 0;
+}
+
+.methodology-link {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+/* ── 8. FAQ ──────────────────────────────────────────── */
+/* <details> collapses the answers, but FAQPage JSON-LD carries the same text, so nothing
+   depends on the open state being crawled. */
+
+.plan-page details {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.plan-page summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  cursor: pointer;
+  list-style: none;
+  font-weight: 600;
+}
+
+.plan-page summary::-webkit-details-marker {
+  display: none;
+}
+
+.plan-page summary::after {
+  content: '+';
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  line-height: 1;
+  color: var(--color-text-secondary);
+  transition: transform var(--transition-fast);
+}
+
+.plan-page details[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.plan-page details > p {
+  padding-bottom: var(--space-4);
+  color: var(--color-text-secondary);
+}
+
+/* ── 9. Sources and verification ─────────────────────── */
+
+.sources {
+  font-size: var(--text-base);
+}
+
+.sources .clause,
+.last-verified {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+}
+
+/* The PUBLISH_UNVERIFIED preview banner. Loud on purpose — §16.8: an unverified figure
+   must never be mistaken for a published one. */
+.verification-warning {
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--color-accent-danger);
+  border-radius: var(--radius-md);
+  background: rgba(239, 68, 68, 0.08);
+  color: var(--color-text);
+  font-size: var(--text-base);
+}
+
+/* ── 10. Disclaimer (components/seo/Disclaimer.astro) ─── */
+/* CLAUDE.md invariant 4: premiums are indicative illustrations, never quotes. This has to
+   read as a standing notice, not decoration. */
+
+.policy-disclaimer {
+  margin-block: var(--space-10);
+  padding: var(--space-5) var(--space-6);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-2);
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+/* ── 11. Internal link mesh ──────────────────────────── */
+
+.internal-links {
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.internal-links h2 {
+  margin-top: 0;
+  font-size: var(--text-xl);
+}
+
+.internal-links ul {
+  margin-bottom: var(--space-4);
+}
+
+.internal-links > p {
+  margin: 0;
+  font-size: var(--text-base);
+}
+
+/* ── 12. CTA ─────────────────────────────────────────── */
+
+.plan-cta {
+  margin-block: var(--space-12);
+  padding: var(--space-8) var(--space-6);
+  border-radius: var(--radius-xl);
+  background: var(--color-ink);
+  color: var(--color-on-ink);
+  text-align: center;
+}
+
+.plan-cta h2 {
+  margin-top: 0;
+  color: var(--color-on-ink);
+}
+
+.plan-cta p {
+  color: var(--color-on-ink-muted);
+}
+
+.plan-cta a {
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+/* The booking form. Field names are frozen (CLAUDE.md invariant 1) — this styles them,
+   it does not rename them. */
+.plan-cta form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  max-width: 32rem;
+  margin: var(--space-6) auto 0;
+  text-align: left;
+}
+
+@media (min-width: 640px) {
+  .plan-cta form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.plan-cta label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-on-ink-muted);
+}
+
+.plan-cta input {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-sm);
+  background: var(--color-ink-soft);
+  color: var(--color-on-ink);
+  font-family: inherit;
+  font-size: var(--text-base);
+}
+
+.plan-cta input:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.plan-cta button {
+  grid-column: 1 / -1;
+  padding: var(--space-4) var(--space-6);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--gradient-brand);
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.plan-cta button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-hover);
+}
+
+.policy-disclaimer p {
+  margin: 0;
+}

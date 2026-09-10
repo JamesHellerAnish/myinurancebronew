@@ -1,0 +1,101 @@
+{
+  "id": "term-hdfc-click2protect-supreme-plus",
+  "category": "term",
+  "insurer": "HDFC Life",
+  "insurerShort": "HDFC Life",
+  "name": "Click2Protect Supreme Plus",
+  "monogram": "HL",
+  "accent": "#0EA5E9",
+  "tagline": "Best servicing",
+  "subtitle": "One complaint per 10,000 claims — the lowest in the industry. You pay for that reliability.",
+  "score": 4.4,
+  "scoreBreakdown": {
+    "features": 4.3,
+    "insurer": 5,
+    "premium": 3
+  },
+  "metrics": {
+    "csr": 99.66,
+    "complaints": 1,
+    "solvency": 1.86,
+    "businessCr": 33031
+  },
+  "entryAge": "18–65 yrs",
+  "coverRange": "₹25 L – ₹10 Cr",
+  "tenure": "To age 85 / whole life",
+  "criticalIllness": "Rider — 60 illnesses, 15 yrs",
+  "premiumBreak": true,
+  "lifeStageBoost": true,
+  "smartExit": true,
+  "premiums": {
+    "m25": 19719,
+    "f25": 16761,
+    "m30": 25153,
+    "f30": 21380,
+    "m35": 31118,
+    "f35": 26451
+  },
+  "bestFor": [
+    "newparent",
+    "sandwich"
+  ],
+  "tags": [
+    "Fewest complaints",
+    "Life stage boosts"
+  ],
+  "features": [
+    "Three variants — Life, Life Plus and Life Goal",
+    "Life Stage Boost raises your cover at marriage or childbirth with no fresh medicals",
+    "Premium Break lets you pause premiums temporarily while cover stays live",
+    "Waiver of premium on critical illness or disability",
+    "Critical illness rider covering 60 illnesses for up to 15 years",
+    "Nominee can take the payout as a lump sum or as a monthly income"
+  ],
+  "covered": [
+    "Death from any cause during the policy term",
+    "Terminal illness — full sum assured paid on diagnosis",
+    "Accidental death with enhanced payout (rider)",
+    "Critical illness across 60 conditions (rider)"
+  ],
+  "notCovered": [
+    "Suicide within 12 months of policy start or revival",
+    "Death traced to an undisclosed medical condition",
+    "Fraudulent claims or material misrepresentation",
+    "Self-inflicted injury within the exclusion period"
+  ],
+  "riders": [
+    "Critical Illness — 60 conditions",
+    "Accidental Death",
+    "Waiver of Premium",
+    "Income Benefit"
+  ],
+  "pros": [
+    "Just 1 complaint per 10,000 claims — nobody else in the industry is close",
+    "99.66% settlement ratio, second only to Axis Max Life",
+    "Life Stage Boost is genuinely useful if you marry or have a child mid-term",
+    "The largest servicing network of the private life insurers",
+    "Buying and servicing online is the smoothest of the five"
+  ],
+  "cons": [
+    "Consistently the most expensive of the five — roughly 20% above Bajaj at age 30",
+    "Return-of-premium variant carries a steep loading",
+    "Rider stacking pushes the premium up quickly",
+    "Document requests during underwriting can involve some back-and-forth"
+  ],
+  "verdict": "If servicing quality is what keeps you up at night, this is the plan. One complaint per 10,000 claims is an extraordinary number and it reflects a claims process that mostly just works. The catch is price — you are paying a real premium over Bajaj or ICICI for that reliability. For a young buyer on a tight budget we would usually point elsewhere; for a family where the payout has to be certain, the extra cost is defensible.",
+  "logo": "hdfclife.png",
+  "slug": "click2protect-supreme-plus",
+  "insurerSlug": "hdfc-life",
+  "verificationStatus": "migrated",
+  "sources": [
+    {
+      "label": "HDFC Life — Click2Protect Supreme Plus policy wording",
+      "url": "https://www.hdfclife.com/content/dam/hdfclifeinsurancecompany/products-page/brochure-pdf/HDFC_Life_Click_2_Protect_Super_Retail_Brochure.pdf"
+    },
+    {
+      "label": "HDFC Life — Click2Protect Supreme Plus product page",
+      "url": "https://www.hdfclife.com/term-insurance-plans/click-2-protect-super"
+    }
+  ],
+  "verificationNote": "Migrated from js/policy-data.js. Figures predate the §16.7 primary-source pipeline and have not been re-read against the policy wording. Not publishable until re-verified and signed off (§16.8)."
+}

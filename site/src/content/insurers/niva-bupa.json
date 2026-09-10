@@ -1,0 +1,12 @@
+{
+  "name": "Niva Bupa",
+  "slug": "niva-bupa",
+  "kind": "health",
+  "logo": "nivabupa.png",
+  "accent": "#2563EB",
+  "initials": "NB",
+  "score": 4.23,
+  "csr": 92.92,
+  "complaints": 37.13,
+  "businessCr": 6985.24
+}

@@ -1,0 +1,13 @@
+{
+  "name": "HDFC Life",
+  "slug": "hdfc-life",
+  "kind": "life",
+  "logo": "hdfclife.png",
+  "accent": "#0EA5E9",
+  "initials": "HL",
+  "score": 4.55,
+  "csr": 99.66,
+  "complaints": 1,
+  "solvency": 1.86,
+  "businessCr": 33031
+}

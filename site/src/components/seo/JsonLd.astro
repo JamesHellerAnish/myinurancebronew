@@ -1,0 +1,13 @@
+---
+// Emit a JSON-LD block. set:html is required — Astro would otherwise HTML-escape the JSON
+// and the block would not parse.
+interface Props {
+  schema: Record<string, unknown> | Array<Record<string, unknown>>
+}
+const { schema } = Astro.props
+---
+
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(schema)}
+/>

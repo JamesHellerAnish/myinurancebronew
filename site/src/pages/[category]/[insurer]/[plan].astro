@@ -1,0 +1,329 @@
+---
+// The plan page. SEO_ASTRO_PLAN.md §8 — the anti-thin-content contract, blocks 1–12 in order.
+//
+// §2.1 lesson 4: Perfecplan generated 4,000 pages against a template nobody had looked at,
+// and 21 CSS classes had no rules for two sessions. This is the one template to build end
+// to end and inspect before anything is generated at scale.
+//
+// Paths come from publishablePlans() — never getCollection('plans') directly. See lib/plans.ts.
+import type { GetStaticPaths } from 'astro'
+import Base from '../../../layouts/Base.astro'
+import Disclaimer from '../../../components/seo/Disclaimer.astro'
+import {
+  publishablePlans,
+  planPath,
+  categoryPath,
+  siblingPlans,
+  CATEGORY_LABELS,
+  type Plan,
+} from '../../../lib/plans'
+import { breadcrumbSchema, faqSchema, planSchema } from '../../../lib/schema'
+import { fitDescription, fitTitle } from '../../../lib/seo'
+import { complaintsPhrase } from '../../../lib/format'
+import profiles from '../../../data/profiles.json'
+
+export const getStaticPaths = (async () => {
+  const plans = await publishablePlans()
+
+  return plans.map((plan) => ({
+    params: {
+      category: categoryPath(plan.data.category),
+      insurer: plan.data.insurerSlug,
+      plan: plan.data.slug,
+    },
+    props: { plan },
+  }))
+}) satisfies GetStaticPaths
+
+interface Props {
+  plan: Plan
+}
+
+const { plan } = Astro.props
+const d = plan.data
+
+const categoryLabel = CATEGORY_LABELS[d.category]
+const categoryUrl = `/${categoryPath(d.category)}/`
+const url = planPath(plan)
+const siblings = await siblingPlans(plan)
+
+// Premium rows. profiles.json only defines term and health today; the five Tier A
+// categories have no profile set yet, so the table is omitted rather than rendered empty.
+const profileSet = (profiles as Record<string, { assumption: string; rows: Array<{ key: string; label: string }> }>)[
+  d.category
+]
+const premiumRows = profileSet?.rows.filter((row) => d.premiums[row.key] != null) ?? []
+
+const rupee = new Intl.NumberFormat('en-IN', {
+  style: 'currency',
+  currency: 'INR',
+  maximumFractionDigits: 0,
+})
+
+// §8 block 3 — the answer block. 40–60 words, directly answering the page's query. The
+// single highest-leverage block for featured snippets and AI citation (§10.4).
+const answer =
+  `${d.insurer} ${d.name} scores ${d.score}/5 in our assessment. ` +
+  `${d.insurer} settles ${d.metrics.csr}% of claims and draws ` +
+  `${complaintsPhrase(d.metrics.complaints)} per 10,000 claims. ` +
+  (d.coverRange ? `Cover runs ${d.coverRange}. ` : '') +
+  (premiumRows.length > 0
+    ? `Illustrative premiums start at ${rupee.format(Math.min(...premiumRows.map((r) => d.premiums[r.key])))} a year.`
+    : '')
+
+// §8 block 8 — FAQs, templated per variable. §16.4: open with a bare Yes/No where the
+// question is a yes/no question, because that is what gets extracted.
+const faqs = [
+  {
+    q: `Is ${d.insurer} ${d.name} a good plan?`,
+    a:
+      `We score it ${d.score} out of 5. ${d.verdict}`,
+  },
+  {
+    q: `What is the claim settlement ratio of ${d.insurer}?`,
+    a:
+      `${d.metrics.csr}%, as a three-year average for FY 2024–26 from IRDAI disclosures. ` +
+      `${d.insurer} receives ${complaintsPhrase(d.metrics.complaints)} per 10,000 claims.`,
+  },
+  ...(d.coverRange
+    ? [
+        {
+          q: `How much cover can I take under ${d.name}?`,
+          a: `${d.coverRange}.${d.entryAge ? ` Entry age is ${d.entryAge}.` : ''}`,
+        },
+      ]
+    : []),
+  {
+    q: `What does ${d.name} not cover?`,
+    a: `The main exclusions are: ${d.notCovered.join('; ')}.`,
+  },
+]
+
+const trail = [
+  { name: 'Home', path: '/' },
+  { name: categoryLabel, path: categoryUrl },
+  { name: d.insurer, path: `${categoryUrl}companies/${d.insurerSlug}/` },
+  { name: d.name, path: url },
+]
+
+// §8.1 — bare page title. The brand suffix is added by title() and nowhere else.
+// Candidates run longest-first: fitTitle() takes the most informative one that still fits
+// under 60 chars with the brand suffix. "Aditya Birla Sun Life Super Term Plan" needs the
+// short name; "SBI General Super Health Platinum Infinite" needs to lose "Review" as well.
+const insurerShort = d.insurerShort ?? d.insurer
+const pageTitle = fitTitle([
+  `${d.insurer} ${d.name} Review`,
+  `${insurerShort} ${d.name} Review`,
+  `${insurerShort} ${d.name}`,
+])
+
+// §9.2 — 150–160 chars, and lead with the numbers so they survive if a SERP truncates.
+const description = fitDescription(
+  `${insurerShort} ${d.name} scored ${d.score}/5. ${d.insurer} settles ${d.metrics.csr}% of ` +
+    `claims, with ${complaintsPhrase(d.metrics.complaints)} per 10,000.`,
+  [
+    'Features, exclusions and indicative premiums.',
+    'Cover, exclusions and indicative premiums.',
+    'Cover, exclusions and premiums.',
+    'Cover and exclusions.',
+    'Full review.',
+  ],
+)
+---
+
+<Base
+  title={pageTitle}
+  description={description}
+  modified={d.lastVerified}
+  keywords={[
+    `${d.insurer} ${d.name}`,
+    `${d.name} review`,
+    `${d.name} vs`,
+    `${d.insurer} claim settlement ratio`,
+    categoryLabel.toLowerCase(),
+  ]}
+  schemas={[
+    breadcrumbSchema(trail),
+    faqSchema(faqs),
+    planSchema(plan, url),
+  ]}
+>
+  <article class="plan-page">
+    {/* 1. Breadcrumbs */}
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        {trail.map((crumb, i) => (
+          <li>
+            {i < trail.length - 1 ? (
+              <a href={crumb.path}>{crumb.name}</a>
+            ) : (
+              <span aria-current="page">{crumb.name}</span>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+
+    {/* 2. H1 — unique, no brand suffix */}
+    <h1>{d.insurer} {d.name} review</h1>
+    {d.subtitle && <p class="plan-subtitle">{d.subtitle}</p>}
+
+    {/* 3. Answer block */}
+    <p class="answer-block">{answer}</p>
+
+    {/* 4. Key facts — machine-readable pairs */}
+    <dl class="key-facts">
+      <div><dt>Our score</dt><dd>{d.score} / 5</dd></div>
+      <div><dt>Claim settlement ratio</dt><dd>{d.metrics.csr}%</dd></div>
+      <div><dt>Complaints per 10,000 claims</dt><dd>{d.metrics.complaints}</dd></div>
+      {d.coverRange && <div><dt>Cover available</dt><dd>{d.coverRange}</dd></div>}
+      {d.entryAge && <div><dt>Entry age</dt><dd>{d.entryAge}</dd></div>}
+      {d.tenure && <div><dt>Term</dt><dd>{d.tenure}</dd></div>}
+      {d.roomRent && <div><dt>Room rent limit</dt><dd>{d.roomRent}</dd></div>}
+      {d.waiting?.ped != null && (
+        <div><dt>Pre-existing disease wait</dt><dd>{d.waiting.ped} years</dd></div>
+      )}
+    </dl>
+
+    {/* 5. Main content */}
+    <section>
+      <h2>What {d.name} covers</h2>
+      <ul>{d.covered.map((item) => <li>{item}</li>)}</ul>
+
+      <h2>Key features</h2>
+      <ul>{d.features.map((item) => <li>{item}</li>)}</ul>
+
+      {d.riders.length > 0 && (
+        <>
+          <h2>Riders and add-ons</h2>
+          <ul>{d.riders.map((item) => <li>{item}</li>)}</ul>
+        </>
+      )}
+
+      {/* §16.4 — "What's Missing" as a named section. Naming the weaknesses is the trust
+          play, and it maps onto notCovered[]. */}
+      <h2>What {d.name} does not cover</h2>
+      <ul>{d.notCovered.map((item) => <li>{item}</li>)}</ul>
+    </section>
+
+    {/* 6. A real <table> — never a div grid, never an image */}
+    {premiumRows.length > 0 && (
+      <section>
+        <h2>What does {d.name} cost?</h2>
+        <p class="table-assumption">{profileSet.assumption}</p>
+        <div class="table-scroll">
+          <table>
+            <caption>
+              Indicative annual premiums for {d.insurer} {d.name}. Illustrations, not quotes.
+            </caption>
+            <thead>
+              <tr><th scope="col">Profile</th><th scope="col">Annual premium</th></tr>
+            </thead>
+            <tbody>
+              {premiumRows.map((row) => (
+                <tr>
+                  <th scope="row">{row.label}</th>
+                  <td>{rupee.format(d.premiums[row.key])}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    )}
+
+    {/* 7. Pros / cons — both populated */}
+    <section class="pros-cons">
+      <div>
+        <h2>What we like</h2>
+        <ul>{d.pros.map((item) => <li>{item}</li>)}</ul>
+      </div>
+      <div>
+        <h2>What we don't</h2>
+        <ul>{d.cons.map((item) => <li>{item}</li>)}</ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Our verdict</h2>
+      <p>{d.verdict}</p>
+      <p class="methodology-link">
+        Every score resolves to <a href="/methodology/">how we score plans</a> —
+        plan features 45%, insurer strength 45%, premium 10%.
+      </p>
+    </section>
+
+    {/* 8. FAQ */}
+    <section>
+      <h2>Frequently asked questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary><h3>{faq.q}</h3></summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    {/* 9. Sources + last verified — feeds dateModified */}
+    <section class="sources">
+      <h2>Sources</h2>
+      {d.sources.length > 0 ? (
+        <ul>
+          {d.sources.map((source) => (
+            <li>
+              <a href={source.url} rel="nofollow noopener" target="_blank">{source.label}</a>
+              {source.clause && <span class="clause"> — {source.clause}</span>}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>Source documents are being verified for this plan.</p>
+      )}
+      {d.lastVerified && (
+        <p class="last-verified">
+          Last verified <time datetime={d.lastVerified.toISOString()}>
+            {d.lastVerified.toLocaleDateString('en-IN', { dateStyle: 'long' })}
+          </time>
+        </p>
+      )}
+      {d.verificationStatus !== 'verified' && (
+        <p class="verification-warning">
+          <strong>Preview only.</strong> This record has not yet been re-verified against the
+          policy wording and must not be published.
+        </p>
+      )}
+    </section>
+
+    {/* 11. Internal links — the mesh (§9.3). Without this, pages are orphans. */}
+    <section class="internal-links">
+      <h2>Compare {d.name} with other {categoryLabel.toLowerCase()} plans</h2>
+      <ul>
+        {siblings.map((sibling) => (
+          <li><a href={planPath(sibling)}>{sibling.data.insurer} {sibling.data.name}</a></li>
+        ))}
+      </ul>
+      <p>
+        <a href={categoryUrl}>All {categoryLabel.toLowerCase()}</a> ·
+        <a href={`${categoryUrl}best-plans/`}>Best {categoryLabel.toLowerCase()} plans</a> ·
+        <a href={`${categoryUrl}companies/${d.insurerSlug}/`}>{d.insurer} review</a>
+      </p>
+    </section>
+
+    {/* 10. CTA — the existing booking form. Field names are frozen (CLAUDE.md invariant 1). */}
+    <section class="plan-cta">
+      <h2>Not sure if this is the right plan for you?</h2>
+      <p>Talk to a licensed advisor. No spam, no sales pressure.</p>
+      <form action="/send-mail.php" method="post">
+        <input type="hidden" name="product" value={`${d.insurer} ${d.name}`} />
+        <label>Name <input type="text" name="name" required /></label>
+        <label>Phone <input type="tel" name="phone" required /></label>
+        <label>Email <input type="email" name="email" required /></label>
+        <label>Preferred time <input type="text" name="preferred_time" /></label>
+        <button type="submit">Request a callback</button>
+      </form>
+    </section>
+
+    {/* 12. Disclaimer */}
+    <Disclaimer />
+  </article>
+</Base>

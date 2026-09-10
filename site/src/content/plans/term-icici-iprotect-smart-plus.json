@@ -1,0 +1,97 @@
+{
+  "id": "term-icici-iprotect-smart-plus",
+  "category": "term",
+  "insurer": "ICICI Prudential",
+  "insurerShort": "ICICI Pru",
+  "name": "iProtect Smart Plus",
+  "monogram": "IP",
+  "accent": "#F97316",
+  "tagline": "Most flexible exit",
+  "subtitle": "Strong pricing, a solid 2.10x solvency ratio, and the option to walk away with your premiums back.",
+  "score": 4.3,
+  "scoreBreakdown": {
+    "features": 3.8,
+    "insurer": 4.4,
+    "premium": 5
+  },
+  "metrics": {
+    "csr": 99.3,
+    "complaints": 8,
+    "solvency": 2.1,
+    "businessCr": 22239
+  },
+  "entryAge": "18–65 yrs",
+  "coverRange": "₹50 L – ₹10 Cr",
+  "tenure": "To age 85",
+  "criticalIllness": "Rider — 34 illnesses",
+  "premiumBreak": true,
+  "lifeStageBoost": true,
+  "smartExit": true,
+  "premiums": {
+    "m25": 15951,
+    "f25": 13558,
+    "m30": 19093,
+    "f30": 16229,
+    "m35": 26030,
+    "f35": 22126
+  },
+  "bestFor": [
+    "genz",
+    "newparent"
+  ],
+  "tags": [
+    "Great value",
+    "Smart Exit"
+  ],
+  "features": [
+    "Three variants — Life, Life Plus and Life Rebalance",
+    "Life Stage Protection raises cover at marriage, childbirth or a home loan",
+    "Smart Exit returns your premiums if you decide the cover is no longer needed",
+    "Premium Break of up to a year after a run of regular payments",
+    "Instant partial payout of ₹3 lakh at claim intimation on larger covers",
+    "Nominee can choose a lump sum or a structured income"
+  ],
+  "covered": [
+    "Death from any cause during the policy term",
+    "Terminal illness — full sum assured on diagnosis",
+    "Accidental death with enhanced payout (rider)",
+    "Critical illness across 34 conditions (rider)"
+  ],
+  "notCovered": [
+    "Suicide within 12 months of policy start or revival",
+    "Death traced to an undisclosed medical condition",
+    "Fraudulent claims or material misrepresentation",
+    "Self-inflicted injury within the exclusion period"
+  ],
+  "riders": [
+    "Accidental Death",
+    "Accidental Disability",
+    "Critical Illness — 34 conditions",
+    "Waiver of Premium"
+  ],
+  "pros": [
+    "Among the cheapest of the five, especially for women",
+    "Solvency of 2.10x — the second strongest balance sheet here",
+    "Smart Exit is a real safety valve if your circumstances change",
+    "Large, established insurer with deep servicing infrastructure",
+    "Life Stage Protection covers the milestones that actually change your cover need"
+  ],
+  "cons": [
+    "8 complaints per 10,000 claims — the highest of the five by some margin",
+    "Critical illness rider covers 34 conditions against 60–64 elsewhere",
+    "Feature depth is thinner than Axis Max or HDFC Life",
+    "Settlement ratio of 99.30% is good but trails the top two"
+  ],
+  "verdict": "A well-priced plan from a large insurer, and the Smart Exit option is genuinely rare. Where it slips is servicing — 8 complaints per 10,000 claims is roughly eight times HDFC Life. That will not matter for most people, but it is the one number we would want you to see before choosing this over the top two. Good pick if price is the deciding factor and you want a household-name insurer.",
+  "logo": "icicipru.png",
+  "slug": "iprotect-smart-plus",
+  "insurerSlug": "icici-prudential",
+  "verificationStatus": "migrated",
+  "sources": [
+    {
+      "label": "ICICI Prudential — iProtect Smart Plus policy wording",
+      "url": "https://www.iciciprulife.com/content/dam/icicipru/brochures/ICICI-Pru-iProtect-Smart-Illustrated-Brochure.pdf"
+    }
+  ],
+  "verificationNote": "Migrated from js/policy-data.js. Figures predate the §16.7 primary-source pipeline and have not been re-read against the policy wording. Not publishable until re-verified and signed off (§16.8)."
+}

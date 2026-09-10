@@ -1,0 +1,112 @@
+{
+  "id": "health-hdfcergo-optima-secure-plus",
+  "category": "health",
+  "insurer": "HDFC ERGO",
+  "insurerShort": "HDFC ERGO",
+  "name": "Optima Secure+",
+  "monogram": "HE",
+  "accent": "#DC2626",
+  "tagline": "Our top pick",
+  "subtitle": "The most reliable claims desk in health insurance, on a plan whose cover grows every single year.",
+  "score": 4.6,
+  "scoreBreakdown": {
+    "features": 4.5,
+    "insurer": 5,
+    "premium": 3.5
+  },
+  "metrics": {
+    "csr": 97.61,
+    "complaints": 8.87,
+    "network": 16000,
+    "businessCr": 6596.53
+  },
+  "entryAge": "18–65 yrs",
+  "coverRange": "₹10 L – ₹2 Cr",
+  "tenure": "1–5 years",
+  "restoration": "Unlimited, built in",
+  "bonus": "Infinity Benefit — 100% of base cover added every year, no cap",
+  "roomRent": "No limit — any room category",
+  "consumables": "Covered in base plan",
+  "waiting": {
+    "ped": 3,
+    "specific": 2,
+    "maternity": "Parenthood rider"
+  },
+  "premiums": {
+    "ind25": 13459,
+    "couple": 21128,
+    "family": 26017,
+    "seniors": 75608
+  },
+  "bestFor": [
+    "newparent",
+    "sandwich"
+  ],
+  "tags": [
+    "Best claims record",
+    "Cover doubles day 1",
+    "Consumables included"
+  ],
+  "features": [
+    "Secure Benefit doubles your cover from day one — buy ₹10 lakh, hold ₹20 lakh",
+    "Infinity Benefit adds 100% of the base cover every year with no upper limit and regardless of claims",
+    "Consumables — gloves, masks, syringes, PPE — are covered, which typically saves ₹5,000–15,000 a hospitalisation",
+    "Pre-hospitalisation for 60 days and post-hospitalisation for 180 days",
+    "Home healthcare, daycare, organ donor and AYUSH treatment all included",
+    "Riders available for serious illness, chronic care (ABCD), maternity (Parenthood) and limitless cover"
+  ],
+  "covered": [
+    "In-patient hospitalisation in any room category",
+    "Pre-hospitalisation expenses for 60 days before admission",
+    "Post-hospitalisation expenses for 180 days after discharge",
+    "Daycare procedures",
+    "Home healthcare and domiciliary treatment",
+    "Organ donor expenses",
+    "AYUSH treatment up to the full sum insured",
+    "Consumables and non-payable items"
+  ],
+  "notCovered": [
+    "Pre-existing conditions for the first 3 years (reducible to 1 or 2 years with an add-on)",
+    "A named list of illnesses for the first 2 years — cataract, hernia, joint replacement and others",
+    "Maternity and newborn expenses unless you add the Parenthood rider",
+    "Routine dental and vision care",
+    "Cosmetic procedures and weight-management treatment",
+    "Any claim in the first 30 days except accidents"
+  ],
+  "riders": [
+    "Serious Illness Booster",
+    "Limitless",
+    "Parenthood (maternity)",
+    "ABCD Chronic Care",
+    "PED Waiting Period Modification"
+  ],
+  "pros": [
+    "97.61% settlement ratio — the highest of any major health insurer",
+    "8.87 complaints per 10,000 claims, against 42.67 for Care Health",
+    "16,000+ cashless hospitals, the widest network here",
+    "Cover compounds every year through Infinity Benefit, so a ₹10 lakh policy is worth far more by year five",
+    "Consumables are in the base plan rather than a paid add-on"
+  ],
+  "cons": [
+    "The most expensive of the five for a young individual buyer",
+    "The 3-year pre-existing disease wait is standard, not market-leading",
+    "The senior couple premium of ₹75,608 is steep",
+    "Ambulance cover is limited compared with SBI General"
+  ],
+  "verdict": "This is the plan we put in front of most families, and the reason is the claims record rather than the feature list. A 97.61% settlement ratio with 8.87 complaints per 10,000 claims means that when you are standing at a hospital billing desk, this insurer is the one most likely to just pay. The Infinity Benefit is the other reason — cover that adds 100% of the base every year with no ceiling quietly solves the medical-inflation problem that catches most people out a decade in. It costs more than Activ One MAX. We think it is worth it.",
+  "logo": "hdfcergo.png",
+  "slug": "optima-secure",
+  "insurerSlug": "hdfc-ergo",
+  "verificationStatus": "migrated",
+  "sources": [
+    {
+      "label": "HDFC ERGO — Optima Secure+ policy wording",
+      "url": "https://www.hdfcergo.com/docs/default-source/downloads/policy-wordings/health/optima-secure-revision-pw.pdf"
+    },
+    {
+      "label": "HDFC ERGO — Optima Secure+ product page",
+      "url": "https://www.hdfcergo.com/health-insurance/optima-secure"
+    }
+  ],
+  "verificationNote": "Migrated from js/policy-data.js. Figures predate the §16.7 primary-source pipeline and have not been re-read against the policy wording. Not publishable until re-verified and signed off (§16.8)."
+}

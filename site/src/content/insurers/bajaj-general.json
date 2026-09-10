@@ -1,0 +1,12 @@
+{
+  "name": "Bajaj General",
+  "slug": "bajaj-general",
+  "kind": "health",
+  "logo": "bajajgeneral.png",
+  "accent": "#0E7490",
+  "initials": "BG",
+  "score": 4.99,
+  "csr": 95.63,
+  "complaints": 3.85,
+  "businessCr": 7900.76
+}

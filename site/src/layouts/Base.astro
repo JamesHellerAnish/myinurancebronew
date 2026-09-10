@@ -1,0 +1,60 @@
+---
+// SEO_ASTRO_PLAN.md §4.2 — the shell every page renders into.
+//
+// The design system ports as-is (§1.5): css/style.css + css/components.css are copied into
+// public/ by scripts/sync-public.mjs and linked here, so there is one stylesheet source of
+// truth shared with the legacy site rather than a fork that drifts.
+import SEO from '../components/seo/SEO.astro'
+import JsonLd from '../components/seo/JsonLd.astro'
+import { organizationSchema } from '../lib/schema'
+
+interface Props {
+  title: string
+  description: string
+  brand?: boolean
+  keywords?: string[]
+  noindex?: boolean
+  modified?: Date
+  /** Extra JSON-LD blocks beyond the sitewide Organization. */
+  schemas?: Array<Record<string, unknown>>
+}
+
+const { schemas = [], ...seo } = Astro.props
+---
+
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <SEO {...seo} />
+
+    <!-- TODO(§9.1): self-host Inter and Space Grotesk to kill these two round-trips.
+         Leaving the CDN link for now so the port renders identically to the legacy site;
+         swapping it is a CWV task, not a correctness one. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/components.css" />
+    <!-- The Astro-only layer: long-form content pages. The legacy one-pager does not link
+         it, so style.css and components.css stay shared rather than forked. -->
+    <link rel="stylesheet" href="/css/pages.css" />
+
+    <JsonLd schema={organizationSchema()} />
+    {schemas.map((schema) => <JsonLd schema={schema} />)}
+  </head>
+
+  <body>
+    <slot name="header" />
+    <main>
+      <slot />
+    </main>
+    <slot name="footer" />
+  </body>
+</html>

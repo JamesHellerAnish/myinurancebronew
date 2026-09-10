@@ -1,0 +1,12 @@
+{
+  "name": "Aditya Birla Health",
+  "slug": "aditya-birla-health",
+  "kind": "health",
+  "logo": "abhi.png",
+  "accent": "#DB2777",
+  "initials": "AB",
+  "score": 4.49,
+  "csr": 96.25,
+  "complaints": 18.67,
+  "businessCr": 4920.43
+}

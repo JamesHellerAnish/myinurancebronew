@@ -1,0 +1,68 @@
+---
+// SEO_ASTRO_PLAN.md §9.1 — the single <SEO> component. Every page uses it; there are no
+// per-page opt-outs for og:image.
+//
+// §2.1 lesson 2: Perfecplan's file-convention OG image silently did not reach pages that
+// set their own openGraph block, so those pages shipped with no social preview and nothing
+// failed. Here og:image has a default and cannot be unset — the worst case is the fallback
+// image, never a missing tag.
+import { title as composeTitle, assertDescription } from '../../lib/seo'
+
+interface Props {
+  /** Bare page title. The brand suffix is added by composeTitle() and nowhere else. */
+  title: string
+  description: string
+  /** Set false only on the homepage, where the brand is the title. */
+  brand?: boolean
+  /** Absolute or site-relative image URL. Falls back to the site OG image. */
+  image?: string
+  imageAlt?: string
+  /** Permuted per page, per §9.2 — near-zero ranking value, useful as an intent audit. */
+  keywords?: string[]
+  noindex?: boolean
+  /** ISO date driving article:modified_time and, via the sitemap, lastmod. */
+  modified?: Date
+}
+
+const {
+  title,
+  description,
+  brand = true,
+  image = '/assets/images/og-default.png',
+  imageAlt = 'Myinsurancebro — independent, IRDAI-licensed insurance advice',
+  keywords = [],
+  noindex = false,
+  modified,
+} = Astro.props
+
+const composed = composeTitle(title, { brand })
+
+// §6.1 rule 4: one self-referencing canonical per page, no exceptions.
+const canonical = new URL(Astro.url.pathname, Astro.site).href
+const imageUrl = new URL(image, Astro.site).href
+
+assertDescription(description, Astro.url.pathname)
+---
+
+<title>{composed}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
+{keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
+{noindex && <meta name="robots" content="noindex, follow" />}
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Myinsurancebro" />
+<meta property="og:title" content={composed} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:alt" content={imageAlt} />
+<meta property="og:locale" content="en_IN" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={composed} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+{modified && <meta property="article:modified_time" content={modified.toISOString()} />}

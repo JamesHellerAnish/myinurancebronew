@@ -1,0 +1,12 @@
+{
+  "name": "ICICI Lombard",
+  "slug": "icici-lombard",
+  "kind": "health",
+  "logo": "icicilombard.png",
+  "accent": "#B45309",
+  "initials": "IL",
+  "score": 3.65,
+  "csr": 86.81,
+  "complaints": 15.05,
+  "businessCr": 7955.27
+}

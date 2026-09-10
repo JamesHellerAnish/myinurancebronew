@@ -1,0 +1,12 @@
+{
+  "name": "HDFC ERGO",
+  "slug": "hdfc-ergo",
+  "kind": "health",
+  "logo": "hdfcergo.png",
+  "accent": "#DC2626",
+  "initials": "HE",
+  "score": 4.99,
+  "csr": 97.61,
+  "complaints": 8.87,
+  "businessCr": 6596.53
+}

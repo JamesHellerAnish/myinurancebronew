@@ -1,0 +1,70 @@
+{
+  "plan": [
+    {
+      "label": "Plan features",
+      "weight": 45,
+      "note": "Cover structure, restoration, riders, waiting periods, payout flexibility"
+    },
+    {
+      "label": "Insurer strength",
+      "weight": 45,
+      "note": "Claim settlement ratio, complaint volume, solvency, scale of business"
+    },
+    {
+      "label": "Premium",
+      "weight": 10,
+      "note": "Cost across standard age and family profiles"
+    }
+  ],
+  "company": {
+    "term": [
+      {
+        "label": "Insurer strength",
+        "weight": 60,
+        "note": "Claim settlement, complaints, financial scale"
+      },
+      {
+        "label": "Protective features",
+        "weight": 30,
+        "note": "Critical illness, waiver of premium, payout options"
+      },
+      {
+        "label": "Premium affordability",
+        "weight": 10,
+        "note": "Cost across standard profiles"
+      }
+    ],
+    "health": [
+      {
+        "label": "Gross written premium",
+        "weight": 25,
+        "note": "Scale of the health book"
+      },
+      {
+        "label": "Claim settlement ratio",
+        "weight": 22,
+        "note": "3-year average"
+      },
+      {
+        "label": "Hospital network",
+        "weight": 17,
+        "note": "Cashless reach"
+      },
+      {
+        "label": "Complaint volume",
+        "weight": 15,
+        "note": "Grievances per 10,000 claims"
+      },
+      {
+        "label": "TPA model",
+        "weight": 10,
+        "note": "In-house claims desk vs outsourced"
+      },
+      {
+        "label": "Online servicing",
+        "weight": 10,
+        "note": "Digital claims and policy management"
+      }
+    ]
+  }
+}

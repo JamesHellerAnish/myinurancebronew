@@ -1,0 +1,13 @@
+{
+  "name": "Axis Max Life",
+  "slug": "axis-max-life",
+  "kind": "life",
+  "logo": "axismax.png",
+  "accent": "#7C3AED",
+  "initials": "AM",
+  "score": 4.9,
+  "csr": 99.71,
+  "complaints": 3,
+  "solvency": 1.89,
+  "businessCr": 12567
+}

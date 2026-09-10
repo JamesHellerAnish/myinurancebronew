@@ -1,0 +1,52 @@
+{
+  "term": {
+    "assumption": "₹2 crore cover to age 65 · healthy non-smoker, salaried, Delhi (110010) · annual premium incl. GST",
+    "rows": [
+      {
+        "key": "m25",
+        "label": "25, Male"
+      },
+      {
+        "key": "f25",
+        "label": "25, Female"
+      },
+      {
+        "key": "m30",
+        "label": "30, Male"
+      },
+      {
+        "key": "f30",
+        "label": "30, Female"
+      },
+      {
+        "key": "m35",
+        "label": "35, Male"
+      },
+      {
+        "key": "f35",
+        "label": "35, Female"
+      }
+    ]
+  },
+  "health": {
+    "assumption": "₹15 lakh sum insured, Delhi · annual premium incl. GST and mandatory add-ons. SBI General is quoted at ₹50 lakh, its minimum base cover.",
+    "rows": [
+      {
+        "key": "ind25",
+        "label": "Individual, 25"
+      },
+      {
+        "key": "couple",
+        "label": "Couple — 31 & 32"
+      },
+      {
+        "key": "family",
+        "label": "Family of 3 — 35, 34 & 5"
+      },
+      {
+        "key": "seniors",
+        "label": "Senior couple — 62 & 63"
+      }
+    ]
+  }
+}

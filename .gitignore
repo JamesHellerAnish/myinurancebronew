@@ -7,3 +7,12 @@ default.php
 
 .DS_Store
 Thumbs.db
+
+# Machine-local Claude Code approvals — rewritten by the harness, never hand-edited.
+.claude/settings.local.json
+
+# Harvested policy wording PDFs — large, re-downloadable from sourceUrl in manifest.json
+data-raw/wordings/*.pdf
+
+# Full-res portrait originals — 17.5 MB, not deployed. Optimised .webp siblings are what ship.
+assets/images/team/originals/

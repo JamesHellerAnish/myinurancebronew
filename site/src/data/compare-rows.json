@@ -1,0 +1,167 @@
+{
+  "term": [
+    {
+      "key": "score",
+      "label": "Myinsurancebro Score",
+      "type": "score",
+      "better": "high"
+    },
+    {
+      "key": "metrics.csr",
+      "label": "Claim settlement ratio",
+      "type": "percent",
+      "better": "high",
+      "help": "3-year average, individual death claims"
+    },
+    {
+      "key": "metrics.complaints",
+      "label": "Complaints per 10,000 claims",
+      "type": "number",
+      "better": "low",
+      "help": "Lower is better — this is how often customers escalate"
+    },
+    {
+      "key": "metrics.solvency",
+      "label": "Solvency ratio",
+      "type": "x",
+      "better": "high",
+      "help": "IRDAI requires a minimum of 1.5x"
+    },
+    {
+      "key": "metrics.businessCr",
+      "label": "Annual new business",
+      "type": "crore",
+      "better": "high"
+    },
+    {
+      "key": "coverRange",
+      "label": "Cover available",
+      "type": "text"
+    },
+    {
+      "key": "entryAge",
+      "label": "Entry age",
+      "type": "text"
+    },
+    {
+      "key": "criticalIllness",
+      "label": "Critical illness cover",
+      "type": "text"
+    },
+    {
+      "key": "premiumBreak",
+      "label": "Premium break / holiday",
+      "type": "bool"
+    },
+    {
+      "key": "lifeStageBoost",
+      "label": "Life stage cover boost",
+      "type": "bool"
+    },
+    {
+      "key": "smartExit",
+      "label": "Exit with premiums back",
+      "type": "bool"
+    },
+    {
+      "key": "premiums.m30",
+      "label": "Premium — 30, Male",
+      "type": "rupee",
+      "better": "low"
+    },
+    {
+      "key": "premiums.f30",
+      "label": "Premium — 30, Female",
+      "type": "rupee",
+      "better": "low"
+    }
+  ],
+  "health": [
+    {
+      "key": "score",
+      "label": "Myinsurancebro Score",
+      "type": "score",
+      "better": "high"
+    },
+    {
+      "key": "metrics.csr",
+      "label": "Claim settlement ratio",
+      "type": "percent",
+      "better": "high",
+      "help": "3-year average"
+    },
+    {
+      "key": "metrics.complaints",
+      "label": "Complaints per 10,000 claims",
+      "type": "number",
+      "better": "low",
+      "help": "Lower is better"
+    },
+    {
+      "key": "metrics.network",
+      "label": "Cashless hospitals",
+      "type": "number",
+      "better": "high"
+    },
+    {
+      "key": "metrics.businessCr",
+      "label": "Annual health premium",
+      "type": "crore",
+      "better": "high"
+    },
+    {
+      "key": "coverRange",
+      "label": "Sum insured available",
+      "type": "text"
+    },
+    {
+      "key": "restoration",
+      "label": "Restoration of cover",
+      "type": "text"
+    },
+    {
+      "key": "bonus",
+      "label": "No-claim bonus",
+      "type": "text"
+    },
+    {
+      "key": "waiting.ped",
+      "label": "Pre-existing disease wait",
+      "type": "years",
+      "better": "low"
+    },
+    {
+      "key": "waiting.specific",
+      "label": "Specific illness wait",
+      "type": "years",
+      "better": "low"
+    },
+    {
+      "key": "waiting.maternity",
+      "label": "Maternity cover",
+      "type": "text"
+    },
+    {
+      "key": "roomRent",
+      "label": "Room rent limit",
+      "type": "text"
+    },
+    {
+      "key": "consumables",
+      "label": "Consumables covered",
+      "type": "text"
+    },
+    {
+      "key": "premiums.couple",
+      "label": "Premium — couple, 31 & 32",
+      "type": "rupee",
+      "better": "low"
+    },
+    {
+      "key": "premiums.seniors",
+      "label": "Premium — seniors, 62 & 63",
+      "type": "rupee",
+      "better": "low"
+    }
+  ]
+}

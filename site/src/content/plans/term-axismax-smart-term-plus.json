@@ -1,0 +1,103 @@
+{
+  "id": "term-axismax-smart-term-plus",
+  "category": "term",
+  "insurer": "Axis Max Life",
+  "insurerShort": "Axis Max",
+  "name": "Smart Term Plan Plus",
+  "monogram": "AM",
+  "accent": "#7C3AED",
+  "tagline": "Our top pick",
+  "subtitle": "The highest claim settlement ratio in India, paired with the most flexible variant lineup on the market.",
+  "score": 4.7,
+  "scoreBreakdown": {
+    "features": 4.1,
+    "insurer": 5,
+    "premium": 5
+  },
+  "metrics": {
+    "csr": 99.71,
+    "complaints": 3,
+    "solvency": 1.89,
+    "businessCr": 12567
+  },
+  "entryAge": "18–65 yrs",
+  "coverRange": "₹25 L – ₹10 Cr",
+  "tenure": "To age 85 / whole life",
+  "criticalIllness": "Rider — 64 illnesses, 20 yrs",
+  "premiumBreak": true,
+  "lifeStageBoost": false,
+  "smartExit": false,
+  "premiums": {
+    "m25": 17222,
+    "f25": 14640,
+    "m30": 20656,
+    "f30": 17558,
+    "m35": 26552,
+    "f35": 22570
+  },
+  "bestFor": [
+    "genz",
+    "newparent",
+    "sandwich"
+  ],
+  "tags": [
+    "Best all-round",
+    "Highest CSR",
+    "Most variants"
+  ],
+  "features": [
+    "Six variants — Level Cover, Smart Cover, Early ROP Plus, ROP, Whole Life and Income Protection",
+    "Smart Cover pays 1.5× the base cover during the first 15 years, when your liabilities peak",
+    "Critical illness rider covering 64 illnesses for up to 20 years",
+    "Terminal illness benefit — accelerated payout of up to ₹1 crore on diagnosis",
+    "Cover Continuance lets you defer a year of premium without losing the policy",
+    "Instant payout of up to ₹2 lakh released to the nominee at claim intimation"
+  ],
+  "covered": [
+    "Death from any cause, natural or accidental",
+    "Terminal illness — payout accelerated on diagnosis",
+    "Critical illness — lump sum on diagnosis (rider)",
+    "Premiums waived on listed illnesses or disability (rider)"
+  ],
+  "notCovered": [
+    "Suicide within 12 months of policy start or revival",
+    "Death traced to a pre-existing condition you did not disclose",
+    "Claims found to be fraudulent or materially misrepresented",
+    "Hazardous pursuits that were not declared at application"
+  ],
+  "riders": [
+    "Critical Illness — 64 conditions",
+    "Accidental Death",
+    "Waiver of Premium",
+    "Comprehensive Accident Benefit"
+  ],
+  "pros": [
+    "At 99.71%, the highest 3-year claim settlement ratio of any Indian life insurer",
+    "Only 3 complaints per 10,000 claims — the claims desk rarely needs escalating",
+    "Six variants means the plan can be shaped around almost any situation",
+    "Priced competitively despite the feature depth",
+    "Cover Continuance protects you through a job loss or income gap"
+  ],
+  "cons": [
+    "Lower brand recall than HDFC Life or SBI Life, which puts some buyers off",
+    "The return-of-premium variants cost significantly more — usually not worth it",
+    "Medical underwriting can be strict on covers above ₹2 crore",
+    "Solvency of 1.89x is comfortable but below Bajaj Life"
+  ],
+  "verdict": "This is the plan we recommend most often, and the reason is simple: when your family actually needs to claim, this is the insurer most likely to pay without a fight. The 99.71% settlement ratio and near-zero complaint volume are the two numbers that matter, and Axis Max Life leads on both. The six-variant lineup means we can usually fit it to your situation rather than the other way round. It is not the cheapest, but the gap is small enough that we would not trade it away.",
+  "logo": "axismax.png",
+  "slug": "smart-term-plan-plus",
+  "insurerSlug": "axis-max-life",
+  "verificationStatus": "migrated",
+  "sources": [
+    {
+      "label": "Axis Max Life — Smart Term Plan Plus policy wording",
+      "url": "https://www.axismaxlife.com/static-page/assets/homepage/104N127V02_Smart%20Term%20Plan%20Plus_Policy%20Document.pdf"
+    },
+    {
+      "label": "Axis Max Life — Smart Term Plan Plus product page",
+      "url": "https://www.axismaxlife.com/term-insurance-plans/smart-term-plan-plus"
+    }
+  ],
+  "verificationNote": "Migrated from js/policy-data.js. Figures predate the §16.7 primary-source pipeline and have not been re-read against the policy wording. Not publishable until re-verified and signed off (§16.8)."
+}

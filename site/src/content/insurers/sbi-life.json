@@ -1,0 +1,13 @@
+{
+  "name": "SBI Life",
+  "slug": "sbi-life",
+  "kind": "life",
+  "logo": "sbilife.png",
+  "accent": "#1E3A8A",
+  "initials": "SL",
+  "score": 4.45,
+  "csr": 98.76,
+  "complaints": 6.67,
+  "solvency": 1.94,
+  "businessCr": 38789
+}

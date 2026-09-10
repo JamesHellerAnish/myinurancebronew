@@ -1,0 +1,13 @@
+{
+  "name": "Aditya Birla Sun Life",
+  "slug": "aditya-birla-sun-life",
+  "kind": "life",
+  "logo": "absl.png",
+  "accent": "#DB2777",
+  "initials": "AB",
+  "score": 4.2,
+  "csr": 98.7,
+  "complaints": 1.33,
+  "solvency": 1.82,
+  "businessCr": null
+}
