@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "predev": "node scripts/sync-public.mjs",
+    "predev": "node scripts/sync-public.mjs && node scripts/build-lastmod.mjs",
     "dev": "astro dev",
-    "prebuild": "node scripts/sync-public.mjs",
+    "prebuild": "node scripts/sync-public.mjs && node scripts/build-lastmod.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",

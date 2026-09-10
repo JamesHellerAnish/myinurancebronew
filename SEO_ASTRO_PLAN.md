@@ -3,10 +3,10 @@
 **Created:** 2026-08-13 · **Last updated:** 2026-09-10
 **Branch:** `revamp/audience-redesign-and-compare`
 **Status:** Planning complete · Scope locked (§14) · Research done (§16) · Harvest started (§16.7) ·
-**Astro Phase 0 in progress — shell builds, 10 plan pages, §1.2 thesis verified, plan template
+**Astro Phase 0 COMPLETE bar two owner-only items (IRDAI licence number, Search Console) — shell builds, 10 plan pages, §1.2 thesis verified, plan template
 styled and inspected in a browser, robots/llms.txt shipped, chrome + home + methodology + category
-hubs live, every internal link resolving. §0a blockers all cleared. **Phase 0 is complete** bar the
-persona authoring pass. See §0b.**
+hubs live, personas data-driven, CWV blockers fixed, lead pipeline tested end to end, every internal
+link resolving. §0a blockers all cleared. See §0b.**
 **Purpose:** Living handover doc. Update it as work proceeds so progress survives a context reset.
 
 ---
@@ -391,12 +391,56 @@ gate needs a measurement against a deployed URL — or a throttled Lighthouse ru
 installed here — and ultimately CrUX field data. What the lab can tell us, it now tells us:
 nothing structural is left to fix.
 
+### Phase 0 — the §9.1 checklist, closed out
+
+| §9.1 item | Status |
+|---|---|
+| `robots.txt` — allow all, point at sitemap | ✅ Astro endpoint, 19 agent blocks, sitemap line present |
+| `sitemap-index.xml` with `lastmod` from `lastVerified` | ✅ shape correct, 14 URLs. **0 lastmod entries — no record has `lastVerified` yet.** The plumbing (`scripts/build-lastmod.mjs` → `astro.config.mjs`) is in place and fills itself the moment a record is verified |
+| Self-referencing canonical on every page | ✅ verified on all four page types |
+| Single `<SEO>` component | ✅ |
+| `Organization`/`InsuranceAgency` JSON-LD **with IRDAI registration number** | 🔴 **schema ships without the number — see below** |
+| Core Web Vitals | ✅ lab-clean; needs a deployed/throttled re-measure |
+| 301s from old hash entry points | ✅ as far as is possible — see below |
+| Search Console + Bing, sitemap submitted | ⛔ **cannot be done from here** — needs the owner's accounts |
+| `X-Robots-Tag: noindex` on `view-leads.php` | ✅ present and untouched |
+
+**The lead pipeline was tested end to end** (§12 step 14), not just eyeballed: a real POST to the
+built `send-mail.php` under `php -S` in `dist/` returned `{"status":"success"}`, wrote a row to
+`leads.json` with exactly the shape `view-leads.php` reads, and a GET was correctly rejected. Both
+forms carry the frozen contract (`name`, `phone`, `email`, `product`, `preferred_time`). The test
+row was deleted. `mail_sent` was false, as expected with no local mail transport.
+
+#### 🔴 The IRDAI registration number is a launch blocker
+
+`organizationSchema()` deliberately omits it, with a "do not invent one" note from an earlier
+session. That judgement stands and was not overridden: a licence number in JSON-LD is a
+machine-readable regulated claim.
+
+**But the footer already publishes one**, live, today: *"IRDAI Registered Corporate Agent
+(Composite) · License No. CA0001 · Valid till 2027"*. `CA0001` reads like a placeholder. Either
+it is real — in which case put it in the schema — **or a placeholder licence number is currently
+published on a regulated advisory site and should be corrected before anything else ships.**
+Someone with the certificate needs to confirm which. This is the one item on the §9.1 list that
+cannot be closed by a developer.
+
+#### On "301s from old hash entry points"
+
+Not implementable as written: a fragment (`/#compare`) is never sent to the server, so Apache has
+nothing to match. Nothing is lost — those anchors still exist on the ported home page and
+`js/main.js` still scrolls to them. What *is* a genuine post-migration duplicate is
+`/index.html` against `/`, and that 301 was added to `.htaccess` in its own guarded block,
+matching `THE_REQUEST` so it cannot loop against DirectoryIndex. **The security block above it is
+untouched** — the diff is 19 insertions, 0 deletions.
+
 ### Next moves, in order
 
 1. ~~Fix the two CWV blockers~~ ✅ Done — see the re-measurement above.
-2. **Authoring pass on the personas** — lift the existing panel copy out of `Personas.astro`
-   into `js/policy-data.js`, re-run the migration, then drive the panels from the collection.
-   Do it alongside §7's 13 new personas rather than as a separate pass.
+2. ~~Authoring pass on the personas~~ ✅ **Done.** All three panels' copy — 11 pain points with
+   their stats, 9 plan recommendations, the picker teasers, headlines and intros — was lifted
+   out of the markup into `js/policy-data.js` and now flows through `npm run migrate` into the
+   personas collection. `Personas.astro` renders from it. Adding §7's 13 remaining personas is
+   now a data edit, not 260 lines of HTML each.
 3. Phase 0 is otherwise **complete**: shell, design system, chrome, home, methodology, category
    hubs, robots/llms.txt, sitemap. CWV measured (above) — the gate needs those two fixes, then a
    deploy decision. Not more pages.
@@ -1496,10 +1540,10 @@ Insurance is YMYL. Google holds it to the highest evaluation standard, and IRDAI
 | 8 | Plan page template end-to-end for **one** plan; verify all 12 blocks of §8 render | 5, 6 |
 | 9 | `getStaticPaths` for all 100 plan pages across the 7 categories | 8 |
 | ~~10~~ | ✅ Static fallback table shipped inside `#cmpGrid`; compare.js still loads as a plain script rather than a scoped island. | 5 |
-| 11 | 13 new personas authored (§7) + `/for/[persona]/` routes | 5 |
+| 11 | 13 new personas authored (§7) + `/for/[persona]/` routes. **The 3 existing ones are now fully authored in `js/policy-data.js` — copy the shape.** | 5 |
 | 12 | Insurer pages, glossary, guides, calculators | 5 |
 | 13 | `robots.txt`, sitemap, `llms.txt`, `llms-full.txt`, `/data/*.json` generators | 9 |
-| 14 | Copy PHP + `.htaccess` into `public/`; verify the form posts correctly from a built page | 1 |
+| ~~14~~ | ✅ PHP + `.htaccess` copied; a real POST to the built `send-mail.php` verified end to end, including the `leads.json` shape. | 1 |
 | 15 | Build, `curl` verification (§10.1), CWV check, deploy Phase 1 | all |
 
 **Verification commands**

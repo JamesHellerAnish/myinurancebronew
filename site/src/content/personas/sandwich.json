@@ -2,8 +2,48 @@
   "key": "sandwich",
   "label": "Kids and parents to cover",
   "ageRange": "45–60",
-  "pains": [],
-  "planRecommendations": [],
+  "icon": "users",
+  "tone": "warm",
+  "teaser": "You are holding up two generations at once — and you are the single point of failure for both.",
+  "headline": "Two generations, one income, no margin for error",
+  "intro": "This is the hardest stage to insure and the one where getting the details wrong is most expensive. Senior-parent cover in particular rewards precision.",
+  "pains": [
+    {
+      "icon": "alert-triangle",
+      "heading": "Parents over 60 face co-pays, loading and full waiting periods",
+      "body": "Premiums rise steeply, insurers add a co-payment share, and pre-existing conditions — which most people over 60 have — sit behind a 2 to 3 year wait. Which insurer you pick decides whether that wait is two years or three.",
+      "stat": "A senior couple costs ₹66,505–₹78,923/yr at ₹15 L cover"
+    },
+    {
+      "icon": "briefcase",
+      "heading": "Your corporate floater will not take them",
+      "body": "Most employer plans either exclude parents outright or price them as a punitive add-on with thin limits. And like all group cover, it ends the day you change jobs — taking your parents' only protection with it."
+    },
+    {
+      "icon": "trending-up",
+      "heading": "Your kids' education corpus is exposed",
+      "body": "College costs are a fixed future liability sitting on a single income. Without term cover sized to it, that corpus is the first thing that gets liquidated."
+    },
+    {
+      "icon": "users",
+      "heading": "You are the single point of failure for two generations",
+      "body": "Parents above you, children below, and both financially dependent on you continuing to earn. That is the definition of a risk that has to be transferred rather than absorbed."
+    }
+  ],
+  "planRecommendations": [
+    {
+      "planId": "health-sbi-super-health-platinum-infinite",
+      "reason": "2-year pre-existing wait — a full year less than the rest"
+    },
+    {
+      "planId": "health-hdfcergo-optima-secure-plus",
+      "reason": "Best claims record in health insurance"
+    },
+    {
+      "planId": "term-absl-super-term",
+      "reason": "Critical illness cover built into the base plan"
+    }
+  ],
   "faqs": [],
   "relatedPersonas": [],
   "searchIntent": []

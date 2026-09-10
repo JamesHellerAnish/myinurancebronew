@@ -32,7 +32,10 @@ Legacy static site served from Apache/Hostinger `public_html`:
 
 - `index.html` — the whole site, one page, 15 sections
 - `css/style.css` + `css/components.css` — design system (`data-theme` light/dark)
-- `js/policy-data.js` — the plan dataset (10 plans, 19 brands, 3 personas). Single source of truth.
+- `js/policy-data.js` — the dataset (10 plans, 19 brands, 3 personas). Single source of truth, and
+  that now includes the **persona panel copy** for #personas: headline, intro, pain points with
+  their stats, and planRecommendations by plan id. Edit it there and re-run `npm run migrate` —
+  never in the markup, which renders from the collection.
 - `js/compare.js` — comparison engine (explore / compare / deep-dive)
 - `js/main.js` — nav, persona tabs, counters, booking form, modal
 - `send-mail.php` · `lead-store.php` · `view-leads.php` — lead capture + Basic-auth dashboard

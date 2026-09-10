@@ -2,8 +2,43 @@
   "key": "genz",
   "label": "Just started earning",
   "ageRange": "22–28",
-  "pains": [],
-  "planRecommendations": [],
+  "icon": "briefcase",
+  "tone": "",
+  "teaser": "First job, first salary — and cover that quietly belongs to your employer, not to you.",
+  "headline": "You are covered — until the day you resign",
+  "intro": "Group cover from your employer feels like a solved problem. It is the single most common gap we fix, because it disappears exactly when your income does.",
+  "pains": [
+    {
+      "icon": "briefcase",
+      "heading": "Your group cover ends the day you leave",
+      "body": "Employer health cover is not portable. It does not follow you to the next job, it does not cover you through a notice period gap, and it ends immediately if you are laid off — which is the exact moment a hospital bill would hurt most."
+    },
+    {
+      "icon": "users",
+      "heading": "You have aged off your parents' family floater",
+      "body": "Most family floaters drop dependent children at 25. Many people discover this at a claim, not at renewal. If nobody has bought you a plan in your own name, you are uninsured and do not know it yet."
+    },
+    {
+      "icon": "clock",
+      "heading": "Waiting periods only start counting once you buy",
+      "body": "Every health policy makes you wait 2–3 years before pre-existing and named illnesses are covered. Those years pass whether or not you have a policy — so the cheapest year to start serving them is this one, while you are healthy and premiums are at their lowest.",
+      "stat": "A 25-year-old pays ₹10,149/yr — the same cover at 45 costs several times more"
+    }
+  ],
+  "planRecommendations": [
+    {
+      "planId": "health-abhi-activ-one-max",
+      "reason": "Cheapest health cover on our list"
+    },
+    {
+      "planId": "term-bajaj-etouch-2",
+      "reason": "Cheapest ₹2 Cr term cover"
+    },
+    {
+      "planId": "health-nivabupa-reassure-2-platinum",
+      "reason": "Rewards buying young — locks in your entry age"
+    }
+  ],
   "faqs": [],
   "relatedPersonas": [],
   "searchIntent": []

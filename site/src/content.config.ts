@@ -158,9 +158,27 @@ const personas = defineCollection({
     key: z.string(),
     label: z.string(),
     ageRange: z.string(),
-    headline: z.string().optional(),
+
+    // Presentation hints for the picker tile, authored alongside the copy in
+    // js/policy-data.js. `icon` is a sprite id without the `i-` prefix; `tone` is the
+    // icon-tile modifier class ('', 'teal', 'warm').
+    icon: z.string().default('target'),
+    tone: z.string().default(''),
+    teaser: z.string().default(''),
+
+    headline: z.string().default(''),
+    intro: z.string().default(''),
+
     pains: z
-      .array(z.object({ heading: z.string(), body: z.string() }))
+      .array(
+        z.object({
+          icon: z.string().default('alert-triangle'),
+          heading: z.string(),
+          body: z.string(),
+          /** The one-line figure under a pain point, where there is one. */
+          stat: z.string().optional(),
+        }),
+      )
       .default([]),
     planRecommendations: z
       .array(z.object({ planId: z.string(), reason: z.string() }))

@@ -154,17 +154,31 @@ for (const [name, brand] of Object.entries(policyData.brands)) {
 
 // ── Personas ─────────────────────────────────────────────────────────────────
 // Only the 3 that exist today. §7 expands these to 16; the other 13 are hand-authored
-// content, not something a migration can synthesise.
+// content, not something a migration can synthesise — but they are authored in
+// js/policy-data.js like these three, and arrive here the same way.
+//
+// The panel copy used to live only in index.html's markup, which is why these records were
+// once empty. It is in the data file now, so the home page renders them from the collection.
 for (const persona of policyData.personas) {
   const record = {
     key: persona.key,
     label: persona.label,
     ageRange: persona.age,
-    pains: [],
-    planRecommendations: [],
-    faqs: [],
-    relatedPersonas: [],
-    searchIntent: [],
+
+    // Presentation hints for the picker tile. They belong with the copy: the icon is part
+    // of how the persona reads, and splitting them means editing two files to add one.
+    icon: persona.icon ?? 'target',
+    tone: persona.tone ?? '',
+    teaser: persona.teaser ?? '',
+
+    headline: persona.headline ?? '',
+    intro: persona.intro ?? '',
+
+    pains: persona.pains ?? [],
+    planRecommendations: persona.planRecommendations ?? [],
+    faqs: persona.faqs ?? [],
+    relatedPersonas: persona.relatedPersonas ?? [],
+    searchIntent: persona.searchIntent ?? [],
   }
   writeJson(join(contentDir, 'personas', `${persona.key}.json`), record)
   counts.personas++
