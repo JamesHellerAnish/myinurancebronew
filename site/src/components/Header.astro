@@ -42,7 +42,10 @@ const links = [
 ]
 ---
 
-<header class="navbar" id="navbar">
+{/* data-astro-chrome tells js/main.js that this header's behaviour is already bound by the
+    module below, so it must not bind the navbar and theme toggle a second time. The legacy
+    one-pager has no such attribute and keeps handling its own chrome. */}
+<header class="navbar" id="navbar" data-astro-chrome>
   <div class="container">
     <a href="/" class="nav-brand">
       <img

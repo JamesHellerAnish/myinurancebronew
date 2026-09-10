@@ -50,19 +50,9 @@ const FILES = [
   'view-leads.php',
   '.htaccess',
 
-  /**
-   * ⚠ INTERIM — the legacy one-pager, serving as `/` until it is ported (§12 step 7).
-   *
-   * Without it the build has no home page, and `/` is linked from the nav brand, every
-   * breadcrumb and the footer of every generated page — the most-linked URL on the site
-   * would be its only 404. Copying the live page in means the mesh is whole today and the
-   * port can happen on its own schedule rather than as a blocker.
-   *
-   * It is unmanaged HTML: its own <head>, its own <title>, and it does not use Base.astro,
-   * so nothing here composes its title or checks its meta description. Delete this entry
-   * the moment src/pages/index.astro exists.
-   */
-  'index.html',
+  // index.html was copied here as an interim `/` while the home page was unported. It is
+  // src/pages/index.astro now, so copying the legacy file would put a second index.html in
+  // the build racing the generated one for the same URL.
 ]
 
 mkdirSync(publicDir, { recursive: true })

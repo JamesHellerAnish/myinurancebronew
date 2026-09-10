@@ -1,0 +1,264 @@
+    <!-- ═══════════ 2c. PERSONAS / PAIN POINTS ═══════════ -->
+    <section class="section-padding" id="personas">
+      <div class="container">
+        <div class="section-header fade-up">
+          <span class="eyebrow"><svg class="icon"><use href="#i-target"></use></svg> Built for your stage</span>
+          <h2>What's actually at risk <span class="highlight">right now</span></h2>
+          <p>Insurance advice that ignores your life stage is just a sales pitch. Pick the one that sounds like you.</p>
+        </div>
+
+        <div class="persona-picker" role="tablist" aria-label="Choose your life stage">
+          <button class="persona-card" role="tab" id="persona-tab-genz" aria-controls="persona-panel-genz"
+            aria-selected="true" data-persona="genz">
+            <span class="icon-tile"><svg class="icon"><use href="#i-briefcase"></use></svg></span>
+            <span class="persona-age">Age 22–28</span>
+            <h3>Just started earning</h3>
+            <p>First job, first salary — and cover that quietly belongs to your employer, not to you.</p>
+          </button>
+
+          <button class="persona-card" role="tab" id="persona-tab-newparent" aria-controls="persona-panel-newparent"
+            aria-selected="false" tabindex="-1" data-persona="newparent">
+            <span class="icon-tile teal"><svg class="icon"><use href="#i-baby"></use></svg></span>
+            <span class="persona-age">Age 28–38</span>
+            <h3>New or expecting parent</h3>
+            <p>A second person now depends on your income, and the clock on maternity waiting periods has already
+              started.</p>
+          </button>
+
+          <button class="persona-card" role="tab" id="persona-tab-sandwich" aria-controls="persona-panel-sandwich"
+            aria-selected="false" tabindex="-1" data-persona="sandwich">
+            <span class="icon-tile warm"><svg class="icon"><use href="#i-users"></use></svg></span>
+            <span class="persona-age">Age 45–60</span>
+            <h3>Kids and parents to cover</h3>
+            <p>You are holding up two generations at once — and you are the single point of failure for both.</p>
+          </button>
+        </div>
+
+        <!-- ── Panel: Gen-Z ─────────────────────────────── -->
+        <div class="persona-panel active" id="persona-panel-genz" role="tabpanel" aria-labelledby="persona-tab-genz">
+          <div class="persona-panel-head">
+            <h3>You are covered — until the day you resign</h3>
+            <p>Group cover from your employer feels like a solved problem. It is the single most common gap we fix,
+              because it disappears exactly when your income does.</p>
+          </div>
+          <div class="persona-panel-body">
+            <div class="pain-list">
+              <div class="pain">
+                <span class="icon-tile sm danger"><svg class="icon"><use href="#i-briefcase"></use></svg></span>
+                <div>
+                  <h4>Your group cover ends the day you leave</h4>
+                  <p>Employer health cover is not portable. It does not follow you to the next job, it does not cover
+                    you through a notice period gap, and it ends immediately if you are laid off — which is the exact
+                    moment a hospital bill would hurt most.</p>
+                </div>
+              </div>
+              <div class="pain">
+                <span class="icon-tile sm danger"><svg class="icon"><use href="#i-users"></use></svg></span>
+                <div>
+                  <h4>You have aged off your parents' family floater</h4>
+                  <p>Most family floaters drop dependent children at 25. Many people discover this at a claim, not at
+                    renewal. If nobody has bought you a plan in your own name, you are uninsured and do not know it
+                    yet.</p>
+                </div>
+              </div>
+              <div class="pain">
+                <span class="icon-tile sm danger"><svg class="icon"><use href="#i-clock"></use></svg></span>
+                <div>
+                  <h4>Waiting periods only start counting once you buy</h4>
+                  <p>Every health policy makes you wait 2–3 years before pre-existing and named illnesses are covered.
+                    Those years pass whether or not you have a policy — so the cheapest year to start serving them is
+                    this one, while you are healthy and premiums are at their lowest.</p>
+                  <span class="pain-stat">A 25-year-old pays ₹10,149/yr — the same cover at 45 costs several times
+                    more</span>
+                </div>
+              </div>
+            </div>
+
+            <aside class="persona-aside">
+              <h4>Plans that fit this stage</h4>
+              <div class="persona-plan">
+                <span class="monogram has-logo"><img class="brand-logo" src="assets/logos/abhi.png"
+                    alt="Aditya Birla Health" width="34" height="34" loading="lazy"></span>
+                <div>
+                  <div class="persona-plan-name">Activ One MAX</div>
+                  <div class="persona-plan-meta">Cheapest health cover on our list</div>
+                </div>
+              </div>
+              <div class="persona-plan">
+                <span class="monogram has-logo"><img class="brand-logo" src="assets/logos/bajajlife.png"
+                    alt="Bajaj Life" width="34" height="34" loading="lazy"></span>
+                <div>
+                  <div class="persona-plan-name">Bajaj eTouch II</div>
+                  <div class="persona-plan-meta">Cheapest ₹2 Cr term cover</div>
+                </div>
+              </div>
+              <div class="persona-plan">
+                <span class="monogram has-logo"><img class="brand-logo" src="assets/logos/nivabupa.png"
+                    alt="Niva Bupa" width="34" height="34" loading="lazy"></span>
+                <div>
+                  <div class="persona-plan-name">ReAssure 2.0 Platinum+</div>
+                  <div class="persona-plan-meta">Rewards buying young — locks in your entry age</div>
+                </div>
+              </div>
+              <a href="#compare" class="btn btn-primary" data-persona-jump="genz">Compare these plans</a>
+            </aside>
+          </div>
+        </div>
+
+        <!-- ── Panel: New parent ────────────────────────── -->
+        <div class="persona-panel" id="persona-panel-newparent" role="tabpanel"
+          aria-labelledby="persona-tab-newparent">
+          <div class="persona-panel-head">
+            <h3>The cover has to exist before you need it</h3>
+            <p>Maternity and newborn benefits are the one part of health insurance you cannot buy on demand. Almost
+              every gap we see at this stage comes down to timing.</p>
+          </div>
+          <div class="persona-panel-body">
+            <div class="pain-list">
+              <div class="pain">
+                <span class="icon-tile sm danger"><svg class="icon"><use href="#i-calendar"></use></svg></span>
+                <div>
+                  <h4>Maternity waiting periods run 2–4 years</h4>
+                  <p>You have to buy the cover well before you start planning, not once you are expecting. None of the
+                    five plans we rate covers maternity in its base policy — HDFC ERGO offers it through the Parenthood
+                    rider, and Aditya Birla needs a separate product entirely.</p>
+                  <span class="pain-stat">Buy after conception and maternity is simply not covered</span>
+                </div>
+              </div>
+              <div class="pain">
+                <span class="icon-tile sm danger"><svg class="icon"><use href="#i-baby"></use></svg></span>
+                <div>
+                  <h4>Newborns need cover from day one</h4>
+                  <p>A newborn can be admitted to the NICU within hours of birth, and that is one of the most expensive
+                    admissions in Indian healthcare. Cover for the child has to already be in place, structured
+                    correctly, before the delivery.</p>
+                </div>
+              </div>
+              <div class="pain">
+                <span class="icon-tile sm danger"><svg class="icon"><use href="#i-home"></use></svg></span>
+                <div>
+                  <h4>Your term cover now has to clear 20 years of liability</h4>
+                  <p>A child means roughly two decades of dependency, and for most people it arrives alongside a home
+                    loan. The cover you bought as a single 25-year-old was not sized for either.</p>
+                </div>
+              </div>
+              <div class="pain">
+                <span class="icon-tile sm danger"><svg class="icon"><use href="#i-scale"></use></svg></span>
+                <div>
+                  <h4>Both spouses are usually under-covered</h4>
+                  <p>Cover typically gets bought for the higher earner only. If the other parent is uninsured, the
+                    household is still one event away from a crisis — including the cost of replacing unpaid care.</p>
+                </div>
+              </div>
+            </div>
+
+            <aside class="persona-aside">
+              <h4>Plans that fit this stage</h4>
+              <div class="persona-plan">
+                <span class="monogram has-logo"><img class="brand-logo" src="assets/logos/hdfcergo.png"
+                    alt="HDFC ERGO" width="34" height="34" loading="lazy"></span>
+                <div>
+                  <div class="persona-plan-name">Optima Secure+</div>
+                  <div class="persona-plan-meta">Parenthood maternity rider available</div>
+                </div>
+              </div>
+              <div class="persona-plan">
+                <span class="monogram has-logo"><img class="brand-logo" src="assets/logos/axismax.png"
+                    alt="Axis Max Life" width="34" height="34" loading="lazy"></span>
+                <div>
+                  <div class="persona-plan-name">Smart Term Plan Plus</div>
+                  <div class="persona-plan-meta">99.71% claim settlement — the highest in India</div>
+                </div>
+              </div>
+              <div class="persona-plan">
+                <span class="monogram has-logo"><img class="brand-logo" src="assets/logos/hdfclife.png"
+                    alt="HDFC Life" width="34" height="34" loading="lazy"></span>
+                <div>
+                  <div class="persona-plan-name">Click2Protect Supreme Plus</div>
+                  <div class="persona-plan-meta">Raises cover at childbirth, no fresh medicals</div>
+                </div>
+              </div>
+              <a href="#compare" class="btn btn-primary" data-persona-jump="newparent">Compare these plans</a>
+            </aside>
+          </div>
+        </div>
+
+        <!-- ── Panel: Sandwich generation ───────────────── -->
+        <div class="persona-panel" id="persona-panel-sandwich" role="tabpanel"
+          aria-labelledby="persona-tab-sandwich">
+          <div class="persona-panel-head">
+            <h3>Two generations, one income, no margin for error</h3>
+            <p>This is the hardest stage to insure and the one where getting the details wrong is most expensive.
+              Senior-parent cover in particular rewards precision.</p>
+          </div>
+          <div class="persona-panel-body">
+            <div class="pain-list">
+              <div class="pain">
+                <span class="icon-tile sm danger"><svg class="icon"><use href="#i-alert-triangle"></use></svg></span>
+                <div>
+                  <h4>Parents over 60 face co-pays, loading and full waiting periods</h4>
+                  <p>Premiums rise steeply, insurers add a co-payment share, and pre-existing conditions — which most
+                    people over 60 have — sit behind a 2 to 3 year wait. Which insurer you pick decides whether that
+                    wait is two years or three.</p>
+                  <span class="pain-stat">A senior couple costs ₹66,505–₹78,923/yr at ₹15 L cover</span>
+                </div>
+              </div>
+              <div class="pain">
+                <span class="icon-tile sm danger"><svg class="icon"><use href="#i-briefcase"></use></svg></span>
+                <div>
+                  <h4>Your corporate floater will not take them</h4>
+                  <p>Most employer plans either exclude parents outright or price them as a punitive add-on with thin
+                    limits. And like all group cover, it ends the day you change jobs — taking your parents' only
+                    protection with it.</p>
+                </div>
+              </div>
+              <div class="pain">
+                <span class="icon-tile sm danger"><svg class="icon"><use href="#i-trending-up"></use></svg></span>
+                <div>
+                  <h4>Your kids' education corpus is exposed</h4>
+                  <p>College costs are a fixed future liability sitting on a single income. Without term cover sized to
+                    it, that corpus is the first thing that gets liquidated.</p>
+                </div>
+              </div>
+              <div class="pain">
+                <span class="icon-tile sm danger"><svg class="icon"><use href="#i-users"></use></svg></span>
+                <div>
+                  <h4>You are the single point of failure for two generations</h4>
+                  <p>Parents above you, children below, and both financially dependent on you continuing to earn. That
+                    is the definition of a risk that has to be transferred rather than absorbed.</p>
+                </div>
+              </div>
+            </div>
+
+            <aside class="persona-aside">
+              <h4>Plans that fit this stage</h4>
+              <div class="persona-plan">
+                <span class="monogram has-logo"><img class="brand-logo" src="assets/logos/sbigeneral.png"
+                    alt="SBI General" width="34" height="34" loading="lazy"></span>
+                <div>
+                  <div class="persona-plan-name">Super Health Platinum Infinite</div>
+                  <div class="persona-plan-meta">2-year pre-existing wait — a full year less than the rest</div>
+                </div>
+              </div>
+              <div class="persona-plan">
+                <span class="monogram has-logo"><img class="brand-logo" src="assets/logos/hdfcergo.png"
+                    alt="HDFC ERGO" width="34" height="34" loading="lazy"></span>
+                <div>
+                  <div class="persona-plan-name">Optima Secure+</div>
+                  <div class="persona-plan-meta">Best claims record in health insurance</div>
+                </div>
+              </div>
+              <div class="persona-plan">
+                <span class="monogram has-logo"><img class="brand-logo" src="assets/logos/absl.png"
+                    alt="Aditya Birla Sun Life" width="34" height="34" loading="lazy"></span>
+                <div>
+                  <div class="persona-plan-name">ABSL Super Term Plan</div>
+                  <div class="persona-plan-meta">Critical illness cover built into the base plan</div>
+                </div>
+              </div>
+              <a href="#compare" class="btn btn-primary" data-persona-jump="sandwich">Compare these plans</a>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>

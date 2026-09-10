@@ -26,10 +26,16 @@ export function title(page: string, opts?: { brand?: boolean }): string {
   }
 
   // Catch a caller that already appended the brand — the exact Perfecplan failure.
-  if (trimmed.toLowerCase().includes(BRAND.toLowerCase())) {
+  //
+  // Only when a suffix is actually going to be added. `brand: false` is the homepage, where
+  // the brand IS the title ("Myinsurancebro — Compare & Buy…"); rejecting that would be the
+  // guard firing on the one page it was never meant to cover. The duplicate-brand assertion
+  // below still runs either way, so "Myinsurancebro | Myinsurancebro" is still a build error.
+  if (opts?.brand !== false && trimmed.toLowerCase().includes(BRAND.toLowerCase())) {
     throw new TitleError(
       `title() received a page title that already contains "${BRAND}": ${trimmed}\n` +
-        'Pass the bare page title; the brand suffix is added here and nowhere else.',
+        'Pass the bare page title; the brand suffix is added here and nowhere else.\n' +
+        'If this is the homepage, pass brand: false.',
     )
   }
 

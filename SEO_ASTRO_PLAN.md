@@ -4,9 +4,9 @@
 **Branch:** `revamp/audience-redesign-and-compare`
 **Status:** Planning complete · Scope locked (§14) · Research done (§16) · Harvest started (§16.7) ·
 **Astro Phase 0 in progress — shell builds, 10 plan pages, §1.2 thesis verified, plan template
-styled and inspected in a browser, robots/llms.txt shipped, chrome + methodology + category hubs
-live, every internal link resolving. §0a blockers all cleared. Home page port is the last Phase 0
-item. See §0b.**
+styled and inspected in a browser, robots/llms.txt shipped, chrome + home + methodology + category
+hubs live, every internal link resolving. §0a blockers all cleared. **Phase 0 is complete** bar the
+persona authoring pass. See §0b.**
 **Purpose:** Living handover doc. Update it as work proceeds so progress survives a context reset.
 
 ---
@@ -47,7 +47,7 @@ site/
   tsconfig.json         .gitignore (dist, .astro, node_modules, public/)
   scripts/
     migrate-policy-data.mjs   policy-data.js → content collections
-    sync-public.mjs           css/ assets/ js/ + 3 PHP + .htaccess + index.html → public/
+    sync-public.mjs           css/ assets/ js/ + the 3 PHP files + .htaccess → public/
     make-og-image.mjs         → ../assets/images/og-default.png   (run by hand)
     make-logo-sizes.mjs       → the display-size logo copies       (run by hand)
   src/
@@ -61,7 +61,9 @@ site/
     layouts/Base.astro
     components/seo/     SEO.astro · JsonLd.astro · Disclaimer.astro
     components/Header.astro · Footer.astro    legacy classes, absolute links
-    pages/index — NOT an Astro route: the legacy index.html is copied in (interim)
+    pages/index.astro                         all 15 sections, via components/home/
+    components/home/                          Sprite · Hero · Marquee · Personas · …
+    lib/home.ts                               the 9 FAQs: markup AND FAQPage schema
     pages/methodology.astro                   §13's comparative-claim mitigation
     pages/[category]/index.astro              product hub, only where plans exist
     pages/[category]/[insurer]/[plan].astro   all 12 §8 blocks, in order
@@ -221,12 +223,84 @@ only 404. It is unmanaged HTML: its own `<head>` and `<title>`, not composed by 
 checked by the SEO assertions. **Delete that entry from `FILES` the moment
 `src/pages/index.astro` exists.**
 
+### What shipped in the fourth pass — the home page port
+
+**`src/pages/index.astro` — all 15 sections, under `Base.astro`.** The section markup is
+extracted verbatim into `src/components/home/` (16 components, Sprite through FinalCta), so the
+design is unchanged. What changed is only the wrapper: `<head>`, navbar and footer are gone,
+because the layout and chrome components own them now. **The interim `index.html` copy in
+`sync-public.mjs` is deleted** — with a real route generating `/index.html`, keeping the legacy
+file would have put two files racing for the same URL.
+
+**The compare engine now ships a static table (§12 step 10 / §1.2).** `#cmpGrid` is
+server-rendered with a real `<table>` of every publishable plan; `compare.js` overwrites its
+`innerHTML` on hydration, so a visitor sees the interactive cards exactly as before and a
+crawler sees a genuine table. Verified both halves: **11 `<tr>` rows and the string `97.61` now
+appear in the home page's raw HTML, where there were none** — and after hydration `#cmpGrid`
+holds 5 `.plan-card` elements with the league table and premium sections rendered as usual.
+
+The fallback rows come from `publishablePlans()`, the same gate as every plan page, so an
+unverified figure cannot be published there either. While nothing is verified it renders no
+rows and the interactive engine still works off `js/policy-data.js` — no regression against the
+live site.
+
+**The FAQ is one source now.** Nine questions moved from markup into `src/lib/home.ts`, which
+feeds both the rendered accordion and the FAQPage JSON-LD. In `index.html` they existed only as
+markup, so adding schema would have meant a hand-kept second copy — and schema that disagrees
+with the visible page is a structured-data violation, not just untidy.
+
+**`js/main.js` gained a chrome guard.** The Astro header renders the same `#navbar`,
+`#themeToggle` and `#hamburger` ids that `main.js` binds, so both were about to handle every
+click — two theme listeners flip the theme twice, which reads as a broken toggle. `Header.astro`
+marks its header `data-astro-chrome` and `main.js` skips its sections 1 and 2 when it sees it.
+The attribute is absent on the legacy one-pager, which keeps behaving exactly as before.
+Verified: one click, one flip.
+
+Also fixed: `title()` threw on the homepage, because the guard against a caller pre-appending
+the brand fired on the one page where the brand legitimately *is* the title. It now only
+applies when a suffix is actually going to be added; `brand: false` skips it, and the
+duplicate-brand assertion still catches `Myinsurancebro | Myinsurancebro`.
+
+Interactions verified in the browser after the port: theme toggle, FAQ accordion (aria-expanded
+and measured max-height), persona picker, journey tabs, compare hydration. All 18 internal links
+in `dist/` resolve.
+
+### 🔴 The persona panels are NOT data-driven — and should not be yet
+
+§12 step 7 asks for "persona panels now data-driven". **Doing that today would delete content.**
+
+The personas collection holds only `key`, `label` and `ageRange`. Every record has
+`pains: []`, `planRecommendations: []` and `faqs: []`, because `js/policy-data.js` — the source
+the migration reads — only ever carried those three fields:
+
+```js
+personas: [
+  { key: 'genz', label: 'Just started earning', age: '22–28' },
+  …
+]
+```
+
+The actual persona content — 27 pain-point and recommendation blocks across the three panels —
+exists **only** as hand-written HTML in `index.html`. Rendering the panels from the collection
+would swap all of it for empty arrays.
+
+So the panels stay as ported markup, with the content intact. Making them data-driven is a
+**content task, not a porting one**, and it has a decision in it: `src/content/` is generated
+and must not be hand-edited (CLAUDE.md), so the panel copy has to be authored into
+`js/policy-data.js` and flow through `npm run migrate`. That is the same work as §7's 13 new
+personas, and it should be done once, for all of them, rather than twice.
+
 ### Next moves, in order
 
-1. **Port the home page** (§12 step 7) — all 15 sections, persona panels data-driven, compare
-   engine as an island with a static fallback table (§12 step 10). This is the last Phase 0
-   route and it removes the interim above.
-2. ~~Decide defect 7 (theme) alongside the header/footer chrome.~~ Done — see above.
+1. **Authoring pass on the personas** — lift the existing panel copy out of `Personas.astro`
+   into `js/policy-data.js`, re-run the migration, then drive the panels from the collection.
+   Do it alongside §7's 13 new personas rather than as a separate pass.
+2. Phase 0 is otherwise **complete**: shell, design system, chrome, home, methodology, category
+   hubs, robots/llms.txt, sitemap. The gate to Phase 1a is "site live, CWV green, indexed" —
+   so the next real milestone is a **CWV measurement and a deploy decision**, not more pages.
+3. Then §5 data expansion (Track A), which gates everything downstream. Nothing below Phase 1a
+   should start before the 10 migrated records are verified — a plain `npm run build` still
+   publishes zero plan pages by design.
 3. Only then: §5 data expansion, which gates everything downstream.
 4. ✅ Done — all three §0a blockers are cleared: committed, merged, logo optimised to 20 KB and
    consolidated onto one path. The OG card now carries the badge. The chrome work in step 1 has
@@ -1312,14 +1386,14 @@ Insurance is YMYL. Google holds it to the highest evaluation standard, and IRDAI
 | **0b** | Optimise the 730 KB logo per §16.9 before it gets baked into the Astro build | 0a |
 | 1 | `npm create astro@latest` in a `site/` subfolder; config per §4.1 | 0a |
 | 2 | Port `style.css` + `components.css` into Astro; build **one** page and look at it (Perfecplan lesson #4) | 1 |
-| 3 | Port layout chrome: nav, footer, WhatsApp float, theme toggle, modal | 2 |
+| ~~3~~ | ✅ Chrome ported: nav, footer, theme toggle. WhatsApp float and modal still live in main.js. | 2 |
 | 4 | **`src/content.config.ts`** Zod schemas (§5.3). **Read §16.1 first — Astro 5 syntax, not Astro 4.** | 1 |
 | 5 | Migrate `policy-data.js` → collections; **byte-for-byte value check** against the old file | 4 |
 | 6 | `SEO.astro`, `JsonLd.astro`, `Breadcrumbs.astro`, `title()` + the duplicate-brand assertion | 3 |
-| 7 | Home page — port all **15** sections incl. `#team`, persona panels now data-driven | 3, 5 |
+| ~~7~~ | ✅ Home page ported — all 15 sections. **Persona panels are NOT data-driven**: the collection has no panel content to drive them with. See §0b. | 3, 5 |
 | 8 | Plan page template end-to-end for **one** plan; verify all 12 blocks of §8 render | 5, 6 |
 | 9 | `getStaticPaths` for all 100 plan pages across the 7 categories | 8 |
-| 10 | Compare engine as a page-scoped island; **plus a static HTML fallback table** so crawlers see it | 5 |
+| ~~10~~ | ✅ Static fallback table shipped inside `#cmpGrid`; compare.js still loads as a plain script rather than a scoped island. | 5 |
 | 11 | 13 new personas authored (§7) + `/for/[persona]/` routes | 5 |
 | 12 | Insurer pages, glossary, guides, calculators | 5 |
 | 13 | `robots.txt`, sitemap, `llms.txt`, `llms-full.txt`, `/data/*.json` generators | 9 |
