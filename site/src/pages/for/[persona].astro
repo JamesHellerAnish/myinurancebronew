@@ -1,0 +1,184 @@
+---
+// /for/[persona]/ — the life-stage hub. SEO_ASTRO_PLAN.md §6.2 and §7.
+//
+// This exists because of the authoring pass: the persona records now carry the headline,
+// intro, pain points and plan recommendations that used to live only in the home page's
+// markup. The same records drive the #personas panels, so this page and that section cannot
+// disagree — and adding the 13 remaining personas of §7 adds 13 of these pages with no
+// template work.
+//
+// Generated only for personas that have both pain points and a resolvable recommendation. A
+// persona record with an empty body would be a thin page, which is what §13 warns about.
+import type { GetStaticPaths } from 'astro'
+import { getCollection } from 'astro:content'
+import Base from '../../layouts/Base.astro'
+import Disclaimer from '../../components/seo/Disclaimer.astro'
+import { publishablePlans, planPath, categoryPath, CATEGORY_LABELS, type Plan } from '../../lib/plans'
+import { breadcrumbSchema, faqSchema } from '../../lib/schema'
+import { fitDescription, fitTitle } from '../../lib/seo'
+import { complaintsPhrase } from '../../lib/format'
+
+export const getStaticPaths = (async () => {
+  const [personas, plans] = await Promise.all([getCollection('personas'), publishablePlans()])
+  const byId = new Map(plans.map((plan) => [plan.data.id, plan]))
+
+  return personas
+    .map((entry) => {
+      const recommended = entry.data.planRecommendations
+        .map((rec) => ({ rec, plan: byId.get(rec.planId) }))
+        .filter((r): r is { rec: typeof r.rec; plan: Plan } => Boolean(r.plan))
+
+      return { entry, recommended }
+    })
+    // A persona page with no pains and nothing to recommend has nothing to say.
+    .filter(({ entry, recommended }) => entry.data.pains.length > 0 && recommended.length > 0)
+    .map(({ entry, recommended }) => ({
+      params: { persona: entry.data.key },
+      props: { persona: entry.data, recommended },
+    }))
+}) satisfies GetStaticPaths
+
+interface Props {
+  persona: any
+  recommended: Array<{ rec: { planId: string; reason: string }; plan: Plan }>
+}
+
+const { persona, recommended } = Astro.props
+const url = `/for/${persona.key}/`
+const top = recommended[0].plan
+
+// The categories this persona actually has recommendations in — used for the links out, so
+// we never link a hub that is irrelevant to them.
+const categories = [...new Set(recommended.map((r) => r.plan.data.category))]
+
+const trail = [
+  { name: 'Home', path: '/' },
+  { name: persona.label, path: url },
+]
+
+const faqs = [
+  {
+    q: `What insurance do I need ${persona.label.toLowerCase()}?`,
+    a:
+      `${persona.intro} We would start with ${top.data.insurer} ${top.data.name} — ` +
+      `${recommended[0].rec.reason.toLowerCase()}.`,
+  },
+  ...persona.pains.slice(0, 2).map((pain: { heading: string; body: string }) => ({
+    q: pain.heading.endsWith('?') ? pain.heading : `${pain.heading}?`,
+    a: pain.body,
+  })),
+]
+
+// The labels are singular noun phrases ("New or expecting parent", "Just started earning"),
+// so "Insurance <label>" reads as broken English. Leading with the label and appending the
+// qualifier works for all of them, and keeps the persona first, where the query is.
+const pageTitle = fitTitle([
+  `${persona.label} — Insurance at ${persona.ageRange}`,
+  `${persona.label} — Insurance Guide`,
+  persona.label,
+])
+
+const description = fitDescription(
+  `${persona.headline} What to cover at ${persona.ageRange}, and the ` +
+    `${recommended.length} plans we would start with.`,
+  ['Independent, IRDAI-licensed advice.', 'Independent advice.'],
+)
+---
+
+<Base
+  title={pageTitle}
+  description={description}
+  keywords={[
+    `insurance ${persona.label.toLowerCase()}`,
+    `insurance age ${persona.ageRange}`,
+    `best insurance ${persona.label.toLowerCase()}`,
+  ]}
+  schemas={[breadcrumbSchema(trail), faqSchema(faqs)]}
+>
+  <article class="plan-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><span aria-current="page">{persona.label}</span></li>
+      </ol>
+    </nav>
+
+    <h1>{persona.headline}</h1>
+    <p class="plan-subtitle">For {persona.label.toLowerCase()} — typically age {persona.ageRange}.</p>
+
+    <p class="answer-block">{persona.intro}</p>
+
+    <section>
+      <h2>What is actually at risk</h2>
+      {persona.pains.map((pain: { heading: string; body: string; stat?: string }) => (
+        <div class="risk-block">
+          <h3>{pain.heading}</h3>
+          <p>{pain.body}</p>
+          {pain.stat && <p class="pain-stat">{pain.stat}</p>}
+        </div>
+      ))}
+    </section>
+
+    <section>
+      <h2>Plans that fit this stage</h2>
+      <div class="table-scroll">
+        <table>
+          <caption>Why each one, and what it scores. Illustrations, not quotes.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Plan</th>
+              <th scope="col">Why this one</th>
+              <th scope="col">Score</th>
+              <th scope="col">CSR</th>
+            </tr>
+          </thead>
+          <tbody>
+            {recommended.map(({ rec, plan }) => (
+              <tr>
+                <th scope="row" class="cell-prose">
+                  <a href={planPath(plan)}>{plan.data.insurer} {plan.data.name}</a>
+                </th>
+                <td class="cell-prose">{rec.reason}</td>
+                <td>{plan.data.score} / 5</td>
+                <td>{plan.data.metrics.csr}%</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p>
+        {top.data.insurer} settles {top.data.metrics.csr}% of claims and draws
+        {' '}{complaintsPhrase(top.data.metrics.complaints)} per 10,000 — which is why it leads
+        this list rather than the cheapest option doing so.
+      </p>
+      <p class="methodology-link">
+        Scores are plan features 45%, insurer strength 45%, premium 10% —
+        <a href="/methodology/">how we score plans</a>.
+      </p>
+    </section>
+
+    <section>
+      <h2>Frequently asked questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary><h3>{faq.q}</h3></summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="internal-links">
+      <h2>Compare for yourself</h2>
+      <p>
+        {categories.map((category) => (
+          <a href={`/${categoryPath(category)}/best-plans/`}>
+            Best {CATEGORY_LABELS[category].toLowerCase()} plans
+          </a>
+        ))}
+        {' · '}<a href="/methodology/">How we score</a>
+      </p>
+    </section>
+
+    <Disclaimer />
+  </article>
+</Base>

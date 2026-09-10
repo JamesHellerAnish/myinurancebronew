@@ -1,0 +1,226 @@
+---
+// /[category]/companies/[insurer]/ — the insurer review. SEO_ASTRO_PLAN.md §6.2.
+//
+// This is the page the plan-page breadcrumb wants to point at, and the target for the
+// high-intent "<insurer> claim settlement ratio" queries (§9.2 keywords).
+//
+// Generated only where the insurer has a publishable plan in this category — see
+// insurersWithPlans(). An insurer page listing no plans is thin, and there is no honest
+// reason to have one before the plans exist.
+import type { GetStaticPaths } from 'astro'
+import Base from '../../../layouts/Base.astro'
+import Disclaimer from '../../../components/seo/Disclaimer.astro'
+import {
+  publishablePlans,
+  planPath,
+  categoryPath,
+  CATEGORY_LABELS,
+  type Plan,
+  type PlanCategory,
+} from '../../../lib/plans'
+import { insurersWithPlans, insurerPath, csrRank, type Insurer } from '../../../lib/insurers'
+import { breadcrumbSchema, faqSchema } from '../../../lib/schema'
+import { fitDescription, fitTitle } from '../../../lib/seo'
+import { complaintsPhrase } from '../../../lib/format'
+import meta from '../../../data/meta.json'
+
+export const getStaticPaths = (async () => {
+  const plans = await publishablePlans()
+  const categories = [...new Set(plans.map((p) => p.data.category))]
+
+  const paths = []
+  for (const category of categories) {
+    for (const { insurer, plans: theirs } of await insurersWithPlans(category)) {
+      paths.push({
+        params: { category: categoryPath(category), insurer: insurer.data.slug },
+        props: { category, insurer, plans: theirs },
+      })
+    }
+  }
+  return paths
+}) satisfies GetStaticPaths
+
+interface Props {
+  category: PlanCategory
+  insurer: Insurer
+  plans: Plan[]
+}
+
+const { category, insurer, plans } = Astro.props
+const d = insurer.data
+const label = CATEGORY_LABELS[category]
+const lower = label.toLowerCase()
+const categoryUrl = `/${categoryPath(category)}/`
+const url = insurerPath(categoryPath(category), d.slug)
+
+const rank = await csrRank(insurer)
+const best = plans[0]
+
+const trail = [
+  { name: 'Home', path: '/' },
+  { name: label, path: categoryUrl },
+  { name: `${d.name} plans`, path: url },
+]
+
+// §16.4 / §10.4: open a yes/no question with the bare answer, because that is what gets
+// extracted into a featured snippet or an AI answer.
+const faqs = [
+  {
+    q: `What is ${d.name}'s claim settlement ratio?`,
+    a:
+      d.csr != null
+        ? `${d.csr}%, as ${meta.period.toLowerCase()} from IRDAI disclosures.` +
+          (rank ? ` That ranks ${rank.rank} of the ${rank.of} insurers we track in this category.` : '') +
+          (d.complaints != null
+            ? ` ${d.name} draws ${complaintsPhrase(d.complaints)} per 10,000 claims.`
+            : '')
+        : `We do not currently publish a claim settlement ratio for ${d.name}.`,
+  },
+  {
+    q: `Is ${d.name} good for ${lower}?`,
+    a:
+      `We rate ${plans.length} ${d.name} ${plans.length === 1 ? 'plan' : 'plans'} in this ` +
+      `category. ${best.data.insurer} ${best.data.name} scores highest at ${best.data.score}/5. ` +
+      `${best.data.verdict}`,
+  },
+  {
+    q: `How many complaints does ${d.name} get?`,
+    a:
+      d.complaints != null
+        ? `${complaintsPhrase(d.complaints)} per 10,000 claims, ${meta.period.toLowerCase()} ` +
+          `from IRDAI's public grievance disclosures. Lower is better.`
+        : `We do not currently publish a complaint volume for ${d.name}.`,
+  },
+]
+
+const pageTitle = fitTitle([
+  `${d.name} ${label} Review`,
+  `${d.name} Insurance Review`,
+  `${d.name} Review`,
+])
+
+const description = fitDescription(
+  `${d.name} settles ${d.csr}% of claims with ${complaintsPhrase(d.complaints ?? 0)} per ` +
+    `10,000. ${plans.length} ${lower} ${plans.length === 1 ? 'plan' : 'plans'} reviewed.`,
+  ['Cover, exclusions and indicative premiums.', 'Cover and exclusions.', 'Full review.'],
+)
+---
+
+<Base
+  title={pageTitle}
+  description={description}
+  current={category}
+  keywords={[
+    `${d.name} claim settlement ratio`,
+    `${d.name} ${lower}`,
+    `${d.name} review`,
+    `is ${d.name} good`,
+  ]}
+  schemas={[breadcrumbSchema(trail), faqSchema(faqs)]}
+>
+  <article class="plan-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href={categoryUrl}>{label}</a></li>
+        <li><span aria-current="page">{d.name}</span></li>
+      </ol>
+    </nav>
+
+    <h1>{d.name} {lower} review</h1>
+    <p class="plan-subtitle">
+      What their own claim record says, and which of their plans is worth your money.
+    </p>
+
+    <p class="answer-block">
+      {d.name} settles {d.csr}% of claims and draws {complaintsPhrase(d.complaints ?? 0)} per
+      10,000 claims, {meta.period.toLowerCase()} from IRDAI disclosures.
+      {rank && ` That is ${rank.rank} of the ${rank.of} insurers we track in this category on settlement ratio.`}
+      {' '}We review {plans.length} of their {lower} {plans.length === 1 ? 'plan' : 'plans'};
+      {' '}{best.data.name} scores highest at {best.data.score}/5.
+    </p>
+
+    <dl class="key-facts">
+      {d.csr != null && <div><dt>Claim settlement ratio</dt><dd>{d.csr}%</dd></div>}
+      {d.complaints != null && (
+        <div><dt>Complaints per 10,000 claims</dt><dd>{d.complaints}</dd></div>
+      )}
+      {rank && <div><dt>Settlement rank</dt><dd>{rank.rank} of {rank.of}</dd></div>}
+      {d.score != null && <div><dt>Our insurer score</dt><dd>{d.score} / 5</dd></div>}
+      {d.businessCr != null && (
+        <div><dt>Book size</dt><dd>₹{d.businessCr.toLocaleString('en-IN')} Cr</dd></div>
+      )}
+      {d.solvency != null && <div><dt>Solvency ratio</dt><dd>{d.solvency}</dd></div>}
+    </dl>
+
+    <section>
+      <h2>{d.name} {lower} plans we rate</h2>
+      <div class="table-scroll">
+        <table>
+          <caption>Sorted by our score. Every figure is read against the policy wording.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Plan</th>
+              <th scope="col">Score</th>
+              <th scope="col">Cover</th>
+            </tr>
+          </thead>
+          <tbody>
+            {plans.map((plan) => (
+              <tr>
+                <th scope="row" class="cell-prose">
+                  <a href={planPath(plan)}>{plan.data.name}</a>
+                </th>
+                <td>{plan.data.score} / 5</td>
+                <td class="cell-prose">{plan.data.coverRange ?? '—'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <ul>
+        {plans.map((plan) => (
+          <li><a href={planPath(plan)}>{plan.data.name}</a> — {plan.data.verdict}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section>
+      <h2>What the claim record means</h2>
+      <p>
+        A settlement ratio is the share of claims an insurer paid in a year. It is the single
+        most useful number about a company, and also the most easily misread: a high ratio on
+        a small book says less than the same ratio on a large one, and it says nothing about
+        how long a claim took or how hard it was to get paid. That is why we read it beside
+        complaint volume — {d.name} draws {complaintsPhrase(d.complaints ?? 0)} per 10,000
+        claims — rather than on its own.
+      </p>
+      <p class="methodology-link">
+        Both figures are {meta.period.toLowerCase()} from {meta.source}. See
+        <a href="/methodology/">how we score plans and insurers</a>.
+      </p>
+    </section>
+
+    <section>
+      <h2>Frequently asked questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary><h3>{faq.q}</h3></summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="internal-links">
+      <h2>Compare {d.name} with other insurers</h2>
+      <p>
+        <a href={`${categoryUrl}companies/`}>All {lower} companies</a> ·
+        <a href={`${categoryUrl}best-plans/`}>Best {lower} plans</a> ·
+        <a href={categoryUrl}>All {lower} plans</a>
+      </p>
+    </section>
+
+    <Disclaimer />
+  </article>
+</Base>

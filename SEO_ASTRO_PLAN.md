@@ -3,7 +3,8 @@
 **Created:** 2026-08-13 · **Last updated:** 2026-09-10
 **Branch:** `revamp/audience-redesign-and-compare`
 **Status:** Planning complete · Scope locked (§14) · Research done (§16) · Harvest started (§16.7) ·
-**Astro Phase 0 COMPLETE bar two owner-only items (IRDAI licence number, Search Console) — shell builds, 10 plan pages, §1.2 thesis verified, plan template
+**Phase 0 COMPLETE bar two owner-only items (IRDAI licence number, Search Console). Phase 1a route
+families BUILT but not publishable — the verification gate is closed, see §0c. — shell builds, 10 plan pages, §1.2 thesis verified, plan template
 styled and inspected in a browser, robots/llms.txt shipped, chrome + home + methodology + category
 hubs live, personas data-driven, CWV blockers fixed, lead pipeline tested end to end, every internal
 link resolving. §0a blockers all cleared. See §0b.**
@@ -432,6 +433,62 @@ nothing to match. Nothing is lost — those anchors still exist on the ported ho
 `/index.html` against `/`, and that 301 was added to `.htaccess` in its own guarded block,
 matching `THE_REQUEST` so it cannot loop against DirectoryIndex. **The security block above it is
 untouched** — the diff is 19 insertions, 0 deletions.
+
+## 0c. Phase 1a — route families built, 2026-09-10
+
+**All four Phase 1a route families are built, styled and inspected. 31 pages under the preview
+flag; 2 on an honest build.** That gap is the whole story of where Phase 1 actually stands.
+
+| Route | Pages (preview) | Notes |
+|---|---:|---|
+| `/[category]/best-plans/` | 2 | The flagship. Named picks computed from the data, not asserted, each with the figure that won it; every plan gets a verdict **and** an "against it" line |
+| `/[category]/companies/` | 2 | The league table — the **whole registry** for the category, 12 health / 7 life insurers, not just the ones we stock |
+| `/[category]/companies/[insurer]/` | 10 | Insurer review; targets "<insurer> claim settlement ratio". Generated only where the insurer has a publishable plan |
+| `/for/[persona]/` | 3 | Life-stage hub, off the persona records authored earlier today |
+
+New in `src/lib/insurers.ts`: `insurersForCategory()`, `insurersWithPlans()`, `insurerPath()`
+and `csrRank()`. The rank helper returns `{rank, of}` rather than a bare position, because §13
+treats an unqualified superlative as a compliance risk — a rank is only ever stated with the pool
+it was computed over.
+
+**Deliberate asymmetry between the two insurer routes.** The league table lists every insurer in
+the category; the individual pages are generated only where we have a plan. A league table that
+quietly omitted the insurers we do not stock would be a worse answer to "which health insurer
+settles the most claims" — and a misleading one. An insurer *page* with no plans on it is just
+thin. Different pages, different right answer.
+
+All 38 internal URLs in `dist/` resolve. Six new classes (`.award-grid`, `.award`,
+`.award-title`, `.verdict-block`, `.verdict-against`, `.risk-block`) were given rules in
+`css/pages.css` **in the same pass as the templates** — §2.1 lesson 4 is exactly this bug.
+
+### 🔴 Why Phase 1 is not complete, and Phase 2 cannot start
+
+Phase 1a in §9.4 is ~210 pages and its gate to *begin* is "site live, CWV green, indexed". None
+of those three is true yet, and the reasons are not code:
+
+1. **The verification gate is closed.** All 10 plan records are `migrated`, not `verified`. A
+   plain `npm run build` publishes **2 pages** — home and methodology. Everything else in the
+   table above exists only under `PUBLISH_UNVERIFIED=1`. Clearing this is §16.7 work: read each
+   plan against its policy wording, fill `sources[]` and `lastVerified`, set
+   `verificationStatus: 'verified'`. It is research, not engineering, and **it is the single
+   thing standing between this repo and a shippable site.**
+2. **The dataset is 10 plans.** §9.4 Phase 1a assumes term + base health at depth; §13 sets the
+   floor at ~30 health plans before Phase 3. Ditto covers ~40.
+3. **13 of 16 personas are unwritten** (§7). The template and the data path are done — each new
+   persona is now a record in `js/policy-data.js` and costs no template work — but the copy has
+   to be written.
+4. **Calculators and tax pages** (§9.4 Phase 1a) are not started.
+5. **Not deployed.** No Search Console, so "indexed" cannot even be measured.
+
+**Phase 2 is glossary (250 pages) + guides (120).** Its gate is "glossary indexed; first AI
+citations appearing" — which requires Phase 1 to be live and indexed first. Generating 370
+hand-authored content pages now, on a site with 2 publishable pages and no index presence, is
+precisely the scaled-content pattern §9.4 and §13 exist to prevent. **Starting Phase 2 here would
+be the single most damaging thing we could do to this domain.**
+
+The build order is not arbitrary: data → verify → deploy → measure → then more pages.
+
+---
 
 ### Next moves, in order
 

@@ -73,7 +73,11 @@ for (const [, subset, rule] of blocks) {
 
   // Rewrite the source to the local copy, keeping Google's own unicode-range and weight
   // declarations — they are what make the subsetting work in the browser.
-  rules.push(`/* ${subset} */\n${rule.replace(url, `/assets/fonts/${file}`)}`)
+  //
+  // Relative to css/fonts.css, not root-absolute: an absolute /assets/ path silently falls
+  // back to system-ui the moment the site is served from anywhere but the domain root, and
+  // a font that quietly stops loading is exactly the kind of change nobody wants.
+  rules.push(`/* ${subset} */\n${rule.replace(url, `../assets/fonts/${file}`)}`)
 }
 
 const header = `/* ═══════════════════════════════════════════════════════

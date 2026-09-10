@@ -1,0 +1,228 @@
+---
+// /[category]/companies/ — the insurer league table. SEO_ASTRO_PLAN.md §6.2.
+//
+// Unlike the individual insurer pages, this one lists the WHOLE registry for the category,
+// not just insurers we have plans for. That is deliberate and it is the difference between
+// a useful page and a thin one: the value here is the comparison across the market, and a
+// league table that quietly omits the insurers we happen not to stock would be a worse
+// answer to "which health insurer settles the most claims" — and a misleading one.
+//
+// Every figure on this page comes from one citable source (IRDAI), stated on the page.
+import type { GetStaticPaths } from 'astro'
+import Base from '../../../layouts/Base.astro'
+import Disclaimer from '../../../components/seo/Disclaimer.astro'
+import {
+  publishablePlans,
+  categoryPath,
+  CATEGORY_LABELS,
+  type PlanCategory,
+} from '../../../lib/plans'
+import { insurersForCategory, insurersWithPlans, insurerPath } from '../../../lib/insurers'
+import { breadcrumbSchema, faqSchema } from '../../../lib/schema'
+import { fitDescription, fitTitle } from '../../../lib/seo'
+import { complaintsPhrase } from '../../../lib/format'
+import meta from '../../../data/meta.json'
+
+export const getStaticPaths = (async () => {
+  const plans = await publishablePlans()
+  const categories = [...new Set(plans.map((p) => p.data.category))]
+
+  return Promise.all(
+    categories.map(async (category) => ({
+      params: { category: categoryPath(category) },
+      props: {
+        category,
+        insurers: await insurersForCategory(category),
+        // Which of them we have a page for — the rest are listed but not linked.
+        linkable: new Set(
+          (await insurersWithPlans(category)).map((entry) => entry.insurer.data.slug),
+        ),
+      },
+    })),
+  )
+}) satisfies GetStaticPaths
+
+interface Props {
+  category: PlanCategory
+  insurers: Awaited<ReturnType<typeof insurersForCategory>>
+  linkable: Set<string>
+}
+
+const { category, insurers, linkable } = Astro.props
+const label = CATEGORY_LABELS[category]
+const lower = label.toLowerCase()
+const categoryUrl = `/${categoryPath(category)}/`
+const url = `${categoryUrl}companies/`
+
+// Ranked on settlement ratio, which is what the page is actually about. Insurers with no
+// published ratio sort last rather than being dropped — their absence is itself information.
+const ranked = [...insurers].sort((a, b) => (b.data.csr ?? -1) - (a.data.csr ?? -1))
+const withCsr = ranked.filter((i) => i.data.csr != null)
+const top = withCsr[0]
+const cleanest = [...withCsr]
+  .filter((i) => i.data.complaints != null)
+  .sort((a, b) => (a.data.complaints ?? 0) - (b.data.complaints ?? 0))[0]
+
+const trail = [
+  { name: 'Home', path: '/' },
+  { name: label, path: categoryUrl },
+  { name: 'Companies', path: url },
+]
+
+const faqs = [
+  {
+    q: `Which ${lower} company has the highest claim settlement ratio?`,
+    a: top
+      ? `${top.data.name}, at ${top.data.csr}% — ${meta.period.toLowerCase()} from IRDAI ` +
+        `disclosures, across the ${withCsr.length} insurers we track in this category.`
+      : 'We do not currently publish settlement ratios for this category.',
+  },
+  {
+    q: `Which ${lower} company gets the fewest complaints?`,
+    a: cleanest
+      ? `${cleanest.data.name}, at ${complaintsPhrase(cleanest.data.complaints ?? 0)} per ` +
+        `10,000 claims. A high settlement ratio and a low complaint volume together are a ` +
+        `better signal than either alone.`
+      : 'We do not currently publish complaint volumes for this category.',
+  },
+  {
+    q: 'Does a high claim settlement ratio guarantee my claim gets paid?',
+    a:
+      'No. It is the share of claims an insurer paid across a whole year, not a promise about ' +
+      'yours. It says nothing about how long a claim took, or how hard it was to get paid — ' +
+      'which is why we publish complaint volume beside it, and why an honest proposal form ' +
+      'matters more than any company-level number.',
+  },
+]
+
+const pageTitle = fitTitle([
+  `${label} Companies Compared`,
+  `${label} Companies`,
+  `${label} Insurers`,
+])
+
+const description = fitDescription(
+  `${withCsr.length} ${lower} companies ranked on claim settlement ratio and complaints, ` +
+    `from IRDAI ${meta.period.replace(/\s*\(.*\)/, '')} disclosures.`,
+  ['Independent and unpaid.', 'Unpaid rankings.'],
+)
+---
+
+<Base
+  title={pageTitle}
+  description={description}
+  current={category}
+  keywords={[
+    `best ${lower} company`,
+    `${lower} claim settlement ratio`,
+    `${lower} companies India`,
+  ]}
+  schemas={[breadcrumbSchema(trail), faqSchema(faqs)]}
+>
+  <article class="plan-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href={categoryUrl}>{label}</a></li>
+        <li><span aria-current="page">Companies</span></li>
+      </ol>
+    </nav>
+
+    <h1>{label} companies, ranked</h1>
+    <p class="plan-subtitle">
+      On their own claim record — not on their advertising.
+    </p>
+
+    <p class="answer-block">
+      {top && `${top.data.name} settles the largest share of claims at ${top.data.csr}%.`}
+      {cleanest && ` ${cleanest.data.name} draws the fewest complaints, at ${complaintsPhrase(cleanest.data.complaints ?? 0)} per 10,000 claims.`}
+      {' '}All figures are {meta.period.toLowerCase()} from IRDAI's annual report and public
+      grievance disclosures, across {withCsr.length} insurers.
+    </p>
+
+    <section>
+      <h2>All {lower} companies by claim settlement ratio</h2>
+      <div class="table-scroll">
+        <table>
+          <caption>
+            Ranked on claim settlement ratio. Complaints are per 10,000 claims — lower is better.
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Insurer</th>
+              <th scope="col">Claim settlement</th>
+              <th scope="col">Complaints<span class="th-note"> per 10,000</span></th>
+              <th scope="col">Book size</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ranked.map((insurer, i) => (
+              <tr>
+                <td>{insurer.data.csr != null ? i + 1 : '—'}</td>
+                <th scope="row" class="cell-prose">
+                  {linkable.has(insurer.data.slug) ? (
+                    <a href={insurerPath(categoryPath(category), insurer.data.slug)}>
+                      {insurer.data.name}
+                    </a>
+                  ) : (
+                    insurer.data.name
+                  )}
+                </th>
+                <td>{insurer.data.csr != null ? `${insurer.data.csr}%` : '—'}</td>
+                <td>{insurer.data.complaints ?? '—'}</td>
+                <td>
+                  {insurer.data.businessCr != null
+                    ? `₹${insurer.data.businessCr.toLocaleString('en-IN')} Cr`
+                    : '—'}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="methodology-link">
+        Insurers we have reviewed plans for are linked. The rest are listed for comparison —
+        omitting them would make this a worse answer, not a shorter one. See
+        <a href="/methodology/">how we score</a>.
+      </p>
+    </section>
+
+    <section>
+      <h2>How to read these numbers</h2>
+      <p>
+        The settlement ratio is the share of claims paid in a year. Read it with the book
+        size beside it: the same percentage means something different on a large book than on
+        a small one, where a handful of claims moves the figure. Complaint volume is the
+        counterweight — it is the number that shows whether the claims that <em>were</em> paid
+        were paid without a fight.
+      </p>
+      <p>
+        Neither number describes your claim. What decides that is whether your proposal form
+        was filled in honestly, and whether the thing you are claiming for is inside the
+        policy wording. That is what our plan reviews are for.
+      </p>
+    </section>
+
+    <section>
+      <h2>Frequently asked questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary><h3>{faq.q}</h3></summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="internal-links">
+      <h2>Next</h2>
+      <p>
+        <a href={`${categoryUrl}best-plans/`}>Best {lower} plans</a> ·
+        <a href={categoryUrl}>All {lower} plans</a> ·
+        <a href="/methodology/">How we score</a>
+      </p>
+    </section>
+
+    <Disclaimer />
+  </article>
+</Base>
