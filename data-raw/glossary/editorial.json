@@ -286,5 +286,187 @@
       "room-rent",
       "hospitalization"
     ]
+  },
+  "pre-hospitalization-medical-expenses": {
+    "plain": "The consultations, tests and medicines you paid for in the days before being admitted. They are covered if they were for the same condition and the hospitalisation claim itself is accepted.",
+    "whyItMatters": "People routinely forget to claim this and lose real money — the GP visit, the scan that found the problem, the blood work. The window is fixed by your policy, commonly 30 or 60 days, and it only opens if the hospitalisation claim is admitted. Keep every receipt from the moment a symptom is investigated, not from the moment you are admitted.",
+    "related": [
+      "post-hospitalization-medical-expenses",
+      "hospitalization",
+      "medical-expenses",
+      "notification-of-claim"
+    ]
+  },
+  "post-hospitalization-medical-expenses": {
+    "plain": "Follow-up costs after discharge — review consultations, medicines, physiotherapy — for the same condition you were admitted for.",
+    "whyItMatters": "The window is longer than most people expect, often 60 to 180 days, and it is where recovery costs actually land. It is also tied to the same condition: a follow-up for something unrelated that happens to fall inside the window is not covered. Claim it as one file with the hospitalisation, not as an afterthought.",
+    "related": [
+      "pre-hospitalization-medical-expenses",
+      "hospitalization",
+      "medical-expenses"
+    ]
+  },
+  "emergency-care": {
+    "plain": "Treatment for something that came on suddenly and needs immediate attention to prevent death or lasting harm.",
+    "whyItMatters": "This is the test that decides whether the network rules bend. In a genuine emergency you go to the nearest capable hospital, in or out of network, and intimate the insurer afterwards rather than before. Insurers do assess whether an admission was truly emergent, so the medical record needs to show the urgency, not just the diagnosis.",
+    "related": [
+      "hospitalization",
+      "network-provider",
+      "non-network-provider",
+      "notification-of-claim",
+      "ambulance"
+    ]
+  },
+  "hospital": {
+    "plain": "An institution registered with the local authorities as a hospital. Where it is not registered, it must meet minimum standards on beds, round-the-clock qualified nursing, an operation theatre and daily patient records.",
+    "whyItMatters": "A claim can fail on where you were treated rather than what was wrong with you. Small nursing homes and day clinics sometimes do not meet the bed or staffing minimums, and treatment there falls outside the policy even when it was medically correct. If a facility is not in the insurer network, it is worth checking it qualifies before a planned admission.",
+    "related": [
+      "hospitalization",
+      "day-care-centre",
+      "network-provider",
+      "medical-practitioner"
+    ]
+  },
+  "illness": {
+    "plain": "A sickness, disease or condition that impairs normal function and needs treatment. It is split into acute conditions that resolve with treatment and chronic ones that persist.",
+    "whyItMatters": "The acute-versus-chronic split does real work. Chronic conditions are the ones that attract waiting periods, exclusions and loadings, and a condition you consider managed rather than ongoing may still be chronic in the insurer terms. It is also why a pre-existing condition has to be declared even when it currently causes you no trouble.",
+    "related": [
+      "injury",
+      "pre-existing-disease",
+      "waiting-period",
+      "medically-necessary-treatment"
+    ]
+  },
+  "injury": {
+    "plain": "Accidental bodily harm caused by external, violent and visible means, certified by a doctor. Illness and disease are specifically excluded from it.",
+    "whyItMatters": "Whether something is an injury or an illness changes what applies. Accidents usually bypass the initial waiting period, so a broken leg in month one is typically covered where a hernia would not be. The external, violent and visible test is also why internal damage with no external cause — a slipped disc lifting a suitcase — is often treated as illness rather than accident.",
+    "related": [
+      "illness",
+      "waiting-period",
+      "emergency-care",
+      "hospitalization"
+    ]
+  },
+  "policy-year": {
+    "plain": "The twelve months running from your commencement date — not the calendar year, and not the financial year.",
+    "whyItMatters": "Every annual limit resets on this clock: your sum insured, your restoration, your health check-up entitlement. Two hospitalisations eleven months apart can fall in the same policy year and share one limit, while two a month apart can straddle the boundary and get a fresh one each. Knowing your commencement date is worth more than it sounds.",
+    "related": [
+      "sum-insured",
+      "renewal",
+      "policy-schedule"
+    ]
+  },
+  "annual-health-check-up": {
+    "plain": "A package of tests for a general assessment of your health, provided as a benefit. It specifically excludes tests done to investigate an illness.",
+    "whyItMatters": "It is a benefit most policyholders never claim, and it funds something worth doing anyway. The exclusion matters though: once a symptom is being investigated, those tests are diagnostic rather than a check-up, and they belong in a hospitalisation claim instead — where they are usually covered better.",
+    "related": [
+      "pre-hospitalization-medical-expenses",
+      "policy-year",
+      "opd-treatment"
+    ]
+  },
+  "ayush-day-care-centre": {
+    "plain": "A registered centre providing Ayurveda, Yoga, Unani, Siddha or Homeopathy treatment — from a community health centre or dispensary up to a polyclinic.",
+    "whyItMatters": "AYUSH cover is now standard rather than an add-on, but it is conditional on the facility being registered and meeting the definition. Treatment by an unregistered practitioner, however well regarded, is outside the policy. If you intend to use AYUSH, confirm the centre qualifies before treatment rather than at the claim.",
+    "related": [
+      "hospital",
+      "day-care-centre",
+      "medical-practitioner",
+      "hospitalization"
+    ]
+  },
+  "dental-treatment": {
+    "plain": "Treatment of the teeth and the structures supporting them — examinations, fillings, crowns, extractions and surgery.",
+    "whyItMatters": "Routine dentistry is excluded by almost every health policy, which surprises people every year. What is usually covered is dental work made necessary by an accident, because that is treated as injury rather than dental care. If dental cover matters to you it has to be bought deliberately.",
+    "related": [
+      "injury",
+      "opd-treatment",
+      "medically-necessary-treatment"
+    ]
+  },
+  "medical-practitioner": {
+    "plain": "Someone holding a valid registration with a State or national Medical Council, whether allopathic, Indian medicine or homeopathy. They must be acting within the scope of that registration.",
+    "whyItMatters": "Claims are declined over this more often than people expect. Treatment by someone not registered, or by a registered practitioner working outside their field, may not be covered. Most policies also exclude treatment by you or an immediate family member, however qualified they are.",
+    "related": [
+      "hospital",
+      "medical-advice",
+      "ayush-day-care-centre"
+    ]
+  },
+  "medical-advice": {
+    "plain": "Any consultation or advice from a registered practitioner, including a prescription or a repeat prescription.",
+    "whyItMatters": "This is the quiet half of the pre-existing-disease test. A condition counts as pre-existing if you received medical advice for it in the look-back window — no diagnosis and no treatment required. A consultation about symptoms, or a repeat prescription you barely think about, is enough to make it declarable.",
+    "related": [
+      "pre-existing-disease",
+      "material-facts",
+      "medical-practitioner",
+      "disclosure-of-information-norm"
+    ]
+  },
+  "unproven-experimental-treatment": {
+    "plain": "Treatment or drug therapy that is not established medical practice in India.",
+    "whyItMatters": "It is a permanent exclusion, not a waiting period, and it bites hardest in serious illness — exactly when a family is most likely to try something new. A therapy approved abroad but not established practice here can fall outside cover. If a doctor proposes something novel, get the insurer position in writing before starting, not after.",
+    "related": [
+      "medically-necessary-treatment",
+      "second-medical-opinion-for-major-illness"
+    ]
+  },
+  "second-medical-opinion-for-major-illness": {
+    "plain": "An independent practitioner reviewing your treating doctor recommendation, at your request. It is an opinion, not a replacement for your doctor care.",
+    "whyItMatters": "It is a free benefit on most policies and it goes almost entirely unused. For a major diagnosis where the proposed treatment is invasive, expensive or irreversible, a second opinion at the insurer cost is straightforwardly worth taking. It does not affect your claim — the insurer would rather fund the opinion than the wrong surgery.",
+    "related": [
+      "medically-necessary-treatment",
+      "unproven-experimental-treatment",
+      "medical-practitioner"
+    ]
+  },
+  "policy-schedule": {
+    "plain": "The document attached to your policy naming the insured persons, the sum insured, the policy period and the sub-limits your cover is actually subject to.",
+    "whyItMatters": "The wording tells you what the product can do; the schedule tells you what yours does. Waiting periods, co-pays and sub-limits are stated here per policy, which is why two people holding the same product can have materially different cover. When any review — including ours — quotes a figure, your schedule is what overrides it.",
+    "related": [
+      "sum-insured",
+      "co-payment",
+      "waiting-period",
+      "policy-year"
+    ]
+  },
+  "surgery-or-surgical-procedure": {
+    "plain": "A manual or operative procedure to treat illness or injury, correct a defect, diagnose disease or relieve suffering. It has to be performed in a hospital or day-care centre by a registered practitioner.",
+    "whyItMatters": "The place and the practitioner are part of the definition, not incidental to it. A procedure done in a consulting room rather than a qualifying hospital or day-care centre can fall outside cover even though the surgery itself was necessary and competently done.",
+    "related": [
+      "hospital",
+      "day-care-centre",
+      "day-care-treatment",
+      "medical-practitioner"
+    ]
+  },
+  "adventure-hazardous-sports": {
+    "plain": "Sport or activity involving physical exertion and skill — rock climbing, rafting, motor racing, scuba diving, sky diving and similar. It applies whether you do it for entertainment or professionally.",
+    "whyItMatters": "Injuries from these are excluded by most health and term policies, and the list is broader than people assume. Trekking at altitude and recreational diving on holiday can qualify. If you do any of it regularly, tell the insurer at proposal: an exclusion you knew about is survivable, a declined claim after an accident is not.",
+    "related": [
+      "injury",
+      "material-facts",
+      "disclosure-of-information-norm",
+      "emergency-care"
+    ]
+  },
+  "ambulance": {
+    "plain": "A vehicle run by a licensed provider and equipped to transport and treat someone needing medical attention.",
+    "whyItMatters": "Ambulance cover almost always carries a rupee sub-limit per hospitalisation, and it is one of the few limits that has not kept pace with what private ambulances charge in Indian cities. Check the figure rather than the fact of cover — and note that transport by private car or taxi, however urgent, is not an ambulance under this definition.",
+    "related": [
+      "emergency-care",
+      "hospitalization",
+      "policy-schedule"
+    ]
+  },
+  "medical-expenses": {
+    "plain": "Costs you actually and necessarily incurred for treatment on a doctor advice. They are capped twice over: at what you would have paid uninsured, and at what other hospitals nearby charge for the same treatment.",
+    "whyItMatters": "Those two caps are the \"reasonable and customary\" test, and they are how an approved claim still comes back short. If a hospital charges above the local going rate, or prices differently for insured patients, the insurer can pay the customary amount and leave you the difference. It is worth asking a hospital for its cash rate as well as its insurance rate before a planned admission.",
+    "related": [
+      "hospitalization",
+      "medically-necessary-treatment",
+      "policy-schedule",
+      "room-rent"
+    ]
   }
 }

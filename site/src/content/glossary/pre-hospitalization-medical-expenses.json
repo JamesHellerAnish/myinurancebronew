@@ -1,0 +1,19 @@
+{
+  "slug": "pre-hospitalization-medical-expenses",
+  "term": "Pre-Hospitalization Medical Expenses",
+  "definition": "means Medical Expenses incurred during pre-defined number of days preceding the hospitalization of the Insured Person, provided that: a. Such Medical Expenses are incurred for the same condition for which the Insured Person's Hospitalization was required, and b. The In-patient Hospitalization claim for such Hospitalization is admissible by the Insurance Company.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "The consultations, tests and medicines you paid for in the days before being admitted. They are covered if they were for the same condition and the hospitalisation claim itself is accepted.",
+  "whyItMatters": "People routinely forget to claim this and lose real money — the GP visit, the scan that found the problem, the blood work. The window is fixed by your policy, commonly 30 or 60 days, and it only opens if the hospitalisation claim is admitted. Keep every receipt from the moment a symptom is investigated, not from the moment you are admitted.",
+  "related": [
+    "post-hospitalization-medical-expenses",
+    "hospitalization",
+    "medical-expenses",
+    "notification-of-claim"
+  ]
+}

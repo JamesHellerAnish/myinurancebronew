@@ -1,0 +1,19 @@
+{
+  "slug": "ayush-day-care-centre",
+  "term": "AYUSH Day Care Centre",
+  "definition": "means and includes Community Health Centre (CHC), Primary Health Centre (PHC), Dispensary, Clinic, Polyclinic or any such health centre which is registered with the local authorities, wherever applicable and having facilities for carrying out treatment procedures and medical or surgical / para-surgical interventions or both under the supervision of registered AYUSH Medical Practitioner(s) on day care basis without In-Patient services and must comply with all the following criterion: a. Having qualified registered AYUSH Medical Practitioner(s) in charge; b. Having dedicated AYUSH therapy sections as required and / or has equipped operation theatre where surgical procedures are to be carried out; c. Maintaining daily records of the patients and making them accessible to the insurance company's authorized representative.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "A registered centre providing Ayurveda, Yoga, Unani, Siddha or Homeopathy treatment — from a community health centre or dispensary up to a polyclinic.",
+  "whyItMatters": "AYUSH cover is now standard rather than an add-on, but it is conditional on the facility being registered and meeting the definition. Treatment by an unregistered practitioner, however well regarded, is outside the policy. If you intend to use AYUSH, confirm the centre qualifies before treatment rather than at the claim.",
+  "related": [
+    "hospital",
+    "day-care-centre",
+    "medical-practitioner",
+    "hospitalization"
+  ]
+}

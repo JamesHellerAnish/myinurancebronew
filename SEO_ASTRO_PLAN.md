@@ -543,7 +543,7 @@ built from two files that are deliberately kept apart:
 regulated definition can never be quietly paraphrased into our own voice without someone
 noticing which file it came from.
 
-**28 of 61 terms are published.** The other 33 have a legal definition but no editorial layer,
+**47 of 61 terms are published** (28 in the first pass, 19 added after). The other 14 have a legal definition but no editorial layer,
 and `build-glossary.mjs` refuses to write them — a page carrying only lifted legal text is a
 thin page that adds nothing a policy PDF does not already say. Same gate as unverified plans,
 same reasoning. Adding a term is now an edit to `editorial.json` and a rebuild.
@@ -578,7 +578,13 @@ plan (§1260, "genuine editorial") and the route does not exist yet. The glossar
 that could be built well from primary sources already in the repo; guides are writing, and
 writing 120 of them badly would undo what the glossary is for.
 
-Glossary coverage is also 28 of a planned 250. The pipeline scales — more terms means more
+The 14 unpublished terms were **skipped deliberately, not left undone**: `bank-rate`, `home`,
+`commencement-date`, `policyholder`, `insured-person`, `qualified-nurse`, the attack-weapon
+exclusions and similar. For those the definition is the whole story — there is no claim-time
+consequence to write, and inventing a "why it matters" would be padding, which is the one thing
+the build gate cannot catch because it only blocks *missing* editorial, not *empty* editorial.
+
+Glossary coverage is 47 of a planned 250. The pipeline scales — more terms means more
 harvested wordings plus editorial — but the count should follow the writing, not lead it.
 
 ---

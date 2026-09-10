@@ -1,0 +1,18 @@
+{
+  "slug": "dental-treatment",
+  "term": "Dental Treatment",
+  "definition": "means a treatment related to teeth or structures supporting teeth including examinations, fillings (where appropriate), crowns, extractions and surgery.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "Treatment of the teeth and the structures supporting them — examinations, fillings, crowns, extractions and surgery.",
+  "whyItMatters": "Routine dentistry is excluded by almost every health policy, which surprises people every year. What is usually covered is dental work made necessary by an accident, because that is treated as injury rather than dental care. If dental cover matters to you it has to be bought deliberately.",
+  "related": [
+    "injury",
+    "opd-treatment",
+    "medically-necessary-treatment"
+  ]
+}

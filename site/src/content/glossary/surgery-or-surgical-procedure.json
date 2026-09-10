@@ -1,0 +1,19 @@
+{
+  "slug": "surgery-or-surgical-procedure",
+  "term": "Surgery or Surgical Procedure",
+  "definition": "means manual and / or operative procedure (s) required for treatment of an illness or injury, correction of deformities and defects, diagnosis and cure of diseases, relief from suffering and prolongation of life, performed in a hospital or day care centre by a medical practitioner.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "A manual or operative procedure to treat illness or injury, correct a defect, diagnose disease or relieve suffering. It has to be performed in a hospital or day-care centre by a registered practitioner.",
+  "whyItMatters": "The place and the practitioner are part of the definition, not incidental to it. A procedure done in a consulting room rather than a qualifying hospital or day-care centre can fall outside cover even though the surgery itself was necessary and competently done.",
+  "related": [
+    "hospital",
+    "day-care-centre",
+    "day-care-treatment",
+    "medical-practitioner"
+  ]
+}

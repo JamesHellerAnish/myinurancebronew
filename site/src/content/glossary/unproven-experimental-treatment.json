@@ -1,0 +1,17 @@
+{
+  "slug": "unproven-experimental-treatment",
+  "term": "Unproven / Experimental Treatment",
+  "definition": "means the treatment including drug experimental therapy which is based on established medical practice in India, is a treatment experimental or unproven.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "Treatment or drug therapy that is not established medical practice in India.",
+  "whyItMatters": "It is a permanent exclusion, not a waiting period, and it bites hardest in serious illness — exactly when a family is most likely to try something new. A therapy approved abroad but not established practice here can fall outside cover. If a doctor proposes something novel, get the insurer position in writing before starting, not after.",
+  "related": [
+    "medically-necessary-treatment",
+    "second-medical-opinion-for-major-illness"
+  ]
+}
