@@ -303,8 +303,9 @@ h6 {
 }
 
 .nav-brand img {
-  height: 40px;
+  height: 48px;
   width: auto;
+  object-fit: contain;
 }
 
 .nav-links {
@@ -1872,8 +1873,9 @@ h6 {
 }
 
 .footer-brand img {
-  height: 32px;
-  filter: brightness(10);
+  height: 40px;
+  width: auto;
+  object-fit: contain;
 }
 
 .footer-tagline {
