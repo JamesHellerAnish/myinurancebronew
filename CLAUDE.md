@@ -3,9 +3,9 @@
 **Read [SEO_ASTRO_PLAN.md](SEO_ASTRO_PLAN.md) first — start at §0a.** It is the live plan for the
 Astro programmatic-SEO rebuild and the handover doc between sessions. Update it as work proceeds.
 
-⚠ **§0a lists three blockers to clear before any Astro code**: unmerged logo commits on
-`origin/main`, uncommitted work in the tree, and a 730 KB logo. Run `git fetch --all` at the start of
-every session — work has been happening on two machines.
+§0a's three blockers (unmerged logo commits, a dirty tree, an unoptimised logo) are **all cleared**.
+Run `git fetch --all` at the start of every session anyway — work has been happening on two machines,
+and that divergence is what created those blockers in the first place.
 
 ## Current state
 
