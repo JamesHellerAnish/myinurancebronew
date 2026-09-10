@@ -1,0 +1,931 @@
+{
+  "@context": "https://schema.org",
+  "name": "Myinsurancebro insurance glossary",
+  "url": "https://myinsurancebro.com/glossary/",
+  "licence": "The plain-English explanations are Myinsurancebro editorial. The quoted legal definitions belong to the insurers whose IRDAI-filed wordings they are taken from, and each carries its source and UIN.",
+  "count": 47,
+  "terms": [
+    {
+      "term": "Adventure / Hazardous Sports",
+      "slug": "adventure-hazardous-sports",
+      "url": "https://myinsurancebro.com/glossary/adventure-hazardous-sports/",
+      "plain": "Sport or activity involving physical exertion and skill — rock climbing, rafting, motor racing, scuba diving, sky diving and similar. It applies whether you do it for entertainment or professionally.",
+      "whyItMatters": "Injuries from these are excluded by most health and term policies, and the list is broader than people assume. Trekking at altitude and recreational diving on holiday can qualify. If you do any of it regularly, tell the insurer at proposal: an exclusion you knew about is survivable, a declined claim after an accident is not.",
+      "legalDefinition": "means any sport or activity involving physical exertion and skill including but not limited to, para-jumping, rock climbing, mountaineering, rafting, motor racing, horse racing or scuba diving, hand gliding, sky diving, deep-sea diving, in which an Insured Person participates or competes for entertainment or as part of his profession whether he / she is trained or not.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "injury",
+        "material-facts",
+        "disclosure-of-information-norm",
+        "emergency-care"
+      ]
+    },
+    {
+      "term": "Ambulance",
+      "slug": "ambulance",
+      "url": "https://myinsurancebro.com/glossary/ambulance/",
+      "plain": "A vehicle run by a licensed provider and equipped to transport and treat someone needing medical attention.",
+      "whyItMatters": "Ambulance cover almost always carries a rupee sub-limit per hospitalisation, and it is one of the few limits that has not kept pace with what private ambulances charge in Indian cities. Check the figure rather than the fact of cover — and note that transport by private car or taxi, however urgent, is not an ambulance under this definition.",
+      "legalDefinition": "means a motor vehicle operated by a licenced / authorised service provider and equipped for the transport and paramedical treatment of the person requiring medical attention.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "emergency-care",
+        "hospitalization",
+        "policy-schedule"
+      ]
+    },
+    {
+      "term": "Annual Health Check-up",
+      "slug": "annual-health-check-up",
+      "url": "https://myinsurancebro.com/glossary/annual-health-check-up/",
+      "plain": "A package of tests for a general assessment of your health, provided as a benefit. It specifically excludes tests done to investigate an illness.",
+      "whyItMatters": "It is a benefit most policyholders never claim, and it funds something worth doing anyway. The exclusion matters though: once a symptom is being investigated, those tests are diagnostic rather than a check-up, and they belong in a hospitalisation claim instead — where they are usually covered better.",
+      "legalDefinition": "means a package of medical test(s) undertaken for general assessment of health status, excluding any diagnostic or investigative medical tests for evaluation of any Illness.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "pre-hospitalization-medical-expenses",
+        "policy-year",
+        "opd-treatment"
+      ]
+    },
+    {
+      "term": "Associated Medical Expenses",
+      "slug": "associated-medical-expenses",
+      "url": "https://myinsurancebro.com/glossary/associated-medical-expenses/",
+      "plain": "The charges that ride alongside the room bill — consultation fees, operation theatre, surgical appliances, nursing, anaesthesia, blood and oxygen.",
+      "whyItMatters": "This is why a room-rent cap costs more than the room. In hospitals that price by room category, these charges scale with the room you occupy, so exceeding your cap can proportionately reduce what the insurer pays across the entire bill, not just the bed.",
+      "legalDefinition": "means consultation fees, charges on operation theatre, surgical appliances and nursing, and expenses on anaesthesia, blood, oxygen incurred during Hospitalization of the Insured Person. Associated Medical Expenses does not include cost of pharmacy and consumables, cost of implants and medical devices, and cost of diagnostics.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "room-rent",
+        "icu-charges",
+        "hospitalization",
+        "sum-insured"
+      ]
+    },
+    {
+      "term": "AYUSH Day Care Centre",
+      "slug": "ayush-day-care-centre",
+      "url": "https://myinsurancebro.com/glossary/ayush-day-care-centre/",
+      "plain": "A registered centre providing Ayurveda, Yoga, Unani, Siddha or Homeopathy treatment — from a community health centre or dispensary up to a polyclinic.",
+      "whyItMatters": "AYUSH cover is now standard rather than an add-on, but it is conditional on the facility being registered and meeting the definition. Treatment by an unregistered practitioner, however well regarded, is outside the policy. If you intend to use AYUSH, confirm the centre qualifies before treatment rather than at the claim.",
+      "legalDefinition": "means and includes Community Health Centre (CHC), Primary Health Centre (PHC), Dispensary, Clinic, Polyclinic or any such health centre which is registered with the local authorities, wherever applicable and having facilities for carrying out treatment procedures and medical or surgical / para-surgical interventions or both under the supervision of registered AYUSH Medical Practitioner(s) on day care basis without In-Patient services and must comply with all the following criterion: a. Having qualified registered AYUSH Medical Practitioner(s) in charge; b. Having dedicated AYUSH therapy sections as required and / or has equipped operation theatre where surgical procedures are to be carried out; c. Maintaining daily records of the patients and making them accessible to the insurance company's authorized representative.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "hospital",
+        "day-care-centre",
+        "medical-practitioner",
+        "hospitalization"
+      ]
+    },
+    {
+      "term": "Base Sum Insured",
+      "slug": "base-sum-insured",
+      "url": "https://myinsurancebro.com/glossary/base-sum-insured/",
+      "plain": "The core annual limit on your policy, before any bonus, restoration or top-up is added on.",
+      "whyItMatters": "Comparing plans on the headline cover figure is misleading, because part of it is often bonus or restoration that only exists under conditions. The base sum insured is the like-for-like number, and it is what a fresh claim in a bad year actually draws on first.",
+      "legalDefinition": "means the pre-defined Policy limit applicable for claims made during each Policy Year, as specified against an Insured Person or all Insured Persons in the Policy Schedule and Annexure III - Product Benefit Table.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "sum-insured",
+        "deductible",
+        "co-payment"
+      ]
+    },
+    {
+      "term": "Break in Policy",
+      "slug": "break-in-policy",
+      "url": "https://myinsurancebro.com/glossary/break-in-policy/",
+      "plain": "A gap between one policy period ending and the next beginning, because the premium was not paid in time.",
+      "whyItMatters": "The practical damage is the loss of continuity credit. Waiting periods you have already served can reset, and the insurer can re-underwrite you at your current age and health — which is a materially worse position than the one you were in the week before.",
+      "legalDefinition": "means the period of gap that occurs at the end of the existing policy term/installment premium due date, when the premium due for renewal on a given policy or installment premium due is not paid on or before the premium renewal date or grace period.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "grace-period",
+        "renewal",
+        "waiting-period",
+        "portability"
+      ]
+    },
+    {
+      "term": "Co-Payment",
+      "slug": "co-payment",
+      "url": "https://myinsurancebro.com/glossary/co-payment/",
+      "plain": "A share of every approved claim that you pay yourself, as a fixed percentage. If your policy has a 20% co-pay and the hospital bill is ₹1 lakh, the insurer pays ₹80,000 and you pay ₹20,000.",
+      "whyItMatters": "A co-pay applies to every claim, forever — it is not a one-off excess. It is the most common reason a policy that looked cheap turns out not to be, and it is often attached quietly to senior-citizen plans and to cheaper variants of otherwise good ones. Check for it before you compare premiums, because a plan with a co-pay is not comparable to one without.",
+      "legalDefinition": "means a cost sharing requirement under a health insurance policy that provides that the Policyholder / Insured will bear a specified percentage of the admissible claims amount. A co-payment does not reduce the Sum Insured.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "deductible",
+        "sum-insured",
+        "room-rent",
+        "waiting-period"
+      ]
+    },
+    {
+      "term": "Day Care Centre",
+      "slug": "day-care-centre",
+      "url": "https://myinsurancebro.com/glossary/day-care-centre/",
+      "plain": "A registered medical facility set up for day-care treatment, with qualified staff and a supervising medical practitioner, but without in-patient beds.",
+      "whyItMatters": "It matters because a claim can be refused on where treatment happened rather than what it was. A procedure done in a clinic that does not meet this definition may fall outside the policy even though the same procedure in a qualifying centre is covered.",
+      "legalDefinition": "means any institution established for day care treatment of illness and / or injuries or a medical set-up with a hospital and which has been registered with the local authorities, wherever applicable, and is under the supervision of a registered and qualified medical practitioner and must comply with all minimum criterion as under: a. Has qualified nursing staff under its employment; b. Has qualified medical practitioner/s in charge; c. Has fully equipped operation theatre of its own where surgical procedures are carried out; d. Maintains daily records of patients and will make these accessible to the insurance company's authorized personnel.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "day-care-treatment",
+        "hospitalization",
+        "network-provider"
+      ]
+    },
+    {
+      "term": "Day Care Treatment",
+      "slug": "day-care-treatment",
+      "url": "https://myinsurancebro.com/glossary/day-care-treatment/",
+      "plain": "A procedure needing hospital or day-care facilities but taking less than 24 hours. Cataract surgery and dialysis are typical — medical advances made them fast enough not to need an overnight stay.",
+      "whyItMatters": "Older policies only paid out if you were admitted for a full 24 hours, which quietly excluded a growing share of modern treatment. Any policy worth buying now covers day care, but the list of which procedures count still varies, and it is in the wording rather than the brochure.",
+      "legalDefinition": "means medical treatment, and / or surgical procedure which is a. Undertaken under General or Local Anaesthesia in a hospital/day care centre in less than 24 hours because of technological advancement, and b. Which would have otherwise required hospitalization of more than 24 hours. Treatment normally taken on an out-patient basis is not included in the scope of this definition.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "hospitalization",
+        "in-patient-care",
+        "day-care-centre",
+        "opd-treatment"
+      ]
+    },
+    {
+      "term": "Deductible",
+      "slug": "deductible",
+      "url": "https://myinsurancebro.com/glossary/deductible/",
+      "plain": "An amount you cover yourself before the policy starts paying at all. Below it, the insurer pays nothing; above it, they pay the rest.",
+      "whyItMatters": "This is the mechanism behind super top-up plans: you accept a high deductible — say ₹5 lakh — in exchange for a much cheaper premium on a large cover, and you rely on a base policy or your savings to bridge the gap underneath. It only works if that bridge actually exists. A deductible with nothing under it is just an uninsured first ₹5 lakh.",
+      "legalDefinition": "means a cost-sharing requirement under a health insurance policy that provides that the insurer will not be liable for a specified rupee amount in case of indemnity policies and for a specified number of days / hours in case of hospital cash policies which will apply before any benefits are payable by the insurer. A deductible does not reduce the Sum Insured. The deductible is separate from any Aggregate Deductible that may be in-force and applicable under the Policy, as specified in the Policy Schedule.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "co-payment",
+        "sum-insured",
+        "base-sum-insured"
+      ]
+    },
+    {
+      "term": "Dental Treatment",
+      "slug": "dental-treatment",
+      "url": "https://myinsurancebro.com/glossary/dental-treatment/",
+      "plain": "Treatment of the teeth and the structures supporting them — examinations, fillings, crowns, extractions and surgery.",
+      "whyItMatters": "Routine dentistry is excluded by almost every health policy, which surprises people every year. What is usually covered is dental work made necessary by an accident, because that is treated as injury rather than dental care. If dental cover matters to you it has to be bought deliberately.",
+      "legalDefinition": "means a treatment related to teeth or structures supporting teeth including examinations, fillings (where appropriate), crowns, extractions and surgery.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "injury",
+        "opd-treatment",
+        "medically-necessary-treatment"
+      ]
+    },
+    {
+      "term": "Disclosure of information norm",
+      "slug": "disclosure-of-information-norm",
+      "url": "https://myinsurancebro.com/glossary/disclosure-of-information-norm/",
+      "plain": "The clause stating that the policy is void, and premiums forfeited, if information was misrepresented, mis-described or withheld.",
+      "whyItMatters": "This is the legal teeth behind the proposal form. It is not aimed at honest mistakes about detail, but it does mean a deliberately omitted condition can void the entire contract rather than just that one claim. It is the reason to over-disclose rather than under-disclose.",
+      "legalDefinition": "means the policy shall be void and all premium paid hereon shall be forfeited to the Company in the event of misrepresentation, mis-description or non-disclosure of any material fact.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "material-facts",
+        "pre-existing-disease",
+        "notification-of-claim"
+      ]
+    },
+    {
+      "term": "Domiciliary Hospitalization",
+      "slug": "domiciliary-hospitalization",
+      "url": "https://myinsurancebro.com/glossary/domiciliary-hospitalization/",
+      "plain": "Treatment taken at home that would normally have required a hospital bed, either because the patient could not be moved or because no bed was available.",
+      "whyItMatters": "It is a genuine benefit that most people never learn they have. It usually requires the treatment to run beyond three days and to be certified as hospital-grade care, so it does not cover ordinary illness at home — but for elderly patients who cannot safely be moved, it is the clause that turns a refused claim into a paid one.",
+      "legalDefinition": "means medical treatment for an illness / disease / injury which in the normal course would require care and treatment at a hospital but is actually taken while confined at home under any of the following circumstances: a. The condition of the patient is such that he / she is not in a condition to be removed to a hospital, or b. The patient takes treatment at home on account of non-availability of room in a hospital.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "hospitalization",
+        "in-patient-care",
+        "medically-necessary-treatment"
+      ]
+    },
+    {
+      "term": "Emergency Care",
+      "slug": "emergency-care",
+      "url": "https://myinsurancebro.com/glossary/emergency-care/",
+      "plain": "Treatment for something that came on suddenly and needs immediate attention to prevent death or lasting harm.",
+      "whyItMatters": "This is the test that decides whether the network rules bend. In a genuine emergency you go to the nearest capable hospital, in or out of network, and intimate the insurer afterwards rather than before. Insurers do assess whether an admission was truly emergent, so the medical record needs to show the urgency, not just the diagnosis.",
+      "legalDefinition": "means management for an illness or injury which results in symptoms which occur suddenly and unexpectedly, and requires immediate care by a medical practitioner to prevent death or serious long term impairment of the insured person's health.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "hospitalization",
+        "network-provider",
+        "non-network-provider",
+        "notification-of-claim",
+        "ambulance"
+      ]
+    },
+    {
+      "term": "Grace Period",
+      "slug": "grace-period",
+      "url": "https://myinsurancebro.com/glossary/grace-period/",
+      "plain": "A short window after your renewal date in which you can still pay the premium and keep the policy continuous — typically 30 days.",
+      "whyItMatters": "Miss it and the policy lapses. Restarting is not the same as renewing: your waiting periods and pre-existing-disease clock start again from zero, which can undo years of holding cover. Treatment received during the grace period itself is usually not covered either.",
+      "legalDefinition": "means the specified period of time immediately following the premium due date during which premium payment can be made to renew or continue a policy in force without loss of continuity benefits such as waiting periods and coverage of pre-existing diseases. Coverage need not be available during the period for which no premium is received. The grace period for payment of the premium for all types of insurance policies shall be: fifteen days where premium payment mode is monthly and thirty days in all other cases. Coverage is available during the Grace Period, if the premium is paid in instalments during the Policy Period",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "break-in-policy",
+        "renewal",
+        "waiting-period",
+        "portability"
+      ]
+    },
+    {
+      "term": "Hospital",
+      "slug": "hospital",
+      "url": "https://myinsurancebro.com/glossary/hospital/",
+      "plain": "An institution registered with the local authorities as a hospital. Where it is not registered, it must meet minimum standards on beds, round-the-clock qualified nursing, an operation theatre and daily patient records.",
+      "whyItMatters": "A claim can fail on where you were treated rather than what was wrong with you. Small nursing homes and day clinics sometimes do not meet the bed or staffing minimums, and treatment there falls outside the policy even when it was medically correct. If a facility is not in the insurer network, it is worth checking it qualifies before a planned admission.",
+      "legalDefinition": "means any institution established for In-patient care and day care treatment of Illness and / or injuries and which has been registered as a hospital with the local authorities under the Clinical Establishments (Registration and Regulation) Act 2010 or under the enactments specified under the Schedule of Section 56(1) of the said act or complies with all minimum criteria as under: a. Has qualified nursing staff under its employment round the clock; b. Has at least 10 In-patient beds in towns having a population of less than 10,00,000 and at least 15 In-patient beds in all other places; c. Has qualified medical practitioner(s) in charge round the clock; d. Has a fully equipped operation theatre of its own where surgical procedures are carried out; e. Maintains daily records of patients and make these accessible to the insurance company's authorized personnel.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "hospitalization",
+        "day-care-centre",
+        "network-provider",
+        "medical-practitioner"
+      ]
+    },
+    {
+      "term": "Hospitalization",
+      "slug": "hospitalization",
+      "url": "https://myinsurancebro.com/glossary/hospitalization/",
+      "plain": "Being admitted to a hospital as an in-patient for at least 24 consecutive hours — except for procedures on the day-care list, which are covered in less.",
+      "whyItMatters": "The 24-hour rule is the hinge most health claims turn on. An overnight stay for observation may not qualify; a listed day-care procedure lasting two hours does. If a doctor suggests admission, the useful question is not \"how long\" but \"does this qualify\", because that is what the insurer will ask.",
+      "legalDefinition": "means admission in a Hospital for a minimum period of 24 consecutive `In-Patient Care' hours except for specified procedures / treatments, where such admission could be for a period of less than 24 consecutive hours.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "in-patient-care",
+        "day-care-treatment",
+        "room-rent",
+        "domiciliary-hospitalization",
+        "medically-necessary-treatment"
+      ]
+    },
+    {
+      "term": "ICU (Intensive Care Unit) Charges",
+      "slug": "icu-charges",
+      "url": "https://myinsurancebro.com/glossary/icu-charges/",
+      "plain": "What a hospital charges for an intensive-care bed, including the general medical support services provided there.",
+      "whyItMatters": "Some policies cap ICU separately from the ordinary room, and ICU is where bills escalate fastest. A plan with no ordinary room-rent limit but a capped ICU has a limit exactly where you are least able to shop around.",
+      "legalDefinition": "means the amount charged by a Hospital towards ICU expenses which shall include the expenses for ICU bed, general medical support services provided to any ICU patient including monitoring devices, critical care nursing and intensivist charges.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "room-rent",
+        "associated-medical-expenses",
+        "intensive-care-unit",
+        "hospitalization"
+      ]
+    },
+    {
+      "term": "Illness",
+      "slug": "illness",
+      "url": "https://myinsurancebro.com/glossary/illness/",
+      "plain": "A sickness, disease or condition that impairs normal function and needs treatment. It is split into acute conditions that resolve with treatment and chronic ones that persist.",
+      "whyItMatters": "The acute-versus-chronic split does real work. Chronic conditions are the ones that attract waiting periods, exclusions and loadings, and a condition you consider managed rather than ongoing may still be chronic in the insurer terms. It is also why a pre-existing condition has to be declared even when it currently causes you no trouble.",
+      "legalDefinition": "means a sickness or a disease or pathological condition leading to the impairment of normal physiological function and requires medical treatment. a. Acute condition — Acute condition means is a disease, illness or injury that is likely to respond quickly to treatment which aims to return the person to his or her state of health immediately before suffering the disease / illness / injury which leads to full recovery. b. Chronic condition — A chronic condition is defined as a disease, illness, or injury that has one or more of the following characteristics: i. It needs ongoing or long-term monitoring through consultations, examinations, check-ups, and / or tests; ii. It needs ongoing or long-term control or relief of symptoms; iii. It requires rehabilitation for the patient or for the patient to be specially trained to cope with it; iv. It continues indefinitely; v. It recurs or is likely to recur.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "injury",
+        "pre-existing-disease",
+        "waiting-period",
+        "medically-necessary-treatment"
+      ]
+    },
+    {
+      "term": "In-Patient Care",
+      "slug": "in-patient-care",
+      "url": "https://myinsurancebro.com/glossary/in-patient-care/",
+      "plain": "Treatment where you occupy a hospital bed for more than 24 hours for a covered condition.",
+      "whyItMatters": "Almost every benefit in a health policy — room rent, surgeon's fees, ICU, pre- and post-hospitalisation — is triggered by in-patient care. Outpatient treatment usually is not covered at all unless you have bought an OPD benefit separately.",
+      "legalDefinition": "means treatment for which the insured person has to stay in a hospital for more than 24 hours for a covered event.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "hospitalization",
+        "opd-treatment",
+        "day-care-treatment",
+        "room-rent"
+      ]
+    },
+    {
+      "term": "Injury",
+      "slug": "injury",
+      "url": "https://myinsurancebro.com/glossary/injury/",
+      "plain": "Accidental bodily harm caused by external, violent and visible means, certified by a doctor. Illness and disease are specifically excluded from it.",
+      "whyItMatters": "Whether something is an injury or an illness changes what applies. Accidents usually bypass the initial waiting period, so a broken leg in month one is typically covered where a hernia would not be. The external, violent and visible test is also why internal damage with no external cause — a slipped disc lifting a suitcase — is often treated as illness rather than accident.",
+      "legalDefinition": "means accidental physical bodily harm excluding illness or disease solely and directly caused by external, violent and visible and evident means which is verified and certified by a Medical Practitioner.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "illness",
+        "waiting-period",
+        "emergency-care",
+        "hospitalization"
+      ]
+    },
+    {
+      "term": "Intensive Care Unit (ICU)",
+      "slug": "intensive-care-unit",
+      "url": "https://myinsurancebro.com/glossary/intensive-care-unit/",
+      "plain": "A dedicated hospital section with the equipment and specially trained staff for continuous monitoring of critically ill patients.",
+      "whyItMatters": "The definition matters when an insurer decides whether ICU rates applied legitimately. Where a policy caps ICU separately, whether a bed counts as ICU under this definition decides which limit your bill is measured against.",
+      "legalDefinition": "means an identified section, ward or wing of a hospital which is under the constant supervision of a dedicated medical practitioner(s), and which is specially equipped for the continuous monitoring and treatment of patients who are in a critical condition, or require life support facilities and where the level of care and supervision is considerably more sophisticated and intensive than in the ordinary and other wards.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "icu-charges",
+        "room-rent",
+        "hospitalization"
+      ]
+    },
+    {
+      "term": "Material Facts",
+      "slug": "material-facts",
+      "url": "https://myinsurancebro.com/glossary/material-facts/",
+      "plain": "Anything an insurer would want to know when deciding whether to cover you and on what terms — your medical history, habits, occupation and existing policies.",
+      "whyItMatters": "The proposal form is a legal declaration, and this is the standard it is judged against. A claim can be declined years later for a fact left out at the start, even one that had nothing to do with the illness being claimed for. If you are unsure whether something counts, the safe answer is always to disclose it.",
+      "legalDefinition": "means all relevant information sought by the Company in the Proposal Form and other connected documents to enable it to take informed decision in the context of underwriting the risk.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "disclosure-of-information-norm",
+        "pre-existing-disease",
+        "notification-of-claim"
+      ]
+    },
+    {
+      "term": "Medical Advice",
+      "slug": "medical-advice",
+      "url": "https://myinsurancebro.com/glossary/medical-advice/",
+      "plain": "Any consultation or advice from a registered practitioner, including a prescription or a repeat prescription.",
+      "whyItMatters": "This is the quiet half of the pre-existing-disease test. A condition counts as pre-existing if you received medical advice for it in the look-back window — no diagnosis and no treatment required. A consultation about symptoms, or a repeat prescription you barely think about, is enough to make it declarable.",
+      "legalDefinition": "means any consultation or advice from a Medical Practitioner including the issuance of any prescription or follow-up prescription.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "pre-existing-disease",
+        "material-facts",
+        "medical-practitioner",
+        "disclosure-of-information-norm"
+      ]
+    },
+    {
+      "term": "Medical Expenses",
+      "slug": "medical-expenses",
+      "url": "https://myinsurancebro.com/glossary/medical-expenses/",
+      "plain": "Costs you actually and necessarily incurred for treatment on a doctor advice. They are capped twice over: at what you would have paid uninsured, and at what other hospitals nearby charge for the same treatment.",
+      "whyItMatters": "Those two caps are the \"reasonable and customary\" test, and they are how an approved claim still comes back short. If a hospital charges above the local going rate, or prices differently for insured patients, the insurer can pay the customary amount and leave you the difference. It is worth asking a hospital for its cash rate as well as its insurance rate before a planned admission.",
+      "legalDefinition": "means those expenses that an Insured Person has necessarily and actually incurred for medical treatment on account of Illness or Accident on the advice of a Medical Practitioner, as long as these are no more than would have been payable if the Insured Person had not been insured and no more than other hospitals or doctors in the same locality would have charged for the same medical treatment.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "hospitalization",
+        "medically-necessary-treatment",
+        "policy-schedule",
+        "room-rent"
+      ]
+    },
+    {
+      "term": "Medical Practitioner",
+      "slug": "medical-practitioner",
+      "url": "https://myinsurancebro.com/glossary/medical-practitioner/",
+      "plain": "Someone holding a valid registration with a State or national Medical Council, whether allopathic, Indian medicine or homeopathy. They must be acting within the scope of that registration.",
+      "whyItMatters": "Claims are declined over this more often than people expect. Treatment by someone not registered, or by a registered practitioner working outside their field, may not be covered. Most policies also exclude treatment by you or an immediate family member, however qualified they are.",
+      "legalDefinition": "means a person who holds a valid registration from the Medical Council of any State or Medical Council of India or Council for Indian Medicine or for Homeopathy set up by the Government of India or a State Government and is thereby entitled to practice medicine within its jurisdiction; and is acting within the scope and jurisdiction of license. Medical Practitioner who is sharing the same residence as the Insured Person and is a Family Member of the Insured Person are not considered as Medical Practitioner under the scope of this Policy. Medical Practitioner (Definition applicable for the treatment taken outside India) means a licensed medical practitioner acting within the scope of his license and who holds a degree of a recognized institution and is registered by the Authorized Medical Council of the respective country.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "hospital",
+        "medical-advice",
+        "ayush-day-care-centre"
+      ]
+    },
+    {
+      "term": "Medically Necessary Treatment",
+      "slug": "medically-necessary-treatment",
+      "url": "https://myinsurancebro.com/glossary/medically-necessary-treatment/",
+      "plain": "Treatment that is appropriate for your condition, matches accepted medical standards, and is no more extensive or expensive than it needs to be. It must also genuinely have required admission.",
+      "whyItMatters": "This is the test used to trim or refuse a claim after the fact. It is why a hospital stay arranged mainly for convenience, or an admission that could have been an OPD visit, can be cut back at settlement even though the treatment itself was real. It is also the clause that keeps premiums honest for everyone else.",
+      "legalDefinition": "means any treatment, test, medication, or stay in hospital or part of stay in hospital which: a. Is required for the medical management of the illness or injury suffered by the insured; b. Must not exceed the level of care necessary to provide safe, adequate and appropriate medical care in scope, duration or intensity; c. Must have been prescribed by a medical practitioner; d. Must conform to the professional standards widely accepted in international medical practice or by the medical community in India.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "hospitalization",
+        "in-patient-care",
+        "day-care-treatment",
+        "opd-treatment"
+      ]
+    },
+    {
+      "term": "Migration",
+      "slug": "migration",
+      "url": "https://myinsurancebro.com/glossary/migration/",
+      "plain": "Moving to a different policy with the same insurer while keeping the waiting-period credit you have already built up. A group plan to an individual one, or an old product to a current one.",
+      "whyItMatters": "This is the route out of employer group cover when you leave a job. Done at the right moment, the years you spent covered under the group policy still count. Done late, they do not, and you start over as a new customer in your forties instead of your twenties.",
+      "legalDefinition": "means a facility provided to policyholders (including all members under family cover and group policies), to transfer the credits gained for pre-existing diseases and specific waiting periods from one health insurance policy to another with the same insurer.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "portability",
+        "waiting-period",
+        "break-in-policy"
+      ]
+    },
+    {
+      "term": "Network Provider",
+      "slug": "network-provider",
+      "url": "https://myinsurancebro.com/glossary/network-provider/",
+      "plain": "A hospital the insurer has a cashless agreement with. The insurer settles the bill directly, so you do not have to fund it yourself and claim it back afterwards.",
+      "whyItMatters": "Network size matters less than network relevance: what counts is whether the hospitals you would actually use are in it, not how large the number on the brochure is. Check two or three near you before buying. Outside the network you can still claim, but you pay first and wait for reimbursement, which is the difference between an inconvenience and a cash-flow crisis.",
+      "legalDefinition": "means hospitals or health care providers enlisted by an insurer, TPA or jointly by an Insurer and TPA to provide medical services to an insured by a cashless facility.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "non-network-provider",
+        "notification-of-claim",
+        "hospitalization"
+      ]
+    },
+    {
+      "term": "Non-Network Provider",
+      "slug": "non-network-provider",
+      "url": "https://myinsurancebro.com/glossary/non-network-provider/",
+      "plain": "Any hospital or day-care centre the insurer has no cashless agreement with.",
+      "whyItMatters": "You are still covered — but you pay the bill yourself and claim it back, which means finding the money at the worst possible moment and waiting weeks for reimbursement. In a genuine emergency you go to the nearest capable hospital regardless; for anything planned, checking the network first is the difference between an inconvenience and a crisis.",
+      "legalDefinition": "means any hospital, day care centre or other provider that is not part of the network.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "network-provider",
+        "notification-of-claim",
+        "hospitalization"
+      ]
+    },
+    {
+      "term": "Notification of Claim",
+      "slug": "notification-of-claim",
+      "url": "https://myinsurancebro.com/glossary/notification-of-claim/",
+      "plain": "Telling the insurer or their TPA that a claim is coming, through any of the channels the policy recognises.",
+      "whyItMatters": "There are deadlines — commonly 24 hours for an emergency admission and 48 to 72 hours before a planned one — and missing them gives the insurer grounds to question the claim even when the treatment was entirely covered. Intimate first, sort out the paperwork afterwards.",
+      "legalDefinition": "means the process of intimating a claim to the insurer or TPA through any of the recognized modes of communication.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "network-provider",
+        "non-network-provider",
+        "hospitalization",
+        "material-facts"
+      ]
+    },
+    {
+      "term": "OPD Treatment",
+      "slug": "opd-treatment",
+      "url": "https://myinsurancebro.com/glossary/opd-treatment/",
+      "plain": "Treatment where you visit a clinic or hospital for consultation and treatment without being admitted.",
+      "whyItMatters": "Standard health insurance is built for hospitalisation, so routine consultations, tests and medicines are typically excluded. This is the single largest gap between what people expect insurance to do and what it does. If you want day-to-day medical costs covered, it has to be bought deliberately as an add-on.",
+      "legalDefinition": "means the one in which the Insured visits a clinic / hospital or associated facility like a consultation room for diagnosis and treatment based on the advice of a Medical Practitioner. The Insured is not admitted as a day care patient or in-patient.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "in-patient-care",
+        "hospitalization",
+        "day-care-treatment",
+        "medically-necessary-treatment"
+      ]
+    },
+    {
+      "term": "Policy Schedule",
+      "slug": "policy-schedule",
+      "url": "https://myinsurancebro.com/glossary/policy-schedule/",
+      "plain": "The document attached to your policy naming the insured persons, the sum insured, the policy period and the sub-limits your cover is actually subject to.",
+      "whyItMatters": "The wording tells you what the product can do; the schedule tells you what yours does. Waiting periods, co-pays and sub-limits are stated here per policy, which is why two people holding the same product can have materially different cover. When any review — including ours — quotes a figure, your schedule is what overrides it.",
+      "legalDefinition": "means the Policy Schedule attached to and forming part of this Policy specifying the details of the Insured Persons, the Sum Insured, the Policy Period and the Sub-limits to which benefits under the Policy are subject to, including any annexures and /or endorsements, made to or on it from time to time, and if more than one, then the latest in time.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "sum-insured",
+        "co-payment",
+        "waiting-period",
+        "policy-year"
+      ]
+    },
+    {
+      "term": "Policy Year",
+      "slug": "policy-year",
+      "url": "https://myinsurancebro.com/glossary/policy-year/",
+      "plain": "The twelve months running from your commencement date — not the calendar year, and not the financial year.",
+      "whyItMatters": "Every annual limit resets on this clock: your sum insured, your restoration, your health check-up entitlement. Two hospitalisations eleven months apart can fall in the same policy year and share one limit, while two a month apart can straddle the boundary and get a fresh one each. Knowing your commencement date is worth more than it sounds.",
+      "legalDefinition": "means a period of twelve months beginning from the Commencement Date and ending on the last day of such twelve-month period. For the purpose of subsequent years, Policy Year shall mean a period of twelve months commencing from the end of the previous Policy Year and lapsing on the last day of such twelve-month period.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "sum-insured",
+        "renewal",
+        "policy-schedule"
+      ]
+    },
+    {
+      "term": "Portability",
+      "slug": "portability",
+      "url": "https://myinsurancebro.com/glossary/portability/",
+      "plain": "Moving your health policy to a different insurer without losing the waiting periods you have already served.",
+      "whyItMatters": "This is what stops a bad insurer from holding you hostage. You keep your continuity credit, so switching after three years does not mean serving the pre-existing-disease wait again. It has to be started well before renewal — usually 45 days — and the new insurer can still underwrite you, so it is a right to be considered, not a guarantee of acceptance.",
+      "legalDefinition": "means a facility provided to the health insurance policyholders (including all members under family cover), to transfer the credits gained for, pre-existing diseases and specific waiting periods from one insurer to another insurer.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "migration",
+        "break-in-policy",
+        "waiting-period",
+        "pre-existing-disease"
+      ]
+    },
+    {
+      "term": "Post-Hospitalization Medical Expenses",
+      "slug": "post-hospitalization-medical-expenses",
+      "url": "https://myinsurancebro.com/glossary/post-hospitalization-medical-expenses/",
+      "plain": "Follow-up costs after discharge — review consultations, medicines, physiotherapy — for the same condition you were admitted for.",
+      "whyItMatters": "The window is longer than most people expect, often 60 to 180 days, and it is where recovery costs actually land. It is also tied to the same condition: a follow-up for something unrelated that happens to fall inside the window is not covered. Claim it as one file with the hospitalisation, not as an afterthought.",
+      "legalDefinition": "means Medical Expenses incurred during pre-defined number of days immediately after the insured person is discharged from the hospital provided that: a. Such Medical Expenses are for the same condition for which the Insured person's hospitalization was required, and b. The In-patient hospitalization claim for such hospitalization is admissible by the Insurance company.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "pre-hospitalization-medical-expenses",
+        "hospitalization",
+        "medical-expenses"
+      ]
+    },
+    {
+      "term": "Pre-existing disease (PED)",
+      "slug": "pre-existing-disease",
+      "url": "https://myinsurancebro.com/glossary/pre-existing-disease/",
+      "plain": "Any condition you were diagnosed with, or got medical advice or treatment for, in the years before the policy started. Insurers usually look back 36 months, and will not cover it until a waiting period has passed.",
+      "whyItMatters": "This is the single biggest cause of rejected health claims in India, and almost always for the same reason: the condition was not declared on the proposal form. Declaring it does not usually mean refusal — it means a waiting period, a loading, or an exclusion you can see. Not declaring it means the insurer can decline the claim years later, when you need it. Declare everything, including things you consider trivial or long resolved.",
+      "legalDefinition": "means any condition, ailment, injury or disease: a) that is/are diagnosed by a physician not more than 36 months prior to the date of commencement of the policy issued by the insurer; or b) for which medical advice or treatment was recommended by, or received from, a physician, not more than 36 months prior to the date of commencement of the policy.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "waiting-period",
+        "specific-waiting-period",
+        "material-facts",
+        "disclosure-of-information-norm"
+      ]
+    },
+    {
+      "term": "Pre-Hospitalization Medical Expenses",
+      "slug": "pre-hospitalization-medical-expenses",
+      "url": "https://myinsurancebro.com/glossary/pre-hospitalization-medical-expenses/",
+      "plain": "The consultations, tests and medicines you paid for in the days before being admitted. They are covered if they were for the same condition and the hospitalisation claim itself is accepted.",
+      "whyItMatters": "People routinely forget to claim this and lose real money — the GP visit, the scan that found the problem, the blood work. The window is fixed by your policy, commonly 30 or 60 days, and it only opens if the hospitalisation claim is admitted. Keep every receipt from the moment a symptom is investigated, not from the moment you are admitted.",
+      "legalDefinition": "means Medical Expenses incurred during pre-defined number of days preceding the hospitalization of the Insured Person, provided that: a. Such Medical Expenses are incurred for the same condition for which the Insured Person's Hospitalization was required, and b. The In-patient Hospitalization claim for such Hospitalization is admissible by the Insurance Company.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "post-hospitalization-medical-expenses",
+        "hospitalization",
+        "medical-expenses",
+        "notification-of-claim"
+      ]
+    },
+    {
+      "term": "Renewal",
+      "slug": "renewal",
+      "url": "https://myinsurancebro.com/glossary/renewal/",
+      "plain": "Continuing the same policy for another term by paying the premium, keeping everything you have already accrued.",
+      "whyItMatters": "Health policies in India are renewable for life, and an insurer cannot refuse renewal because you claimed. What they can do is reprice the whole product. Renewing on time is what protects your waiting-period credit — the value of a health policy is mostly the years already served on it.",
+      "legalDefinition": "means the terms on which the contract of insurance can be renewed on mutual consent with a provision of grace period for treating the renewal continuous for the purpose of gaining credit for pre-existing diseases, time-bound exclusions and for all Waiting Periods.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "grace-period",
+        "break-in-policy",
+        "portability",
+        "waiting-period"
+      ]
+    },
+    {
+      "term": "Room Rent",
+      "slug": "room-rent",
+      "url": "https://myinsurancebro.com/glossary/room-rent/",
+      "plain": "What the hospital charges per day for your room and board. Many policies cap it, either as a rupee amount or as a percentage of your sum insured.",
+      "whyItMatters": "A room-rent cap does not just limit the room bill. In most Indian hospitals the whole tariff scales with room category, so choosing a room above your limit can proportionately cut what the insurer pays on the surgeon, the anaesthetist and the ICU too. A capped policy can therefore pay far less than you expected on a claim you thought was fully covered. 'No room-rent limit' is worth more than it sounds.",
+      "legalDefinition": "means the amount charged by a Hospital towards Room and Boarding expenses and shall include the associated medical expenses.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "associated-medical-expenses",
+        "icu-charges",
+        "sum-insured",
+        "hospitalization"
+      ]
+    },
+    {
+      "term": "Second Medical Opinion for Major Illness",
+      "slug": "second-medical-opinion-for-major-illness",
+      "url": "https://myinsurancebro.com/glossary/second-medical-opinion-for-major-illness/",
+      "plain": "An independent practitioner reviewing your treating doctor recommendation, at your request. It is an opinion, not a replacement for your doctor care.",
+      "whyItMatters": "It is a free benefit on most policies and it goes almost entirely unused. For a major diagnosis where the proposed treatment is invasive, expensive or irreversible, a second opinion at the insurer cost is straightforwardly worth taking. It does not affect your claim — the insurer would rather fund the opinion than the wrong surgery.",
+      "legalDefinition": "means a procedure where by upon request of the Insured Person, an independent Medical Practitioner reviews and opines on the treating Medical Practitioner's recommendation as to care and treatment of the Insured Person by reviewing Insured Person's medical status and history. Such an opinion shall not be deemed to substitute the Insured Person's physical visit or consultation to an independent Medical Practitioner.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "medically-necessary-treatment",
+        "unproven-experimental-treatment",
+        "medical-practitioner"
+      ]
+    },
+    {
+      "term": "Specific Waiting Period",
+      "slug": "specific-waiting-period",
+      "url": "https://myinsurancebro.com/glossary/specific-waiting-period/",
+      "plain": "A separate waiting period attached to a named list of conditions and procedures. Cataract, hernia and joint replacement are the usual entries, and it applies whether or not you had the condition before.",
+      "whyItMatters": "People are caught out by this because it applies even to conditions that developed after the policy began. The list is in the policy wording, not the brochure, and it varies between insurers more than the headline waiting period does. If you are buying with a planned procedure in mind, this is the clause to read first.",
+      "legalDefinition": "means a period up to 36 months from the commencement of a health insurance policy during which period specified diseases/treatments (except due to an accident) are not covered. On completion of the period, diseases /treatments shall be covered provided the policy has been continuously without any break.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "waiting-period",
+        "pre-existing-disease",
+        "day-care-treatment"
+      ]
+    },
+    {
+      "term": "Sum Insured",
+      "slug": "sum-insured",
+      "url": "https://myinsurancebro.com/glossary/sum-insured/",
+      "plain": "The maximum the insurer will pay in a policy year. Once it is used up, further claims that year come out of your pocket unless the policy restores it.",
+      "whyItMatters": "Most people buy too little of it. The figure that matters is not last year's hospital bill but what the same treatment costs in a decent hospital in your city in ten years, with medical inflation running well ahead of general inflation. A floater shared across a family is also one shared limit, not one each.",
+      "legalDefinition": "means the aggregate limit of indemnity consisting of the Base Sum Insured, Super Reload, Super Credit (if applicable), Cancer Booster (if applicable) and any other benefit or section (if applicable) whose Sum Insured is over and above Base Sum Insured for the Insured Person. It represents the maximum, total and cumulative liability of the Company for any and all claims made under the Policy (under any and all Benefits), in respect of that Insured Person (on Individual basis) or all Insured Persons (on Floater basis) during the Policy Year, as specified against an Insured Person or all Insured Persons in the Policy Schedule. Sum Insured will be utilized as per the following sequence in event of any claim: a. Base Sum Insured followed by; b. Super Credit (if inbuilt / opted and applicable) followed by; c. Super Reload followed by; d. Cancer Booster (if opted and applicable)",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "base-sum-insured",
+        "deductible",
+        "co-payment",
+        "room-rent"
+      ]
+    },
+    {
+      "term": "Surgery or Surgical Procedure",
+      "slug": "surgery-or-surgical-procedure",
+      "url": "https://myinsurancebro.com/glossary/surgery-or-surgical-procedure/",
+      "plain": "A manual or operative procedure to treat illness or injury, correct a defect, diagnose disease or relieve suffering. It has to be performed in a hospital or day-care centre by a registered practitioner.",
+      "whyItMatters": "The place and the practitioner are part of the definition, not incidental to it. A procedure done in a consulting room rather than a qualifying hospital or day-care centre can fall outside cover even though the surgery itself was necessary and competently done.",
+      "legalDefinition": "means manual and / or operative procedure (s) required for treatment of an illness or injury, correction of deformities and defects, diagnosis and cure of diseases, relief from suffering and prolongation of life, performed in a hospital or day care centre by a medical practitioner.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "hospital",
+        "day-care-centre",
+        "day-care-treatment",
+        "medical-practitioner"
+      ]
+    },
+    {
+      "term": "Unproven / Experimental Treatment",
+      "slug": "unproven-experimental-treatment",
+      "url": "https://myinsurancebro.com/glossary/unproven-experimental-treatment/",
+      "plain": "Treatment or drug therapy that is not established medical practice in India.",
+      "whyItMatters": "It is a permanent exclusion, not a waiting period, and it bites hardest in serious illness — exactly when a family is most likely to try something new. A therapy approved abroad but not established practice here can fall outside cover. If a doctor proposes something novel, get the insurer position in writing before starting, not after.",
+      "legalDefinition": "means the treatment including drug experimental therapy which is based on established medical practice in India, is a treatment experimental or unproven.",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "medically-necessary-treatment",
+        "second-medical-opinion-for-major-illness"
+      ]
+    },
+    {
+      "term": "Waiting Period",
+      "slug": "waiting-period",
+      "url": "https://myinsurancebro.com/glossary/waiting-period/",
+      "plain": "A stretch of time at the start of a policy when certain conditions are not covered yet. It runs from the day the policy begins, not from the day you fall ill.",
+      "whyItMatters": "Waiting periods are why insurance has to be bought before you need it rather than when you need it. They pass whether or not you hold a policy, so the cheapest year to start serving them is the earliest one. Buying young is mostly about getting these out of the way while you are healthy.",
+      "legalDefinition": "means a period from the inception of this Policy during which specified diseases / treatments are not covered. On completion of the Waiting Period, diseases / treatments shall be covered provided the Policy has been continuously renewed without any break",
+      "source": {
+        "insurer": "Aditya Birla Health",
+        "document": "Activ One policy wording",
+        "uin": "ADIHLIP27048V022627",
+        "file": "extracted/health-abhi-activ-one-max.txt"
+      },
+      "related": [
+        "pre-existing-disease",
+        "specific-waiting-period",
+        "grace-period",
+        "break-in-policy"
+      ]
+    }
+  ]
+}

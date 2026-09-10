@@ -1,0 +1,91 @@
+<!DOCTYPE html><html lang="en" data-theme="light"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- Applies the saved theme before first paint. This has to be inline and blocking:
+         deferred, the page paints light and then flips, which is worse than not having a
+         toggle. Same `mib-theme` key as js/main.js, so a preference set on the legacy
+         one-pager carries over to the generated pages during the migration. --><script>
+      try {
+        var t = localStorage.getItem('mib-theme')
+        if (t) document.documentElement.setAttribute('data-theme', t)
+      } catch (e) {}
+    </script><title>Super Top-Up vs More Cover | Myinsurancebro</title><meta name="description" content="A super top-up buys a large cover cheaply by making you carry the first slice yourself. When that trade is worth taking, and the deductible detail that decides it."><link rel="canonical" href="https://myinsurancebro.com/guides/super-top-up-vs-higher-cover/"><meta property="og:type" content="website"><meta property="og:site_name" content="Myinsurancebro"><meta property="og:title" content="Super Top-Up vs More Cover | Myinsurancebro"><meta property="og:description" content="A super top-up buys a large cover cheaply by making you carry the first slice yourself. When that trade is worth taking, and the deductible detail that decides it."><meta property="og:url" content="https://myinsurancebro.com/guides/super-top-up-vs-higher-cover/"><meta property="og:image" content="https://myinsurancebro.com/assets/images/og-default.png"><meta property="og:image:alt" content="Myinsurancebro — independent, IRDAI-licensed insurance advice"><meta property="og:locale" content="en_IN"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Super Top-Up vs More Cover | Myinsurancebro"><meta name="twitter:description" content="A super top-up buys a large cover cheaply by making you carry the first slice yourself. When that trade is worth taking, and the deductible detail that decides it."><meta name="twitter:image" content="https://myinsurancebro.com/assets/images/og-default.png"><meta property="article:modified_time" content="2026-09-10T00:00:00.000Z"><!-- §9.1: fonts are self-hosted. Both page types have a text LCP element, so LCP waited
+         on two third-party round-trips — the render-blocking fonts.googleapis.com stylesheet
+         and then the fonts.gstatic.com connection. Same-origin now, and preloadable.
+         Regenerate with site/scripts/fetch-fonts.mjs. --><link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-latin.woff2" crossorigin><link rel="stylesheet" href="/css/fonts.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/components.css"><!-- The Astro-only layer: long-form content pages. The legacy one-pager does not link
+         it, so style.css and components.css stay shared rather than forked. --><link rel="stylesheet" href="/css/pages.css"><script type="application/ld+json">{"@context":"https://schema.org","@type":"InsuranceAgency","@id":"https://myinsurancebro.com/#organization","name":"Myinsurancebro","url":"https://myinsurancebro.com","description":"IRDAI-licensed independent insurance advisory in India. Data-led comparison of term life and health insurance plans, scored against IRDAI claim-settlement and grievance disclosures.","areaServed":{"@type":"Country","name":"India"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://myinsurancebro.com/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://myinsurancebro.com/guides/"},{"@type":"ListItem","position":3,"name":"Super Top-Up vs More Cover","item":"https://myinsurancebro.com/guides/super-top-up-vs-higher-cover/"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Super top-up or just buy more cover?","description":"A super top-up buys a large cover cheaply by making you carry the first slice yourself. When that trade is worth taking, and the deductible detail that decides it.","datePublished":"2026-09-10T00:00:00.000Z","dateModified":"2026-09-10T00:00:00.000Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://myinsurancebro.com/guides/super-top-up-vs-higher-cover/"},"author":{"@id":"https://myinsurancebro.com/#organization"},"publisher":{"@id":"https://myinsurancebro.com/#organization"}}</script></head> <body> <header class="navbar" id="navbar" data-astro-chrome> <div class="container"> <a href="/" class="nav-brand"> <img src="/assets/images/my-insurance-bro-logo.png" alt="Myinsurancebro Logo" width="134" height="136"> <span>Myinsurancebro</span> </a> <nav class="nav-links" id="navLinks"> <a href="/methodology/"> How we score </a><a href="/#claim-support"> Claim Support </a><a href="/#faq"> FAQ </a> </nav> <div class="nav-right"> <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button> <a href="/#cta" class="btn btn-primary btn-sm" id="navCta">Get Free Advice</a> <button class="hamburger" id="hamburger" aria-label="Toggle menu"> <span></span> <span></span> <span></span> </button> </div> </div> <div class="mobile-drawer" id="mobileDrawer"> <a href="/methodology/">How we score</a><a href="/#claim-support">Claim Support</a><a href="/#faq">FAQ</a> <a href="/#cta" class="btn btn-primary">Get Free Advice</a> </div> </header> <script type="module">const l=document.getElementById("navbar"),o=document.getElementById("hamburger"),n=document.getElementById("mobileDrawer"),c=document.getElementById("themeToggle"),s=document.documentElement;if(l){const e=()=>l.classList.toggle("scrolled",window.scrollY>60);window.addEventListener("scroll",e,{passive:!0}),e()}if(o&&n){const e=()=>{o.classList.remove("active"),n.classList.remove("open"),document.body.style.overflow=""};o.addEventListener("click",()=>{const t=n.classList.toggle("open");o.classList.toggle("active",t),document.body.style.overflow=t?"hidden":""}),n.querySelectorAll("a").forEach(t=>t.addEventListener("click",e))}if(c){const e=()=>{c.textContent=s.getAttribute("data-theme")==="dark"?"☀️":"🌙"};e(),c.addEventListener("click",()=>{const t=s.getAttribute("data-theme")==="dark"?"light":"dark";s.setAttribute("data-theme",t),e();try{localStorage.setItem("mib-theme",t)}catch{}})}</script> <main>  <article class="plan-page guide"> <nav class="breadcrumbs" aria-label="Breadcrumb"> <ol> <li><a href="/">Home</a></li> <li><a href="/guides/">Guides</a></li> <li><span aria-current="page">Super Top-Up vs More Cover</span></li> </ol> </nav> <h1>Super top-up or just buy more cover?</h1> <p class="guide-meta"> <time datetime="2026-09-10T00:00:00.000Z">10 September 2026</time>  </p>  <p class="answer-block">A super top-up is cheaper than the same cover bought outright because you accept a deductible — a first slice you cover yourself every year. It only works if something actually funds that slice, and the aggregate wording is what makes it worth having over a plain top-up.</p> <div class="guide-body"> <p>Raising a health policy from ₹10 lakh to ₹50 lakh costs a lot. Adding a ₹40 lakh super top-up
+above a ₹10 lakh deductible costs a fraction of it, and leaves you covered to roughly the same
+ceiling.</p>
+<p>That is a real saving, not a trick. But it depends entirely on one question, and most people
+buying a super top-up never ask it.</p>
+<h2 id="how-the-deductible-works">How the deductible works</h2>
+<p>A <strong>deductible</strong> is an amount you carry before the policy pays anything. Below it, the insurer
+pays nothing at all. Above it, the top-up pays.</p>
+<p>So a ₹40 lakh super top-up with a ₹10 lakh deductible does nothing whatsoever for a ₹6 lakh
+hospital bill. It is not that it pays a share — it pays nothing. Your base policy, or your bank
+account, handles the entire claim.</p>
+<p>That is the trade. You are not buying cheaper insurance; you are buying insurance that starts
+later.</p>
+<h2 id="the-word-that-matters-aggregate">The word that matters: aggregate</h2>
+<p>This is the distinction between a plain top-up and a super top-up, and it is worth more than
+the price difference.</p>
+<p>A <strong>plain top-up</strong> applies its deductible <strong>per claim</strong>. Three separate ₹4 lakh hospitalisations
+in one year, against a ₹5 lakh deductible, and each one is measured separately — none of them
+clears the bar, so the top-up pays nothing on any of them.</p>
+<p>A <strong>super top-up</strong> applies an <strong>annual aggregate deductible</strong>. The wording is explicit that the
+test is whether claims in the policy year, taken together, exceed the deductible. Those same
+three ₹4 lakh admissions total ₹12 lakh, clear the ₹5 lakh bar, and the top-up pays the excess.</p>
+<p>Chronic conditions and bad years produce multiple admissions far more often than one enormous
+one. Aggregate is what makes the product work in the situation you would actually claim in.</p>
+<p>Some wordings also offer a <strong>term aggregate deductible</strong>, measured across the whole policy
+period rather than each policy year. On a multi-year policy that is more generous still —
+check which one your schedule states, because the two are not interchangeable.</p>
+<h2 id="when-a-super-top-up-is-the-right-buy">When a super top-up is the right buy</h2>
+<p><strong>It works when the deductible is genuinely funded.</strong> That means either:</p>
+<ul>
+<li>A base health policy whose sum insured is at least the deductible, so the two interlock with
+no gap; or</li>
+<li>Employer group cover that reliably covers that slice — with the caveat that group cover ends
+with the job; or</li>
+<li>Cash you would actually be willing to spend, not cash you theoretically have</li>
+</ul>
+<p><strong>It fails when nothing sits underneath.</strong> A ₹5 lakh deductible with no base policy is not a
+cheap ₹50 lakh cover. It is an uninsured first ₹5 lakh every single year, dressed as insurance.</p>
+<h2 id="when-to-just-raise-the-base-cover-instead">When to just raise the base cover instead</h2>
+<ul>
+<li><strong>When the numbers are close.</strong> Below roughly ₹15–20 lakh of total cover, the premium saving
+is often too small to be worth managing two policies and two claim processes.</li>
+<li><strong>When you would otherwise leave a gap.</strong> Two interlocking policies mean two sets of
+paperwork at the worst possible moment. One larger policy has one.</li>
+<li><strong>When your base policy is weak.</strong> A super top-up over a policy with a restrictive room-rent
+cap inherits that weakness on every claim under the deductible — which is most of them.</li>
+</ul>
+<h2 id="the-checks-worth-making-before-you-buy">The checks worth making before you buy</h2>
+<ol>
+<li><strong>Is the deductible aggregate, and annual or term?</strong> It is in the policy schedule.</li>
+<li><strong>Does the base policy’s sum insured match the deductible?</strong> A ₹5 lakh base under a ₹10 lakh
+deductible leaves you exposed for ₹5 lakh in the middle.</li>
+<li><strong>Do both policies count the same things?</strong> If the base pays a claim and the top-up measures
+the deductible differently, the arithmetic can leave a shortfall.</li>
+<li><strong>Is there a co-pay on either?</strong> A co-pay applies on top of a deductible, not instead of it.</li>
+<li><strong>What happens when the group cover goes?</strong> If your employer’s policy is funding the
+deductible, changing jobs quietly uninsures the bottom slice.</li>
+</ol>
+<p class="guide-cta-note"><p>Read what a <a href="/glossary/deductible/">deductible</a> does in practice, and how it sits
+against your <a href="/glossary/base-sum-insured/">base sum insured</a>.</p></p> </div> <section class="internal-links"> <h2>Terms used in this guide</h2> <ul> <li> <a href="/glossary/base-sum-insured/">Base Sum Insured</a> — The core annual limit on your policy, before any bonus, restoration or top-up is added on.
+</li><li> <a href="/glossary/co-payment/">Co-Payment</a> — A share of every approved claim that you pay yourself, as a fixed percentage.
+</li><li> <a href="/glossary/deductible/">Deductible</a> — An amount you cover yourself before the policy starts paying at all.
+</li><li> <a href="/glossary/policy-year/">Policy Year</a> — The twelve months running from your commencement date — not the calendar year, and not the financial year.
+</li><li> <a href="/glossary/sum-insured/">Sum Insured</a> — The maximum the insurer will pay in a policy year.
+</li> </ul> </section> <section class="sources"> <h2>Sources</h2> <ul> <li> SBI General, Super Top-Up policy wording — Deductible and Annual Aggregate Deductible definitions </li><li> Aditya Birla Health, Activ One policy wording (UIN ADIHLIP27048V022627) — Deductible and Base Sum Insured definitions </li> </ul> </section> <section class="internal-links"> <h2>More guides</h2> <ul> <li> <a href="/guides/cashless-or-reimbursement/">Cashless or reimbursement — what to do at admission</a> </li><li> <a href="/guides/room-rent-limits/">Why a room rent limit costs far more than the room</a> </li><li> <a href="/guides/filling-the-proposal-form/">How to fill a health insurance proposal form without wrecking your claim</a> </li> </ul> </section> <div class="policy-disclaimer"> <p> <strong>Disclaimer:</strong> Figures shown here are compiled from IRDAI annual reports and
+    public grievance disclosures, and from insurer public disclosures and policy wordings. Claim
+    settlement ratios and complaint volumes are three-year averages for FY 2024–26.
+<strong>Premiums are indicative illustrations for the stated profile, not quotes</strong> —
+    your actual premium depends on your age, health, city, habits and underwriting. Scores are
+    Myinsurancebro's own assessment. Always read the official policy document and speak to an
+    advisor before buying. Myinsurancebro is an IRDAI-licensed insurance advisor — we do not
+    manufacture or underwrite any insurance product.
+</p> </div> </article>  </main> <footer class="footer" id="footer"> <div class="container"> <div class="footer-grid"> <div> <div class="footer-brand"> <img src="/assets/images/my-insurance-bro-logo.png" alt="Myinsurancebro" width="134" height="136" loading="lazy" decoding="async"> <span>Myinsurancebro</span> </div> <p class="footer-tagline">
+Your trusted insurance advisory partner. We compare, you choose — with zero spam and
+          lifetime support.
+</p> <p class="footer-parent">A product by Myinsurancebro Advisory LLP</p> </div> <div> <h4>Products</h4> <ul>  </ul> </div> <div> <h4>Resources</h4> <ul> <li><a href="/methodology/">How we score plans</a></li> <li><a href="/guides/">Guides</a></li> <li><a href="/glossary/">Insurance glossary</a></li> <li><a href="/llms.txt">Data for AI assistants</a></li> </ul> </div> <div> <h4>Company</h4> <ul> <li><a href="/#advisor">About us</a></li> <li><a href="/#cta">Contact us</a></li> </ul> </div> </div> <div class="footer-bottom"> <div class="footer-legal"> 
+IRDAI Registered Corporate Agent (Composite) · License No. CA0001 · Valid till 2027<br>
+© 2026 Myinsurancebro Advisory LLP. All Rights Reserved.
+</div> </div> </div> </footer> </body></html>

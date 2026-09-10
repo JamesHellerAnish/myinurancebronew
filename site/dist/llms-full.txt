@@ -1,0 +1,17 @@
+# Myinsurancebro — full plan data
+
+> IRDAI-licensed insurance advisory in India. Independent, data-led comparison of term life
+> and health insurance plans, scored against IRDAI claim-settlement and grievance
+> disclosures. We are an advisor, not an insurer — we do not underwrite any product.
+
+No plan pages are currently published: every record is being re-verified against the
+policy wording before it goes live. See /methodology/ for how plans are scored.
+
+## Notes
+
+- Premiums are indicative illustrations for the stated profiles, not quotes. Your premium
+  depends on age, health, city, habits and underwriting.
+- Scoring: Plan features 45% · Insurer strength 45% · Premium 10%.
+- Claim settlement ratios and complaint volumes are FY 2024–26 (3-year average).
+- Source: IRDAI Annual Report, insurer public disclosures & policy wordings.
+- Figures last verified: August 2026.

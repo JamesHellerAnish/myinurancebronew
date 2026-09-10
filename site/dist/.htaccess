@@ -1,0 +1,67 @@
+# Myinsurancebro — access rules
+#
+# Every directive is wrapped in <IfModule>. An unguarded Require/Header line
+# fails hard when the module is missing and Apache answers 500 for the whole
+# site, so the safe-looking version is the dangerous one.
+
+# Lead data is normally stored above the web root (see lead-store.php). These
+# rules are the fallback for hosts that refuse writes outside public_html:
+# even if leads.json lands here, it must never be downloadable.
+<IfModule mod_authz_core.c>
+    <FilesMatch "^(leads\.json|.*-config\.php|lead-store\.php)$">
+        Require all denied
+    </FilesMatch>
+    <FilesMatch "^\.">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+
+# Apache 2.2 equivalent.
+<IfModule !mod_authz_core.c>
+    <IfModule mod_authz_host.c>
+        <FilesMatch "^(leads\.json|.*-config\.php|lead-store\.php)$">
+            Order allow,deny
+            Deny from all
+        </FilesMatch>
+        <FilesMatch "^\.">
+            Order allow,deny
+            Deny from all
+        </FilesMatch>
+    </IfModule>
+</IfModule>
+
+<IfModule mod_alias.c>
+    RedirectMatch 404 /\.git
+</IfModule>
+
+# PHP-FPM/CGI drops the Authorization header; view-leads.php needs it for Basic auth.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+</IfModule>
+
+# Keep the leads dashboard out of search results.
+<IfModule mod_headers.c>
+    <FilesMatch "^view-leads\.php$">
+        Header always set X-Robots-Tag "noindex, nofollow"
+    </FilesMatch>
+</IfModule>
+
+# ── Canonical URL redirects (added with the Astro migration) ────────────────
+#
+# Everything above this line is the security block — do not edit it (CLAUDE.md
+# invariant 2). This section only canonicalises URLs and is separately guarded.
+#
+# §9.1 asks for "301s from old hash entry points". Those cannot exist: a fragment
+# (/#compare) is never sent to the server, so there is nothing for Apache to match.
+# The old deep links keep working anyway — the anchors they point at still exist on
+# the ported home page, and js/main.js still smooth-scrolls to them.
+#
+# What IS a real duplicate after the migration is /index.html, which serves the same
+# document as /. THE_REQUEST is matched rather than the rewritten path, so this fires
+# only for a literal external request and cannot loop against DirectoryIndex.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+    RewriteRule ^ / [R=301,L]
+</IfModule>

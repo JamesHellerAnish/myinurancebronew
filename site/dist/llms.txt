@@ -1,0 +1,64 @@
+# Myinsurancebro
+
+> IRDAI-licensed insurance advisory in India. Independent, data-led comparison of term life
+> and health insurance plans, scored against IRDAI claim-settlement and grievance
+> disclosures. We are an advisor, not an insurer — we do not underwrite any product.
+
+## Glossary
+
+- [Adventure / Hazardous Sports](/glossary/adventure-hazardous-sports/): Sport or activity involving physical exertion and skill — rock climbing, rafting, motor racing, scuba diving, sky diving and similar.
+- [Ambulance](/glossary/ambulance/): A vehicle run by a licensed provider and equipped to transport and treat someone needing medical attention.
+- [Annual Health Check-up](/glossary/annual-health-check-up/): A package of tests for a general assessment of your health, provided as a benefit.
+- [Associated Medical Expenses](/glossary/associated-medical-expenses/): The charges that ride alongside the room bill — consultation fees, operation theatre, surgical appliances, nursing, anaesthesia, blood and oxygen.
+- [AYUSH Day Care Centre](/glossary/ayush-day-care-centre/): A registered centre providing Ayurveda, Yoga, Unani, Siddha or Homeopathy treatment — from a community health centre or dispensary up to a polyclinic.
+- [Base Sum Insured](/glossary/base-sum-insured/): The core annual limit on your policy, before any bonus, restoration or top-up is added on.
+- [Break in Policy](/glossary/break-in-policy/): A gap between one policy period ending and the next beginning, because the premium was not paid in time.
+- [Co-Payment](/glossary/co-payment/): A share of every approved claim that you pay yourself, as a fixed percentage.
+- [Day Care Centre](/glossary/day-care-centre/): A registered medical facility set up for day-care treatment, with qualified staff and a supervising medical practitioner, but without in-patient beds.
+- [Day Care Treatment](/glossary/day-care-treatment/): A procedure needing hospital or day-care facilities but taking less than 24 hours.
+- [Deductible](/glossary/deductible/): An amount you cover yourself before the policy starts paying at all.
+- [Dental Treatment](/glossary/dental-treatment/): Treatment of the teeth and the structures supporting them — examinations, fillings, crowns, extractions and surgery.
+- [Disclosure of information norm](/glossary/disclosure-of-information-norm/): The clause stating that the policy is void, and premiums forfeited, if information was misrepresented, mis-described or withheld.
+- [Domiciliary Hospitalization](/glossary/domiciliary-hospitalization/): Treatment taken at home that would normally have required a hospital bed, either because the patient could not be moved or because no bed was available.
+- [Emergency Care](/glossary/emergency-care/): Treatment for something that came on suddenly and needs immediate attention to prevent death or lasting harm.
+- [Grace Period](/glossary/grace-period/): A short window after your renewal date in which you can still pay the premium and keep the policy continuous — typically 30 days.
+- [Hospital](/glossary/hospital/): An institution registered with the local authorities as a hospital.
+- [Hospitalization](/glossary/hospitalization/): Being admitted to a hospital as an in-patient for at least 24 consecutive hours — except for procedures on the day-care list, which are covered in less.
+- [ICU (Intensive Care Unit) Charges](/glossary/icu-charges/): What a hospital charges for an intensive-care bed, including the general medical support services provided there.
+- [Illness](/glossary/illness/): A sickness, disease or condition that impairs normal function and needs treatment.
+- [In-Patient Care](/glossary/in-patient-care/): Treatment where you occupy a hospital bed for more than 24 hours for a covered condition.
+- [Injury](/glossary/injury/): Accidental bodily harm caused by external, violent and visible means, certified by a doctor.
+- [Intensive Care Unit (ICU)](/glossary/intensive-care-unit/): A dedicated hospital section with the equipment and specially trained staff for continuous monitoring of critically ill patients.
+- [Material Facts](/glossary/material-facts/): Anything an insurer would want to know when deciding whether to cover you and on what terms — your medical history, habits, occupation and existing policies.
+- [Medical Advice](/glossary/medical-advice/): Any consultation or advice from a registered practitioner, including a prescription or a repeat prescription.
+- [Medical Expenses](/glossary/medical-expenses/): Costs you actually and necessarily incurred for treatment on a doctor advice.
+- [Medical Practitioner](/glossary/medical-practitioner/): Someone holding a valid registration with a State or national Medical Council, whether allopathic, Indian medicine or homeopathy.
+- [Medically Necessary Treatment](/glossary/medically-necessary-treatment/): Treatment that is appropriate for your condition, matches accepted medical standards, and is no more extensive or expensive than it needs to be.
+- [Migration](/glossary/migration/): Moving to a different policy with the same insurer while keeping the waiting-period credit you have already built up.
+- [Network Provider](/glossary/network-provider/): A hospital the insurer has a cashless agreement with.
+- [Non-Network Provider](/glossary/non-network-provider/): Any hospital or day-care centre the insurer has no cashless agreement with.
+- [Notification of Claim](/glossary/notification-of-claim/): Telling the insurer or their TPA that a claim is coming, through any of the channels the policy recognises.
+- [OPD Treatment](/glossary/opd-treatment/): Treatment where you visit a clinic or hospital for consultation and treatment without being admitted.
+- [Policy Schedule](/glossary/policy-schedule/): The document attached to your policy naming the insured persons, the sum insured, the policy period and the sub-limits your cover is actually subject to.
+- [Policy Year](/glossary/policy-year/): The twelve months running from your commencement date — not the calendar year, and not the financial year.
+- [Portability](/glossary/portability/): Moving your health policy to a different insurer without losing the waiting periods you have already served.
+- [Post-Hospitalization Medical Expenses](/glossary/post-hospitalization-medical-expenses/): Follow-up costs after discharge — review consultations, medicines, physiotherapy — for the same condition you were admitted for.
+- [Pre-existing disease (PED)](/glossary/pre-existing-disease/): Any condition you were diagnosed with, or got medical advice or treatment for, in the years before the policy started.
+- [Pre-Hospitalization Medical Expenses](/glossary/pre-hospitalization-medical-expenses/): The consultations, tests and medicines you paid for in the days before being admitted.
+- [Renewal](/glossary/renewal/): Continuing the same policy for another term by paying the premium, keeping everything you have already accrued.
+- [Room Rent](/glossary/room-rent/): What the hospital charges per day for your room and board.
+- [Second Medical Opinion for Major Illness](/glossary/second-medical-opinion-for-major-illness/): An independent practitioner reviewing your treating doctor recommendation, at your request.
+- [Specific Waiting Period](/glossary/specific-waiting-period/): A separate waiting period attached to a named list of conditions and procedures.
+- [Sum Insured](/glossary/sum-insured/): The maximum the insurer will pay in a policy year.
+- [Surgery or Surgical Procedure](/glossary/surgery-or-surgical-procedure/): A manual or operative procedure to treat illness or injury, correct a defect, diagnose disease or relieve suffering.
+- [Unproven / Experimental Treatment](/glossary/unproven-experimental-treatment/): Treatment or drug therapy that is not established medical practice in India.
+- [Waiting Period](/glossary/waiting-period/): A stretch of time at the start of a policy when certain conditions are not covered yet.
+
+## Notes
+
+- Premiums are indicative illustrations for the stated profiles, not quotes. Your premium
+  depends on age, health, city, habits and underwriting.
+- Scoring: Plan features 45% · Insurer strength 45% · Premium 10%.
+- Claim settlement ratios and complaint volumes are FY 2024–26 (3-year average).
+- Source: IRDAI Annual Report, insurer public disclosures & policy wordings.
+- Figures last verified: August 2026.
