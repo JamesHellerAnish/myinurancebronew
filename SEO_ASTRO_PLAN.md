@@ -4,7 +4,7 @@
 **Branch:** `revamp/audience-redesign-and-compare`
 **Status:** Planning complete · Scope locked (§14) · Research done (§16) · Harvest started (§16.7) ·
 **Astro Phase 0 in progress — shell builds, 10 plan pages, §1.2 thesis verified, plan template
-styled and inspected in a browser, robots/llms.txt shipped. See §0b.**
+styled and inspected in a browser, robots/llms.txt shipped. §0a blockers all cleared. See §0b.**
 **Purpose:** Living handover doc. Update it as work proceeds so progress survives a context reset.
 
 ---
@@ -163,9 +163,9 @@ serving `site/dist/`. Build first — it serves the built output, not the source
    the 404s the plan page currently links into, and gives `llms.txt` its hub links.
 2. Decide defect 7 (theme) alongside the header/footer chrome.
 3. Only then: §5 data expansion, which gates everything downstream.
-4. Still open and untouched: all three §0a blockers — the `origin/main` logo merge, the dirty
-   tree, and the 730 KB logo. Nothing in this session touched a logo asset, so they have not
-   started to bite yet. The OG card is deliberately logo-free until the merge lands.
+4. ✅ Done — all three §0a blockers are cleared: committed, merged, logo optimised to 20 KB and
+   consolidated onto one path. The OG card now carries the badge. The chrome work in step 1 has
+   a real logo to point at, at `assets/images/my-insurance-bro-logo.png`.
 
 ### ⚠ Permissions — unresolved
 
@@ -180,15 +180,50 @@ command per call.**
 
 ---
 
-## 0a. ⚠ START HERE — repo state as of 2026-09-10
+## 0a. ✅ RESOLVED — the three blockers are cleared (2026-09-10, later session)
 
-**Three things block a clean start. Deal with them before writing any Astro code.**
+**All three are done. This section is kept as the record of what happened; nothing here blocks.**
 
-> **Status 2026-09-10: all three still open.** The commit in step 1 was declined, so the tree is
-> still dirty and the `origin/main` merge has not happened — which means the 730 KB logo of step 3
-> is not even in the working tree yet (local `assets/images/logo.png` is still the old 23 KB file).
-> Astro scaffolding went ahead anyway (§0b) because none of it touches the logo or the merged files.
-> **The merge must happen before any Astro page references a logo asset.**
+> - **1. The merge landed.** Tree committed as `f2c9ab9`, `origin/main` merged as `717333c`. Clean,
+>   no conflicts, exactly as the dry-run predicted.
+> - **2. The tree was dirty; it is committed.**
+> - **3. The logo is optimised** — and it turned out to be a bigger problem than this section
+>   described. See "The logo, as resolved" below.
+
+### The logo, as resolved
+
+The owner added a **third** variant mid-session — a 4096×4096, 1.25 MB master at
+`assets/images/my-insurance-bro-logo.png` — while `origin/main` carried a 2588×2588, 730 KB copy at
+the **repo root**, and `assets/images/logo.png` held the superseded 23 KB one. All nine references
+on `origin/main` pointed at the root path.
+
+Two things made that untenable beyond the file size. The root path is **not copied into the Astro
+build** — `sync-public.mjs` syncs `css/` and `assets/`, not root-level PNGs — so a root-hosted logo
+would 404 on every generated page. And a 4096 px square badge is a bad `og:image`: every platform
+crops it.
+
+Settled state, owner's call, "canonical in images, optimised":
+
+| Path | What | Size |
+|---|---|---|
+| `assets/images/my-insurance-bro-logo.png` | the mark, 272×272 (2× of 134×136) | **20.4 KB** |
+| `assets/images/apple-touch-icon.png` | 180×180 | 11.4 KB |
+| `assets/images/favicon-192.png` | 192×192 | 12.6 KB |
+| `assets/images/og-default.png` | 1200×630 share card, badge composited top-right | 165 KB |
+| `assets/images/originals/my-insurance-bro-logo-4096.png` | the master — referenced by nothing | 1.25 MB |
+
+`site/scripts/make-logo-sizes.mjs` regenerates the first three from the master; `make-og-image.mjs`
+regenerates the card. `sync-public.mjs` now excludes any directory named `originals/` at any depth,
+so neither the logo master nor the 17.5 MB of portrait originals reaches the deploy.
+
+Deleted as duplicates: the root `my-insurance-bro-logo.png` and `assets/images/logo.png`.
+All 12 references across `index.html`, `default.php` and `view-leads.php` retargeted, and
+`index.html`'s `og:image` — which was a **relative** URL, so no scraper could ever resolve it — is
+now the absolute card URL with `og:image:width`/`height` and an `og:url` beside it.
+
+**Net effect: the logo went from 1.25 MB on every page to 20 KB.**
+
+### The original text of this section follows, for the record
 
 ### 1. 🔴 Your logo commits are NOT on this branch
 

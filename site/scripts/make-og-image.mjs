@@ -14,10 +14,10 @@
  *
  *   node scripts/make-og-image.mjs
  *
- * No logo is drawn: the logo commits on origin/main are unmerged (§0a blocker 1) and the
- * file in the tree is the superseded 23 KB one. Add the mark here once that merge lands.
+ * The badge is composited in from the display-size logo that the pages themselves use, so
+ * the share card cannot drift from the navbar mark.
  */
-import { writeFileSync } from 'node:fs'
+import { writeFileSync, readFileSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import sharp from 'sharp'
@@ -75,7 +75,24 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" 
   </text>
 </svg>`
 
-const png = await sharp(Buffer.from(svg)).png({ compressionLevel: 9 }).toBuffer()
+// The badge, resampled from the master rather than from a display-size copy — this is the
+// one place that wants more than 272 px of it.
+// Top-right corner: the only region no text runs into. The tagline reaches x≈948 at its
+// baseline, so anything larger or lower than this collides with "reviewed honestly".
+const BADGE = 200
+const BADGE_TOP = 56
+const master = join(here, '..', '..', 'assets', 'images', 'originals', 'my-insurance-bro-logo-4096.png')
+
+const badge = await sharp(readFileSync(master))
+  .resize(BADGE, BADGE, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+  .png()
+  .toBuffer()
+
+const png = await sharp(Buffer.from(svg))
+  .composite([{ input: badge, top: BADGE_TOP, left: W - 88 - BADGE }])
+  .png({ compressionLevel: 9 })
+  .toBuffer()
+
 writeFileSync(out, png)
 
 console.log(`[og] wrote ${out} — ${W}×${H}, ${(png.length / 1024).toFixed(1)} KB`)

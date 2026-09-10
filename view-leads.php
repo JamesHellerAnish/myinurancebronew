@@ -17,8 +17,8 @@ if ($config === null) {
     ?>
     <!DOCTYPE html>
     <html lang="en"><head><meta charset="UTF-8"><title>Leads dashboard — setup required</title>
-    <link rel="icon" type="image/png" href="my-insurance-bro-logo.png">
-    <link rel="apple-touch-icon" href="my-insurance-bro-logo.png">
+    <link rel="icon" type="image/png" href="assets/images/favicon-192.png">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
     <style>body{font-family:system-ui,sans-serif;max-width:640px;margin:60px auto;padding:0 20px;line-height:1.6;color:#0f172a}
     code,pre{background:#f1f5f9;border-radius:6px}code{padding:2px 6px}pre{padding:14px;overflow-x:auto;font-size:13px}</style>
     </head><body>
@@ -81,8 +81,8 @@ $leads = mib_read_leads();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <title>Myinsurancebro — Submitted Leads</title>
-    <link rel="icon" type="image/png" href="my-insurance-bro-logo.png">
-    <link rel="apple-touch-icon" href="my-insurance-bro-logo.png">
+    <link rel="icon" type="image/png" href="assets/images/favicon-192.png">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 40px 20px; }
@@ -106,7 +106,7 @@ $leads = mib_read_leads();
     <div class="container">
         <div class="header">
             <div style="display: flex; align-items: center; gap: 12px;">
-                <img src="my-insurance-bro-logo.png" alt="Myinsurancebro Logo" style="height: 36px; width: auto;">
+                <img src="assets/images/my-insurance-bro-logo.png" alt="Myinsurancebro Logo" style="height: 36px; width: auto;">
                 <h1>Form Submissions Dashboard</h1>
             </div>
             <span class="count-badge"><?php echo count($leads); ?> Leads Recorded</span>

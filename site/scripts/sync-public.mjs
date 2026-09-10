@@ -12,7 +12,7 @@
  * Runs automatically via the `prebuild`/`predev` npm hooks.
  */
 import { cpSync, mkdirSync, existsSync, copyFileSync } from 'node:fs'
-import { join, dirname } from 'node:path'
+import { join, dirname, basename } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const here = dirname(fileURLToPath(import.meta.url))
@@ -22,6 +22,16 @@ const publicDir = join(siteRoot, 'public')
 
 /** Directories copied wholesale from the repo root. */
 const DIRS = ['css', 'assets']
+
+/**
+ * Directory names never copied, at any depth.
+ *
+ * `originals/` holds full-resolution masters — the 4096×4096 logo and the 9.8 MB portrait
+ * sources (CLAUDE.md invariant 6). They are the source of truth and belong in the repo, but
+ * nothing on the site requests them, so deploying them would upload megabytes no page reads.
+ * The optimised siblings next to them are what ship.
+ */
+const EXCLUDED_DIRS = new Set(['originals'])
 
 /**
  * Individual files. The PHP endpoints and .htaccess are deliberately listed one by one
@@ -41,7 +51,10 @@ for (const dir of DIRS) {
     skipped.push(dir)
     continue
   }
-  cpSync(from, join(publicDir, dir), { recursive: true })
+  cpSync(from, join(publicDir, dir), {
+    recursive: true,
+    filter: (src) => !EXCLUDED_DIRS.has(basename(src)),
+  })
   copied.push(`${dir}/`)
 }
 

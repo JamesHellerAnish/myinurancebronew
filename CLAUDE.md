@@ -53,6 +53,13 @@ Legacy static site served from Apache/Hostinger `public_html`:
    `ffmpeg -i in.png -vf "crop=W:H:X:Y,scale=800:1000:flags=lanczos" -c:v libwebp -quality 88 out.webp`
 7. **Never invent a person's job title or credentials.** This is an IRDAI-licensed advisory site;
    roles under a real face are a regulated claim. Ship a visible placeholder instead.
+8. **One logo, one path: `assets/images/my-insurance-bro-logo.png`** (272×272, the 2× copy of the
+   134×136 slot). The apple-touch-icon and `rel="icon"` are separate sized files beside it; every
+   page's `og:image` is `assets/images/og-default.png`, the 1200×630 card. The 4096×4096 master
+   lives in `assets/images/originals/` and is referenced by nothing — regenerate the shipped copies
+   with `node site/scripts/make-logo-sizes.mjs` (and the card with `make-og-image.mjs`) after
+   replacing it. Never point a page at the master: it is 1.25 MB for a mark that draws at 134 px.
+   `originals/` is excluded from the deploy by `sync-public.mjs` at any depth.
 
 ## Local preview
 
