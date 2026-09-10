@@ -290,15 +290,87 @@ and must not be hand-edited (CLAUDE.md), so the panel copy has to be authored in
 `js/policy-data.js` and flow through `npm run migrate`. That is the same work as §7's 13 new
 personas, and it should be done once, for all of them, rather than twice.
 
+### CWV measurement — 2026-09-10, the Phase 1a gate
+
+Measured on the built output over `astro preview`, in the browser pane at 1280×900 and at
+375×812. **These are lab numbers on localhost with no throttling and a warm cache — they are
+not field CWV.** Absolute pass/fail needs a throttled run or CrUX data after deploy. What they
+do establish is structure, which is cache-independent.
+
+| Metric | Plan page | Home page | Verdict |
+|---|---|---|---|
+| **CLS** | **0** | **0** (desktop and mobile) | 🟢 Green, and genuinely so — zero shifts recorded, not "small" |
+| **LCP element** | `p.answer-block` — text | hero `<span>` — text | 🟢 Text, not an image |
+| LCP (unthrottled localhost) | **96 ms** | 1,416 ms | plan pages are fast; the home page is not |
+| TTFB / load | 6 ms / 57 ms | 9 ms / 213 ms | static files, as expected |
+| HTML (gz) | 18.9 KB (5.8 KB) | 80.6 KB (20.7 KB) | |
+
+**Render-blocking CSS, every page:** 101.1 KB raw, **19.2 KB gzipped** across style.css,
+components.css and pages.css. Fine.
+
+**Home-page JavaScript:** 114.6 KB raw, **29.2 KB gzipped** — policy-data.js, compare.js,
+main.js. Loaded on the home page only; a plan page still ships none.
+
+#### 🔴 The one blocking problem: `assets/images/chief-advisor.png` is 2.29 MB
+
+§13 predicted this ("a 2.3 MB preloaded hero portrait") and the measurement confirms it is the
+worst thing on the site by an order of magnitude — it is **84% of the entire 2.7 MB asset
+directory**.
+
+| | |
+|---|---|
+| Transferred | **2,341,112 bytes** (measured with `cache: 'reload'`, not estimated) |
+| Natural size | 1471 × 1809 |
+| Displayed | 404 × 505 desktop · **274 × 342 mobile** |
+| Pixels shipped vs needed | **11× desktop**, 2.8× even at 2× mobile DPR |
+| Above the fold on mobile | **Yes** — top edge at y=236 in an 813 px viewport |
+| Loading | `fetchpriority="high"`, not lazy |
+
+What that costs, as transfer time for this one file:
+
+| Connection | Time |
+|---|---|
+| Lighthouse Slow 4G (1.6 Mbps) | **11.7 s** |
+| Typical India 4G (8 Mbps) | 2.3 s |
+| Good 4G/5G (25 Mbps) | 0.7 s |
+
+It is not the LCP element on an unthrottled desktop load — text wins that race locally — but it
+is above the fold on mobile, marked high priority, and it saturates the connection while the
+fonts and CSS the text LCP actually depends on are still arriving. On a throttled connection it
+becomes the LCP element.
+
+**The fix is the recipe the repo already uses** (CLAUDE.md invariant 6, the same treatment the
+two team portraits got): re-encode to WebP at ~880×1080, keep the original in
+`assets/images/originals/`. Expect **~2.29 MB → 60–100 KB**. Not done yet: it changes the hero
+image of the live site, so it is the owner's call — the same call as the logo.
+
+#### 🟡 Fonts are still third-party (defect 4, §9.1)
+
+152 KB of woff2 pulled from `fonts.gstatic.com` behind a render-blocking stylesheet from
+`fonts.googleapis.com`. Both pages' LCP is **text**, so LCP is gated on that third-party
+round-trip — which is exactly why self-hosting them is a CWV task and not cosmetic. Invisible on
+localhost with a warm cache; it will not be invisible in the field.
+
+#### What this means for the gate
+
+The Phase 0 → 1a gate is "site live, CWV green, indexed". Structurally the site is in good
+shape: CLS is a true zero, plan pages render in under 100 ms, and the render-blocking CSS is
+19 KB gzipped. **Two things stand between here and a defensible "green": the 2.29 MB portrait
+and the third-party fonts.** Both are known, both are cheap, and neither needs more pages.
+
+Re-measure after fixing them, and do it against a deployed URL or a throttled run — not
+localhost.
+
 ### Next moves, in order
 
-1. **Authoring pass on the personas** — lift the existing panel copy out of `Personas.astro`
+1. **Fix the two CWV blockers above** — the portrait re-encode and the font self-hosting.
+2. **Authoring pass on the personas** — lift the existing panel copy out of `Personas.astro`
    into `js/policy-data.js`, re-run the migration, then drive the panels from the collection.
    Do it alongside §7's 13 new personas rather than as a separate pass.
-2. Phase 0 is otherwise **complete**: shell, design system, chrome, home, methodology, category
-   hubs, robots/llms.txt, sitemap. The gate to Phase 1a is "site live, CWV green, indexed" —
-   so the next real milestone is a **CWV measurement and a deploy decision**, not more pages.
-3. Then §5 data expansion (Track A), which gates everything downstream. Nothing below Phase 1a
+3. Phase 0 is otherwise **complete**: shell, design system, chrome, home, methodology, category
+   hubs, robots/llms.txt, sitemap. CWV measured (above) — the gate needs those two fixes, then a
+   deploy decision. Not more pages.
+4. Then §5 data expansion (Track A), which gates everything downstream. Nothing below Phase 1a
    should start before the 10 migrated records are verified — a plain `npm run build` still
    publishes zero plan pages by design.
 3. Only then: §5 data expansion, which gates everything downstream.
