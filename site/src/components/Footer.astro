@@ -6,14 +6,15 @@
 // legacy footer is full of `href="#"` placeholders (Motor, Travel, Articles, Careers…) —
 // those are dead links on a one-pager and would become 404s repeated on ~2,900 pages here.
 // This version lists only what exists, and grows as routes ship.
-import { CATEGORY_LABELS, categoryPath } from '../lib/plans'
+import { CATEGORY_LABELS, categoryPath, publishablePlans } from '../lib/plans'
 
 const YEAR = new Date().getFullYear()
 
-const products = (['health', 'term'] as const).map((key) => ({
-  href: `/${categoryPath(key)}/`,
-  label: CATEGORY_LABELS[key],
-}))
+// Same gate as the hubs themselves — see Header.astro.
+const published = await publishablePlans()
+const products = (['health', 'term'] as const)
+  .filter((key) => published.some((plan) => plan.data.category === key))
+  .map((key) => ({ href: `/${categoryPath(key)}/`, label: CATEGORY_LABELS[key] }))
 ---
 
 <footer class="footer" id="footer">
