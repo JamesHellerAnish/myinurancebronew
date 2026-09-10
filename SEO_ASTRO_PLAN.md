@@ -461,6 +461,67 @@ All 38 internal URLs in `dist/` resolve. Six new classes (`.award-grid`, `.award
 `.award-title`, `.verdict-block`, `.verdict-against`, `.risk-block`) were given rules in
 `css/pages.css` **in the same pass as the templates** — §2.1 lesson 4 is exactly this bug.
 
+## 0d. §16.7 harvest advanced + first verification pass — 2026-09-10
+
+**Harvest: 1 → 7 plans extracted.** Six more policy wordings downloaded and converted with the
+documented pipeline (`pdftotext -layout`, no User-Agent spoofing). Plain `curl` works for some
+hosts and not others — that is now recorded per row in `data-raw/manifest.json`:
+
+| Status | Count | Which |
+|---|---:|---|
+| `extracted` | **7** | HDFC ERGO Optima Secure+, ABHI Activ One, SBI Super Health, SBI Super Top-Up, Axis Max Smart Term Plus, Bajaj eTouch II, HDFC Click2Protect |
+| `blocked` | 7 | Care (406), Niva Bupa ×2 (406), HDFC ERGO Optima Restore (406), ICICI Pru (403), Star (no URL) |
+| `pending` | 1 | ABSL Super Term — no source URL found |
+
+### 🔴 The verification pass found the dataset does not match the wordings
+
+**No record was marked `verified`. None of them can be yet, and now there is primary-source
+evidence for why.**
+
+**Every one of the 10 plans carries `entryAge: "18–65 yrs"`.** All ten, health and term, every
+insurer. That is not what per-plan verified data looks like — and the one wording that states it
+unambiguously contradicts it:
+
+> Aditya Birla Activ One, Annexure III Product Benefit Table:
+> **"Entry Age (Adult) — Minimum 18 Years, Maximum: No capping"**
+
+Same plan, second contradiction: the dataset says cover runs **₹5 L – ₹2 Cr**; the wording lists
+Base Sum Insured options of **2 Lacs … 6 Crores**.
+
+Four of the five term plans also share an identical `₹25 L – ₹10 Cr`, and the wordings disagree
+there too — Bajaj eTouch II sells a **cover-to-age-99** option the dataset does not mention, and
+HDFC Click2Protect's wording says the maximum sum assured is **"no maximum limit"** (subject to
+board-approved underwriting), not ₹10 Cr.
+
+What *did* check out on Activ One: PED waiting 3 years, specific-disease waiting 2 years
+(cross-validated against clause D.1.2's "24 months of continuous coverage"), and tenure 1/2/3
+years. So the dataset is not wrong everywhere — which is exactly why it has to be checked field
+by field rather than trusted or discarded wholesale.
+
+### Why the figures were not simply corrected
+
+Two reasons, both worth respecting:
+
+1. **The PDF is the "Activ One" family wording (UIN ADIHLIP27048V022627); the dataset plan is the
+   "MAX" variant.** A family wording is not automatically authoritative for a variant's
+   eligibility limits. Substituting the family's numbers would replace one unverified figure with
+   another.
+2. **`pdftotext -layout` scrambles multi-column eligibility tables.** On the Activ One benefit
+   table the values sit one row above their labels — readable only because clause D.1.2
+   independently confirms the specific-disease figure. The term-plan eligibility tables are worse.
+   Editing a regulated figure off a misaligned text dump is precisely the failure the gate exists
+   to prevent.
+
+Every finding is recorded per row in `manifest.json` under `verification`, with the clause it
+came from, so the next pass starts from evidence rather than repeating the reading.
+
+**Next on this track:** read the 7 extracts field-by-field against §5.2 (ideally the PDFs
+directly, not the text dumps), fill `sources[]` and `lastVerified`, and promote only the records
+that survive. Then re-fetch the 7 blocked wordings via WebFetch, which the README notes saves the
+PDF where curl is refused.
+
+---
+
 ### 🔴 Why Phase 1 is not complete, and Phase 2 cannot start
 
 Phase 1a in §9.4 is ~210 pages and its gate to *begin* is "site live, CWV green, indexed". None
