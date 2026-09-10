@@ -758,3 +758,47 @@ main {
   color: var(--color-text-secondary);
   font-size: var(--text-base);
 }
+
+/* A markdown table in MDX arrives without the .table-scroll wrapper the Astro templates use,
+   so it has to carry its own overflow. `display: block` + `width: max-content` is the standard
+   way to make a table scroll inside its column: the table keeps its natural width and the
+   scrolling happens on the table itself, so a wide comparison table cannot push the whole page
+   sideways on a phone. Verified at 375 px. */
+.guide-body table {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  border-collapse: collapse;
+  font-size: var(--text-base);
+  margin-bottom: var(--space-6);
+}
+
+.guide-body th,
+.guide-body td {
+  padding: var(--space-3) var(--space-5);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.guide-body thead th {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  background: var(--color-surface);
+}
+
+.guide-body tbody tr:last-child th,
+.guide-body tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* Numeric columns read better right-aligned against each other. */
+.guide-body td:not(:first-child) {
+  font-variant-numeric: tabular-nums;
+}

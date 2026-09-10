@@ -30,68 +30,84 @@ The source for every CSR, complaint and solvency figure on the site.
 
 ---
 
-## 2. Bot-blocked insurers
+## 2. Policy wordings still needed — status as of 2026-09-10
 
-These return **403 Forbidden** to any automated fetch. I did not attempt to bypass that.
+**Seven of fifteen are done.** Extracted and committed as .txt: HDFC ERGO Optima Secure+,
+Aditya Birla Activ One, SBI Super Health Platinum Infinite, SBI Super Top-Up, Axis Max Smart
+Term Plus, Bajaj eTouch II, HDFC Click2Protect.
 
-| Insurer | What to get | Filename | Start here |
+Everything below is what I could **not** get. Save each into `data-raw/wordings/` using the
+exact filename in the table — `manifest.json` keys off it, and the folder is gitignored so the
+PDFs never bloat the repo.
+
+### 2a. Refused an automated fetch (HTTP 403 / 406)
+
+The URL is known and correct — the host simply refuses non-browser requests. **Opening these in
+your browser and saving should just work.** I did not spoof a User-Agent to get around the
+block, per the README rule.
+
+| Plan | Insurer | Save as | URL |
 |---|---|---|---|
-| **Star Health** | Senior Citizens Red Carpet — policy wording | `star-red-carpet.pdf` | https://www.starhealth.in/health-insurance/senior-citizens-red-carpet-health-insurance-policy |
-| **Star Health** | Comprehensive, Super Surplus, Assure — wordings | `star-<plan>.pdf` | https://www.starhealth.in — Downloads |
-| **Care Health** *(maybe)* | If `cms.careinsurance.com` also blocks, grab Care Supreme, Supreme Enhance, Care Senior, Care Advantage | `care-<plan>.pdf` | https://www.careinsurance.com/other-downloads.html |
+| Care Supreme | Care Health | `health-care-supreme.pdf` | https://cms.careinsurance.com/cms/public/uploads/download_center/care-supreme---policy-terms-and-conditions.pdf |
+| Supreme Enhance (super top-up) | Care Health | `supertopup-care-supreme-enhance.pdf` | https://cms.careinsurance.com/cms/public/uploads/download_center/supreme-enhance---policy-terms-and-conditions.pdf |
+| ReAssure 2.0 Platinum+ | Niva Bupa | `health-nivabupa-reassure-2-platinum.pdf` | https://www.nivabupa.com/content/dam/nivabupa/PDF/reassure-2-0/ReAssure%202.0%20-%20Policy%20Wording.pdf |
+| Senior First | Niva Bupa | `senior-nivabupa-senior-first.pdf` | https://transactions.nivabupa.com/pages/doc/policy_wording/Senior-First-Policy-Wording.pdf |
+| Optima Restore | HDFC ERGO | `health-hdfcergo-optima-restore.pdf` | https://www.hdfcergo.com/docs/default-source/downloads/policy-wordings/health/optima-restore-revision.pdf |
+| iProtect Smart Plus | ICICI Prudential | `term-icici-iprotect-smart-plus.pdf` | https://www.iciciprulife.com/content/dam/icicipru/brochures/ICICI-Pru-iProtect-Smart-Illustrated-Brochure.pdf |
 
-**Note on Care:** the product pages on `www.careinsurance.com` are 403, but the PDFs sit on
-`cms.careinsurance.com` — a **different host that may not be blocked**. Two URLs are already in
-`manifest.json`; worth testing before you download by hand.
+> ⚠ The ICICI URL is a **brochure**, not a policy wording. If you can find the specimen policy
+> document instead, that is worth more — brochures omit exactly the clauses that matter.
+> Try `iciciprulife.com/content/dam/icicipru/download-centre/specimenpolicy/`.
+
+### 2b. No URL found — needs a human to locate
+
+| Plan | Insurer | Save as | Where to look |
+|---|---|---|---|
+| **Super Term Plan** | Aditya Birla Sun Life | `term-absl-super-term.pdf` | `lifeinsurance.adityabirlacapital.com` → Downloads. **This plan is live in your dataset with no source at all.** |
+| Senior Citizens Red Carpet | Star Health | `senior-star-red-carpet.pdf` | https://www.starhealth.in — Downloads. Whole domain refuses automated fetches. |
+
+### 2c. Naming mismatch to resolve — not a missing file
+
+Your dataset says **HDFC Life Click2Protect Supreme Plus**. HDFC Life's own site lists
+**Click2Protect Super**. I downloaded what the manifest URL pointed at, which is the
+Click2Protect *Super* retail brochure. Please confirm which product you actually recommend —
+the plan page currently publishes a name that may not exist.
 
 ---
 
-## 3. Not found — need a human to locate
+## 3. What each missing document unblocks
 
-I couldn't find a URL for these.
+So you can prioritise rather than fetch all eight.
 
-| Plan | Insurer | Note |
-|---|---|---|
-| **Super Term Plan** | Aditya Birla Sun Life | In your current dataset. Try `lifeinsurance.adityabirlacapital.com` downloads. |
-| Whatever the real HDFC Life term plan is | HDFC Life | ⚠ Your dataset says **Click2Protect Supreme Plus**; HDFC Life's site only shows **Click2Protect Super**. Please confirm which product you actually recommend — this is a naming mismatch, not a missing file. |
-
----
-
-## 4. Term-life: brochures found, wordings not
-
-For term plans I mostly found **marketing brochures**, not policy wordings. Brochures omit exactly
-the clauses that matter — exclusions, suicide clause, revival terms. If you can get the specimen
-policy documents, do:
-
-| Insurer | Where the real wordings live |
+| Document | Unblocks |
 |---|---|
-| ICICI Prudential | `iciciprulife.com/content/dam/icicipru/download-centre/specimenpolicy/` |
-| Bajaj Life | Only found the eTouch **I** policy doc; need **eTouch II** |
-| HDFC Life | Brochure only so far |
-
-**Exception:** Axis Max Life Smart Term Plan Plus — I found the genuine policy document
-(UIN 104N127V02). That one's fine.
-
----
-
-## 5. Bulk-discovery pages (I'll retry these; listed in case they block me too)
-
-These index pages each list many PDFs at once — the efficient route to the remaining ~75 plans.
-`hdfcergo.com/customer-care/downloads/...` already returned 503 on a guessed URL.
-
-- https://www.hdfcergo.com/download/policy-wordings
-- https://transactions.nivabupa.com/pages/downloads.aspx
-- https://www.sbigeneral.in/downloads
-- https://www.adityabirlacapital.com/healthinsurance/downloads
-- https://www.careinsurance.com/other-downloads.html
+| Care Supreme, Niva Bupa ReAssure | **Verifying 2 of the 5 health plans already published.** Highest value — these are live pages. |
+| ABSL Super Term | **Verifying a term plan that currently cites no source whatsoever.** |
+| ICICI specimen policy | Verifying the 5th term plan properly rather than from a brochure. |
+| Optima Restore, Supreme Enhance, Senior First, Star Red Carpet | **Phase 1b** — the Tier A categories (super top-up, senior health). Not needed for Phase 1a. |
+| **Any additional wording, any insurer** | **The glossary.** All 61 harvested definitions currently come from a single Aditya Birla document. More wordings means more terms and cross-insurer comparison — see §0e. |
 
 ---
 
-## Not needed — don't waste time
+## 4. Also useful, lower priority
 
-- **Live premium quotes.** Per-profile and volatile. The site correctly shows illustrations, not
-  quotes, so these are generated from your own assumptions, not scraped.
-- **Comparator pages** (PolicyBazaar, PolicyX, Ditto, Scribd). Several search results pointed at
-  mirrored copies of insurer PDFs on comparator S3 buckets. **Don't use them** — the point of this
-  exercise is that every figure traces to the insurer's own document. A mirror may be outdated and
-  you cannot cite it in `sources[]`.
+Wordings for plans **not** in the dataset yet. §5 needs the health roster at ~30 plans before
+Phase 3, and each new wording also feeds the glossary.
+
+| Insurer | Plans worth having |
+|---|---|
+| Star Health | Comprehensive, Super Surplus, Assure |
+| Care Health | Care Senior, Care Advantage |
+| Manipal Cigna | ProHealth Prime |
+| Tata AIG | Medicare Premier |
+
+---
+
+## 5. Format notes
+
+- **PDF is ideal** — I extract with `pdftotext -layout` and commit only the `.txt`.
+- A **scanned** PDF is much less useful: no text layer, and `pdftoppm` is not installed so OCR
+  is not available here. If a download looks like scanned images, say so.
+- **Policy wording beats brochure**, always. Brochures omit exclusions, waiting periods and the
+  suicide/revival clauses on term plans.
+- Filenames must match the tables above exactly.

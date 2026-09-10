@@ -573,8 +573,9 @@ that cites policy wordings is worse than no link at all.
 
 ### Guides — route built, 3 written
 
-`/guides/` and `/guides/[slug]/` ship, backed by an MDX collection. Three guides are written:
-filling the proposal form, room rent limits, and leaving employer health cover. Each one is
+`/guides/` and `/guides/[slug]/` ship, backed by an MDX collection. Seven guides are written: filling the proposal form, room rent limits, leaving employer health
+cover, reading a claim settlement ratio, super top-up vs higher cover, cashless vs
+reimbursement, and the waiting-periods timeline. Each one is
 about a specific way cover fails in practice, not a general introduction, and each is grounded
 in the definitions harvested from the Activ One wording.
 
@@ -585,7 +586,7 @@ rather than `FAQPage` — a guide is one argument, and marking it up as Q&A to c
 result would misrepresent the page. The author is the organisation, not an invented byline
 (invariant 7).
 
-**3 of a planned 120.** These are writing, and the rate is the rate — §1260 calls them the
+**7 of a planned 120.** These are writing, and the rate is the rate — §1260 calls them the
 slowest, highest-value content in the plan. The template and the mesh are done, so each new one
 is an .mdx file and nothing else.
 
