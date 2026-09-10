@@ -802,3 +802,37 @@ main {
 .guide-body td:not(:first-child) {
   font-variant-numeric: tabular-nums;
 }
+
+/* ── Comparison matrix (Phase 3) ─────────────────────── */
+
+.compare-matrix .row-help {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+/* The better value on a row. Colour alone would not carry this for a colour-blind reader, so
+   the weight change does the work and the tint reinforces it. */
+.compare-matrix td.is-better {
+  position: relative;
+  background: var(--color-accent-2-soft);
+  font-weight: 700;
+}
+
+.compare-matrix td.is-better::after {
+  content: '✓';
+  margin-left: var(--space-2);
+  color: var(--color-accent-2);
+  font-weight: 700;
+}
+
+:root[data-theme='dark'] .compare-matrix td.is-better,
+:root:not([data-theme='light']) .compare-matrix td.is-better {
+  background: rgba(18, 181, 165, 0.16);
+}
+
+.compare-matrix thead th a {
+  text-decoration: none;
+}

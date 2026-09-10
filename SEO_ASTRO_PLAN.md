@@ -601,6 +601,60 @@ harvested wordings plus editorial — but the count should follow the writing, n
 
 ---
 
+## 0f. Phase 3 — the comparison tier, 2026-09-10
+
+**`/compare/[category]/[planA]-vs-[planB]/` is built.** 20 pages today (C(5,2) per category ×
+two categories); at the §5 target dataset it is the largest family on the site.
+
+### §13's required mitigation is implemented and proven
+
+§13 rates "A-vs-B and B-vs-A both generated" a **High** risk — it would double the biggest page
+family with pure duplicates, the textbook scaled-content signature. The mitigation it asks for is
+"C(n,2), never n×(n−1)" plus "a build assertion should fail if both directions are ever emitted".
+
+Both are in `src/lib/compare.ts`. `checkedPairs()` is the only sanctioned source of comparison
+paths and runs `assertOneDirection()` on every build.
+
+**Proven, not assumed.** `comparisonPairs()` was temporarily patched to emit both directions,
+and the build failed with:
+
+```
+Both directions of a comparison were generated:
+"activ-one-max-vs-care-supreme" and "care-supreme-vs-activ-one-max".
+```
+
+Then reverted. A separate check over `dist/` confirms 20 pages with no pair emitted twice.
+
+### Not a swapped-variable table
+
+§13 also requires each page carry "a genuine verdict, not a swapped-variable table". The verdict
+prose is **computed from the same `compare-rows.json` matrix the table renders** — which side
+wins each row, how many rows each side takes, which is cheaper — so the words cannot drift from
+the figures. A page whose prose was written independently of its data is exactly the failure
+mode.
+
+Rows are scored only where the row declares a direction and both values are numeric. Text rows
+("Room rent limit: No limit — any room category") are shown side by side with **no winner
+marked**: deciding that one sentence beats another is a judgement, not a measurement, and
+marking it as a win would be an opinion dressed as a data point.
+
+### Bug caught in the first build
+
+The answer block rendered "HDFC ERGO**O**ptima Secure+". Two adjacent expressions separated by a
+space inside a JSX fragment — `{insurer} {name}` — lose the space in Astro's output. The FAQ on
+the same page was correct because it was built from a template string. All prose on the page is
+now composed as strings in the frontmatter, which is immune to it. **Worth knowing before
+writing any more templates.**
+
+### Known, accepted
+
+Two of the 20 titles run 63–64 chars because the plan names are long ("Activ One MAX vs Super
+Health Platinum Infinite"). `assertTitle` warns rather than throws for exactly this case, and
+the distinguishing words come first, so the truncation costs the brand suffix rather than
+meaning. Not worth contorting the copy for.
+
+---
+
 ### 🔴 Why Phase 1 is still not complete
 
 Phase 1a in §9.4 is ~210 pages and its gate to *begin* is "site live, CWV green, indexed". None
