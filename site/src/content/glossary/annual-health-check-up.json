@@ -1,0 +1,18 @@
+{
+  "slug": "annual-health-check-up",
+  "term": "Annual Health Check-up",
+  "definition": "means a package of medical test(s) undertaken for general assessment of health status, excluding any diagnostic or investigative medical tests for evaluation of any Illness.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "A package of tests for a general assessment of your health, provided as a benefit. It specifically excludes tests done to investigate an illness.",
+  "whyItMatters": "It is a benefit most policyholders never claim, and it funds something worth doing anyway. The exclusion matters though: once a symptom is being investigated, those tests are diagnostic rather than a check-up, and they belong in a hospitalisation claim instead — where they are usually covered better.",
+  "related": [
+    "pre-hospitalization-medical-expenses",
+    "policy-year",
+    "opd-treatment"
+  ]
+}

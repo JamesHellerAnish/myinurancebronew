@@ -1,0 +1,113 @@
+{
+  "id": "health-care-supreme",
+  "category": "health",
+  "insurer": "Care Health",
+  "insurerShort": "Care",
+  "name": "Care Supreme",
+  "monogram": "CH",
+  "accent": "#16A34A",
+  "tagline": "Widest network",
+  "subtitle": "Unlimited restoration and 22,000+ cashless hospitals — but the highest complaint volume of the five.",
+  "score": 4.5,
+  "scoreBreakdown": {
+    "features": 4.8,
+    "insurer": 3.9,
+    "premium": 4.5
+  },
+  "metrics": {
+    "csr": 95.45,
+    "complaints": 42.67,
+    "network": 22100,
+    "businessCr": 8404.67
+  },
+  "entryAge": "18–65 yrs",
+  "coverRange": "₹5 L – ₹1 Cr",
+  "tenure": "1–3 years",
+  "restoration": "Unlimited automatic recharge",
+  "bonus": "Up to 100%, extendable to 500% or unlimited via add-on",
+  "roomRent": "No limit on ₹10 L and above",
+  "consumables": "Claim Shield Plus add-on — 146 items",
+  "waiting": {
+    "ped": 3,
+    "specific": 2,
+    "maternity": "Not covered"
+  },
+  "premiums": {
+    "ind25": 15111,
+    "couple": 21528,
+    "family": 27161,
+    "seniors": 78923
+  },
+  "bestFor": [
+    "genz",
+    "newparent"
+  ],
+  "tags": [
+    "22,100+ hospitals",
+    "Unlimited recharge",
+    "Wellness discounts"
+  ],
+  "features": [
+    "Unlimited automatic recharge — your cover resets for both related and unrelated illnesses",
+    "Cumulative bonus of up to 100%, extendable to 500% or unlimited with an add-on",
+    "Claim Shield Plus add-on covers 146 items hospitals normally bill you separately for",
+    "Instant Cover add-on can cut the pre-existing disease wait from 3 years to 30 days",
+    "Wellness tracking earns up to 30% off your renewal premium",
+    "Pre-hospitalisation 60 days, post-hospitalisation 180 days, 400+ daycare procedures"
+  ],
+  "covered": [
+    "In-patient hospitalisation in any room category",
+    "Pre-hospitalisation for 60 days and post-hospitalisation for 180 days",
+    "400+ daycare procedures",
+    "Modern treatments including robotic surgery and balloon sinuplasty",
+    "Organ donor expenses in full",
+    "Second medical opinion from an expert panel",
+    "Emergency treatment overseas"
+  ],
+  "notCovered": [
+    "Pre-existing conditions for the first 3 years, unless you add Instant Cover",
+    "A list of 13 named conditions for the first 2 years",
+    "Maternity and childcare expenses entirely",
+    "Dental treatment unless it follows an accident",
+    "Congenital conditions until year 10",
+    "Experimental or unproven treatment"
+  ],
+  "riders": [
+    "Claim Shield / Claim Shield Plus",
+    "Instant Cover (PED wait reduction)",
+    "Cumulative Bonus Extension",
+    "OPD Cover",
+    "Air Ambulance",
+    "Gym Membership"
+  ],
+  "pros": [
+    "22,100+ cashless hospitals — the widest reach, and it shows in tier-2 and tier-3 cities",
+    "Unlimited automatic recharge is genuinely rare and matters in a bad year",
+    "Instant Cover can cut the pre-existing disease wait to 30 days, which no one else here offers",
+    "Cheaper than HDFC ERGO for families",
+    "The add-on menu is the most flexible of the five"
+  ],
+  "cons": [
+    "42.67 complaints per 10,000 claims — nearly five times HDFC ERGO. This is the headline problem",
+    "95.45% settlement ratio is respectable but trails HDFC ERGO by two full points",
+    "No complimentary annual health check-up",
+    "Consumables need the paid Claim Shield add-on rather than being built in",
+    "Room rent is capped on the ₹5 lakh variant"
+  ],
+  "verdict": "Care Supreme has the better feature sheet and HDFC ERGO has the better claims desk, and which of those you weight more heavily should decide it. The unlimited recharge, the 22,100-hospital network and the Instant Cover add-on are all real advantages, especially if you live outside a metro or have a pre-existing condition you want covered quickly. But 42.67 complaints per 10,000 claims is a number we will not talk you past — it means roughly one in every 234 claims ends up escalated. Buy this for the network and features, with your eyes open about servicing.",
+  "logo": "care.png",
+  "slug": "care-supreme",
+  "insurerSlug": "care-health",
+  "verificationStatus": "migrated",
+  "sources": [
+    {
+      "label": "Care Health — Care Supreme policy wording",
+      "url": "https://cms.careinsurance.com/cms/public/uploads/download_center/care-supreme---policy-terms-and-conditions.pdf"
+    },
+    {
+      "label": "Care Health — Care Supreme product page",
+      "url": "https://www.careinsurance.com/product/care-supreme"
+    }
+  ],
+  "verificationNote": "Migrated from js/policy-data.js. Figures predate the §16.7 primary-source pipeline and have not been re-read against the policy wording. Not publishable until re-verified and signed off (§16.8)."
+}

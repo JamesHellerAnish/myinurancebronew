@@ -1,0 +1,79 @@
+---
+// SEO_ASTRO_PLAN.md §12 step 3 — ported from index.html:1591. Classes match the legacy
+// markup exactly so style.css styles it unchanged.
+//
+// §9.3: the footer is sitewide internal linking, so every href here has to resolve. The
+// legacy footer is full of `href="#"` placeholders (Motor, Travel, Articles, Careers…) —
+// those are dead links on a one-pager and would become 404s repeated on ~2,900 pages here.
+// This version lists only what exists, and grows as routes ship.
+import { CATEGORY_LABELS, categoryPath, publishablePlans } from '../lib/plans'
+
+const YEAR = new Date().getFullYear()
+
+// Same gate as the hubs themselves — see Header.astro.
+const published = await publishablePlans()
+const products = (['health', 'term'] as const)
+  .filter((key) => published.some((plan) => plan.data.category === key))
+  .map((key) => ({ href: `/${categoryPath(key)}/`, label: CATEGORY_LABELS[key] }))
+---
+
+<footer class="footer" id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img
+            src="/assets/images/my-insurance-bro-logo.png"
+            alt="Myinsurancebro"
+            width="134"
+            height="136"
+            loading="lazy"
+            decoding="async"
+          />
+          <span>Myinsurancebro</span>
+        </div>
+        <p class="footer-tagline">
+          Your trusted insurance advisory partner. We compare, you choose — with zero spam and
+          lifetime support.
+        </p>
+        <p class="footer-parent">A product by Myinsurancebro Advisory LLP</p>
+      </div>
+
+      <div>
+        <h4>Products</h4>
+        <ul>
+          {products.map((product) => (
+            <li><a href={product.href}>{product.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="/methodology/">How we score plans</a></li>
+          <li><a href="/guides/">Guides</a></li>
+          <li><a href="/glossary/">Insurance glossary</a></li>
+          <li><a href="/llms.txt">Data for AI assistants</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/#advisor">About us</a></li>
+          <li><a href="/#cta">Contact us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        {/* §11: the licence line is a regulated claim. It is reproduced verbatim from
+            index.html and must not be reworded or extended here. */}
+        IRDAI Registered Corporate Agent (Composite) · License No. CA0001 · Valid till 2027<br />
+        © {YEAR} Myinsurancebro Advisory LLP. All Rights Reserved.
+      </div>
+    </div>
+  </div>
+</footer>

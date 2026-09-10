@@ -1,0 +1,19 @@
+{
+  "slug": "injury",
+  "term": "Injury",
+  "definition": "means accidental physical bodily harm excluding illness or disease solely and directly caused by external, violent and visible and evident means which is verified and certified by a Medical Practitioner.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "Accidental bodily harm caused by external, violent and visible means, certified by a doctor. Illness and disease are specifically excluded from it.",
+  "whyItMatters": "Whether something is an injury or an illness changes what applies. Accidents usually bypass the initial waiting period, so a broken leg in month one is typically covered where a hernia would not be. The external, violent and visible test is also why internal damage with no external cause — a slipped disc lifting a suitcase — is often treated as illness rather than accident.",
+  "related": [
+    "illness",
+    "waiting-period",
+    "emergency-care",
+    "hospitalization"
+  ]
+}

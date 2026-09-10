@@ -1,0 +1,18 @@
+{
+  "slug": "policy-year",
+  "term": "Policy Year",
+  "definition": "means a period of twelve months beginning from the Commencement Date and ending on the last day of such twelve-month period. For the purpose of subsequent years, Policy Year shall mean a period of twelve months commencing from the end of the previous Policy Year and lapsing on the last day of such twelve-month period.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "The twelve months running from your commencement date — not the calendar year, and not the financial year.",
+  "whyItMatters": "Every annual limit resets on this clock: your sum insured, your restoration, your health check-up entitlement. Two hospitalisations eleven months apart can fall in the same policy year and share one limit, while two a month apart can straddle the boundary and get a fresh one each. Knowing your commencement date is worth more than it sounds.",
+  "related": [
+    "sum-insured",
+    "renewal",
+    "policy-schedule"
+  ]
+}

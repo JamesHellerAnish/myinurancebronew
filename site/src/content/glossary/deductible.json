@@ -1,0 +1,18 @@
+{
+  "slug": "deductible",
+  "term": "Deductible",
+  "definition": "means a cost-sharing requirement under a health insurance policy that provides that the insurer will not be liable for a specified rupee amount in case of indemnity policies and for a specified number of days / hours in case of hospital cash policies which will apply before any benefits are payable by the insurer. A deductible does not reduce the Sum Insured. The deductible is separate from any Aggregate Deductible that may be in-force and applicable under the Policy, as specified in the Policy Schedule.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "An amount you cover yourself before the policy starts paying at all. Below it, the insurer pays nothing; above it, they pay the rest.",
+  "whyItMatters": "This is the mechanism behind super top-up plans: you accept a high deductible — say ₹5 lakh — in exchange for a much cheaper premium on a large cover, and you rely on a base policy or your savings to bridge the gap underneath. It only works if that bridge actually exists. A deductible with nothing under it is just an uninsured first ₹5 lakh.",
+  "related": [
+    "co-payment",
+    "sum-insured",
+    "base-sum-insured"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "slug": "post-hospitalization-medical-expenses",
+  "term": "Post-Hospitalization Medical Expenses",
+  "definition": "means Medical Expenses incurred during pre-defined number of days immediately after the insured person is discharged from the hospital provided that: a. Such Medical Expenses are for the same condition for which the Insured person's hospitalization was required, and b. The In-patient hospitalization claim for such hospitalization is admissible by the Insurance company.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "Follow-up costs after discharge — review consultations, medicines, physiotherapy — for the same condition you were admitted for.",
+  "whyItMatters": "The window is longer than most people expect, often 60 to 180 days, and it is where recovery costs actually land. It is also tied to the same condition: a follow-up for something unrelated that happens to fall inside the window is not covered. Claim it as one file with the hospitalisation, not as an afterthought.",
+  "related": [
+    "pre-hospitalization-medical-expenses",
+    "hospitalization",
+    "medical-expenses"
+  ]
+}

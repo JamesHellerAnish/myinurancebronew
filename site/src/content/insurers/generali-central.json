@@ -1,0 +1,12 @@
+{
+  "name": "Generali Central",
+  "slug": "generali-central",
+  "kind": "health",
+  "logo": "generali.png",
+  "accent": "#9F1239",
+  "initials": "GC",
+  "score": 3.66,
+  "csr": 93.5,
+  "complaints": 11.68,
+  "businessCr": 1597.08
+}

@@ -1,0 +1,186 @@
+---
+// /glossary/[term]/ — SEO_ASTRO_PLAN.md §6.2, §9.4 Phase 2, §10.5.
+//
+// The shape of this page is the whole argument for it. Three layers, in this order:
+//   1. the plain-English gloss    — ours, and the answer a person or an assistant wants
+//   2. why it matters at claim time — ours, and the reason to read us rather than a PDF
+//   3. the verbatim legal definition, with the insurer, document and UIN it came from
+//
+// Keeping the legal text last and visibly attributed is deliberate. §1027 says the glossary
+// is not original writing; the honest way to publish someone else's regulated definition is
+// to quote it as a quote and say where it is from, not to paraphrase it into our own voice
+// and let it read as ours.
+import type { GetStaticPaths } from 'astro'
+import { getCollection } from 'astro:content'
+import Base from '../../layouts/Base.astro'
+import Disclaimer from '../../components/seo/Disclaimer.astro'
+import { publishablePlans, planPath, type Plan } from '../../lib/plans'
+import { breadcrumbSchema, definedTermSchema } from '../../lib/schema'
+import { fitDescription, fitTitle } from '../../lib/seo'
+
+export const getStaticPaths = (async () => {
+  const terms = await getCollection('glossary')
+  const plans = await publishablePlans()
+
+  return terms.map((entry) => {
+    const d = entry.data
+
+    // §9.3 wants "3 plans where the term is material". Materiality has to be demonstrable —
+    // a plan listed here on a keyword we guessed at is a fabricated link, worse than none.
+    //
+    // Two honest tests. First: the term names a field the plan actually carries, so every
+    // plan with a value in that field is genuinely governed by it. Second: the plan's own
+    // prose mentions the term. Anything else is inference, and inference does not go on a
+    // page that cites policy wordings.
+    const FIELD_FOR_TERM: Record<string, (plan: Plan) => unknown> = {
+      'room-rent': (plan) => plan.data.roomRent,
+      'sum-insured': (plan) => plan.data.coverRange,
+      'base-sum-insured': (plan) => plan.data.coverRange,
+      'waiting-period': (plan) => plan.data.waiting?.ped,
+      'pre-existing-disease': (plan) => plan.data.waiting?.ped,
+      'specific-waiting-period': (plan) => plan.data.waiting?.specific,
+    }
+
+    const fieldTest = FIELD_FOR_TERM[d.slug]
+    const needle = d.term.toLowerCase()
+    const material = plans
+      .filter((plan) => {
+        if (fieldTest && fieldTest(plan) != null) return true
+
+        const haystack = [
+          plan.data.roomRent,
+          plan.data.restoration,
+          plan.data.bonus,
+          plan.data.consumables,
+          ...plan.data.features,
+          ...plan.data.covered,
+          ...plan.data.notCovered,
+        ]
+          .filter(Boolean)
+          .join(' ')
+          .toLowerCase()
+        return haystack.includes(needle)
+      })
+      .slice(0, 3)
+
+    return {
+      params: { term: d.slug },
+      props: { term: d, related: terms.filter((t) => d.related.includes(t.data.slug)), material },
+    }
+  })
+}) satisfies GetStaticPaths
+
+interface Props {
+  term: {
+    slug: string
+    term: string
+    definition: string
+    source: { insurer: string; document: string; uin: string }
+    plain: string
+    whyItMatters: string
+    related: string[]
+  }
+  related: Array<{ data: { slug: string; term: string; plain: string } }>
+  material: Plan[]
+}
+
+const { term, related, material } = Astro.props
+
+const trail = [
+  { name: 'Home', path: '/' },
+  { name: 'Glossary', path: '/glossary/' },
+  { name: term.term, path: `/glossary/${term.slug}/` },
+]
+
+const pageTitle = fitTitle([
+  `${term.term} — Insurance Term Explained`,
+  `${term.term} in Insurance, Explained`,
+  `${term.term} Explained`,
+  term.term,
+])
+
+// The tails carry information rather than padding: where the definition comes from is a
+// genuine differentiator against the aggregator pages competing for the same query.
+const description = fitDescription(term.plain, [
+  'Plain English, beside the verbatim policy-wording definition.',
+  'Beside the verbatim policy-wording definition.',
+  'With what it means for your claim.',
+  'Explained plainly.',
+])
+---
+
+<Base
+  title={pageTitle}
+  description={description}
+  expectNumber={false}
+  keywords={[
+    `${term.term.toLowerCase()} meaning`,
+    `what is ${term.term.toLowerCase()}`,
+    `${term.term.toLowerCase()} insurance India`,
+  ]}
+  schemas={[breadcrumbSchema(trail), definedTermSchema(term)]}
+>
+  <article class="plan-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/glossary/">Glossary</a></li>
+        <li><span aria-current="page">{term.term}</span></li>
+      </ol>
+    </nav>
+
+    <h1>{term.term}</h1>
+    <p class="plan-subtitle">What it means, and what it does to a claim.</p>
+
+    <p class="answer-block">{term.plain}</p>
+
+    <section>
+      <h2>Why it matters</h2>
+      <p>{term.whyItMatters}</p>
+    </section>
+
+    <section>
+      <h2>The legal definition</h2>
+      <blockquote class="legal-definition">
+        <p><strong>{term.term}</strong> {term.definition}</p>
+        <footer>
+          {term.source.insurer} — {term.source.document}, UIN {term.source.uin}
+        </footer>
+      </blockquote>
+      <p class="methodology-link">
+        Quoted verbatim from an IRDAI-filed policy wording. Definitions are standardised across
+        insurers, but the limits attached to them are not — always read your own policy schedule.
+      </p>
+    </section>
+
+    {material.length > 0 && (
+      <section>
+        <h2>Plans where {term.term.toLowerCase()} matters</h2>
+        <ul>
+          {material.map((plan) => (
+            <li>
+              <a href={planPath(plan)}>{plan.data.insurer} {plan.data.name}</a>
+              {plan.data.roomRent && ` — ${plan.data.roomRent}`}
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {related.length > 0 && (
+      <section class="internal-links">
+        <h2>Related terms</h2>
+        <ul>
+          {related.map((r) => (
+            <li>
+              <a href={`/glossary/${r.data.slug}/`}>{r.data.term}</a> — {r.data.plain.split('.')[0]}.
+            </li>
+          ))}
+        </ul>
+        <p><a href="/glossary/">All glossary terms</a></p>
+      </section>
+    )}
+
+    <Disclaimer />
+  </article>
+</Base>

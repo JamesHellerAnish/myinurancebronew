@@ -1,0 +1,271 @@
+---
+// /compare/[category]/[planA]-vs-[planB]/ — SEO_ASTRO_PLAN.md §6.2, §9.4 Phase 3, §16.5.
+//
+// The largest page family in the plan, and the one §13 rates highest-risk: a comparison tier
+// generated carelessly is a duplicate-content machine. Three things keep it honest:
+//
+//   1. **C(n,2), one direction per pair**, enforced by assertOneDirection() at build time.
+//      Both directions of a pair fails the build rather than shipping duplicates.
+//   2. **A real verdict per pair**, not a swapped-variable table. §13 is explicit that each page
+//      "must carry a genuine verdict, not a swapped-variable table".
+//   3. **Comparisons within a category only.** Comparing a term plan to a health plan is
+//      nonsense, and comparisonPairs() is fed one category at a time.
+import type { GetStaticPaths } from 'astro'
+import Base from '../../../layouts/Base.astro'
+import Disclaimer from '../../../components/seo/Disclaimer.astro'
+import {
+  publishablePlans,
+  plansByCategory,
+  planPath,
+  categoryPath,
+  CATEGORY_LABELS,
+  type Plan,
+  type PlanCategory,
+} from '../../../lib/plans'
+import { checkedPairs, rowsFor, valueAt, formatValue, winnerOf, pairSlug } from '../../../lib/compare'
+import { breadcrumbSchema, faqSchema } from '../../../lib/schema'
+import { fitDescription, fitTitle } from '../../../lib/seo'
+import { complaintsPhrase } from '../../../lib/format'
+
+export const getStaticPaths = (async () => {
+  const all = await publishablePlans()
+  const categories = [...new Set(all.map((p) => p.data.category))]
+
+  const paths = []
+  for (const category of categories) {
+    const plans = await plansByCategory(category)
+    for (const [a, b] of checkedPairs(plans)) {
+      paths.push({
+        params: { category: categoryPath(category), pair: pairSlug(a, b) },
+        props: { category, a, b },
+      })
+    }
+  }
+  return paths
+}) satisfies GetStaticPaths
+
+interface Props {
+  category: PlanCategory
+  a: Plan
+  b: Plan
+}
+
+const { category, a, b } = Astro.props
+const label = CATEGORY_LABELS[category]
+const lower = label.toLowerCase()
+const categoryUrl = `/${categoryPath(category)}/`
+const url = `/compare/${categoryPath(category)}/${pairSlug(a, b)}/`
+
+const rows = rowsFor(category)
+
+// The verdict is computed from the same rows the table shows, so the prose and the matrix can
+// never disagree — the failure mode §13 calls "a swapped-variable table" is precisely a page
+// whose words were written independently of its data.
+const scored = rows.map((row) => ({ row, winner: winnerOf(a, b, row) })).filter((r) => r.winner)
+const aWins = scored.filter((r) => r.winner === 'a')
+const bWins = scored.filter((r) => r.winner === 'b')
+
+const higher = a.data.score >= b.data.score ? a : b
+const lower_ = higher.id === a.id ? b : a
+const tied = a.data.score === b.data.score
+
+const cheaper = (() => {
+  const priceRow = rows.find((r) => r.type === 'rupee')
+  if (!priceRow) return null
+  const av = valueAt(a, priceRow.key)
+  const bv = valueAt(b, priceRow.key)
+  if (typeof av !== 'number' || typeof bv !== 'number' || av === bv) return null
+  return av < bv ? a : b
+})()
+
+// Composed as a string rather than inline JSX. Two adjacent expressions separated by a space
+// inside a fragment — {insurer} {name} — lose the space in the rendered output, which produced
+// "HDFC ERGOOptima Secure+" on the first build. Template strings are immune to it.
+const answer =
+  (tied
+    ? `Both score ${a.data.score}/5. ${a.data.name} leads on ${aWins.length} of the ` +
+      `${scored.length} comparable measures here and ${b.data.name} on ${bWins.length}.`
+    : `We score ${higher.data.insurer} ${higher.data.name} higher at ${higher.data.score}/5 ` +
+      `against ${lower_.data.score}/5, winning ` +
+      `${higher.id === a.id ? aWins.length : bWins.length} of the ${scored.length} comparable ` +
+      `measures.`) +
+  (cheaper ? ` ${cheaper.data.name} is the cheaper of the two on the illustrated profiles.` : '')
+
+const trail = [
+  { name: 'Home', path: '/' },
+  { name: label, path: categoryUrl },
+  { name: `${a.data.name} vs ${b.data.name}`, path: url },
+]
+
+const faqs = [
+  {
+    q: `Which is better, ${a.data.insurer} ${a.data.name} or ${b.data.insurer} ${b.data.name}?`,
+    a: tied
+      ? `They score the same, ${a.data.score}/5. ${a.data.name} leads on ${aWins.length} of the ` +
+        `${scored.length} comparable measures and ${b.data.name} on ${bWins.length}, so the choice ` +
+        `comes down to which of those matter to you.`
+      : `We score ${higher.data.insurer} ${higher.data.name} higher at ${higher.data.score}/5 ` +
+        `against ${lower_.data.score}/5. ${higher.data.verdict}`,
+  },
+  {
+    q: `Which of the two settles more claims?`,
+    a:
+      a.data.metrics.csr === b.data.metrics.csr
+        ? `Both insurers settle ${a.data.metrics.csr}% of claims.`
+        : `${(a.data.metrics.csr > b.data.metrics.csr ? a : b).data.insurer} — ` +
+          `${Math.max(a.data.metrics.csr, b.data.metrics.csr)}% against ` +
+          `${Math.min(a.data.metrics.csr, b.data.metrics.csr)}%. Read it beside complaint volume: ` +
+          `${a.data.insurer} draws ${complaintsPhrase(a.data.metrics.complaints)} per 10,000 claims ` +
+          `and ${b.data.insurer} ${complaintsPhrase(b.data.metrics.complaints)}.`,
+  },
+  ...(cheaper
+    ? [
+        {
+          q: `Which is cheaper?`,
+          a:
+            `${cheaper.data.insurer} ${cheaper.data.name}, on the illustrated profiles in the ` +
+            `table above. Premiums are illustrations for a stated profile, not quotes — your own ` +
+            `depends on age, health, city and underwriting.`,
+        },
+      ]
+    : []),
+]
+
+const pageTitle = fitTitle([
+  `${a.data.name} vs ${b.data.name} Compared`,
+  `${a.data.name} vs ${b.data.name}`,
+])
+
+const description = fitDescription(
+  `${a.data.insurer} ${a.data.name} (${a.data.score}/5) against ${b.data.insurer} ` +
+    `${b.data.name} (${b.data.score}/5) on cover, claims and exclusions.`,
+  ['Side by side, with a verdict.', 'With a verdict.'],
+)
+---
+
+<Base
+  title={pageTitle}
+  description={description}
+  current={category}
+  keywords={[
+    `${a.data.name} vs ${b.data.name}`,
+    `${a.data.insurer} vs ${b.data.insurer}`,
+    `compare ${lower}`,
+  ]}
+  schemas={[breadcrumbSchema(trail), faqSchema(faqs)]}
+>
+  <article class="plan-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href={categoryUrl}>{label}</a></li>
+        <li><span aria-current="page">{a.data.name} vs {b.data.name}</span></li>
+      </ol>
+    </nav>
+
+    <h1>{a.data.insurer} {a.data.name} vs {b.data.insurer} {b.data.name}</h1>
+    <p class="plan-subtitle">
+      Side by side on the figures that decide a claim — and which one we would actually pick.
+    </p>
+
+    <p class="answer-block">{answer}</p>
+
+    <section>
+      <h2>Side by side</h2>
+      <div class="table-scroll">
+        <table class="compare-matrix">
+          <caption>
+            Highlighted cells are the better value on that row. Text rows are shown without a
+            winner — deciding that one wording beats another is a judgement, not a measurement.
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Measure</th>
+              <th scope="col"><a href={planPath(a)}>{a.data.insurer} {a.data.name}</a></th>
+              <th scope="col"><a href={planPath(b)}>{b.data.insurer} {b.data.name}</a></th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => {
+              const winner = winnerOf(a, b, row)
+              return (
+                <tr>
+                  <th scope="row" class="cell-prose">
+                    {row.label}
+                    {row.help && <span class="row-help">{row.help}</span>}
+                  </th>
+                  <td class={winner === 'a' ? 'is-better' : undefined}>
+                    {formatValue(valueAt(a, row.key), row.type)}
+                  </td>
+                  <td class={winner === 'b' ? 'is-better' : undefined}>
+                    {formatValue(valueAt(b, row.key), row.type)}
+                  </td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="pros-cons">
+      <div>
+        <h2>{a.data.name}</h2>
+        <p>{a.data.verdict}</p>
+        <h3>Against it</h3>
+        <ul>{a.data.cons.map((con) => <li>{con}</li>)}</ul>
+      </div>
+      <div>
+        <h2>{b.data.name}</h2>
+        <p>{b.data.verdict}</p>
+        <h3>Against it</h3>
+        <ul>{b.data.cons.map((con) => <li>{con}</li>)}</ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Which one we would pick</h2>
+      <p>
+        {tied
+          ? `On our scoring these two are level at ${a.data.score}/5, and that is the honest answer rather than a hedge.`
+          : `${higher.data.insurer} ${higher.data.name}, on balance — ${higher.data.score}/5 against ${lower_.data.score}/5.`}
+        {' '}Where {a.data.name} is ahead: {aWins.length > 0 ? aWins.map((w) => w.row.label.toLowerCase()).join(', ') : 'none of the comparable measures'}.
+        {' '}Where {b.data.name} is ahead: {bWins.length > 0 ? bWins.map((w) => w.row.label.toLowerCase()).join(', ') : 'none of the comparable measures'}.
+      </p>
+      <p>
+        A score ranks plans on the evidence available; it cannot know your health history, your
+        dependants or which exclusion will matter to you in ten years. Where the two are close,
+        the deciding factor is usually the text rows above — room rent, waiting periods,
+        exclusions — read against your own circumstances.
+      </p>
+      <p class="methodology-link">
+        Scores are plan features 45%, insurer strength 45%, premium 10% —
+        <a href="/methodology/">how we score plans</a>.
+      </p>
+    </section>
+
+    <section>
+      <h2>Frequently asked questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary><h3>{faq.q}</h3></summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <section class="internal-links">
+      <h2>Read the full reviews</h2>
+      <ul>
+        <li><a href={planPath(a)}>{a.data.insurer} {a.data.name} review</a></li>
+        <li><a href={planPath(b)}>{b.data.insurer} {b.data.name} review</a></li>
+      </ul>
+      <p>
+        <a href={`${categoryUrl}best-plans/`}>Best {lower} plans</a> ·
+        <a href={categoryUrl}>All {lower} plans</a>
+      </p>
+    </section>
+
+    <Disclaimer />
+  </article>
+</Base>

@@ -1,0 +1,19 @@
+{
+  "slug": "opd-treatment",
+  "term": "OPD Treatment",
+  "definition": "means the one in which the Insured visits a clinic / hospital or associated facility like a consultation room for diagnosis and treatment based on the advice of a Medical Practitioner. The Insured is not admitted as a day care patient or in-patient.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "Treatment where you visit a clinic or hospital for consultation and treatment without being admitted.",
+  "whyItMatters": "Standard health insurance is built for hospitalisation, so routine consultations, tests and medicines are typically excluded. This is the single largest gap between what people expect insurance to do and what it does. If you want day-to-day medical costs covered, it has to be bought deliberately as an add-on.",
+  "related": [
+    "in-patient-care",
+    "hospitalization",
+    "day-care-treatment",
+    "medically-necessary-treatment"
+  ]
+}

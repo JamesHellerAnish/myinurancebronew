@@ -1,0 +1,32 @@
+---
+// Section 9 — FAQ. Ported from index.html:1344.
+//
+// The markup is the legacy structure unchanged (js/main.js binds .faq-question and toggles
+// .faq-item.active), but the nine questions now come from src/lib/home.ts, which is also
+// what builds the FAQPage JSON-LD on the page. One source, so the schema cannot drift from
+// what a visitor actually reads.
+import { homeFaqs } from '../../lib/home'
+---
+
+<section class="section-padding" id="faq" style="background: var(--color-surface);">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2>Frequently Asked Questions</h2>
+      <p>Got questions? We've got honest answers.</p>
+    </div>
+
+    <div class="faq-list fade-up">
+      {homeFaqs.map((faq) => (
+        <div class="faq-item" id={faq.id}>
+          <button class="faq-question">
+            {faq.q}
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">{faq.a}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

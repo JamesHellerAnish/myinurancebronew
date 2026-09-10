@@ -1,0 +1,149 @@
+---
+// SEO_ASTRO_PLAN.md §12 step 3 — the layout chrome, ported from index.html:205.
+//
+// Class names are copied exactly from the legacy markup so the existing rules in style.css
+// style this with no new CSS. Do not rename them here without changing them there — that
+// divergence is how a design system quietly forks.
+//
+// The one deliberate change is the links. The legacy nav is a one-pager, so every item is a
+// bare `#anchor`; from a generated page at /health-insurance/hdfc-ergo/optima-secure/ that
+// resolves to the wrong document. They are absolute `/#anchor` here.
+import { CATEGORY_LABELS, categoryPath, publishablePlans } from '../lib/plans'
+
+interface Props {
+  /** Marks the current section in the nav. */
+  current?: string
+}
+
+const { current } = Astro.props
+
+// Only the two live categories. The five Tier A hubs are Phase 1b (§9.4) and linking them
+// before they exist would put 404s in the sitewide nav — the worst place to have one.
+//
+// Short labels, written out rather than trimmed off CATEGORY_LABELS: the nav has room for
+// about five items before it wraps, and "Term Life Insurance" does not fit. The full label
+// still governs headings, breadcrumbs and titles.
+const NAV_LABELS: Partial<Record<keyof typeof CATEGORY_LABELS, string>> = {
+  health: 'Health',
+  term: 'Term Life',
+}
+
+// Only categories that actually have publishable plans. The category hubs are generated from
+// the same gate, so linking them unconditionally puts a 404 in the sitewide nav the moment the
+// gate is closed — which is exactly the state a first deploy ships in.
+const published = await publishablePlans()
+const LIVE_CATEGORIES = (['health', 'term'] as const).filter((key) =>
+  published.some((plan) => plan.data.category === key),
+)
+
+const links = [
+  ...LIVE_CATEGORIES.map((key) => ({
+    href: `/${categoryPath(key)}/`,
+    label: NAV_LABELS[key] ?? CATEGORY_LABELS[key],
+    key,
+  })),
+  { href: '/methodology/', label: 'How we score', key: 'methodology' },
+  { href: '/#claim-support', label: 'Claim Support', key: 'claim-support' },
+  { href: '/#faq', label: 'FAQ', key: 'faq' },
+]
+---
+
+{/* data-astro-chrome tells js/main.js that this header's behaviour is already bound by the
+    module below, so it must not bind the navbar and theme toggle a second time. The legacy
+    one-pager has no such attribute and keeps handling its own chrome. */}
+<header class="navbar" id="navbar" data-astro-chrome>
+  <div class="container">
+    <a href="/" class="nav-brand">
+      <img
+        src="/assets/images/my-insurance-bro-logo.png"
+        alt="Myinsurancebro Logo"
+        width="134"
+        height="136"
+      />
+      <span>Myinsurancebro</span>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      {links.map((link) => (
+        <a href={link.href} aria-current={current === link.key ? 'page' : undefined}>
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+      <a href="/#cta" class="btn btn-primary btn-sm" id="navCta">Get Free Advice</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-drawer" id="mobileDrawer">
+    {links.map((link) => <a href={link.href}>{link.label}</a>)}
+    <a href="/#cta" class="btn btn-primary">Get Free Advice</a>
+  </div>
+</header>
+
+<script>
+  // The chrome's behaviour, ported from js/main.js sections 1 and 2. Only the parts the
+  // chrome itself needs — the persona tabs, counters and booking modal stay in main.js on
+  // the legacy page, and become islands when the home page is ported.
+  //
+  // Astro bundles and defers this, so it is one small module shared by every page. It is
+  // also the only JavaScript a generated page ships; everything else is still static HTML.
+  const navbar = document.getElementById('navbar')
+  const hamburger = document.getElementById('hamburger')
+  const drawer = document.getElementById('mobileDrawer')
+  const themeToggle = document.getElementById('themeToggle')
+  const html = document.documentElement
+
+  // Transparent → solid on scroll.
+  if (navbar) {
+    const onScroll = () => navbar.classList.toggle('scrolled', window.scrollY > 60)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+  }
+
+  if (hamburger && drawer) {
+    const closeDrawer = () => {
+      hamburger.classList.remove('active')
+      drawer.classList.remove('open')
+      document.body.style.overflow = ''
+    }
+
+    hamburger.addEventListener('click', () => {
+      const open = drawer.classList.toggle('open')
+      hamburger.classList.toggle('active', open)
+      document.body.style.overflow = open ? 'hidden' : ''
+    })
+
+    drawer.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeDrawer))
+  }
+
+  // The theme itself is applied by the inline script in Base.astro before first paint;
+  // this only handles the toggle and keeps the icon in sync with it.
+  if (themeToggle) {
+    const setIcon = () => {
+      themeToggle.textContent = html.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙'
+    }
+
+    setIcon()
+
+    themeToggle.addEventListener('click', () => {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
+      html.setAttribute('data-theme', next)
+      setIcon()
+      // Same storage key as js/main.js, so the preference carries between the legacy
+      // one-pager and the generated pages during the migration.
+      try {
+        localStorage.setItem('mib-theme', next)
+      } catch {
+        /* private mode — the toggle still works for this page view */
+      }
+    })
+  }
+</script>

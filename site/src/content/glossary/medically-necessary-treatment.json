@@ -1,0 +1,19 @@
+{
+  "slug": "medically-necessary-treatment",
+  "term": "Medically Necessary Treatment",
+  "definition": "means any treatment, test, medication, or stay in hospital or part of stay in hospital which: a. Is required for the medical management of the illness or injury suffered by the insured; b. Must not exceed the level of care necessary to provide safe, adequate and appropriate medical care in scope, duration or intensity; c. Must have been prescribed by a medical practitioner; d. Must conform to the professional standards widely accepted in international medical practice or by the medical community in India.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "Treatment that is appropriate for your condition, matches accepted medical standards, and is no more extensive or expensive than it needs to be. It must also genuinely have required admission.",
+  "whyItMatters": "This is the test used to trim or refuse a claim after the fact. It is why a hospital stay arranged mainly for convenience, or an admission that could have been an OPD visit, can be cut back at settlement even though the treatment itself was real. It is also the clause that keeps premiums honest for everyone else.",
+  "related": [
+    "hospitalization",
+    "in-patient-care",
+    "day-care-treatment",
+    "opd-treatment"
+  ]
+}

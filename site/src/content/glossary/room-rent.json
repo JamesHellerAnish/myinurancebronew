@@ -1,0 +1,19 @@
+{
+  "slug": "room-rent",
+  "term": "Room Rent",
+  "definition": "means the amount charged by a Hospital towards Room and Boarding expenses and shall include the associated medical expenses.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "What the hospital charges per day for your room and board. Many policies cap it, either as a rupee amount or as a percentage of your sum insured.",
+  "whyItMatters": "A room-rent cap does not just limit the room bill. In most Indian hospitals the whole tariff scales with room category, so choosing a room above your limit can proportionately cut what the insurer pays on the surgeon, the anaesthetist and the ICU too. A capped policy can therefore pay far less than you expected on a claim you thought was fully covered. 'No room-rent limit' is worth more than it sounds.",
+  "related": [
+    "associated-medical-expenses",
+    "icu-charges",
+    "sum-insured",
+    "hospitalization"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "slug": "base-sum-insured",
+  "term": "Base Sum Insured",
+  "definition": "means the pre-defined Policy limit applicable for claims made during each Policy Year, as specified against an Insured Person or all Insured Persons in the Policy Schedule and Annexure III - Product Benefit Table.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "The core annual limit on your policy, before any bonus, restoration or top-up is added on.",
+  "whyItMatters": "Comparing plans on the headline cover figure is misleading, because part of it is often bonus or restoration that only exists under conditions. The base sum insured is the like-for-like number, and it is what a fresh claim in a bad year actually draws on first.",
+  "related": [
+    "sum-insured",
+    "deductible",
+    "co-payment"
+  ]
+}

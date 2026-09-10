@@ -1,0 +1,13 @@
+{
+  "name": "Bajaj Life",
+  "slug": "bajaj-life",
+  "kind": "life",
+  "logo": "bajajlife.png",
+  "accent": "#0891B2",
+  "initials": "BL",
+  "score": 4.45,
+  "csr": 99.32,
+  "complaints": 2.77,
+  "solvency": 3.52,
+  "businessCr": 12791
+}

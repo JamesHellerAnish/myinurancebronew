@@ -1,0 +1,98 @@
+{
+  "id": "term-bajaj-etouch-2",
+  "category": "term",
+  "insurer": "Bajaj Life",
+  "insurerShort": "Bajaj Life",
+  "name": "eTouch II",
+  "monogram": "BL",
+  "accent": "#0891B2",
+  "tagline": "Cheapest cover",
+  "subtitle": "The lowest premium of the five and a 3.52x solvency ratio — the strongest balance sheet in the market.",
+  "score": 4.2,
+  "scoreBreakdown": {
+    "features": 3.4,
+    "insurer": 4.7,
+    "premium": 5
+  },
+  "metrics": {
+    "csr": 99.32,
+    "complaints": 2.77,
+    "solvency": 3.52,
+    "businessCr": 12791
+  },
+  "entryAge": "18–65 yrs",
+  "coverRange": "₹25 L – ₹10 Cr",
+  "tenure": "To age 85 / whole life",
+  "criticalIllness": "Rider",
+  "premiumBreak": true,
+  "lifeStageBoost": false,
+  "smartExit": true,
+  "premiums": {
+    "m25": 15474,
+    "f25": 14482,
+    "m30": 20132,
+    "f30": 16234,
+    "m35": 25311,
+    "f35": 21675
+  },
+  "bestFor": [
+    "genz",
+    "newparent"
+  ],
+  "tags": [
+    "Lowest premium",
+    "Best solvency",
+    "NRI friendly"
+  ],
+  "features": [
+    "Three variants — Life Shield, Life Shield Plus and Life Shield ROP",
+    "Terminal illness payout of up to ₹2 crore released early on diagnosis",
+    "Waiver of premium on accidental disability or terminal illness",
+    "Premium Holiday add-on lets you skip payments without losing cover",
+    "Early exit value available at defined ages and tenures",
+    "Health management services — teleconsults, annual checks, pharmacy discounts"
+  ],
+  "covered": [
+    "Death from any cause during the policy term",
+    "Terminal illness — early benefit of up to ₹2 crore",
+    "Accidental death with enhanced cover (rider)",
+    "Premiums waived on accidental disability"
+  ],
+  "notCovered": [
+    "Suicide within 12 months of policy start or revival",
+    "Death traced to an undisclosed medical condition",
+    "Fraudulent claims or material misrepresentation",
+    "War, military action or nuclear events"
+  ],
+  "riders": [
+    "Accidental Death",
+    "Waiver of Premium",
+    "Premium Holiday",
+    "Income Payout"
+  ],
+  "pros": [
+    "The cheapest of the five at almost every age and gender",
+    "Solvency of 3.52x is more than double the regulatory minimum",
+    "2.77 complaints per 10,000 claims — better than ICICI and Axis Max",
+    "Onboarding is unusually smooth for NRI applicants and for smokers",
+    "Stays competitive even once you add the useful riders"
+  ],
+  "cons": [
+    "The thinnest built-in feature set of the five",
+    "No life stage boost — you cannot raise cover without fresh underwriting",
+    "Smaller on-ground presence outside metros",
+    "Lower brand recall, which matters if your family will handle the claim"
+  ],
+  "verdict": "If budget is the binding constraint, start here. You get the strongest solvency in the industry, a settlement ratio inside the top five, and a premium that undercuts HDFC Life by roughly 20%. What you give up is feature depth — there is no life stage boost, and the rider menu is short. For a 25-year-old buying a first cover, that trade is usually worth making.",
+  "logo": "bajajlife.png",
+  "slug": "etouch-ii",
+  "insurerSlug": "bajaj-life",
+  "verificationStatus": "migrated",
+  "sources": [
+    {
+      "label": "Bajaj Life — eTouch II policy wording",
+      "url": "https://www.bajajallianzlife.com/content/dam/balic-web/pdf/term-insurance/etouch-plan-sl.pdf"
+    }
+  ],
+  "verificationNote": "Migrated from js/policy-data.js. Figures predate the §16.7 primary-source pipeline and have not been re-read against the policy wording. Not publishable until re-verified and signed off (§16.8)."
+}

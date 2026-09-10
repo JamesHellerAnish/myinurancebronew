@@ -1,0 +1,19 @@
+{
+  "slug": "medical-expenses",
+  "term": "Medical Expenses",
+  "definition": "means those expenses that an Insured Person has necessarily and actually incurred for medical treatment on account of Illness or Accident on the advice of a Medical Practitioner, as long as these are no more than would have been payable if the Insured Person had not been insured and no more than other hospitals or doctors in the same locality would have charged for the same medical treatment.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "Costs you actually and necessarily incurred for treatment on a doctor advice. They are capped twice over: at what you would have paid uninsured, and at what other hospitals nearby charge for the same treatment.",
+  "whyItMatters": "Those two caps are the \"reasonable and customary\" test, and they are how an approved claim still comes back short. If a hospital charges above the local going rate, or prices differently for insured patients, the insurer can pay the customary amount and leave you the difference. It is worth asking a hospital for its cash rate as well as its insurance rate before a planned admission.",
+  "related": [
+    "hospitalization",
+    "medically-necessary-treatment",
+    "policy-schedule",
+    "room-rent"
+  ]
+}

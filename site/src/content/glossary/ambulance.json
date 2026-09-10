@@ -1,0 +1,18 @@
+{
+  "slug": "ambulance",
+  "term": "Ambulance",
+  "definition": "means a motor vehicle operated by a licenced / authorised service provider and equipped for the transport and paramedical treatment of the person requiring medical attention.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "A vehicle run by a licensed provider and equipped to transport and treat someone needing medical attention.",
+  "whyItMatters": "Ambulance cover almost always carries a rupee sub-limit per hospitalisation, and it is one of the few limits that has not kept pace with what private ambulances charge in Indian cities. Check the figure rather than the fact of cover — and note that transport by private car or taxi, however urgent, is not an ambulance under this definition.",
+  "related": [
+    "emergency-care",
+    "hospitalization",
+    "policy-schedule"
+  ]
+}

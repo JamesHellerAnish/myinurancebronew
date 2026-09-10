@@ -1,0 +1,107 @@
+{
+  "id": "health-sbi-super-health-platinum-infinite",
+  "category": "health",
+  "insurer": "SBI General",
+  "insurerShort": "SBI General",
+  "name": "Super Health Platinum Infinite",
+  "monogram": "SG",
+  "accent": "#1E3A8A",
+  "tagline": "Most comprehensive",
+  "subtitle": "The shortest waiting periods on the market, global cover and OPD built in — at a price to match.",
+  "score": 4.1,
+  "scoreBreakdown": {
+    "features": 5,
+    "insurer": 4,
+    "premium": 1.5
+  },
+  "metrics": {
+    "csr": 95.94,
+    "complaints": 14.04,
+    "network": 18000,
+    "businessCr": 4974.56
+  },
+  "entryAge": "18–65 yrs",
+  "coverRange": "₹50 L – ₹2 Cr",
+  "tenure": "1–3 years",
+  "restoration": "Unlimited from the 1st claim, up to 200% of cover per claim",
+  "bonus": "Health Multiplier — up to 3× cover for 37 serious illnesses",
+  "roomRent": "No limit — any room category",
+  "consumables": "Built into the base plan",
+  "waiting": {
+    "ped": 2,
+    "specific": 1,
+    "maternity": "Not covered"
+  },
+  "premiums": {
+    "ind25": 45944,
+    "couple": 61568,
+    "family": 62758,
+    "seniors": 113250
+  },
+  "bestFor": [
+    "sandwich"
+  ],
+  "tags": [
+    "2-yr PED wait",
+    "Global cover",
+    "OPD built in"
+  ],
+  "features": [
+    "Pre-existing disease wait of just 2 years and specific illness wait of 1 year — the shortest here",
+    "ReInsure Benefit restores cover from the very first claim, up to 200% of the sum insured per claim",
+    "Health Multiplier raises your cover up to 3× for 37 listed serious illnesses",
+    "Global cover for 16 listed conditions plus a ₹10 lakh air ambulance benefit",
+    "OPD and consumables are built into the base plan, not sold as add-ons",
+    "Wellness package — AI fitness coaching, dietitian access and unlimited gym membership"
+  ],
+  "covered": [
+    "In-patient hospitalisation in any room category",
+    "Pre-hospitalisation and post-hospitalisation expenses",
+    "A comprehensive daycare procedure list",
+    "Treatment abroad for 16 listed conditions",
+    "Air ambulance up to ₹10 lakh",
+    "OPD consultations and pharmacy, built in",
+    "Organ donor expenses"
+  ],
+  "notCovered": [
+    "Pre-existing conditions for the first 2 years",
+    "Named illnesses for the first year",
+    "Global cover and the Health Multiplier apply only to the listed conditions",
+    "Maternity expenses",
+    "Dental treatment unless it follows an accident",
+    "Cosmetic and plastic surgery",
+    "War and nuclear events"
+  ],
+  "riders": [
+    "Claim Shield",
+    "Hospital Cash",
+    "Personal Accident",
+    "Critical Illness"
+  ],
+  "pros": [
+    "A 2-year pre-existing disease wait against 3 years everywhere else — a full year of exposure removed",
+    "Restoration from the first claim, not the second",
+    "18,000+ cashless hospitals, second only to Care Health",
+    "OPD and consumables included rather than bolted on",
+    "Global cover for 16 conditions is unusual at this price point"
+  ],
+  "cons": [
+    "By far the most expensive — ₹45,944 for a 25-year-old, over four times Activ One MAX",
+    "The ₹50 lakh minimum base cover forces you into a large policy whether you want one or not",
+    "Global cover and the Health Multiplier are restricted to listed conditions only",
+    "Renewal discounts are tied to step counts, which will not suit everyone",
+    "Note that the premiums shown are at ₹50 lakh cover, not the ₹15 lakh used for the others"
+  ],
+  "verdict": "The most feature-complete plan on this list and, unavoidably, the most expensive. The two features worth paying for are the 2-year pre-existing disease wait and restoration from the first claim — both directly reduce the odds of a claim being declined in the early years. That combination makes it worth a serious look if you are covering parents with existing conditions, where the third waiting year is a genuine risk. For a healthy 25-year-old it is dramatic overkill; Activ One MAX does the job for a quarter of the price.",
+  "logo": "sbigeneral.png",
+  "slug": "super-health-platinum-infinite",
+  "insurerSlug": "sbi-general",
+  "verificationStatus": "migrated",
+  "sources": [
+    {
+      "label": "SBI General — Super Health Platinum Infinite policy wording",
+      "url": "https://content.sbigeneral.in/uploads/a5bb86f65fde4f72a5def81ea2f3c6b7.pdf"
+    }
+  ],
+  "verificationNote": "Migrated from js/policy-data.js. Figures predate the §16.7 primary-source pipeline and have not been re-read against the policy wording. Not publishable until re-verified and signed off (§16.8)."
+}

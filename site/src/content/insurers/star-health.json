@@ -1,0 +1,8 @@
+{
+  "name": "Star Health",
+  "slug": "star-health",
+  "kind": "health",
+  "logo": "star.png",
+  "accent": "#C2410C",
+  "initials": "SH"
+}

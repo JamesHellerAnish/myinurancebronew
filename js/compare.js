@@ -76,6 +76,35 @@
     return '<svg class="icon"><use href="#i-' + name + '"></use></svg>';
   }
 
+  /* ── Insurer branding ───────────────────────────────────
+     Every tile resolves through policyData.brands, so the same insurer
+     looks identical on a plan card, in the matrix head, in the tray and
+     in the league table.
+
+     Logos sit on a white plate rather than straight on the page: most of
+     these files carry their own coloured background and were drawn for a
+     light surface, so on the dark theme an unplated logo either vanishes
+     or glares. An insurer with no logo file falls back to the coloured
+     monogram, which is why the accent stays in the registry.
+
+     The image is always alt="" — everywhere we render one, the insurer's
+     name is already in the adjacent text, and a real alt just makes a
+     screen reader announce the brand twice. `cls` is the existing tile
+     class for the context, so the CSS sizing rules keep working. */
+  function brandTile(insurer, cls, extraStyle) {
+    var brand = policyData.brandFor(insurer);
+
+    if (!brand.logo) {
+      return '<span class="' + cls + '" style="background:' + esc(brand.accent) +
+        (extraStyle || '') + '">' + esc(brand.initials) + '</span>';
+    }
+
+    return '<span class="' + cls + ' has-logo"' +
+      (extraStyle ? ' style="' + extraStyle.replace(/^;\s*/, '') + '"' : '') + '>' +
+      '<img class="brand-logo" src="assets/logos/' + esc(brand.logo) +
+      '" alt="" loading="lazy" decoding="async"></span>';
+  }
+
   /* Indian digit grouping — 1,13,250 rather than 113,250. */
   function inr(value) {
     return Number(value).toLocaleString('en-IN', { maximumFractionDigits: 0 });
@@ -161,7 +190,12 @@
      RENDER — FILTER CHIPS
      ═══════════════════════════════════════════════════════ */
   function renderFilters() {
-    var html = '<span class="filter-label">Life stage</span>';
+    /* Each chip set is a labelled group, so a screen reader announces
+       "Life stage, group" rather than a bare run of toggle buttons.
+       .filter-group is display:contents — the chips must stay flex items
+       of .cmp-filters or each set would wrap as a block on mobile. */
+    var html = '<div class="filter-group" role="group" aria-labelledby="cmpPersonaLabel">' +
+      '<span class="filter-label" id="cmpPersonaLabel">Life stage</span>';
 
     policyData.personas.forEach(function (p) {
       var on = state.personas.indexOf(p.key) !== -1;
@@ -169,13 +203,16 @@
         ' aria-pressed="' + on + '">' + esc(p.label) + ' <span style="opacity:.6">' + esc(p.age) + '</span></button>';
     });
 
-    html += '<span class="filter-label" style="margin-left:var(--space-4)">What matters</span>';
+    html += '</div><div class="filter-group" role="group" aria-labelledby="cmpNeedLabel">' +
+      '<span class="filter-label" id="cmpNeedLabel" style="margin-left:var(--space-4)">What matters</span>';
 
     NEEDS[state.product].forEach(function (n) {
       var on = state.needs.indexOf(n.key) !== -1;
       html += '<button type="button" class="chip" data-filter="need" data-key="' + n.key + '"' +
         ' aria-pressed="' + on + '">' + esc(n.label) + '</button>';
     });
+
+    html += '</div>';
 
     if (state.personas.length || state.needs.length) {
       html += '<button type="button" class="chip-clear" data-filter="clear">Clear filters</button>';
@@ -208,7 +245,7 @@
     }
 
     html += '<div class="plan-card-top">' +
-      '<span class="plan-monogram" style="background:' + esc(plan.accent) + '">' + esc(plan.monogram) + '</span>' +
+      brandTile(plan.insurer, 'plan-monogram') +
       '<div><span class="plan-insurer">' + esc(plan.insurerShort) + '</span>' +
       '<div class="plan-name">' + esc(plan.name) + '</div></div>' +
       '<div class="plan-score"><div class="plan-score-value">' + plan.score.toFixed(1) + '</div>' +
@@ -281,7 +318,7 @@
 
     plans.forEach(function (p) {
       html += '<th scope="col"><div class="cmp-col-head">' +
-        '<span class="plan-monogram" style="background:' + esc(p.accent) + '">' + esc(p.monogram) + '</span>' +
+        brandTile(p.insurer, 'plan-monogram') +
         '<div><span class="plan-insurer">' + esc(p.insurerShort) + '</span>' +
         '<div class="plan-name">' + esc(p.name) + '</div></div>' +
         '</div></th>';
@@ -346,8 +383,7 @@
       var on = p.id === state.deepId;
       return '<button type="button" class="chip" data-action="deep" data-plan="' + p.id + '"' +
         ' aria-pressed="' + on + '" style="justify-content:flex-start">' +
-        '<span class="plan-monogram" style="background:' + esc(p.accent) +
-        '; width:26px; height:26px; font-size:.625rem">' + esc(p.monogram) + '</span>' +
+        brandTile(p.insurer, 'plan-monogram', '; width:26px; height:26px') +
         esc(p.name) + '</button>';
     }).join('');
   }
@@ -391,8 +427,7 @@
     var html = '<div class="policy-review-panel" style="max-width:none">';
 
     html += '<div class="pr-header">' +
-      '<span class="pr-insurer-logo plan-monogram" style="background:' + esc(plan.accent) +
-      '; color:#fff; font-size:1.25rem">' + esc(plan.monogram) + '</span>' +
+      brandTile(plan.insurer, 'pr-insurer-logo plan-monogram') +
       '<div class="pr-header-text"><h3>' + esc(plan.insurer) + ' ' + esc(plan.name) + '</h3>' +
       '<div class="pr-subtitle">' + esc(plan.subtitle) + '</div></div></div>';
 
@@ -457,7 +492,8 @@
     var html = '<div class="premium-table-wrap"><table class="premium-table"><thead><tr>' +
       '<th scope="col">Profile</th>';
     plans.forEach(function (p) {
-      html += '<th scope="col">' + esc(p.insurerShort) + '</th>';
+      html += '<th scope="col"><span class="premium-brand">' +
+        brandTile(p.insurer, 'brand-tile xs') + esc(p.insurerShort) + '</span></th>';
     });
     html += '</tr></thead><tbody>';
 
@@ -497,7 +533,7 @@
 
     var html = '<div class="league">' +
       '<div class="league-row head">' +
-      '<span>#</span><span>Insurer</span><span>Score</span>' +
+      '<span>#</span><span class="league-head-insurer">Insurer</span><span>Score</span>' +
       '<span class="hide-sm">Claims settled</span>' +
       '<span class="hide-sm">' + (isTerm ? 'Solvency' : 'Complaints / 10k') + '</span>' +
       '</div>';
@@ -506,8 +542,9 @@
       var pct = (c.score / 5) * 100;
       html += '<div class="league-row">' +
         '<span class="league-rank">' + (i + 1) + '</span>' +
-        '<div><div class="league-name">' + esc(c.name) + '</div>' +
-        '<div class="league-bar"><span data-width="' + pct.toFixed(1) + '"></span></div></div>' +
+        '<div class="league-brand">' + brandTile(c.name, 'brand-tile') +
+        '<div class="league-brand-text"><div class="league-name">' + esc(c.name) + '</div>' +
+        '<div class="league-bar"><span data-width="' + pct.toFixed(1) + '"></span></div></div></div>' +
         '<span><strong>' + c.score.toFixed(2) + '</strong></span>' +
         '<span class="hide-sm">' + c.csr.toFixed(2) + '%</span>' +
         '<span class="hide-sm">' +
@@ -578,8 +615,15 @@
     el.trayChips.innerHTML = state.selected.map(function (id) {
       var p = planById(id);
       if (!p) return '';
-      return '<span class="cmp-tray-chip" style="background:' + esc(p.accent) + '" title="' + esc(p.name) + '">' +
-        esc(p.monogram) +
+      var brand = policyData.brandFor(p.insurer);
+      var face = brand.logo
+        ? '<img class="brand-logo" src="assets/logos/' + esc(brand.logo) + '" alt="" decoding="async">'
+        : esc(brand.initials);
+
+      // The title carries the insurer here, since the tray shows the mark alone.
+      return '<span class="cmp-tray-chip' + (brand.logo ? ' has-logo' : '') + '"' +
+        (brand.logo ? '' : ' style="background:' + esc(brand.accent) + '"') +
+        ' title="' + esc(p.insurer + ' ' + p.name) + '">' + face +
         '<button type="button" data-action="unselect" data-plan="' + p.id +
         '" aria-label="Remove ' + esc(p.name) + ' from comparison">×</button></span>';
     }).join('');

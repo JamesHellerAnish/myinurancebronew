@@ -1,0 +1,19 @@
+{
+  "slug": "sum-insured",
+  "term": "Sum Insured",
+  "definition": "means the aggregate limit of indemnity consisting of the Base Sum Insured, Super Reload, Super Credit (if applicable), Cancer Booster (if applicable) and any other benefit or section (if applicable) whose Sum Insured is over and above Base Sum Insured for the Insured Person. It represents the maximum, total and cumulative liability of the Company for any and all claims made under the Policy (under any and all Benefits), in respect of that Insured Person (on Individual basis) or all Insured Persons (on Floater basis) during the Policy Year, as specified against an Insured Person or all Insured Persons in the Policy Schedule. Sum Insured will be utilized as per the following sequence in event of any claim: a. Base Sum Insured followed by; b. Super Credit (if inbuilt / opted and applicable) followed by; c. Super Reload followed by; d. Cancer Booster (if opted and applicable)",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "The maximum the insurer will pay in a policy year. Once it is used up, further claims that year come out of your pocket unless the policy restores it.",
+  "whyItMatters": "Most people buy too little of it. The figure that matters is not last year's hospital bill but what the same treatment costs in a decent hospital in your city in ten years, with medical inflation running well ahead of general inflation. A floater shared across a family is also one shared limit, not one each.",
+  "related": [
+    "base-sum-insured",
+    "deductible",
+    "co-payment",
+    "room-rent"
+  ]
+}

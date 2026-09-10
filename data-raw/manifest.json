@@ -1,0 +1,235 @@
+{
+  "_comment": "Harvest tracker for the plan dataset. See README.md for the pipeline and SEO_ASTRO_PLAN.md §16.7. status: pending | url-found | fetched | extracted | parsed | verified | blocked",
+  "_updated": "2026-08-14",
+  "_docType": "wording = policy wording (AUTHORITATIVE, use this). brochure = marketing doc (weaker, cross-check only). prospectus = middle.",
+  "indexPages": {
+    "_comment": "Bulk-discovery pages. Fetch these to find the remaining plans' PDF URLs.",
+    "hdfcergo": "https://www.hdfcergo.com/download/policy-wordings",
+    "hdfcergo-brochures": "https://www.hdfcergo.com/download/brochure/health",
+    "nivabupa": "https://transactions.nivabupa.com/pages/downloads.aspx",
+    "sbigeneral": "https://www.sbigeneral.in/downloads",
+    "adityabirla": "https://www.adityabirlacapital.com/healthinsurance/downloads",
+    "care": "https://www.careinsurance.com/other-downloads.html",
+    "care-brochures": "https://www.careinsurance.com/health-insurance-brochure.html"
+  },
+  "plans": [
+    {
+      "id": "health-hdfcergo-optima-secure-plus",
+      "insurer": "HDFC ERGO",
+      "name": "Optima Secure+",
+      "category": "health",
+      "status": "extracted",
+      "docType": "wording",
+      "sourceUrl": "https://www.hdfcergo.com/docs/default-source/downloads/policy-wordings/health/optima-secure-revision-pw.pdf",
+      "productPage": "https://www.hdfcergo.com/health-insurance/optima-secure",
+      "extractedFile": "extracted/hdfcergo-optima-secure.txt",
+      "fetchedAt": "2026-08-14",
+      "notes": "PIPELINE PROVEN HERE. 3,275 lines. 73 Standard Definitions, Excl01-Excl18, PED 36mo w/ buy-down to 24mo. Product page also fetchable and cross-validates."
+    },
+    {
+      "id": "health-care-supreme",
+      "insurer": "Care Health",
+      "name": "Care Supreme",
+      "category": "health",
+      "status": "blocked",
+      "docType": "wording",
+      "sourceUrl": "https://cms.careinsurance.com/cms/public/uploads/download_center/care-supreme---policy-terms-and-conditions.pdf",
+      "productPage": "https://www.careinsurance.com/product/care-supreme",
+      "notes": "www.careinsurance.com returns 403. PDF is on cms.careinsurance.com — DIFFERENT HOST, may not be blocked. Test before assuming manual download is needed.",
+      "blockedNote": "Plain curl returned 406 on 2026-09-10. Do not spoof a User-Agent to get around it (README). Use WebFetch, which saves the PDF, or download by hand."
+    },
+    {
+      "id": "health-abhi-activ-one-max",
+      "insurer": "Aditya Birla Health",
+      "name": "Activ One MAX",
+      "category": "health",
+      "status": "extracted",
+      "docType": "wording",
+      "sourceUrl": "https://www.adityabirlacapital.com/healthinsurance/assets/pdf/active-one/NXT/product-information/policy-document.pdf",
+      "productPage": "https://www.adityabirlacapital.com/healthinsurance/activ-one?ActivOneMax=activ-one-max",
+      "notes": "URL is for Activ One NXT variant — confirm it covers MAX, or find the MAX-specific doc via the downloads index.",
+      "extractedFile": "extracted/health-abhi-activ-one-max.txt",
+      "fetchedAt": "2026-09-10",
+      "lines": 3954,
+      "verification": {
+        "confirmed": [
+          "PED waiting 3 years (Product Benefit Table)",
+          "Specific disease waiting 2 years — cross-checked against D.1.2, \"24 months of continuous coverage\"",
+          "Tenure 1 / 2 / 3 years"
+        ],
+        "contradicted": [
+          "entryAge: dataset says \"18–65 yrs\"; wording Annexure III says \"Entry Age (Adult) Minimum - 18 Years, Maximum - No capping\"",
+          "coverRange: dataset says \"₹5 L – ₹2 Cr\"; wording lists Base Sum Insured 2 Lacs … 6 Crores"
+        ],
+        "caveat": "The PDF is the \"Activ One\" family wording (UIN ADIHLIP27048V022627). The dataset plan is the MAX variant, which may carry its own limits. Confirm against the MAX variant schedule before editing the dataset — the family wording is not automatically authoritative for the variant."
+      }
+    },
+    {
+      "id": "health-nivabupa-reassure-2-platinum",
+      "insurer": "Niva Bupa",
+      "name": "ReAssure 2.0 Platinum+",
+      "category": "health",
+      "status": "blocked",
+      "docType": "wording",
+      "sourceUrl": "https://www.nivabupa.com/content/dam/nivabupa/PDF/reassure-2-0/ReAssure%202.0%20-%20Policy%20Wording.pdf",
+      "notes": "Self-hosted on /content/dam/. Confirm this covers the Platinum+ variant specifically.",
+      "blockedNote": "Plain curl returned 406 on 2026-09-10. Do not spoof a User-Agent to get around it (README). Use WebFetch, which saves the PDF, or download by hand."
+    },
+    {
+      "id": "health-sbi-super-health-platinum-infinite",
+      "insurer": "SBI General",
+      "name": "Super Health Platinum Infinite",
+      "category": "health",
+      "status": "extracted",
+      "docType": "wording",
+      "sourceUrl": "https://content.sbigeneral.in/uploads/a5bb86f65fde4f72a5def81ea2f3c6b7.pdf",
+      "prospectusUrl": "https://content.sbigeneral.in/uploads/7918c0bca794463482b491604b12f231.pdf",
+      "notes": "UIN SBIHLIP24141V022324. Opaque hashed filenames — verify the doc matches the Platinum Infinite variant.",
+      "extractedFile": "extracted/health-sbi-super-health-platinum-infinite.txt",
+      "fetchedAt": "2026-09-10",
+      "lines": 2990,
+      "verification": {
+        "note": "Extracted but not yet read against the dataset."
+      }
+    },
+    {
+      "id": "term-axismax-smart-term-plus",
+      "insurer": "Axis Max Life",
+      "name": "Smart Term Plan Plus",
+      "category": "term",
+      "status": "extracted",
+      "docType": "wording",
+      "sourceUrl": "https://www.axismaxlife.com/static-page/assets/homepage/104N127V02_Smart%20Term%20Plan%20Plus_Policy%20Document.pdf",
+      "productPage": "https://www.axismaxlife.com/term-insurance-plans/smart-term-plan-plus",
+      "notes": "UIN 104N127V02. Genuine policy document, not a brochure — best term source found.",
+      "extractedFile": "extracted/term-axismax-smart-term-plus.txt",
+      "fetchedAt": "2026-09-10",
+      "lines": 2192,
+      "verification": {
+        "note": "Extracted but not yet read against the dataset."
+      }
+    },
+    {
+      "id": "term-hdfc-click2protect-supreme-plus",
+      "insurer": "HDFC Life",
+      "name": "Click2Protect Supreme Plus",
+      "category": "term",
+      "status": "extracted",
+      "docType": "brochure",
+      "sourceUrl": "https://www.hdfclife.com/content/dam/hdfclifeinsurancecompany/products-page/brochure-pdf/HDFC_Life_Click_2_Protect_Super_Retail_Brochure.pdf",
+      "productPage": "https://www.hdfclife.com/term-insurance-plans/click-2-protect-super",
+      "notes": "⚠ BROCHURE ONLY, and it is Click2Protect SUPER not SUPREME PLUS. Dataset names a different product — reconcile before parsing.",
+      "extractedFile": "extracted/term-hdfc-click2protect-supreme-plus.txt",
+      "fetchedAt": "2026-09-10",
+      "lines": 1312,
+      "verification": {
+        "contradicted": [
+          "coverRange max: dataset says \"₹10 Cr\"; wording says \"For all other cases: There is no maximum limit\", subject to BAUP"
+        ],
+        "caveat": "Eligibility table is column-scrambled by pdftotext -layout. Read the PDF directly before editing."
+      }
+    },
+    {
+      "id": "term-icici-iprotect-smart-plus",
+      "insurer": "ICICI Prudential",
+      "name": "iProtect Smart Plus",
+      "category": "term",
+      "status": "blocked",
+      "docType": "brochure",
+      "sourceUrl": "https://www.iciciprulife.com/content/dam/icicipru/brochures/ICICI-Pru-iProtect-Smart-Illustrated-Brochure.pdf",
+      "presentationUrl": "https://www.iciciprulife.com/content/dam/icicipru/download-centre/product-presentations/individual/ICICI_Pru_iProtect_Smart_Plus_Presentation.pdf",
+      "notes": "⚠ Brochure + presentation only. Specimen policy docs live under /download-centre/specimenpolicy/ — look there for the wording.",
+      "blockedNote": "Plain curl returned 403 on 2026-09-10. Do not spoof a User-Agent to get around it (README). Use WebFetch, which saves the PDF, or download by hand."
+    },
+    {
+      "id": "term-bajaj-etouch-2",
+      "insurer": "Bajaj Life",
+      "name": "eTouch II",
+      "category": "term",
+      "status": "extracted",
+      "docType": "brochure",
+      "sourceUrl": "https://www.bajajallianzlife.com/content/dam/balic-web/pdf/term-insurance/etouch-plan-sl.pdf",
+      "notes": "⚠ Sales literature. An older eTouch policy document exists at /content/dam/balic/pdf/term-insurance/etouch-onlineterm-policy-document.pdf but is for eTouch I.",
+      "extractedFile": "extracted/term-bajaj-etouch-2.txt",
+      "fetchedAt": "2026-09-10",
+      "lines": 1233,
+      "verification": {
+        "contradicted": [
+          "tenure: dataset says \"To age 85 / whole life\"; wording offers a \"Cover up to Age 99\" option"
+        ],
+        "caveat": "Eligibility table is column-scrambled by pdftotext -layout. Read the PDF directly before editing."
+      }
+    },
+    {
+      "id": "term-absl-super-term",
+      "insurer": "Aditya Birla Sun Life",
+      "name": "Super Term Plan",
+      "category": "term",
+      "status": "pending",
+      "docType": null,
+      "sourceUrl": null,
+      "notes": "🔴 NOT FOUND. Needs discovery — try lifeinsurance.adityabirlacapital.com downloads."
+    },
+    {
+      "id": "supertopup-sbi-health-super-top-up",
+      "insurer": "SBI General",
+      "name": "SBIG Health Super Top-Up",
+      "category": "super-topup",
+      "status": "extracted",
+      "docType": "wording",
+      "sourceUrl": "https://content.sbigeneral.in/uploads/SBIG_Super_Top_Up_Policy_Wording_6bfe75aab4.pdf",
+      "notes": "Tier A. Found opportunistically — clean policy wording.",
+      "extractedFile": "extracted/supertopup-sbi-health-super-top-up.txt",
+      "fetchedAt": "2026-09-10",
+      "lines": 2050,
+      "verification": {
+        "note": "Extracted but not yet read against the dataset."
+      }
+    },
+    {
+      "id": "supertopup-care-supreme-enhance",
+      "insurer": "Care Health",
+      "name": "Care Supreme Enhance",
+      "category": "super-topup",
+      "status": "blocked",
+      "docType": "wording",
+      "sourceUrl": "https://cms.careinsurance.com/cms/public/uploads/download_center/supreme-enhance---policy-terms-and-conditions.pdf",
+      "notes": "Tier A. Same cms. host as Care Supreme.",
+      "blockedNote": "Plain curl returned 406 on 2026-09-10. Do not spoof a User-Agent to get around it (README). Use WebFetch, which saves the PDF, or download by hand."
+    },
+    {
+      "id": "senior-nivabupa-senior-first",
+      "insurer": "Niva Bupa",
+      "name": "Senior First",
+      "category": "senior-health",
+      "status": "blocked",
+      "docType": "wording",
+      "sourceUrl": "https://transactions.nivabupa.com/pages/doc/policy_wording/Senior-First-Policy-Wording.pdf",
+      "prospectusUrl": "https://transactions.nivabupa.com/pages/doc/prospectus/Senior-First-Prospectus.pdf?v=1.0",
+      "notes": "Tier A. UIN NBHHLIP27053V022627. Wording AND prospectus both available.",
+      "blockedNote": "Plain curl returned 406 on 2026-09-10. Do not spoof a User-Agent to get around it (README). Use WebFetch, which saves the PDF, or download by hand."
+    },
+    {
+      "id": "health-hdfcergo-optima-restore",
+      "insurer": "HDFC ERGO",
+      "name": "Optima Restore",
+      "category": "health",
+      "status": "blocked",
+      "docType": "wording",
+      "sourceUrl": "https://www.hdfcergo.com/docs/default-source/downloads/policy-wordings/health/optima-restore-revision.pdf",
+      "notes": "Dataset expansion candidate. Same host pattern as Optima Secure, so should fetch cleanly.",
+      "blockedNote": "Plain curl returned 406 on 2026-09-10. Do not spoof a User-Agent to get around it (README). Use WebFetch, which saves the PDF, or download by hand."
+    },
+    {
+      "id": "senior-star-red-carpet",
+      "insurer": "Star Health",
+      "name": "Senior Citizens Red Carpet",
+      "category": "senior-health",
+      "status": "blocked",
+      "docType": null,
+      "sourceUrl": null,
+      "productPage": "https://www.starhealth.in/health-insurance/senior-citizens-red-carpet-health-insurance-policy",
+      "notes": "🔴 starhealth.in returns 403. MANUAL DOWNLOAD REQUIRED. 30% mandatory co-pay is a key differentiator worth writing about."
+    }
+  ]
+}

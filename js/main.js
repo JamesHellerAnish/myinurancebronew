@@ -12,6 +12,18 @@
   const mobileDrawer = document.getElementById('mobileDrawer');
   const themeToggle = document.getElementById('themeToggle');
 
+  /* ── Who owns the chrome ───────────────────────────────
+     On the Astro build, Header.astro renders the navbar and its own module already binds
+     the scroll state, the hamburger and the theme toggle. It marks the header with
+     data-astro-chrome. Binding them here as well would double-handle every click — two
+     theme listeners flip the theme twice, which reads as the toggle being broken.
+
+     The attribute is absent on the legacy one-pager, so it keeps binding exactly as before.
+     Sections 3 onwards are page behaviour, not chrome, and run in both cases. */
+  const astroChrome = navbar && navbar.hasAttribute('data-astro-chrome');
+
+  if (!astroChrome) {
+
   /* ═══════════════════════════════════════════════════════
      1. NAVBAR — scroll effect + mobile menu
      ═══════════════════════════════════════════════════════ */
@@ -63,6 +75,8 @@
     themeToggle.textContent = next === 'dark' ? '☀️' : '🌙';
     localStorage.setItem('mib-theme', next);
   });
+
+  } // end !astroChrome — sections 1 and 2 only
 
   /* ═══════════════════════════════════════════════════════
      3. SMOOTH SCROLL for anchor links

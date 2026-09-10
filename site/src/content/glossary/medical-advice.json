@@ -1,0 +1,19 @@
+{
+  "slug": "medical-advice",
+  "term": "Medical Advice",
+  "definition": "means any consultation or advice from a Medical Practitioner including the issuance of any prescription or follow-up prescription.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "Any consultation or advice from a registered practitioner, including a prescription or a repeat prescription.",
+  "whyItMatters": "This is the quiet half of the pre-existing-disease test. A condition counts as pre-existing if you received medical advice for it in the look-back window — no diagnosis and no treatment required. A consultation about symptoms, or a repeat prescription you barely think about, is enough to make it declarable.",
+  "related": [
+    "pre-existing-disease",
+    "material-facts",
+    "medical-practitioner",
+    "disclosure-of-information-norm"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "slug": "illness",
+  "term": "Illness",
+  "definition": "means a sickness or a disease or pathological condition leading to the impairment of normal physiological function and requires medical treatment. a. Acute condition — Acute condition means is a disease, illness or injury that is likely to respond quickly to treatment which aims to return the person to his or her state of health immediately before suffering the disease / illness / injury which leads to full recovery. b. Chronic condition — A chronic condition is defined as a disease, illness, or injury that has one or more of the following characteristics: i. It needs ongoing or long-term monitoring through consultations, examinations, check-ups, and / or tests; ii. It needs ongoing or long-term control or relief of symptoms; iii. It requires rehabilitation for the patient or for the patient to be specially trained to cope with it; iv. It continues indefinitely; v. It recurs or is likely to recur.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "A sickness, disease or condition that impairs normal function and needs treatment. It is split into acute conditions that resolve with treatment and chronic ones that persist.",
+  "whyItMatters": "The acute-versus-chronic split does real work. Chronic conditions are the ones that attract waiting periods, exclusions and loadings, and a condition you consider managed rather than ongoing may still be chronic in the insurer terms. It is also why a pre-existing condition has to be declared even when it currently causes you no trouble.",
+  "related": [
+    "injury",
+    "pre-existing-disease",
+    "waiting-period",
+    "medically-necessary-treatment"
+  ]
+}

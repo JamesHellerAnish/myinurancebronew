@@ -1,0 +1,18 @@
+{
+  "slug": "second-medical-opinion-for-major-illness",
+  "term": "Second Medical Opinion for Major Illness",
+  "definition": "means a procedure where by upon request of the Insured Person, an independent Medical Practitioner reviews and opines on the treating Medical Practitioner's recommendation as to care and treatment of the Insured Person by reviewing Insured Person's medical status and history. Such an opinion shall not be deemed to substitute the Insured Person's physical visit or consultation to an independent Medical Practitioner.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "An independent practitioner reviewing your treating doctor recommendation, at your request. It is an opinion, not a replacement for your doctor care.",
+  "whyItMatters": "It is a free benefit on most policies and it goes almost entirely unused. For a major diagnosis where the proposed treatment is invasive, expensive or irreversible, a second opinion at the insurer cost is straightforwardly worth taking. It does not affect your claim — the insurer would rather fund the opinion than the wrong surgery.",
+  "related": [
+    "medically-necessary-treatment",
+    "unproven-experimental-treatment",
+    "medical-practitioner"
+  ]
+}

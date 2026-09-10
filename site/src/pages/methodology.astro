@@ -1,0 +1,218 @@
+---
+// /methodology/ — SEO_ASTRO_PLAN.md §11 and §13.
+//
+// This page is not optional and it is not marketing. Every superlative on the site — "best",
+// a 4.6/5, a league-table rank — is a comparative claim under IRDAI advertising rules, and
+// §13 lists unsourced comparative claims as a live compliance risk. The mitigation named
+// there is that every score resolves to this page. So every plan page links here, and this
+// page has to actually explain the arithmetic rather than gesture at it.
+//
+// The weights are read from src/data/methodology.json, the same file the scoring uses. If
+// they are ever recalculated, this page changes with them — there is no second copy to drift.
+import Base from '../layouts/Base.astro'
+import Disclaimer from '../components/seo/Disclaimer.astro'
+import { breadcrumbSchema, faqSchema } from '../lib/schema'
+import { fitDescription } from '../lib/seo'
+import { CATEGORY_LABELS } from '../lib/plans'
+import methodology from '../data/methodology.json'
+import meta from '../data/meta.json'
+
+const planWeights = methodology.plan
+const companyWeights = methodology.company as Record<string, Array<{ label: string; weight: number; note: string }>>
+
+const trail = [
+  { name: 'Home', path: '/' },
+  { name: 'How we score plans', path: '/methodology/' },
+]
+
+const faqs = [
+  {
+    q: 'Are Myinsurancebro scores paid for or influenced by insurers?',
+    a:
+      'No. Scores are calculated from the published data described on this page. Insurers cannot ' +
+      'pay to raise a score, to be included, or to have a weakness removed.',
+  },
+  {
+    q: 'Where do the claim settlement ratios come from?',
+    a:
+      `From IRDAI's Annual Report and public grievance disclosures, as ${meta.period.toLowerCase()}. ` +
+      'A single year moves too much on small claim volumes to be a fair signal, which is why we ' +
+      'average three.',
+  },
+  {
+    q: 'Are the premiums on this site quotes?',
+    a:
+      'No. Every premium shown is an illustration for a named profile — a stated age, cover ' +
+      'amount and city. Your own premium depends on your age, health, habits and underwriting, ' +
+      'and only the insurer can quote it.',
+  },
+  {
+    q: 'How often are the figures updated?',
+    a:
+      `Each plan record carries its own last-verified date, shown on the plan page. The current ` +
+      `dataset was verified in ${meta.updated} against IRDAI disclosures and insurer policy wordings.`,
+  },
+]
+
+const description = fitDescription(
+  'How Myinsurancebro scores insurance plans: plan features 45%, insurer strength 45%, premium 10%, ' +
+    'from IRDAI disclosures.',
+  ['No insurer can pay to change a score.', 'Independent and unpaid.'],
+)
+---
+
+<Base
+  title="How We Score Insurance Plans"
+  description={description}
+  current="methodology"
+  keywords={[
+    'insurance plan scoring methodology',
+    'how insurance plans are rated India',
+    'claim settlement ratio source',
+  ]}
+  schemas={[breadcrumbSchema(trail), faqSchema(faqs)]}
+>
+  <article class="plan-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><span aria-current="page">How we score plans</span></li>
+      </ol>
+    </nav>
+
+    <h1>How we score insurance plans</h1>
+    <p class="plan-subtitle">
+      Every score on this site resolves to the arithmetic on this page.
+    </p>
+
+    <p class="answer-block">
+      Plans are scored out of 5 on three weighted components: plan features 45%, insurer strength
+      45% and premium 10%. Insurer inputs come from IRDAI's Annual Report and public grievance
+      disclosures, {meta.period.toLowerCase()}. Plan inputs come from the insurer's own policy
+      wording. No insurer pays to be listed, ranked or scored.
+    </p>
+
+    <section>
+      <h2>What goes into a plan score</h2>
+      <div class="table-scroll">
+        <table>
+          <caption>
+            Component weights for a plan score. The same weights apply in every category.
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Component</th>
+              <th scope="col">Weight</th>
+              <th scope="col">What it measures</th>
+            </tr>
+          </thead>
+          <tbody>
+            {planWeights.map((row) => (
+              <tr>
+                <th scope="row">{row.label}</th>
+                <td>{row.weight}%</td>
+                <td class="cell-prose">{row.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        Features and insurer strength are weighted equally and deliberately. A generous plan from
+        an insurer that argues over claims is not a good outcome, and neither is a reliable
+        insurer's thin product. Premium carries only 10% — price matters, but the cheapest policy
+        that does not pay is the most expensive thing on this page.
+      </p>
+    </section>
+
+    <section>
+      <h2>What goes into an insurer score</h2>
+      <p>
+        Insurers are scored separately from plans, and the weights differ by category because the
+        thing that goes wrong differs. A term claim is one large binary payout years after the
+        policy was sold; a health claim is a stream of smaller ones with a hospital waiting.
+      </p>
+
+      {Object.entries(companyWeights).map(([category, rows]) => (
+        <div class="table-scroll">
+          <table>
+            <caption>
+              Insurer scoring for {CATEGORY_LABELS[category as keyof typeof CATEGORY_LABELS].toLowerCase()}.
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Component</th>
+                <th scope="col">Weight</th>
+                <th scope="col">What it measures</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row) => (
+                <tr>
+                  <th scope="row">{row.label}</th>
+                  <td>{row.weight}%</td>
+                  <td class="cell-prose">{row.note}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ))}
+    </section>
+
+    <section>
+      <h2>Where the numbers come from</h2>
+      <dl class="key-facts">
+        <div><dt>Claim settlement &amp; complaints</dt><dd>IRDAI Annual Report</dd></div>
+        <div><dt>Averaging period</dt><dd>{meta.period}</dd></div>
+        <div><dt>Cover, exclusions, waiting periods</dt><dd>Insurer policy wording</dd></div>
+        <div><dt>Last verified</dt><dd>{meta.updated}</dd></div>
+      </dl>
+      <p>
+        Every plan page lists the specific documents its figures came from, with the clause where
+        a number is contested, and its own last-verified date. Where we could not verify a figure
+        against a primary source, the plan is not published.
+      </p>
+    </section>
+
+    <section>
+      <h2>How we stay independent</h2>
+      <ul>
+        <li>Insurers cannot pay for inclusion, for a higher score, or to remove a weakness.</li>
+        <li>
+          Every plan page names what the plan does <em>not</em> cover, and what we do not like
+          about it. A plan with no listed weaknesses has not been reviewed properly.
+        </li>
+        <li>
+          Myinsurancebro is an IRDAI-licensed advisor and earns commission on policies placed
+          through us. That is disclosed rather than hidden — and it is why the scores are computed
+          from published data instead of from judgement we would have an interest in.
+        </li>
+        <li>Premiums are illustrations for stated profiles. We do not present them as quotes.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>What a score does not tell you</h2>
+      <p>
+        A score ranks plans against each other on the evidence available. It cannot know your
+        health history, your dependants, your city's hospital costs or which exclusion will
+        matter to you in ten years. Use it to shortlist, then read the policy wording — and
+        talk to an advisor before you buy.
+      </p>
+    </section>
+
+    <section>
+      <h2>Frequently asked questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary><h3>{faq.q}</h3></summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <Disclaimer />
+  </article>
+</Base>

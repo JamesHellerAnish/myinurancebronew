@@ -1,0 +1,74 @@
+---
+// /guides/ — the guide index. SEO_ASTRO_PLAN.md §6.2.
+//
+// Each entry shows its answer, not just its title. A list of headlines is a menu; a list of
+// answers is useful on its own and gives the page a reason to rank in its own right.
+import { getCollection } from 'astro:content'
+import Base from '../../layouts/Base.astro'
+import Disclaimer from '../../components/seo/Disclaimer.astro'
+import { breadcrumbSchema } from '../../lib/schema'
+import { fitDescription, fitTitle } from '../../lib/seo'
+
+const guides = (await getCollection('guides', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.published.getTime() - a.data.published.getTime(),
+)
+
+const trail = [
+  { name: 'Home', path: '/' },
+  { name: 'Guides', path: '/guides/' },
+]
+
+const pageTitle = fitTitle(['Insurance Guides', 'Guides'])
+
+const description = fitDescription(
+  `${guides.length} guides on the things that actually decide whether a claim gets paid, ` +
+    `each written against the policy wording rather than the brochure.`,
+  ['Independent and unpaid.', 'Free to read.'],
+)
+---
+
+<Base
+  title={pageTitle}
+  description={description}
+  keywords={['insurance guides India', 'health insurance advice', 'how insurance claims work']}
+  schemas={[breadcrumbSchema(trail)]}
+>
+  <article class="plan-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><span aria-current="page">Guides</span></li>
+      </ol>
+    </nav>
+
+    <h1>Insurance guides</h1>
+    <p class="plan-subtitle">
+      The things that decide whether a claim gets paid — written against the policy wording.
+    </p>
+
+    <p class="answer-block">
+      {guides.length} {guides.length === 1 ? 'guide' : 'guides'}, each one about a specific way
+      cover fails in practice rather than a general introduction to insurance. Every claim in
+      them is sourced, and the sources are listed at the foot of each page.
+    </p>
+
+    <section>
+      {guides.map((guide) => (
+        <div class="guide-card">
+          <h2><a href={`/guides/${guide.id}/`}>{guide.data.title}</a></h2>
+          <p>{guide.data.answer}</p>
+        </div>
+      ))}
+    </section>
+
+    <section class="internal-links">
+      <h2>Also useful</h2>
+      <p>
+        <a href="/glossary/">Insurance glossary</a> ·
+        <a href="/methodology/">How we score plans</a>
+      </p>
+    </section>
+
+    <Disclaimer />
+  </article>
+</Base>

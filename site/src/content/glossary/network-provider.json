@@ -1,0 +1,18 @@
+{
+  "slug": "network-provider",
+  "term": "Network Provider",
+  "definition": "means hospitals or health care providers enlisted by an insurer, TPA or jointly by an Insurer and TPA to provide medical services to an insured by a cashless facility.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "A hospital the insurer has a cashless agreement with. The insurer settles the bill directly, so you do not have to fund it yourself and claim it back afterwards.",
+  "whyItMatters": "Network size matters less than network relevance: what counts is whether the hospitals you would actually use are in it, not how large the number on the brochure is. Check two or three near you before buying. Outside the network you can still claim, but you pay first and wait for reimbursement, which is the difference between an inconvenience and a cash-flow crisis.",
+  "related": [
+    "non-network-provider",
+    "notification-of-claim",
+    "hospitalization"
+  ]
+}

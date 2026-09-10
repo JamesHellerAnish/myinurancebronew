@@ -1,0 +1,19 @@
+{
+  "slug": "policy-schedule",
+  "term": "Policy Schedule",
+  "definition": "means the Policy Schedule attached to and forming part of this Policy specifying the details of the Insured Persons, the Sum Insured, the Policy Period and the Sub-limits to which benefits under the Policy are subject to, including any annexures and /or endorsements, made to or on it from time to time, and if more than one, then the latest in time.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "The document attached to your policy naming the insured persons, the sum insured, the policy period and the sub-limits your cover is actually subject to.",
+  "whyItMatters": "The wording tells you what the product can do; the schedule tells you what yours does. Waiting periods, co-pays and sub-limits are stated here per policy, which is why two people holding the same product can have materially different cover. When any review — including ours — quotes a figure, your schedule is what overrides it.",
+  "related": [
+    "sum-insured",
+    "co-payment",
+    "waiting-period",
+    "policy-year"
+  ]
+}

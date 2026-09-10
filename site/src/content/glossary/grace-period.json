@@ -1,0 +1,19 @@
+{
+  "slug": "grace-period",
+  "term": "Grace Period",
+  "definition": "means the specified period of time immediately following the premium due date during which premium payment can be made to renew or continue a policy in force without loss of continuity benefits such as waiting periods and coverage of pre-existing diseases. Coverage need not be available during the period for which no premium is received. The grace period for payment of the premium for all types of insurance policies shall be: fifteen days where premium payment mode is monthly and thirty days in all other cases. Coverage is available during the Grace Period, if the premium is paid in instalments during the Policy Period",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "A short window after your renewal date in which you can still pay the premium and keep the policy continuous — typically 30 days.",
+  "whyItMatters": "Miss it and the policy lapses. Restarting is not the same as renewing: your waiting periods and pre-existing-disease clock start again from zero, which can undo years of holding cover. Treatment received during the grace period itself is usually not covered either.",
+  "related": [
+    "break-in-policy",
+    "renewal",
+    "waiting-period",
+    "portability"
+  ]
+}

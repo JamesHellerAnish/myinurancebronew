@@ -1,0 +1,91 @@
+{
+  "id": "term-absl-super-term",
+  "category": "term",
+  "insurer": "Aditya Birla Sun Life",
+  "insurerShort": "ABSL",
+  "name": "Super Term Plan",
+  "monogram": "AB",
+  "accent": "#DB2777",
+  "tagline": "Critical illness built in",
+  "subtitle": "Covers 42 critical illnesses inside the base plan — most insurers charge extra for that as a rider.",
+  "score": 4,
+  "scoreBreakdown": {
+    "features": 4.2,
+    "insurer": 3.7,
+    "premium": 5
+  },
+  "metrics": {
+    "csr": 98.7,
+    "complaints": 1.33,
+    "solvency": 1.82,
+    "businessCr": null
+  },
+  "entryAge": "18–65 yrs",
+  "coverRange": "₹25 L – ₹10 Cr",
+  "tenure": "To age 85",
+  "criticalIllness": "Built in — 42 illnesses",
+  "premiumBreak": true,
+  "lifeStageBoost": true,
+  "smartExit": true,
+  "premiums": {
+    "m25": 18607,
+    "f25": 16343,
+    "m30": 21767,
+    "f30": 18235,
+    "m35": 23400,
+    "f35": 19890
+  },
+  "bestFor": [
+    "newparent",
+    "sandwich"
+  ],
+  "tags": [
+    "CI included",
+    "Inflation-linked cover"
+  ],
+  "features": [
+    "Three variants — Level Cover, Increasing Cover (5% a year to 200%) and ROP",
+    "Accelerated critical illness built in — 42 illnesses, up to 50% of cover, capped at ₹50 lakh",
+    "Terminal illness payout of up to ₹1 crore included",
+    "Accidental total and permanent disability waives all future premiums",
+    "Life stage flexibility to raise cover at marriage, childbirth or a home purchase",
+    "Cover Continuance allows premium deferral under defined conditions"
+  ],
+  "covered": [
+    "Death from any cause during the policy term",
+    "Critical illness across 42 conditions — built in, no rider needed",
+    "Terminal illness — early payout of up to ₹1 crore",
+    "Accidental disability — premium waiver"
+  ],
+  "notCovered": [
+    "Suicide within 12 months of policy start or revival",
+    "Death traced to an undisclosed medical condition",
+    "Fraudulent claims or material misrepresentation",
+    "Self-inflicted injury within the exclusion period"
+  ],
+  "riders": [
+    "Accidental Death",
+    "Waiver of Premium",
+    "Accelerated Critical Illness (built in)"
+  ],
+  "pros": [
+    "Built-in critical illness cover usually works out cheaper than a standalone rider",
+    "Only 1.33 complaints per 10,000 claims — second best of the five",
+    "The Increasing Cover variant grows 5% a year, which fights inflation over a 30-year term",
+    "The cheapest option at age 35 for both men and women",
+    "Early exit value available at certain ages and tenures"
+  ],
+  "cons": [
+    "At 98.70%, the lowest settlement ratio of the five",
+    "Solvency of 1.82x is the thinnest here, though still above the 1.5x minimum",
+    "The critical illness payout is capped at 50% of cover or ₹50 lakh, whichever is lower",
+    "Smaller distribution footprint in some states"
+  ],
+  "verdict": "The built-in critical illness cover is the whole argument for this plan, and it is a good one — bundling 42 conditions into the base premium usually beats buying a rider separately. The counterweight is that Aditya Birla Sun Life has the weakest insurer metrics of the five. If you want term and critical illness in a single policy and are comfortable with a 98.70% settlement ratio, this makes sense. If you would rather maximise claim certainty, take Axis Max Life and buy the rider.",
+  "logo": "absl.png",
+  "slug": "super-term-plan",
+  "insurerSlug": "aditya-birla-sun-life",
+  "verificationStatus": "migrated",
+  "sources": [],
+  "verificationNote": "Migrated from js/policy-data.js. Figures predate the §16.7 primary-source pipeline and have not been re-read against the policy wording. Not publishable until re-verified and signed off (§16.8)."
+}

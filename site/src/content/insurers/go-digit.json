@@ -1,0 +1,12 @@
+{
+  "name": "Go Digit",
+  "slug": "go-digit",
+  "kind": "health",
+  "logo": "godigit.png",
+  "accent": "#0D9488",
+  "initials": "GD",
+  "score": 3.69,
+  "csr": 99.01,
+  "complaints": 19.08,
+  "businessCr": 1666.04
+}

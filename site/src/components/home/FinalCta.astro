@@ -1,0 +1,64 @@
+    <!-- ═══════════ 10. FINAL CTA / BOOK A CALL ═══════════ -->
+    <section class="final-cta" id="cta">
+      <div class="container">
+        <div class="final-cta-card fade-up">
+          <div class="cta-header">
+            <h2>Book a Free 1-on-1 Consultation</h2>
+            <p>100% free call with our Chief Advisor & team. Zero spam, no pressure — just honest advice tailored to you.</p>
+          </div>
+
+          <form class="booking-form" id="bookingForm" action="send-mail.php" method="POST">
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="bookName">Full Name *</label>
+                <input type="text" id="bookName" name="name" placeholder="e.g. Rahul Sharma" required>
+              </div>
+
+              <div class="form-field">
+                <label for="bookPhone">Phone / WhatsApp *</label>
+                <input type="tel" id="bookPhone" name="phone" placeholder="e.g. +91 98765 43210" required>
+              </div>
+
+              <div class="form-field">
+                <label for="bookEmail">Email Address</label>
+                <input type="email" id="bookEmail" name="email" placeholder="e.g. rahul@example.com">
+              </div>
+
+              <div class="form-field">
+                <label for="bookProduct">Interested In</label>
+                <select id="bookProduct" name="product">
+                  <option value="Health Insurance">Health Insurance</option>
+                  <option value="Term Life Insurance">Term Life Insurance</option>
+                  <option value="Both Health & Term">Both Health & Term Insurance</option>
+                  <option value="General Advice">General Insurance Advice</option>
+                </select>
+              </div>
+
+              <div class="form-field full-width">
+                <label for="bookTime">Preferred Call Time</label>
+                <select id="bookTime" name="preferred_time">
+                  <option value="As soon as possible">As soon as possible (Next 15 mins)</option>
+                  <option value="Morning (9 AM - 12 PM)">Morning (9 AM - 12 PM)</option>
+                  <option value="Afternoon (12 PM - 4 PM)">Afternoon (12 PM - 4 PM)</option>
+                  <option value="Evening (4 PM - 8 PM)">Evening (4 PM - 8 PM)</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg booking-submit-btn">
+              <span class="btn-text">📞 Book Free Call Now</span>
+              <span class="btn-spinner" style="display:none;">⏳ Submitting...</span>
+            </button>
+
+            <div class="form-response-msg" style="display:none;"></div>
+          </form>
+
+          <div class="final-cta-contact">
+            <span>📞 Direct Call: <a href="tel:+919910963123">+91 99109 63123</a></span>
+            <span>✉️ Email Us: <a href="mailto:support@myinsurancebro.com">support@myinsurancebro.com</a></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>

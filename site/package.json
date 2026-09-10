@@ -1,0 +1,22 @@
+{
+  "name": "myinsurancebro-site",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "predev": "node scripts/sync-public.mjs && node scripts/build-lastmod.mjs && node scripts/build-glossary.mjs",
+    "dev": "astro dev",
+    "prebuild": "node scripts/sync-public.mjs && node scripts/build-lastmod.mjs && node scripts/build-glossary.mjs",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "migrate": "node scripts/migrate-policy-data.mjs",
+    "glossary": "node scripts/extract-glossary.mjs && node scripts/build-glossary.mjs"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.2.0",
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^5.6.0",
+    "sharp": "^0.34.1"
+  }
+}

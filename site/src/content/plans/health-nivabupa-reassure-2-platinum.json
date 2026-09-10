@@ -1,0 +1,107 @@
+{
+  "id": "health-nivabupa-reassure-2-platinum",
+  "category": "health",
+  "insurer": "Niva Bupa",
+  "insurerShort": "Niva Bupa",
+  "name": "ReAssure 2.0 Platinum+",
+  "monogram": "NB",
+  "accent": "#2563EB",
+  "tagline": "Smartest design",
+  "subtitle": "Locks your premium at your entry age until you claim, and carries unused cover forward up to 5×.",
+  "score": 4.3,
+  "scoreBreakdown": {
+    "features": 4.9,
+    "insurer": 3.6,
+    "premium": 4.5
+  },
+  "metrics": {
+    "csr": 92.92,
+    "complaints": 37.13,
+    "network": 10000,
+    "businessCr": 6985.24
+  },
+  "entryAge": "18–65 yrs",
+  "coverRange": "Up to ₹1 Cr",
+  "tenure": "1–3 years",
+  "restoration": "ReAssure+ — unlimited, every claim up to full cover",
+  "bonus": "Booster+ — unused cover carried forward up to 5×",
+  "roomRent": "No limit — any room category",
+  "consumables": "Safeguard / Safeguard+ add-on",
+  "waiting": {
+    "ped": 3,
+    "specific": 2,
+    "maternity": "Not covered"
+  },
+  "premiums": {
+    "ind25": 11271,
+    "couple": 19176,
+    "family": 25026,
+    "seniors": 68239
+  },
+  "bestFor": [
+    "genz",
+    "newparent"
+  ],
+  "tags": [
+    "Age-lock premium",
+    "Booster+ carry forward",
+    "Unlimited restore"
+  ],
+  "features": [
+    "Age-lock holds your premium at your entry age until your first claim — nobody else offers this",
+    "ReAssure+ restores your full cover an unlimited number of times, on every claim",
+    "Booster+ carries unused cover forward up to 5× on Platinum+ and 10× on Titanium+",
+    "Safeguard+ covers non-payable items and raises your cover in line with inflation",
+    "Annual health check-ups from day one and unlimited e-consultations",
+    "Pre-hospitalisation 60 days, post-hospitalisation 180 days, 580+ daycare treatments"
+  ],
+  "covered": [
+    "In-patient hospitalisation in any room category",
+    "Pre-hospitalisation for 60 days and post-hospitalisation for 180 days",
+    "580+ daycare procedures",
+    "Organ donor expenses",
+    "Modern treatments — robotic surgery, stem cell therapy",
+    "Mental health treatment as required under the Mental Healthcare Act 2017",
+    "Annual preventive health check-up from year one"
+  ],
+  "notCovered": [
+    "Pre-existing conditions for the first 3 years",
+    "A named list of illnesses for the first 2 years",
+    "Maternity and childbirth expenses",
+    "Dental treatment unless it follows an accident",
+    "Cosmetic and plastic surgery",
+    "Infertility treatment and assisted reproduction"
+  ],
+  "riders": [
+    "Safeguard / Safeguard+",
+    "Personal Accident",
+    "Hospital Cash",
+    "Critical Illness"
+  ],
+  "pros": [
+    "The age-lock is unique — buy at 28 and you keep 28-year-old pricing until you claim",
+    "Booster+ grows your cover passively just by not claiming, up to 5× the base",
+    "Unlimited restoration on every claim, not from the second claim",
+    "Annual health check-ups from day one rather than after a claim-free year",
+    "Arguably the best-designed product on this list on paper"
+  ],
+  "cons": [
+    "92.92% settlement ratio — the lowest of the five",
+    "37.13 complaints per 10,000 claims, four times HDFC ERGO",
+    "The age-lock resets once you claim, so the benefit is finite",
+    "A ~10,000 hospital network, the smallest here",
+    "No maternity cover, and a co-payment applies if you join after 60"
+  ],
+  "verdict": "On paper this is the cleverest product here. The age-lock, Booster+ and unlimited restoration together form a design nobody else has matched. The problem is the gap between design and delivery: a 92.92% settlement ratio and 37 complaints per 10,000 claims are the weakest insurer metrics of the five. We recommend it to buyers in their twenties and thirties who will hold it for a long time without claiming, because that is exactly the scenario the age-lock and Booster+ are built for. If you expect to claim early or often, take HDFC ERGO instead.",
+  "logo": "nivabupa.png",
+  "slug": "reassure-2-0-platinum",
+  "insurerSlug": "niva-bupa",
+  "verificationStatus": "migrated",
+  "sources": [
+    {
+      "label": "Niva Bupa — ReAssure 2.0 Platinum+ policy wording",
+      "url": "https://www.nivabupa.com/content/dam/nivabupa/PDF/reassure-2-0/ReAssure%202.0%20-%20Policy%20Wording.pdf"
+    }
+  ],
+  "verificationNote": "Migrated from js/policy-data.js. Figures predate the §16.7 primary-source pipeline and have not been re-read against the policy wording. Not publishable until re-verified and signed off (§16.8)."
+}

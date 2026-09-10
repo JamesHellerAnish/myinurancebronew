@@ -1,0 +1,12 @@
+{
+  "name": "TATA AIG",
+  "slug": "tata-aig",
+  "kind": "health",
+  "logo": "tataaig.png",
+  "accent": "#1E293B",
+  "initials": "TA",
+  "score": 3.43,
+  "csr": 88.94,
+  "complaints": 11.47,
+  "businessCr": 3776.36
+}

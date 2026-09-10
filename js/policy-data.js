@@ -131,11 +131,212 @@ var policyData = {
     ]
   },
 
+  /* ── Insurer logos ──────────────────────────────────────────
+     Keyed by the exact insurer string used elsewhere in this file, so
+     `companies[]`, `plans[].insurer` and the static markup in index.html
+     all resolve to the same logo.
+
+     `logo` is a file in assets/logos/ — each insurer's own brand icon,
+     downloaded from their site and served locally. Never hotlink these:
+     the insurers' CDNs can and do block cross-site requests, and a broken
+     partner logo on a broker's site looks like a dead partnership.
+
+     `accent` and `initials` are the fallback tile for an insurer we have
+     no logo file for — `brandFor()` returns them for anything unknown, so
+     a new insurer renders as a coloured monogram rather than a broken
+     image. Both are also what the pre-logo design used.
+
+     These are registered trademarks. We display them as the insurers'
+     appointed corporate agent, which is normal practice — but see §11 of
+     the handoff before adding any insurer we do not actually place.
+     ──────────────────────────────────────────────────────────── */
+  brands: {
+    'Axis Max Life':         { logo: 'axismax.png',      accent: '#7C3AED', initials: 'AM' },
+    'Max Life':              { logo: 'axismax.png',      accent: '#7C3AED', initials: 'ML' },
+    'HDFC Life':             { logo: 'hdfclife.png',     accent: '#0EA5E9', initials: 'HL' },
+    'HDFC ERGO':             { logo: 'hdfcergo.png',     accent: '#DC2626', initials: 'HE' },
+    'ICICI Prudential':      { logo: 'icicipru.png',     accent: '#F97316', initials: 'IP' },
+    'ICICI Lombard':         { logo: 'icicilombard.png', accent: '#B45309', initials: 'IL' },
+    'Bajaj Life':            { logo: 'bajajlife.png',    accent: '#0891B2', initials: 'BL' },
+    'Bajaj General':         { logo: 'bajajgeneral.png', accent: '#0E7490', initials: 'BG' },
+    'SBI Life':              { logo: 'sbilife.png',      accent: '#1E3A8A', initials: 'SL' },
+    'SBI General':           { logo: 'sbigeneral.png',   accent: '#1E3A8A', initials: 'SG' },
+    'Aditya Birla Sun Life': { logo: 'absl.png',         accent: '#DB2777', initials: 'AB' },
+    'Aditya Birla Health':   { logo: 'abhi.png',         accent: '#DB2777', initials: 'AB' },
+    'Care Health':           { logo: 'care.png',         accent: '#16A34A', initials: 'CH' },
+    'Niva Bupa':             { logo: 'nivabupa.png',     accent: '#2563EB', initials: 'NB' },
+    'Go Digit':              { logo: 'godigit.png',      accent: '#0D9488', initials: 'GD' },
+    'Generali Central':      { logo: 'generali.png',     accent: '#9F1239', initials: 'GC' },
+    'TATA AIG':              { logo: 'tataaig.png',      accent: '#1E293B', initials: 'TA' },
+    'Tata AIA':              { logo: 'tataaia.png',      accent: '#1E293B', initials: 'TA' },
+    'Star Health':           { logo: 'star.png',         accent: '#C2410C', initials: 'SH' }
+  },
+
   /* ── Life-stage personas used by the Explore filter ─────────── */
+  /* ── Life-stage personas ────────────────────────────────────
+     The panel copy for #personas on the home page lives here, not in the markup.
+     SEO_ASTRO_PLAN.md §7 and §12 step 7: the Astro home page renders these panels from
+     the collection, so this file is the one place the wording exists. Adding a persona
+     here and re-running `npm run migrate` is all it takes.
+
+     planRecommendations reference plan ids rather than repeating insurer names or logo
+     paths — CLAUDE.md invariant 5 keeps branding resolving through brandFor(). */
   personas: [
-    { key: 'genz', label: 'Just started earning', age: '22–28' },
-    { key: 'newparent', label: 'New or expecting parent', age: '28–38' },
-    { key: 'sandwich', label: 'Kids and parents to cover', age: '45–60' }
+    {
+      key: 'genz',
+      label: 'Just started earning',
+      age: '22–28',
+      icon: 'briefcase',
+      tone: '',
+      teaser:
+        'First job, first salary — and cover that quietly belongs to your employer, not to you.',
+      headline: 'You are covered — until the day you resign',
+      intro:
+        'Group cover from your employer feels like a solved problem. It is the single most common gap ' +
+        'we fix, because it disappears exactly when your income does.',
+      pains: [
+        {
+          icon: 'briefcase',
+          heading: 'Your group cover ends the day you leave',
+          body:
+            'Employer health cover is not portable. It does not follow you to the next job, it does not ' +
+            'cover you through a notice period gap, and it ends immediately if you are laid off — which ' +
+            'is the exact moment a hospital bill would hurt most.',
+        },
+        {
+          icon: 'users',
+          heading: 'You have aged off your parents\' family floater',
+          body:
+            'Most family floaters drop dependent children at 25. Many people discover this at a claim, ' +
+            'not at renewal. If nobody has bought you a plan in your own name, you are uninsured and do ' +
+            'not know it yet.',
+        },
+        {
+          icon: 'clock',
+          heading: 'Waiting periods only start counting once you buy',
+          body:
+            'Every health policy makes you wait 2–3 years before pre-existing and named illnesses are ' +
+            'covered. Those years pass whether or not you have a policy — so the cheapest year to start ' +
+            'serving them is this one, while you are healthy and premiums are at their lowest.',
+          stat:
+            'A 25-year-old pays ₹10,149/yr — the same cover at 45 costs several times more',
+        }
+      ],
+      planRecommendations: [
+        { planId: 'health-abhi-activ-one-max', reason: 'Cheapest health cover on our list' },
+        { planId: 'term-bajaj-etouch-2', reason: 'Cheapest ₹2 Cr term cover' },
+        { planId: 'health-nivabupa-reassure-2-platinum', reason: 'Rewards buying young — locks in your entry age' }
+      ]
+    },
+
+    {
+      key: 'newparent',
+      label: 'New or expecting parent',
+      age: '28–38',
+      icon: 'baby',
+      tone: 'teal',
+      teaser:
+        'A second person now depends on your income, and the clock on maternity waiting periods has ' +
+        'already started.',
+      headline: 'The cover has to exist before you need it',
+      intro:
+        'Maternity and newborn benefits are the one part of health insurance you cannot buy on ' +
+        'demand. Almost every gap we see at this stage comes down to timing.',
+      pains: [
+        {
+          icon: 'calendar',
+          heading: 'Maternity waiting periods run 2–4 years',
+          body:
+            'You have to buy the cover well before you start planning, not once you are expecting. None ' +
+            'of the five plans we rate covers maternity in its base policy — HDFC ERGO offers it through ' +
+            'the Parenthood rider, and Aditya Birla needs a separate product entirely.',
+          stat:
+            'Buy after conception and maternity is simply not covered',
+        },
+        {
+          icon: 'baby',
+          heading: 'Newborns need cover from day one',
+          body:
+            'A newborn can be admitted to the NICU within hours of birth, and that is one of the most ' +
+            'expensive admissions in Indian healthcare. Cover for the child has to already be in place, ' +
+            'structured correctly, before the delivery.',
+        },
+        {
+          icon: 'home',
+          heading: 'Your term cover now has to clear 20 years of liability',
+          body:
+            'A child means roughly two decades of dependency, and for most people it arrives alongside a ' +
+            'home loan. The cover you bought as a single 25-year-old was not sized for either.',
+        },
+        {
+          icon: 'scale',
+          heading: 'Both spouses are usually under-covered',
+          body:
+            'Cover typically gets bought for the higher earner only. If the other parent is uninsured, ' +
+            'the household is still one event away from a crisis — including the cost of replacing unpaid ' +
+            'care.',
+        }
+      ],
+      planRecommendations: [
+        { planId: 'health-hdfcergo-optima-secure-plus', reason: 'Parenthood maternity rider available' },
+        { planId: 'term-axismax-smart-term-plus', reason: '99.71% claim settlement — the highest in India' },
+        { planId: 'term-hdfc-click2protect-supreme-plus', reason: 'Raises cover at childbirth, no fresh medicals' }
+      ]
+    },
+
+    {
+      key: 'sandwich',
+      label: 'Kids and parents to cover',
+      age: '45–60',
+      icon: 'users',
+      tone: 'warm',
+      teaser:
+        'You are holding up two generations at once — and you are the single point of failure for ' +
+        'both.',
+      headline: 'Two generations, one income, no margin for error',
+      intro:
+        'This is the hardest stage to insure and the one where getting the details wrong is most ' +
+        'expensive. Senior-parent cover in particular rewards precision.',
+      pains: [
+        {
+          icon: 'alert-triangle',
+          heading: 'Parents over 60 face co-pays, loading and full waiting periods',
+          body:
+            'Premiums rise steeply, insurers add a co-payment share, and pre-existing conditions — which ' +
+            'most people over 60 have — sit behind a 2 to 3 year wait. Which insurer you pick decides ' +
+            'whether that wait is two years or three.',
+          stat:
+            'A senior couple costs ₹66,505–₹78,923/yr at ₹15 L cover',
+        },
+        {
+          icon: 'briefcase',
+          heading: 'Your corporate floater will not take them',
+          body:
+            'Most employer plans either exclude parents outright or price them as a punitive add-on with ' +
+            'thin limits. And like all group cover, it ends the day you change jobs — taking your ' +
+            'parents\' only protection with it.',
+        },
+        {
+          icon: 'trending-up',
+          heading: 'Your kids\' education corpus is exposed',
+          body:
+            'College costs are a fixed future liability sitting on a single income. Without term cover ' +
+            'sized to it, that corpus is the first thing that gets liquidated.',
+        },
+        {
+          icon: 'users',
+          heading: 'You are the single point of failure for two generations',
+          body:
+            'Parents above you, children below, and both financially dependent on you continuing to earn. ' +
+            'That is the definition of a risk that has to be transferred rather than absorbed.',
+        }
+      ],
+      planRecommendations: [
+        { planId: 'health-sbi-super-health-platinum-infinite', reason: '2-year pre-existing wait — a full year less than the rest' },
+        { planId: 'health-hdfcergo-optima-secure-plus', reason: 'Best claims record in health insurance' },
+        { planId: 'term-absl-super-term', reason: 'Critical illness cover built into the base plan' }
+      ]
+    }
   ],
 
   /* ═══════════════════════════════════════════════════════════
@@ -834,4 +1035,36 @@ var policyData = {
     acc[plan.id] = plan;
     return acc;
   }, {});
+
+  /* ── Brand lookup ─────────────────────────────────────────────
+     Case- and punctuation-insensitive, because the same insurer is
+     written "HDFC ERGO" in the dataset and "HDFC Ergo" in the FAQ copy.
+     Always returns something renderable: an insurer we hold no logo for
+     falls back to a coloured monogram, never a broken image. */
+  var byKey = {};
+  Object.keys(data.brands).forEach(function (name) {
+    byKey[name.toLowerCase().replace(/[^a-z0-9]/g, '')] = data.brands[name];
+  });
+
+  data.brandFor = function (name) {
+    var brand = byKey[String(name || '').toLowerCase().replace(/[^a-z0-9]/g, '')];
+    if (brand) return brand;
+    return {
+      logo: null,
+      accent: '#475569',
+      initials: String(name || '?').replace(/[^A-Za-z ]/g, '')
+        .split(/\s+/).slice(0, 2).map(function (w) { return w.charAt(0).toUpperCase(); }).join('')
+    };
+  };
+
+  /* The registry is the single source of truth for insurer branding, so
+     reconcile the per-plan values against it. Without this an insurer can
+     drift between the plan card and the league table — SBI actually had,
+     sharing Axis Max Life's violet. */
+  data.allPlans.forEach(function (plan) {
+    var brand = data.brandFor(plan.insurer);
+    plan.accent = brand.accent;
+    plan.monogram = brand.initials;
+    plan.logo = brand.logo;
+  });
 })(policyData);

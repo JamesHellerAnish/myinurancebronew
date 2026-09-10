@@ -1,0 +1,673 @@
+[
+  {
+    "slug": "adventure-hazardous-sports",
+    "term": "Adventure / Hazardous Sports",
+    "definition": "means any sport or activity involving physical exertion and skill including but not limited to, para-jumping, rock climbing, mountaineering, rafting, motor racing, horse racing or scuba diving, hand gliding, sky diving, deep-sea diving, in which an Insured Person participates or competes for entertainment or as part of his profession whether he / she is trained or not.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "ambulance",
+    "term": "Ambulance",
+    "definition": "means a motor vehicle operated by a licenced / authorised service provider and equipped for the transport and paramedical treatment of the person requiring medical attention.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "annual-health-check-up",
+    "term": "Annual Health Check-up",
+    "definition": "means a package of medical test(s) undertaken for general assessment of health status, excluding any diagnostic or investigative medical tests for evaluation of any Illness.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "associated-medical-expenses",
+    "term": "Associated Medical Expenses",
+    "definition": "means consultation fees, charges on operation theatre, surgical appliances and nursing, and expenses on anaesthesia, blood, oxygen incurred during Hospitalization of the Insured Person. Associated Medical Expenses does not include cost of pharmacy and consumables, cost of implants and medical devices, and cost of diagnostics.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "ayush-day-care-centre",
+    "term": "AYUSH Day Care Centre",
+    "definition": "means and includes Community Health Centre (CHC), Primary Health Centre (PHC), Dispensary, Clinic, Polyclinic or any such health centre which is registered with the local authorities, wherever applicable and having facilities for carrying out treatment procedures and medical or surgical / para-surgical interventions or both under the supervision of registered AYUSH Medical Practitioner(s) on day care basis without In-Patient services and must comply with all the following criterion: a. Having qualified registered AYUSH Medical Practitioner(s) in charge; b. Having dedicated AYUSH therapy sections as required and / or has equipped operation theatre where surgical procedures are to be carried out; c. Maintaining daily records of the patients and making them accessible to the insurance company's authorized representative.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "bank-rate",
+    "term": "Bank Rate",
+    "definition": "means the rate fixed by the Reserve Bank of India (RBI) at the beginning of the financial year, which shall be applied depending on the year in which a claim is due.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "base-sum-insured",
+    "term": "Base Sum Insured",
+    "definition": "means the pre-defined Policy limit applicable for claims made during each Policy Year, as specified against an Insured Person or all Insured Persons in the Policy Schedule and Annexure III - Product Benefit Table.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "biological-attack-or-weapons",
+    "term": "Biological Attack or Weapons",
+    "definition": "means the emission, discharge, dispersal, release or escape of any pathogenic (disease producing) micro-organisms and / or biologically produced toxins (including genetically modified organisms and chemically synthesized toxins) which are capable of causing any Illness, incapacitating disablement or death.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "break-in-policy",
+    "term": "Break in Policy",
+    "definition": "means the period of gap that occurs at the end of the existing policy term/installment premium due date, when the premium due for renewal on a given policy or installment premium due is not paid on or before the premium renewal date or grace period.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "chemical-attack-or-weapons",
+    "term": "Chemical Attack or Weapons",
+    "definition": "means the emission, discharge, dispersal, release or escape of any solid, liquid or gaseous chemical compound which, when suitably distributed, is capable of causing any Illness, incapacitating disablement or death.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "co-payment",
+    "term": "Co-Payment",
+    "definition": "means a cost sharing requirement under a health insurance policy that provides that the Policyholder / Insured will bear a specified percentage of the admissible claims amount. A co-payment does not reduce the Sum Insured.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "commencement-date",
+    "term": "Commencement Date",
+    "definition": "means the date of commencement of insurance coverage under the Policy as specified in the Policy Schedule.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "day-care-centre",
+    "term": "Day Care Centre",
+    "definition": "means any institution established for day care treatment of illness and / or injuries or a medical set-up with a hospital and which has been registered with the local authorities, wherever applicable, and is under the supervision of a registered and qualified medical practitioner and must comply with all minimum criterion as under: a. Has qualified nursing staff under its employment; b. Has qualified medical practitioner/s in charge; c. Has fully equipped operation theatre of its own where surgical procedures are carried out; d. Maintains daily records of patients and will make these accessible to the insurance company's authorized personnel.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "day-care-treatment",
+    "term": "Day Care Treatment",
+    "definition": "means medical treatment, and / or surgical procedure which is a. Undertaken under General or Local Anaesthesia in a hospital/day care centre in less than 24 hours because of technological advancement, and b. Which would have otherwise required hospitalization of more than 24 hours. Treatment normally taken on an out-patient basis is not included in the scope of this definition.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "deductible",
+    "term": "Deductible",
+    "definition": "means a cost-sharing requirement under a health insurance policy that provides that the insurer will not be liable for a specified rupee amount in case of indemnity policies and for a specified number of days / hours in case of hospital cash policies which will apply before any benefits are payable by the insurer. A deductible does not reduce the Sum Insured. The deductible is separate from any Aggregate Deductible that may be in-force and applicable under the Policy, as specified in the Policy Schedule.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "dental-treatment",
+    "term": "Dental Treatment",
+    "definition": "means a treatment related to teeth or structures supporting teeth including examinations, fillings (where appropriate), crowns, extractions and surgery.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "disclosure-of-information-norm",
+    "term": "Disclosure of information norm",
+    "definition": "means the policy shall be void and all premium paid hereon shall be forfeited to the Company in the event of misrepresentation, mis-description or non-disclosure of any material fact.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "domiciliary-hospitalization",
+    "term": "Domiciliary Hospitalization",
+    "definition": "means medical treatment for an illness / disease / injury which in the normal course would require care and treatment at a hospital but is actually taken while confined at home under any of the following circumstances: a. The condition of the patient is such that he / she is not in a condition to be removed to a hospital, or b. The patient takes treatment at home on account of non-availability of room in a hospital.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "emergency-assistance-service-provider",
+    "term": "Emergency Assistance Service Provider",
+    "definition": "means the licensed entity which will provide identified emergency medical assistance and personal services to people travelling more than 150 (one hundred and fifty) kilometres from their declared place of residence in India.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "emergency-care",
+    "term": "Emergency Care",
+    "definition": "means management for an illness or injury which results in symptoms which occur suddenly and unexpectedly, and requires immediate care by a medical practitioner to prevent death or serious long term impairment of the insured person's health.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "empanelled-service-providers",
+    "term": "Empanelled Service Providers",
+    "definition": "means service provider (Doctor's clinic, Diagnostic centre, Medicine, Drug vendor, medical service provider and Home care treatment provider) enlisted by Us, TPA or jointly by Us and TPA to provide OPD medical services to an Insured Person by a Cashless Facility.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "end-stage-lung-failure",
+    "term": "End Stage Lung Failure",
+    "definition": "means End stage lung disease, causing chronic respiratory failure, as confirmed and evidenced by all of the following: a. FEV1 test results consistently less than 1 litre measured on 3 occasions 3 months apart; and b. Requiring continuous permanent supplementary oxygen therapy for hypoxemia; and c. Arterial blood gas analysis with partial oxygen pressures of 55mmHg or less (PaO2 <55 mm Hg); and d. Dyspnea at rest.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "grace-period",
+    "term": "Grace Period",
+    "definition": "means the specified period of time immediately following the premium due date during which premium payment can be made to renew or continue a policy in force without loss of continuity benefits such as waiting periods and coverage of pre-existing diseases. Coverage need not be available during the period for which no premium is received. The grace period for payment of the premium for all types of insurance policies shall be: fifteen days where premium payment mode is monthly and thirty days in all other cases. Coverage is available during the Grace Period, if the premium is paid in instalments during the Policy Period",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "home",
+    "term": "Home",
+    "definition": "means the Insured Person's place of permanent residence as specified in the Policy Schedule.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "hospital",
+    "term": "Hospital",
+    "definition": "means any institution established for In-patient care and day care treatment of Illness and / or injuries and which has been registered as a hospital with the local authorities under the Clinical Establishments (Registration and Regulation) Act 2010 or under the enactments specified under the Schedule of Section 56(1) of the said act or complies with all minimum criteria as under: a. Has qualified nursing staff under its employment round the clock; b. Has at least 10 In-patient beds in towns having a population of less than 10,00,000 and at least 15 In-patient beds in all other places; c. Has qualified medical practitioner(s) in charge round the clock; d. Has a fully equipped operation theatre of its own where surgical procedures are carried out; e. Maintains daily records of patients and make these accessible to the insurance company's authorized personnel.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "hospitalization",
+    "term": "Hospitalization",
+    "definition": "means admission in a Hospital for a minimum period of 24 consecutive `In-Patient Care' hours except for specified procedures / treatments, where such admission could be for a period of less than 24 consecutive hours.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "icu-charges",
+    "term": "ICU (Intensive Care Unit) Charges",
+    "definition": "means the amount charged by a Hospital towards ICU expenses which shall include the expenses for ICU bed, general medical support services provided to any ICU patient including monitoring devices, critical care nursing and intensivist charges.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "illness",
+    "term": "Illness",
+    "definition": "means a sickness or a disease or pathological condition leading to the impairment of normal physiological function and requires medical treatment. a. Acute condition — Acute condition means is a disease, illness or injury that is likely to respond quickly to treatment which aims to return the person to his or her state of health immediately before suffering the disease / illness / injury which leads to full recovery. b. Chronic condition — A chronic condition is defined as a disease, illness, or injury that has one or more of the following characteristics: i. It needs ongoing or long-term monitoring through consultations, examinations, check-ups, and / or tests; ii. It needs ongoing or long-term control or relief of symptoms; iii. It requires rehabilitation for the patient or for the patient to be specially trained to cope with it; iv. It continues indefinitely; v. It recurs or is likely to recur.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "in-patient-care",
+    "term": "In-Patient Care",
+    "definition": "means treatment for which the insured person has to stay in a hospital for more than 24 hours for a covered event.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "injury",
+    "term": "Injury",
+    "definition": "means accidental physical bodily harm excluding illness or disease solely and directly caused by external, violent and visible and evident means which is verified and certified by a Medical Practitioner.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "insured-person",
+    "term": "Insured Person",
+    "definition": "means persons named in the Policy Schedule who are insured under the Policy and in respect of whom the applicable premium has been received in full.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "intensive-care-unit",
+    "term": "Intensive Care Unit (ICU)",
+    "definition": "means an identified section, ward or wing of a hospital which is under the constant supervision of a dedicated medical practitioner(s), and which is specially equipped for the continuous monitoring and treatment of patients who are in a critical condition, or require life support facilities and where the level of care and supervision is considerably more sophisticated and intensive than in the ordinary and other wards.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "major-illness",
+    "term": "Major Illness",
+    "definition": "means any of the Illnesses, medical events or Surgical Procedures as specifically listed under applicable section of Appendix A.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "material-facts",
+    "term": "Material Facts",
+    "definition": "means all relevant information sought by the Company in the Proposal Form and other connected documents to enable it to take informed decision in the context of underwriting the risk.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "medical-advice",
+    "term": "Medical Advice",
+    "definition": "means any consultation or advice from a Medical Practitioner including the issuance of any prescription or follow-up prescription.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "medical-expenses",
+    "term": "Medical Expenses",
+    "definition": "means those expenses that an Insured Person has necessarily and actually incurred for medical treatment on account of Illness or Accident on the advice of a Medical Practitioner, as long as these are no more than would have been payable if the Insured Person had not been insured and no more than other hospitals or doctors in the same locality would have charged for the same medical treatment.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "medical-practitioner",
+    "term": "Medical Practitioner",
+    "definition": "means a person who holds a valid registration from the Medical Council of any State or Medical Council of India or Council for Indian Medicine or for Homeopathy set up by the Government of India or a State Government and is thereby entitled to practice medicine within its jurisdiction; and is acting within the scope and jurisdiction of license. Medical Practitioner who is sharing the same residence as the Insured Person and is a Family Member of the Insured Person are not considered as Medical Practitioner under the scope of this Policy. Medical Practitioner (Definition applicable for the treatment taken outside India) means a licensed medical practitioner acting within the scope of his license and who holds a degree of a recognized institution and is registered by the Authorized Medical Council of the respective country.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "medically-necessary-treatment",
+    "term": "Medically Necessary Treatment",
+    "definition": "means any treatment, test, medication, or stay in hospital or part of stay in hospital which: a. Is required for the medical management of the illness or injury suffered by the insured; b. Must not exceed the level of care necessary to provide safe, adequate and appropriate medical care in scope, duration or intensity; c. Must have been prescribed by a medical practitioner; d. Must conform to the professional standards widely accepted in international medical practice or by the medical community in India.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "migration",
+    "term": "Migration",
+    "definition": "means a facility provided to policyholders (including all members under family cover and group policies), to transfer the credits gained for pre-existing diseases and specific waiting periods from one health insurance policy to another with the same insurer.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "network-provider",
+    "term": "Network Provider",
+    "definition": "means hospitals or health care providers enlisted by an insurer, TPA or jointly by an Insurer and TPA to provide medical services to an insured by a cashless facility.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "non-network-provider",
+    "term": "Non-Network Provider",
+    "definition": "means any hospital, day care centre or other provider that is not part of the network.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "notification-of-claim",
+    "term": "Notification of Claim",
+    "definition": "means the process of intimating a claim to the insurer or TPA through any of the recognized modes of communication.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "opd-treatment",
+    "term": "OPD Treatment",
+    "definition": "means the one in which the Insured visits a clinic / hospital or associated facility like a consultation room for diagnosis and treatment based on the advice of a Medical Practitioner. The Insured is not admitted as a day care patient or in-patient.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "policy",
+    "term": "Policy",
+    "definition": "means these Policy wordings, the Policy Schedule and any applicable endorsements or extensions attaching to or forming part thereof, as amended from time to time, and which shall be read together. The Policy sets out details of the extent of cover available to the Insured Person, applicable exclusions and the terms & conditions applicable under the Policy.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "policy-period",
+    "term": "Policy Period",
+    "definition": "means the period between the Commencement Date and either the Expiry Date specified in the Policy Schedule or the date of cancellation of this Policy, whichever is earlier.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "policy-schedule",
+    "term": "Policy Schedule",
+    "definition": "means the Policy Schedule attached to and forming part of this Policy specifying the details of the Insured Persons, the Sum Insured, the Policy Period and the Sub-limits to which benefits under the Policy are subject to, including any annexures and /or endorsements, made to or on it from time to time, and if more than one, then the latest in time.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "policy-year",
+    "term": "Policy Year",
+    "definition": "means a period of twelve months beginning from the Commencement Date and ending on the last day of such twelve-month period. For the purpose of subsequent years, Policy Year shall mean a period of twelve months commencing from the end of the previous Policy Year and lapsing on the last day of such twelve-month period.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "policyholder",
+    "term": "Policyholder",
+    "definition": "means person who has proposed the Policy and in whose name the Policy is issued.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "portability",
+    "term": "Portability",
+    "definition": "means a facility provided to the health insurance policyholders (including all members under family cover), to transfer the credits gained for, pre-existing diseases and specific waiting periods from one insurer to another insurer.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "post-hospitalization-medical-expenses",
+    "term": "Post-Hospitalization Medical Expenses",
+    "definition": "means Medical Expenses incurred during pre-defined number of days immediately after the insured person is discharged from the hospital provided that: a. Such Medical Expenses are for the same condition for which the Insured person's hospitalization was required, and b. The In-patient hospitalization claim for such hospitalization is admissible by the Insurance company.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "pre-existing-disease",
+    "term": "Pre-existing disease (PED)",
+    "definition": "means any condition, ailment, injury or disease: a) that is/are diagnosed by a physician not more than 36 months prior to the date of commencement of the policy issued by the insurer; or b) for which medical advice or treatment was recommended by, or received from, a physician, not more than 36 months prior to the date of commencement of the policy.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "pre-hospitalization-medical-expenses",
+    "term": "Pre-Hospitalization Medical Expenses",
+    "definition": "means Medical Expenses incurred during pre-defined number of days preceding the hospitalization of the Insured Person, provided that: a. Such Medical Expenses are incurred for the same condition for which the Insured Person's Hospitalization was required, and b. The In-patient Hospitalization claim for such Hospitalization is admissible by the Insurance Company.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "qualified-nurse",
+    "term": "Qualified Nurse",
+    "definition": "means a person who holds a valid registration from the Nursing Council of India or the Nursing Council of any state in India.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "renewal",
+    "term": "Renewal",
+    "definition": "means the terms on which the contract of insurance can be renewed on mutual consent with a provision of grace period for treating the renewal continuous for the purpose of gaining credit for pre-existing diseases, time-bound exclusions and for all Waiting Periods.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "room-rent",
+    "term": "Room Rent",
+    "definition": "means the amount charged by a Hospital towards Room and Boarding expenses and shall include the associated medical expenses.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "second-medical-opinion-for-major-illness",
+    "term": "Second Medical Opinion for Major Illness",
+    "definition": "means a procedure where by upon request of the Insured Person, an independent Medical Practitioner reviews and opines on the treating Medical Practitioner's recommendation as to care and treatment of the Insured Person by reviewing Insured Person's medical status and history. Such an opinion shall not be deemed to substitute the Insured Person's physical visit or consultation to an independent Medical Practitioner.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "specific-waiting-period",
+    "term": "Specific Waiting Period",
+    "definition": "means a period up to 36 months from the commencement of a health insurance policy during which period specified diseases/treatments (except due to an accident) are not covered. On completion of the period, diseases /treatments shall be covered provided the policy has been continuously without any break.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "sum-insured",
+    "term": "Sum Insured",
+    "definition": "means the aggregate limit of indemnity consisting of the Base Sum Insured, Super Reload, Super Credit (if applicable), Cancer Booster (if applicable) and any other benefit or section (if applicable) whose Sum Insured is over and above Base Sum Insured for the Insured Person. It represents the maximum, total and cumulative liability of the Company for any and all claims made under the Policy (under any and all Benefits), in respect of that Insured Person (on Individual basis) or all Insured Persons (on Floater basis) during the Policy Year, as specified against an Insured Person or all Insured Persons in the Policy Schedule. Sum Insured will be utilized as per the following sequence in event of any claim: a. Base Sum Insured followed by; b. Super Credit (if inbuilt / opted and applicable) followed by; c. Super Reload followed by; d. Cancer Booster (if opted and applicable)",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "surgery-or-surgical-procedure",
+    "term": "Surgery or Surgical Procedure",
+    "definition": "means manual and / or operative procedure (s) required for treatment of an illness or injury, correction of deformities and defects, diagnosis and cure of diseases, relief from suffering and prolongation of life, performed in a hospital or day care centre by a medical practitioner.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "unproven-experimental-treatment",
+    "term": "Unproven / Experimental Treatment",
+    "definition": "means the treatment including drug experimental therapy which is based on established medical practice in India, is a treatment experimental or unproven.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "waiting-period",
+    "term": "Waiting Period",
+    "definition": "means a period from the inception of this Policy during which specified diseases / treatments are not covered. On completion of the Waiting Period, diseases / treatments shall be covered provided the Policy has been continuously renewed without any break",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  }
+]

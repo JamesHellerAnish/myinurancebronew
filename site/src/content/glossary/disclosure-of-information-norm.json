@@ -1,0 +1,18 @@
+{
+  "slug": "disclosure-of-information-norm",
+  "term": "Disclosure of information norm",
+  "definition": "means the policy shall be void and all premium paid hereon shall be forfeited to the Company in the event of misrepresentation, mis-description or non-disclosure of any material fact.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "The clause stating that the policy is void, and premiums forfeited, if information was misrepresented, mis-described or withheld.",
+  "whyItMatters": "This is the legal teeth behind the proposal form. It is not aimed at honest mistakes about detail, but it does mean a deliberately omitted condition can void the entire contract rather than just that one claim. It is the reason to over-disclose rather than under-disclose.",
+  "related": [
+    "material-facts",
+    "pre-existing-disease",
+    "notification-of-claim"
+  ]
+}

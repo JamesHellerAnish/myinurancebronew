@@ -1,0 +1,18 @@
+{
+  "slug": "medical-practitioner",
+  "term": "Medical Practitioner",
+  "definition": "means a person who holds a valid registration from the Medical Council of any State or Medical Council of India or Council for Indian Medicine or for Homeopathy set up by the Government of India or a State Government and is thereby entitled to practice medicine within its jurisdiction; and is acting within the scope and jurisdiction of license. Medical Practitioner who is sharing the same residence as the Insured Person and is a Family Member of the Insured Person are not considered as Medical Practitioner under the scope of this Policy. Medical Practitioner (Definition applicable for the treatment taken outside India) means a licensed medical practitioner acting within the scope of his license and who holds a degree of a recognized institution and is registered by the Authorized Medical Council of the respective country.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "Someone holding a valid registration with a State or national Medical Council, whether allopathic, Indian medicine or homeopathy. They must be acting within the scope of that registration.",
+  "whyItMatters": "Claims are declined over this more often than people expect. Treatment by someone not registered, or by a registered practitioner working outside their field, may not be covered. Most policies also exclude treatment by you or an immediate family member, however qualified they are.",
+  "related": [
+    "hospital",
+    "medical-advice",
+    "ayush-day-care-centre"
+  ]
+}

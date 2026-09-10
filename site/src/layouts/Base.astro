@@ -1,0 +1,79 @@
+---
+// SEO_ASTRO_PLAN.md §4.2 — the shell every page renders into.
+//
+// The design system ports as-is (§1.5): css/style.css + css/components.css are copied into
+// public/ by scripts/sync-public.mjs and linked here, so there is one stylesheet source of
+// truth shared with the legacy site rather than a fork that drifts.
+import SEO from '../components/seo/SEO.astro'
+import JsonLd from '../components/seo/JsonLd.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import { organizationSchema } from '../lib/schema'
+
+interface Props {
+  title: string
+  description: string
+  brand?: boolean
+  expectNumber?: boolean
+  keywords?: string[]
+  noindex?: boolean
+  modified?: Date
+  /** Extra JSON-LD blocks beyond the sitewide Organization. */
+  schemas?: Array<Record<string, unknown>>
+  /** Nav item to mark as current. */
+  current?: string
+}
+
+const { schemas = [], current, ...seo } = Astro.props
+---
+
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Applies the saved theme before first paint. This has to be inline and blocking:
+         deferred, the page paints light and then flips, which is worse than not having a
+         toggle. Same `mib-theme` key as js/main.js, so a preference set on the legacy
+         one-pager carries over to the generated pages during the migration. -->
+    <script is:inline>
+      try {
+        var t = localStorage.getItem('mib-theme')
+        if (t) document.documentElement.setAttribute('data-theme', t)
+      } catch (e) {}
+    </script>
+
+    <SEO {...seo} />
+
+    <!-- §9.1: fonts are self-hosted. Both page types have a text LCP element, so LCP waited
+         on two third-party round-trips — the render-blocking fonts.googleapis.com stylesheet
+         and then the fonts.gstatic.com connection. Same-origin now, and preloadable.
+         Regenerate with site/scripts/fetch-fonts.mjs. -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/assets/fonts/inter-latin.woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/css/fonts.css" />
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/components.css" />
+    <!-- The Astro-only layer: long-form content pages. The legacy one-pager does not link
+         it, so style.css and components.css stay shared rather than forked. -->
+    <link rel="stylesheet" href="/css/pages.css" />
+
+    <JsonLd schema={organizationSchema()} />
+    {schemas.map((schema) => <JsonLd schema={schema} />)}
+  </head>
+
+  <body>
+    <Header current={current} />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

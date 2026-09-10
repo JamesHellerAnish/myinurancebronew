@@ -1,0 +1,134 @@
+---
+// Section 2c — personas / pain points. Ported from index.html:369.
+//
+// SEO_ASTRO_PLAN.md §12 step 7: these panels are now generated from the personas collection
+// rather than hand-written markup. The copy lives in js/policy-data.js and arrives here via
+// `npm run migrate`, so adding the 13 personas of §7 is a data edit, not 260 more lines of
+// HTML — and the panels cannot drift from the persona records the /for/[persona]/ routes
+// will use.
+//
+// The class names and ARIA wiring are unchanged from the legacy markup, because js/main.js
+// binds .persona-card / .persona-panel by class and toggles `active` on both.
+//
+// Plan recommendations reference plan ids and resolve through the plans collection, so the
+// insurer logo and name come from one place (CLAUDE.md invariant 5) instead of being retyped
+// into the markup with a hand-written logo path.
+import { getCollection } from 'astro:content'
+import { publishablePlans } from '../../lib/plans'
+
+const personaEntries = await getCollection('personas')
+
+// Authoring order, not alphabetical: the panels read as a life progression.
+const ORDER = ['genz', 'newparent', 'sandwich']
+const personas = personaEntries
+  .map((entry) => entry.data)
+  .sort((a, b) => ORDER.indexOf(a.key) - ORDER.indexOf(b.key))
+
+// Recommendations resolve against publishable plans only. If a plan is not published, its
+// recommendation is dropped rather than linking to a page that does not exist.
+const plans = await publishablePlans()
+
+// Keyed on `data.id` — the record's own identifier from js/policy-data.js — not on the
+// collection entry id. Astro derives the entry id from the JSON's `slug` field, so
+// entry.id is "optima-secure" while the dataset (and every planRecommendation) says
+// "health-hdfcergo-optima-secure-plus". Keying on the entry id silently matches nothing.
+const planById = new Map(plans.map((plan) => [plan.data.id, plan]))
+
+function recommendationsFor(persona: (typeof personas)[number]) {
+  return persona.planRecommendations
+    .map((rec) => ({ rec, plan: planById.get(rec.planId) }))
+    .filter((entry): entry is { rec: typeof entry.rec; plan: NonNullable<typeof entry.plan> } =>
+      Boolean(entry.plan),
+    )
+}
+---
+
+<section class="section-padding" id="personas">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="eyebrow"><svg class="icon"><use href="#i-target"></use></svg> Built for your stage</span>
+      <h2>What's actually at risk <span class="highlight">right now</span></h2>
+      <p>Insurance advice that ignores your life stage is just a sales pitch. Pick the one that sounds like you.</p>
+    </div>
+
+    <div class="persona-picker" role="tablist" aria-label="Choose your life stage">
+      {personas.map((persona, i) => (
+        <button
+          class="persona-card"
+          role="tab"
+          id={`persona-tab-${persona.key}`}
+          aria-controls={`persona-panel-${persona.key}`}
+          aria-selected={i === 0 ? 'true' : 'false'}
+          tabindex={i === 0 ? undefined : -1}
+          data-persona={persona.key}
+        >
+          <span class={`icon-tile${persona.tone ? ` ${persona.tone}` : ''}`}>
+            <svg class="icon"><use href={`#i-${persona.icon}`}></use></svg>
+          </span>
+          <span class="persona-age">Age {persona.ageRange}</span>
+          <h3>{persona.label}</h3>
+          <p>{persona.teaser}</p>
+        </button>
+      ))}
+    </div>
+
+    {personas.map((persona, i) => (
+      <div
+        class={`persona-panel${i === 0 ? ' active' : ''}`}
+        id={`persona-panel-${persona.key}`}
+        role="tabpanel"
+        aria-labelledby={`persona-tab-${persona.key}`}
+      >
+        <div class="persona-panel-head">
+          <h3>{persona.headline}</h3>
+          <p>{persona.intro}</p>
+        </div>
+        <div class="persona-panel-body">
+          <div class="pain-list">
+            {persona.pains.map((pain) => (
+              <div class="pain">
+                <span class="icon-tile sm danger">
+                  <svg class="icon"><use href={`#i-${pain.icon}`}></use></svg>
+                </span>
+                <div>
+                  <h4>{pain.heading}</h4>
+                  <p>{pain.body}</p>
+                  {pain.stat && <span class="pain-stat">{pain.stat}</span>}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <aside class="persona-aside">
+            <h4>Plans that fit this stage</h4>
+            {recommendationsFor(persona).map(({ rec, plan }) => (
+              <div class="persona-plan">
+                {/* `logo` carries the filename, extension included. Where an insurer has no
+                    logo file the monogram is the documented fallback — invariant 5. */}
+                <span class={plan.data.logo ? 'monogram has-logo' : 'monogram'}>
+                  {plan.data.logo ? (
+                    <img
+                      class="brand-logo"
+                      src={`assets/logos/${plan.data.logo}`}
+                      alt={plan.data.insurer}
+                      width="34"
+                      height="34"
+                      loading="lazy"
+                    />
+                  ) : (
+                    plan.data.monogram
+                  )}
+                </span>
+                <div>
+                  <div class="persona-plan-name">{plan.data.name}</div>
+                  <div class="persona-plan-meta">{rec.reason}</div>
+                </div>
+              </div>
+            ))}
+            <a href="#compare" class="btn btn-primary" data-persona-jump={persona.key}>Compare these plans</a>
+          </aside>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

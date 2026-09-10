@@ -1,0 +1,19 @@
+{
+  "slug": "portability",
+  "term": "Portability",
+  "definition": "means a facility provided to the health insurance policyholders (including all members under family cover), to transfer the credits gained for, pre-existing diseases and specific waiting periods from one insurer to another insurer.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "Moving your health policy to a different insurer without losing the waiting periods you have already served.",
+  "whyItMatters": "This is what stops a bad insurer from holding you hostage. You keep your continuity credit, so switching after three years does not mean serving the pre-existing-disease wait again. It has to be started well before renewal — usually 45 days — and the new insurer can still underwrite you, so it is a right to be considered, not a guarantee of acceptance.",
+  "related": [
+    "migration",
+    "break-in-policy",
+    "waiting-period",
+    "pre-existing-disease"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Care Health",
+  "slug": "care-health",
+  "kind": "health",
+  "logo": "care.png",
+  "accent": "#16A34A",
+  "initials": "CH",
+  "score": 4.23,
+  "csr": 95.45,
+  "complaints": 42.67,
+  "businessCr": 8404.67
+}

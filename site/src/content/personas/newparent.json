@@ -1,0 +1,50 @@
+{
+  "key": "newparent",
+  "label": "New or expecting parent",
+  "ageRange": "28–38",
+  "icon": "baby",
+  "tone": "teal",
+  "teaser": "A second person now depends on your income, and the clock on maternity waiting periods has already started.",
+  "headline": "The cover has to exist before you need it",
+  "intro": "Maternity and newborn benefits are the one part of health insurance you cannot buy on demand. Almost every gap we see at this stage comes down to timing.",
+  "pains": [
+    {
+      "icon": "calendar",
+      "heading": "Maternity waiting periods run 2–4 years",
+      "body": "You have to buy the cover well before you start planning, not once you are expecting. None of the five plans we rate covers maternity in its base policy — HDFC ERGO offers it through the Parenthood rider, and Aditya Birla needs a separate product entirely.",
+      "stat": "Buy after conception and maternity is simply not covered"
+    },
+    {
+      "icon": "baby",
+      "heading": "Newborns need cover from day one",
+      "body": "A newborn can be admitted to the NICU within hours of birth, and that is one of the most expensive admissions in Indian healthcare. Cover for the child has to already be in place, structured correctly, before the delivery."
+    },
+    {
+      "icon": "home",
+      "heading": "Your term cover now has to clear 20 years of liability",
+      "body": "A child means roughly two decades of dependency, and for most people it arrives alongside a home loan. The cover you bought as a single 25-year-old was not sized for either."
+    },
+    {
+      "icon": "scale",
+      "heading": "Both spouses are usually under-covered",
+      "body": "Cover typically gets bought for the higher earner only. If the other parent is uninsured, the household is still one event away from a crisis — including the cost of replacing unpaid care."
+    }
+  ],
+  "planRecommendations": [
+    {
+      "planId": "health-hdfcergo-optima-secure-plus",
+      "reason": "Parenthood maternity rider available"
+    },
+    {
+      "planId": "term-axismax-smart-term-plus",
+      "reason": "99.71% claim settlement — the highest in India"
+    },
+    {
+      "planId": "term-hdfc-click2protect-supreme-plus",
+      "reason": "Raises cover at childbirth, no fresh medicals"
+    }
+  ],
+  "faqs": [],
+  "relatedPersonas": [],
+  "searchIntent": []
+}

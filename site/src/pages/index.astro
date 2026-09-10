@@ -1,0 +1,102 @@
+---
+// The home page. SEO_ASTRO_PLAN.md §12 step 7 — all 15 sections of the legacy one-pager,
+// ported into Astro components under components/home/.
+//
+// The sections are ported markup, not a redesign. The one-pager converts and the design
+// system is §1.5 "already good — keep it"; the point of this port is to get the home page
+// under Base.astro so it shares the chrome, the SEO composer and the schema with every
+// generated page, and so the persona and compare data come from the collections instead of
+// being duplicated in hand-written HTML.
+//
+// What changed from index.html, and nothing else:
+//   · <head>, navbar and footer are gone — Base.astro and the chrome components own them
+//   · persona panels are generated from the personas collection
+//   · the compare section ships a static table crawlers can read (§12 step 10)
+import Base from '../layouts/Base.astro'
+import Sprite from '../components/home/Sprite.astro'
+import Hero from '../components/home/Hero.astro'
+import Marquee from '../components/home/Marquee.astro'
+import Personas from '../components/home/Personas.astro'
+import Products from '../components/home/Products.astro'
+import Compare from '../components/home/Compare.astro'
+import Stats from '../components/home/Stats.astro'
+import Advisor from '../components/home/Advisor.astro'
+import Team from '../components/home/Team.astro'
+import ClaimSupport from '../components/home/ClaimSupport.astro'
+import HowItWorks from '../components/home/HowItWorks.astro'
+import Journey from '../components/home/Journey.astro'
+import Reviews from '../components/home/Reviews.astro'
+import Checklist from '../components/home/Checklist.astro'
+import Faq from '../components/home/Faq.astro'
+import FinalCta from '../components/home/FinalCta.astro'
+import { faqSchema } from '../lib/schema'
+import { fitDescription } from '../lib/seo'
+import { homeFaqs } from '../lib/home'
+
+// §8.1: the homepage is the one page where the brand is the whole title, so no suffix.
+//
+// Kept verbatim from index.html at 64 characters, four over the §9.2 budget. assertTitle()
+// warns rather than throws for exactly this case: this is the live homepage title, it is
+// what the domain is currently known by, and rewriting it is an SEO decision about existing
+// rankings — not a porting decision to make in passing. Change it deliberately or not at all.
+const title = 'Myinsurancebro — Compare & Buy the Best Insurance Plans in India'
+
+// §9.2 wants a number in every description. Using the IRDAI period rather than a customer
+// count: it is checkable against a primary source, and it says what the site actually does.
+const description = fitDescription(
+  'Independent, IRDAI-licensed insurance advice. Compare term and health plans on claim ' +
+    'settlement ratios from IRDAI FY 2024–26 disclosures, not ads.',
+  ['Zero spam, lifetime claim support.', 'Zero spam.'],
+)
+---
+
+<Base
+  title={title}
+  description={description}
+  brand={false}
+  keywords={[
+    'insurance',
+    'health insurance',
+    'term insurance',
+    'IRDAI',
+    'insurance advisor',
+    'compare insurance India',
+  ]}
+  schemas={[faqSchema(homeFaqs)]}
+>
+  <Sprite />
+  <Hero />
+  <Marquee />
+  <Personas />
+  <Products />
+  <Compare />
+  <Stats />
+  <Advisor />
+  <Team />
+  <ClaimSupport />
+  <HowItWorks />
+  <Journey />
+  <Reviews />
+  <Checklist />
+  <Faq />
+  <FinalCta />
+
+  {/*
+    The legacy page scripts, loaded as-is rather than rewritten.
+
+    `is:inline` keeps Astro from bundling them: they are plain scripts sharing globals
+    (compare.js reads the `policyData` that policy-data.js defines), and bundling would
+    turn them into modules with their own scope and break that. They are served from
+    public/js/, copied by sync-public.mjs.
+
+    This is interim. §12 step 10 makes the compare engine a page-scoped island and the
+    persona panels are already data-driven above; when those land, only the remaining
+    behaviour in main.js still needs loading. Nothing else on the site loads these — a
+    plan page still ships no page JavaScript at all.
+
+    Order matters: policyData must exist before compare.js runs.
+  */}
+  <script is:inline src="/js/policy-data.js"></script>
+  <script is:inline src="/js/compare.js"></script>
+  <script is:inline src="/js/main.js"></script>
+</Base>

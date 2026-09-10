@@ -1,0 +1,19 @@
+{
+  "slug": "adventure-hazardous-sports",
+  "term": "Adventure / Hazardous Sports",
+  "definition": "means any sport or activity involving physical exertion and skill including but not limited to, para-jumping, rock climbing, mountaineering, rafting, motor racing, horse racing or scuba diving, hand gliding, sky diving, deep-sea diving, in which an Insured Person participates or competes for entertainment or as part of his profession whether he / she is trained or not.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "Sport or activity involving physical exertion and skill — rock climbing, rafting, motor racing, scuba diving, sky diving and similar. It applies whether you do it for entertainment or professionally.",
+  "whyItMatters": "Injuries from these are excluded by most health and term policies, and the list is broader than people assume. Trekking at altitude and recreational diving on holiday can qualify. If you do any of it regularly, tell the insurer at proposal: an exclusion you knew about is survivable, a declined claim after an accident is not.",
+  "related": [
+    "injury",
+    "material-facts",
+    "disclosure-of-information-norm",
+    "emergency-care"
+  ]
+}

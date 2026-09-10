@@ -1,0 +1,19 @@
+{
+  "slug": "co-payment",
+  "term": "Co-Payment",
+  "definition": "means a cost sharing requirement under a health insurance policy that provides that the Policyholder / Insured will bear a specified percentage of the admissible claims amount. A co-payment does not reduce the Sum Insured.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "A share of every approved claim that you pay yourself, as a fixed percentage. If your policy has a 20% co-pay and the hospital bill is ₹1 lakh, the insurer pays ₹80,000 and you pay ₹20,000.",
+  "whyItMatters": "A co-pay applies to every claim, forever — it is not a one-off excess. It is the most common reason a policy that looked cheap turns out not to be, and it is often attached quietly to senior-citizen plans and to cheaper variants of otherwise good ones. Check for it before you compare premiums, because a plan with a co-pay is not comparable to one without.",
+  "related": [
+    "deductible",
+    "sum-insured",
+    "room-rent",
+    "waiting-period"
+  ]
+}
