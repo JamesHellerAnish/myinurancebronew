@@ -213,4 +213,35 @@ const glossary = defineCollection({
   }),
 })
 
-export const collections = { plans, insurers, personas, glossary }
+/**
+ * §9.4 Phase 2 — long-form guides, authored as MDX.
+ *
+ * Unlike every other collection here, these are **hand-written and not generated**: there is
+ * no data file behind them and `npm run migrate` does not touch them. §1260 calls guides
+ * "genuine editorial … slowest to produce, highest per-page value", and the schema is built
+ * to keep that honest.
+ *
+ * `sources` is required and must not be empty. A guide on a YMYL topic that cites nothing is
+ * the exact shape of content §13 warns about, and requiring the citation at the schema level
+ * means a build fails rather than a thin guide publishing quietly.
+ */
+const guides = defineCollection({
+  loader: glob({ pattern: '**/*.mdx', base: './src/content/guides' }),
+  schema: z.object({
+    title: z.string(),
+    /** Bare page title for fitTitle(); the brand suffix is added by title(). */
+    shortTitle: z.string().optional(),
+    description: z.string(),
+    /** One-sentence answer for the top of the page — the §8 block 3 idea, applied to guides. */
+    answer: z.string(),
+    published: z.coerce.date(),
+    updated: z.coerce.date().optional(),
+    /** Glossary slugs this guide explains in passing — used for the mesh (§9.3). */
+    terms: z.array(z.string()).default([]),
+    /** Where the facts came from. Required: see the note above. */
+    sources: z.array(z.object({ label: z.string(), url: z.string().url().optional() })).min(1),
+    draft: z.boolean().default(false),
+  }),
+})
+
+export const collections = { plans, insurers, personas, glossary, guides }

@@ -1,0 +1,127 @@
+---
+// /guides/[slug]/ — long-form editorial. SEO_ASTRO_PLAN.md §6.2, §9.4 Phase 2, §1260.
+//
+// The body is MDX, so a guide is written rather than generated. Everything around it is not:
+// the answer block, the sources, the glossary links and the schema all come from frontmatter
+// the collection schema enforces, so a guide cannot ship without a citation or an answer.
+//
+// Article schema rather than FAQPage — §10.5. A guide is one argument, not a set of Q&As, and
+// marking it up as the latter to chase a rich result would be misrepresenting the page.
+import type { GetStaticPaths } from 'astro'
+import { getCollection, render } from 'astro:content'
+import Base from '../../layouts/Base.astro'
+import Disclaimer from '../../components/seo/Disclaimer.astro'
+import { breadcrumbSchema, articleSchema } from '../../lib/schema'
+import { fitTitle } from '../../lib/seo'
+
+export const getStaticPaths = (async () => {
+  const guides = await getCollection('guides', ({ data }) => !data.draft)
+  const terms = await getCollection('glossary')
+
+  return guides.map((guide) => ({
+    params: { slug: guide.id },
+    props: {
+      guide,
+      // Only link terms that are actually published, or the mesh grows 404s.
+      terms: terms.filter((t) => guide.data.terms.includes(t.data.slug)),
+      siblings: guides.filter((g) => g.id !== guide.id).slice(0, 3),
+    },
+  }))
+}) satisfies GetStaticPaths
+
+interface Props {
+  guide: Awaited<ReturnType<typeof getCollection<'guides'>>>[number]
+  terms: Awaited<ReturnType<typeof getCollection<'glossary'>>>
+  siblings: Awaited<ReturnType<typeof getCollection<'guides'>>>
+}
+
+const { guide, terms, siblings } = Astro.props
+const d = guide.data
+const { Content } = await render(guide)
+
+const url = `/guides/${guide.id}/`
+
+const trail = [
+  { name: 'Home', path: '/' },
+  { name: 'Guides', path: '/guides/' },
+  { name: d.shortTitle ?? d.title, path: url },
+]
+
+const pageTitle = fitTitle([d.shortTitle ?? d.title, d.title])
+
+const dateFormat = new Intl.DateTimeFormat('en-IN', { dateStyle: 'long' })
+---
+
+<Base
+  title={pageTitle}
+  description={d.description}
+  expectNumber={false}
+  modified={d.updated ?? d.published}
+  schemas={[breadcrumbSchema(trail), articleSchema({ ...d, url })]}
+>
+  <article class="plan-page guide">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/guides/">Guides</a></li>
+        <li><span aria-current="page">{d.shortTitle ?? d.title}</span></li>
+      </ol>
+    </nav>
+
+    <h1>{d.title}</h1>
+    <p class="guide-meta">
+      <time datetime={d.published.toISOString()}>{dateFormat.format(d.published)}</time>
+      {d.updated && <> · updated <time datetime={d.updated.toISOString()}>{dateFormat.format(d.updated)}</time></>}
+    </p>
+
+    {/* §8 block 3, applied to a guide: the answer up front, before the argument for it. */}
+    <p class="answer-block">{d.answer}</p>
+
+    <div class="guide-body">
+      <Content />
+    </div>
+
+    {terms.length > 0 && (
+      <section class="internal-links">
+        <h2>Terms used in this guide</h2>
+        <ul>
+          {terms.map((t) => (
+            <li>
+              <a href={`/glossary/${t.data.slug}/`}>{t.data.term}</a> — {t.data.plain.split('. ')[0].replace(/\.\s*$/, '')}.
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <section class="sources">
+      <h2>Sources</h2>
+      <ul>
+        {d.sources.map((source) => (
+          <li>
+            {source.url ? (
+              <a href={source.url} rel="nofollow noopener" target="_blank">{source.label}</a>
+            ) : (
+              source.label
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    {siblings.length > 0 && (
+      <section class="internal-links">
+        <h2>More guides</h2>
+        <ul>
+          {siblings.map((g) => (
+            <li>
+              <a href={`/guides/${g.id}/`}>{g.data.title}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <Disclaimer />
+  </article>
+</Base>

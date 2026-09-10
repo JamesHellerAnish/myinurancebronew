@@ -571,12 +571,23 @@ field the plan actually carries (`room-rent` → `roomRent`), or the plan's own 
 the term. Anything looser would be a fabricated internal link, and a fabricated link on a page
 that cites policy wordings is worse than no link at all.
 
-### What is left in Phase 2
+### Guides — route built, 3 written
 
-**Guides (120 MDX pages) are not started.** They are the slowest, highest-value content in the
-plan (§1260, "genuine editorial") and the route does not exist yet. The glossary is the half
-that could be built well from primary sources already in the repo; guides are writing, and
-writing 120 of them badly would undo what the glossary is for.
+`/guides/` and `/guides/[slug]/` ship, backed by an MDX collection. Three guides are written:
+filling the proposal form, room rent limits, and leaving employer health cover. Each one is
+about a specific way cover fails in practice, not a general introduction, and each is grounded
+in the definitions harvested from the Activ One wording.
+
+**The collection schema requires `sources` to be non-empty.** A guide on a YMYL topic that
+cites nothing is the shape §13 warns about, and enforcing the citation at schema level means an
+uncited guide fails the build rather than publishing quietly. Guides carry `Article` schema
+rather than `FAQPage` — a guide is one argument, and marking it up as Q&A to chase a rich
+result would misrepresent the page. The author is the organisation, not an invented byline
+(invariant 7).
+
+**3 of a planned 120.** These are writing, and the rate is the rate — §1260 calls them the
+slowest, highest-value content in the plan. The template and the mesh are done, so each new one
+is an .mdx file and nothing else.
 
 The 14 unpublished terms were **skipped deliberately, not left undone**: `bank-rate`, `home`,
 `commencement-date`, `policyholder`, `insured-person`, `qualified-nurse`, the attack-weapon

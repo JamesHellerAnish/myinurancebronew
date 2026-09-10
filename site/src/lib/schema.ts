@@ -136,3 +136,33 @@ export function definedTermSetSchema(count: number) {
       `verbatim definition from an IRDAI-filed policy wording.`,
   }
 }
+
+/**
+ * Article — §10.5. Used for guides.
+ *
+ * Deliberately not FAQPage: a guide is one argument, and marking it up as a set of questions
+ * to chase a rich result would misrepresent the page to the crawler that trusts the markup.
+ *
+ * `author` is the organisation rather than an invented byline. CLAUDE.md invariant 7 — a
+ * named author on an IRDAI-licensed advisory site is a credential claim, and there is no
+ * person to attribute these to yet.
+ */
+export function articleSchema(guide: {
+  title: string
+  description: string
+  published: Date
+  updated?: Date
+  url: string
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: guide.title,
+    description: guide.description,
+    datePublished: guide.published.toISOString(),
+    dateModified: (guide.updated ?? guide.published).toISOString(),
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE}${guide.url}` },
+    author: { '@id': `${SITE}/#organization` },
+    publisher: { '@id': `${SITE}/#organization` },
+  }
+}
