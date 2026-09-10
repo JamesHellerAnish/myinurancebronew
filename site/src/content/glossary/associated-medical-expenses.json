@@ -1,0 +1,19 @@
+{
+  "slug": "associated-medical-expenses",
+  "term": "Associated Medical Expenses",
+  "definition": "means consultation fees, charges on operation theatre, surgical appliances and nursing, and expenses on anaesthesia, blood, oxygen incurred during Hospitalization of the Insured Person. Associated Medical Expenses does not include cost of pharmacy and consumables, cost of implants and medical devices, and cost of diagnostics.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "The charges that ride alongside the room bill — consultation fees, operation theatre, surgical appliances, nursing, anaesthesia, blood and oxygen.",
+  "whyItMatters": "This is why a room-rent cap costs more than the room. In hospitals that price by room category, these charges scale with the room you occupy, so exceeding your cap can proportionately reduce what the insurer pays across the entire bill, not just the bed.",
+  "related": [
+    "room-rent",
+    "icu-charges",
+    "hospitalization",
+    "sum-insured"
+  ]
+}

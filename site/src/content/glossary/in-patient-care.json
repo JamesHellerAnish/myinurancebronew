@@ -1,0 +1,19 @@
+{
+  "slug": "in-patient-care",
+  "term": "In-Patient Care",
+  "definition": "means treatment for which the insured person has to stay in a hospital for more than 24 hours for a covered event.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "Treatment where you occupy a hospital bed for more than 24 hours for a covered condition.",
+  "whyItMatters": "Almost every benefit in a health policy — room rent, surgeon's fees, ICU, pre- and post-hospitalisation — is triggered by in-patient care. Outpatient treatment usually is not covered at all unless you have bought an OPD benefit separately.",
+  "related": [
+    "hospitalization",
+    "opd-treatment",
+    "day-care-treatment",
+    "room-rent"
+  ]
+}

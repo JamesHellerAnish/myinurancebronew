@@ -1,0 +1,18 @@
+{
+  "slug": "migration",
+  "term": "Migration",
+  "definition": "means a facility provided to policyholders (including all members under family cover and group policies), to transfer the credits gained for pre-existing diseases and specific waiting periods from one health insurance policy to another with the same insurer.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "Moving to a different policy with the same insurer while keeping the waiting-period credit you have already built up. A group plan to an individual one, or an old product to a current one.",
+  "whyItMatters": "This is the route out of employer group cover when you leave a job. Done at the right moment, the years you spent covered under the group policy still count. Done late, they do not, and you start over as a new customer in your forties instead of your twenties.",
+  "related": [
+    "portability",
+    "waiting-period",
+    "break-in-policy"
+  ]
+}

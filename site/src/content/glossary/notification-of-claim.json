@@ -1,0 +1,19 @@
+{
+  "slug": "notification-of-claim",
+  "term": "Notification of Claim",
+  "definition": "means the process of intimating a claim to the insurer or TPA through any of the recognized modes of communication.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "Telling the insurer or their TPA that a claim is coming, through any of the channels the policy recognises.",
+  "whyItMatters": "There are deadlines — commonly 24 hours for an emergency admission and 48 to 72 hours before a planned one — and missing them gives the insurer grounds to question the claim even when the treatment was entirely covered. Intimate first, sort out the paperwork afterwards.",
+  "related": [
+    "network-provider",
+    "non-network-provider",
+    "hospitalization",
+    "material-facts"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "slug": "break-in-policy",
+  "term": "Break in Policy",
+  "definition": "means the period of gap that occurs at the end of the existing policy term/installment premium due date, when the premium due for renewal on a given policy or installment premium due is not paid on or before the premium renewal date or grace period.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "A gap between one policy period ending and the next beginning, because the premium was not paid in time.",
+  "whyItMatters": "The practical damage is the loss of continuity credit. Waiting periods you have already served can reset, and the insurer can re-underwrite you at your current age and health — which is a materially worse position than the one you were in the week before.",
+  "related": [
+    "grace-period",
+    "renewal",
+    "waiting-period",
+    "portability"
+  ]
+}

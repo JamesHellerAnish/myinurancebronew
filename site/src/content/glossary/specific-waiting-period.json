@@ -1,0 +1,18 @@
+{
+  "slug": "specific-waiting-period",
+  "term": "Specific Waiting Period",
+  "definition": "means a period up to 36 months from the commencement of a health insurance policy during which period specified diseases/treatments (except due to an accident) are not covered. On completion of the period, diseases /treatments shall be covered provided the policy has been continuously without any break.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "A separate waiting period attached to a named list of conditions and procedures. Cataract, hernia and joint replacement are the usual entries, and it applies whether or not you had the condition before.",
+  "whyItMatters": "People are caught out by this because it applies even to conditions that developed after the policy began. The list is in the policy wording, not the brochure, and it varies between insurers more than the headline waiting period does. If you are buying with a planned procedure in mind, this is the clause to read first.",
+  "related": [
+    "waiting-period",
+    "pre-existing-disease",
+    "day-care-treatment"
+  ]
+}

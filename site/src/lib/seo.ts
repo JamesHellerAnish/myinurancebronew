@@ -69,13 +69,20 @@ export function assertTitle(composed: string): void {
  * §9.2: meta descriptions run 150–160 chars, unique, and should contain a number —
  * a ₹ figure, a percentage, a count. Numbers measurably lift CTR.
  */
-export function assertDescription(description: string, pageUrl: string): void {
+export function assertDescription(
+  description: string,
+  pageUrl: string,
+  opts?: { expectNumber?: boolean },
+): void {
   if (description.length < 120 || description.length > 165) {
     console.warn(
       `[seo] description is ${description.length} chars (target 150–160) on ${pageUrl}`,
     )
   }
-  if (!/\d/.test(description)) {
+  // A number lifts CTR on a page that is *about* figures. A glossary entry is about a word,
+  // and stuffing a digit in to satisfy an assertion would be the assertion driving the copy
+  // rather than the other way round.
+  if (opts?.expectNumber !== false && !/\d/.test(description)) {
     console.warn(`[seo] description contains no number on ${pageUrl}`)
   }
 }
@@ -104,6 +111,29 @@ export function fitTitle(candidates: string[]): string {
   return usable.find((c) => c.length <= budget) ?? usable[usable.length - 1]
 }
 
+/**
+ * Trim text to whole sentences within a budget.
+ *
+ * Needed because a caller's "core" is not always short — a glossary gloss is written for the
+ * page first and reused as the description second. Cutting mid-word produces the "…" soup
+ * that makes a SERP snippet look auto-generated; cutting at a full stop still reads as prose.
+ * If even the first sentence overruns, it is returned whole and assertDescription warns —
+ * better a long honest sentence than a mangled one.
+ */
+export function clampToSentence(text: string, max: number): string {
+  const clean = text.replace(/\s+/g, ' ').trim()
+  if (clean.length <= max) return clean
+
+  const sentences = clean.match(/[^.!?]+[.!?]+(\s|$)/g) ?? [clean]
+  let out = ''
+  for (const sentence of sentences) {
+    if ((out + sentence).trim().length > max) break
+    out += sentence
+  }
+
+  return out.trim() || sentences[0].trim()
+}
+
 /** §9.2 target band for meta descriptions. */
 export const DESCRIPTION_MIN = 150
 export const DESCRIPTION_MAX = 160
@@ -118,7 +148,7 @@ export const DESCRIPTION_MAX = 160
  * on every record. assertDescription() was right; the generator had no budget.
  */
 export function fitDescription(core: string, tails: string[] = []): string {
-  const out = core.trim()
+  const out = clampToSentence(core.trim(), DESCRIPTION_MAX)
 
   for (const tail of tails) {
     const clause = tail.trim()

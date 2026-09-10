@@ -14,6 +14,8 @@ interface Props {
   description: string
   /** Set false only on the homepage, where the brand is the title. */
   brand?: boolean
+  /** Set false where a number in the description would be contrived — e.g. a glossary term. */
+  expectNumber?: boolean
   /** Absolute or site-relative image URL. Falls back to the site OG image. */
   image?: string
   imageAlt?: string
@@ -28,6 +30,7 @@ const {
   title,
   description,
   brand = true,
+  expectNumber = true,
   image = '/assets/images/og-default.png',
   imageAlt = 'Myinsurancebro — independent, IRDAI-licensed insurance advice',
   keywords = [],
@@ -41,7 +44,7 @@ const composed = composeTitle(title, { brand })
 const canonical = new URL(Astro.url.pathname, Astro.site).href
 const imageUrl = new URL(image, Astro.site).href
 
-assertDescription(description, Astro.url.pathname)
+assertDescription(description, Astro.url.pathname, { expectNumber })
 ---
 
 <title>{composed}</title>

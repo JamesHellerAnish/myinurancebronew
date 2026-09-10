@@ -1,0 +1,18 @@
+{
+  "slug": "domiciliary-hospitalization",
+  "term": "Domiciliary Hospitalization",
+  "definition": "means medical treatment for an illness / disease / injury which in the normal course would require care and treatment at a hospital but is actually taken while confined at home under any of the following circumstances: a. The condition of the patient is such that he / she is not in a condition to be removed to a hospital, or b. The patient takes treatment at home on account of non-availability of room in a hospital.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "Treatment taken at home that would normally have required a hospital bed, either because the patient could not be moved or because no bed was available.",
+  "whyItMatters": "It is a genuine benefit that most people never learn they have. It usually requires the treatment to run beyond three days and to be certified as hospital-grade care, so it does not cover ordinary illness at home — but for elderly patients who cannot safely be moved, it is the clause that turns a refused claim into a paid one.",
+  "related": [
+    "hospitalization",
+    "in-patient-care",
+    "medically-necessary-treatment"
+  ]
+}

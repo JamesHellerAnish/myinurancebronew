@@ -1,0 +1,18 @@
+{
+  "slug": "material-facts",
+  "term": "Material Facts",
+  "definition": "means all relevant information sought by the Company in the Proposal Form and other connected documents to enable it to take informed decision in the context of underwriting the risk.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "Anything an insurer would want to know when deciding whether to cover you and on what terms — your medical history, habits, occupation and existing policies.",
+  "whyItMatters": "The proposal form is a legal declaration, and this is the standard it is judged against. A claim can be declined years later for a fact left out at the start, even one that had nothing to do with the illness being claimed for. If you are unsure whether something counts, the safe answer is always to disclose it.",
+  "related": [
+    "disclosure-of-information-norm",
+    "pre-existing-disease",
+    "notification-of-claim"
+  ]
+}

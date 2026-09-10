@@ -1,0 +1,19 @@
+{
+  "slug": "day-care-treatment",
+  "term": "Day Care Treatment",
+  "definition": "means medical treatment, and / or surgical procedure which is a. Undertaken under General or Local Anaesthesia in a hospital/day care centre in less than 24 hours because of technological advancement, and b. Which would have otherwise required hospitalization of more than 24 hours. Treatment normally taken on an out-patient basis is not included in the scope of this definition.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "A procedure needing hospital or day-care facilities but taking less than 24 hours. Cataract surgery and dialysis are typical — medical advances made them fast enough not to need an overnight stay.",
+  "whyItMatters": "Older policies only paid out if you were admitted for a full 24 hours, which quietly excluded a growing share of modern treatment. Any policy worth buying now covers day care, but the list of which procedures count still varies, and it is in the wording rather than the brochure.",
+  "related": [
+    "hospitalization",
+    "in-patient-care",
+    "day-care-centre",
+    "opd-treatment"
+  ]
+}

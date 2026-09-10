@@ -1,0 +1,20 @@
+{
+  "slug": "hospitalization",
+  "term": "Hospitalization",
+  "definition": "means admission in a Hospital for a minimum period of 24 consecutive `In-Patient Care' hours except for specified procedures / treatments, where such admission could be for a period of less than 24 consecutive hours.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "Being admitted to a hospital as an in-patient for at least 24 consecutive hours — except for procedures on the day-care list, which are covered in less.",
+  "whyItMatters": "The 24-hour rule is the hinge most health claims turn on. An overnight stay for observation may not qualify; a listed day-care procedure lasting two hours does. If a doctor suggests admission, the useful question is not \"how long\" but \"does this qualify\", because that is what the insurer will ask.",
+  "related": [
+    "in-patient-care",
+    "day-care-treatment",
+    "room-rent",
+    "domiciliary-hospitalization",
+    "medically-necessary-treatment"
+  ]
+}

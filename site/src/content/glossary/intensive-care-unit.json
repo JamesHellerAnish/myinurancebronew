@@ -1,0 +1,18 @@
+{
+  "slug": "intensive-care-unit",
+  "term": "Intensive Care Unit (ICU)",
+  "definition": "means an identified section, ward or wing of a hospital which is under the constant supervision of a dedicated medical practitioner(s), and which is specially equipped for the continuous monitoring and treatment of patients who are in a critical condition, or require life support facilities and where the level of care and supervision is considerably more sophisticated and intensive than in the ordinary and other wards.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "A dedicated hospital section with the equipment and specially trained staff for continuous monitoring of critically ill patients.",
+  "whyItMatters": "The definition matters when an insurer decides whether ICU rates applied legitimately. Where a policy caps ICU separately, whether a bed counts as ICU under this definition decides which limit your bill is measured against.",
+  "related": [
+    "icu-charges",
+    "room-rent",
+    "hospitalization"
+  ]
+}

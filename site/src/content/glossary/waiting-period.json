@@ -1,0 +1,19 @@
+{
+  "slug": "waiting-period",
+  "term": "Waiting Period",
+  "definition": "means a period from the inception of this Policy during which specified diseases / treatments are not covered. On completion of the Waiting Period, diseases / treatments shall be covered provided the Policy has been continuously renewed without any break",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "A stretch of time at the start of a policy when certain conditions are not covered yet. It runs from the day the policy begins, not from the day you fall ill.",
+  "whyItMatters": "Waiting periods are why insurance has to be bought before you need it rather than when you need it. They pass whether or not you hold a policy, so the cheapest year to start serving them is the earliest one. Buying young is mostly about getting these out of the way while you are healthy.",
+  "related": [
+    "pre-existing-disease",
+    "specific-waiting-period",
+    "grace-period",
+    "break-in-policy"
+  ]
+}

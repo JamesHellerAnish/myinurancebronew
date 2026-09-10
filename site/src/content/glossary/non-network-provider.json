@@ -1,0 +1,18 @@
+{
+  "slug": "non-network-provider",
+  "term": "Non-Network Provider",
+  "definition": "means any hospital, day care centre or other provider that is not part of the network.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "Any hospital or day-care centre the insurer has no cashless agreement with.",
+  "whyItMatters": "You are still covered — but you pay the bill yourself and claim it back, which means finding the money at the worst possible moment and waiting weeks for reimbursement. In a genuine emergency you go to the nearest capable hospital regardless; for anything planned, checking the network first is the difference between an inconvenience and a crisis.",
+  "related": [
+    "network-provider",
+    "notification-of-claim",
+    "hospitalization"
+  ]
+}

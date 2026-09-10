@@ -522,7 +522,68 @@ PDF where curl is refused.
 
 ---
 
-### 🔴 Why Phase 1 is not complete, and Phase 2 cannot start
+## 0e. Phase 2 — the glossary ships, 2026-09-10
+
+**The honest build went from 2 pages to 31.** That is the headline: the glossary does not
+depend on the plan verification gate, so it is publishable *today*, while the plan mesh waits
+for §16.7. §9.4 put Phase 2 early for exactly this reason and the reason turns out to be right.
+
+### How the glossary is built
+
+§1027 is explicit that the glossary is **not original writing** — the legal definitions come
+out of the wordings, and the editorial work is the plain-English gloss layered on top. So it is
+built from two files that are deliberately kept apart:
+
+| File | What | Who wrote it |
+|---|---|---|
+| `data-raw/glossary/definitions.json` | 61 IRDAI standard definitions, verbatim, each with insurer + document + UIN | generated from the harvest by `extract-glossary.mjs` |
+| `data-raw/glossary/editorial.json` | plain-English gloss + "why it matters" | **authored** |
+
+`build-glossary.mjs` merges them into the collection. **Separating them is the point:** a
+regulated definition can never be quietly paraphrased into our own voice without someone
+noticing which file it came from.
+
+**28 of 61 terms are published.** The other 33 have a legal definition but no editorial layer,
+and `build-glossary.mjs` refuses to write them — a page carrying only lifted legal text is a
+thin page that adds nothing a policy PDF does not already say. Same gate as unverified plans,
+same reasoning. Adding a term is now an edit to `editorial.json` and a rebuild.
+
+### The page shape, and why it is that order
+
+Gloss → why it matters at claim time → **the verbatim legal definition, visibly quoted and
+attributed with its UIN**. Putting the legal text last and in a quotation block is deliberate:
+the honest way to publish someone else's regulated definition is as a quote with a source, not
+blended into our own prose where it reads as ours.
+
+### Also shipped
+
+- `DefinedTerm` inside a `DefinedTermSet` (§10.5 calls this "underused and highly
+  extractable"). The `description` carries our gloss, not the lifted legal text — the gloss is
+  the part that is ours to publish as the answer.
+- **`/data/glossary.json`** (§10.6) — the whole set in one request, provenance travelling with
+  every term so a definition never circulates without the UIN it came from.
+- Glossary section in `llms.txt`, generated from the collection, so a term appears there
+  exactly when its page does.
+- Footer link, and "plans where this term matters" on term pages.
+
+**On that last one:** materiality is decided by two demonstrable tests — the term names a plan
+field the plan actually carries (`room-rent` → `roomRent`), or the plan's own prose mentions
+the term. Anything looser would be a fabricated internal link, and a fabricated link on a page
+that cites policy wordings is worse than no link at all.
+
+### What is left in Phase 2
+
+**Guides (120 MDX pages) are not started.** They are the slowest, highest-value content in the
+plan (§1260, "genuine editorial") and the route does not exist yet. The glossary is the half
+that could be built well from primary sources already in the repo; guides are writing, and
+writing 120 of them badly would undo what the glossary is for.
+
+Glossary coverage is also 28 of a planned 250. The pipeline scales — more terms means more
+harvested wordings plus editorial — but the count should follow the writing, not lead it.
+
+---
+
+### 🔴 Why Phase 1 is still not complete
 
 Phase 1a in §9.4 is ~210 pages and its gate to *begin* is "site live, CWV green, indexed". None
 of those three is true yet, and the reasons are not code:
@@ -541,8 +602,8 @@ of those three is true yet, and the reasons are not code:
 4. **Calculators and tax pages** (§9.4 Phase 1a) are not started.
 5. **Not deployed.** No Search Console, so "indexed" cannot even be measured.
 
-**Phase 2 is glossary (250 pages) + guides (120).** Its gate is "glossary indexed; first AI
-citations appearing" — which requires Phase 1 to be live and indexed first. Generating 370
+**Phase 2 is glossary (250 pages) + guides (120).** The glossary half is now built — see §0e.
+Its gate is "glossary indexed; first AI citations appearing" — which requires Phase 1 to be live and indexed first. Generating 370
 hand-authored content pages now, on a site with 2 publishable pages and no index presence, is
 precisely the scaled-content pattern §9.4 and §13 exist to prevent. **Starting Phase 2 here would
 be the single most damaging thing we could do to this domain.**

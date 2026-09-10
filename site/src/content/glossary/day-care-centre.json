@@ -1,0 +1,18 @@
+{
+  "slug": "day-care-centre",
+  "term": "Day Care Centre",
+  "definition": "means any institution established for day care treatment of illness and / or injuries or a medical set-up with a hospital and which has been registered with the local authorities, wherever applicable, and is under the supervision of a registered and qualified medical practitioner and must comply with all minimum criterion as under: a. Has qualified nursing staff under its employment; b. Has qualified medical practitioner/s in charge; c. Has fully equipped operation theatre of its own where surgical procedures are carried out; d. Maintains daily records of patients and will make these accessible to the insurance company's authorized personnel.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "A registered medical facility set up for day-care treatment, with qualified staff and a supervising medical practitioner, but without in-patient beds.",
+  "whyItMatters": "It matters because a claim can be refused on where treatment happened rather than what it was. A procedure done in a clinic that does not meet this definition may fall outside the policy even though the same procedure in a qualifying centre is covered.",
+  "related": [
+    "day-care-treatment",
+    "hospitalization",
+    "network-provider"
+  ]
+}

@@ -1,0 +1,290 @@
+{
+  "_readme": [
+    "The editorial layer of the glossary — SEO_ASTRO_PLAN.md §1027.",
+    "",
+    "definitions.json holds the legal text lifted verbatim from a policy wording, with its UIN.",
+    "This file holds what we add: a plain-English gloss and a 'why it matters' that says what the",
+    "term does to a real claim. Keeping them in separate files means a regulated definition can",
+    "never be quietly paraphrased into our own words without someone noticing.",
+    "",
+    "Only terms present here are published. A term with a legal definition and no editorial layer",
+    "is a thin page, so build-glossary.mjs leaves it out — the same gate as unverified plans.",
+    "",
+    "Rules for writing these:",
+    "  · 'plain' is one or two sentences, no jargon, no hedging.",
+    "  · 'whyItMatters' names the consequence at claim time. If it does not change what someone",
+    "    would do or expect, do not write it.",
+    "  · No figures that are not in the dataset or the wording. Never invent a typical percentage.",
+    "  · 'related' is for the mesh (§9.3). Slugs only, and they must exist."
+  ],
+  "co-payment": {
+    "plain": "A share of every approved claim that you pay yourself, as a fixed percentage. If your policy has a 20% co-pay and the hospital bill is ₹1 lakh, the insurer pays ₹80,000 and you pay ₹20,000.",
+    "whyItMatters": "A co-pay applies to every claim, forever — it is not a one-off excess. It is the most common reason a policy that looked cheap turns out not to be, and it is often attached quietly to senior-citizen plans and to cheaper variants of otherwise good ones. Check for it before you compare premiums, because a plan with a co-pay is not comparable to one without.",
+    "related": [
+      "deductible",
+      "sum-insured",
+      "room-rent",
+      "waiting-period"
+    ]
+  },
+  "deductible": {
+    "plain": "An amount you cover yourself before the policy starts paying at all. Below it, the insurer pays nothing; above it, they pay the rest.",
+    "whyItMatters": "This is the mechanism behind super top-up plans: you accept a high deductible — say ₹5 lakh — in exchange for a much cheaper premium on a large cover, and you rely on a base policy or your savings to bridge the gap underneath. It only works if that bridge actually exists. A deductible with nothing under it is just an uninsured first ₹5 lakh.",
+    "related": [
+      "co-payment",
+      "sum-insured",
+      "base-sum-insured"
+    ]
+  },
+  "pre-existing-disease": {
+    "plain": "Any condition you were diagnosed with, or got medical advice or treatment for, in the years before the policy started. Insurers usually look back 36 months, and will not cover it until a waiting period has passed.",
+    "whyItMatters": "This is the single biggest cause of rejected health claims in India, and almost always for the same reason: the condition was not declared on the proposal form. Declaring it does not usually mean refusal — it means a waiting period, a loading, or an exclusion you can see. Not declaring it means the insurer can decline the claim years later, when you need it. Declare everything, including things you consider trivial or long resolved.",
+    "related": [
+      "waiting-period",
+      "specific-waiting-period",
+      "material-facts",
+      "disclosure-of-information-norm"
+    ]
+  },
+  "waiting-period": {
+    "plain": "A stretch of time at the start of a policy when certain conditions are not covered yet. It runs from the day the policy begins, not from the day you fall ill.",
+    "whyItMatters": "Waiting periods are why insurance has to be bought before you need it rather than when you need it. They pass whether or not you hold a policy, so the cheapest year to start serving them is the earliest one. Buying young is mostly about getting these out of the way while you are healthy.",
+    "related": [
+      "pre-existing-disease",
+      "specific-waiting-period",
+      "grace-period",
+      "break-in-policy"
+    ]
+  },
+  "specific-waiting-period": {
+    "plain": "A separate waiting period attached to a named list of conditions and procedures. Cataract, hernia and joint replacement are the usual entries, and it applies whether or not you had the condition before.",
+    "whyItMatters": "People are caught out by this because it applies even to conditions that developed after the policy began. The list is in the policy wording, not the brochure, and it varies between insurers more than the headline waiting period does. If you are buying with a planned procedure in mind, this is the clause to read first.",
+    "related": [
+      "waiting-period",
+      "pre-existing-disease",
+      "day-care-treatment"
+    ]
+  },
+  "room-rent": {
+    "plain": "What the hospital charges per day for your room and board. Many policies cap it, either as a rupee amount or as a percentage of your sum insured.",
+    "whyItMatters": "A room-rent cap does not just limit the room bill. In most Indian hospitals the whole tariff scales with room category, so choosing a room above your limit can proportionately cut what the insurer pays on the surgeon, the anaesthetist and the ICU too. A capped policy can therefore pay far less than you expected on a claim you thought was fully covered. 'No room-rent limit' is worth more than it sounds.",
+    "related": [
+      "associated-medical-expenses",
+      "icu-charges",
+      "sum-insured",
+      "hospitalization"
+    ]
+  },
+  "grace-period": {
+    "plain": "A short window after your renewal date in which you can still pay the premium and keep the policy continuous — typically 30 days.",
+    "whyItMatters": "Miss it and the policy lapses. Restarting is not the same as renewing: your waiting periods and pre-existing-disease clock start again from zero, which can undo years of holding cover. Treatment received during the grace period itself is usually not covered either.",
+    "related": [
+      "break-in-policy",
+      "renewal",
+      "waiting-period",
+      "portability"
+    ]
+  },
+  "break-in-policy": {
+    "plain": "A gap between one policy period ending and the next beginning, because the premium was not paid in time.",
+    "whyItMatters": "The practical damage is the loss of continuity credit. Waiting periods you have already served can reset, and the insurer can re-underwrite you at your current age and health — which is a materially worse position than the one you were in the week before.",
+    "related": [
+      "grace-period",
+      "renewal",
+      "waiting-period",
+      "portability"
+    ]
+  },
+  "day-care-treatment": {
+    "plain": "A procedure needing hospital or day-care facilities but taking less than 24 hours. Cataract surgery and dialysis are typical — medical advances made them fast enough not to need an overnight stay.",
+    "whyItMatters": "Older policies only paid out if you were admitted for a full 24 hours, which quietly excluded a growing share of modern treatment. Any policy worth buying now covers day care, but the list of which procedures count still varies, and it is in the wording rather than the brochure.",
+    "related": [
+      "hospitalization",
+      "in-patient-care",
+      "day-care-centre",
+      "opd-treatment"
+    ]
+  },
+  "network-provider": {
+    "plain": "A hospital the insurer has a cashless agreement with. The insurer settles the bill directly, so you do not have to fund it yourself and claim it back afterwards.",
+    "whyItMatters": "Network size matters less than network relevance: what counts is whether the hospitals you would actually use are in it, not how large the number on the brochure is. Check two or three near you before buying. Outside the network you can still claim, but you pay first and wait for reimbursement, which is the difference between an inconvenience and a cash-flow crisis.",
+    "related": [
+      "non-network-provider",
+      "notification-of-claim",
+      "hospitalization"
+    ]
+  },
+  "portability": {
+    "plain": "Moving your health policy to a different insurer without losing the waiting periods you have already served.",
+    "whyItMatters": "This is what stops a bad insurer from holding you hostage. You keep your continuity credit, so switching after three years does not mean serving the pre-existing-disease wait again. It has to be started well before renewal — usually 45 days — and the new insurer can still underwrite you, so it is a right to be considered, not a guarantee of acceptance.",
+    "related": [
+      "migration",
+      "break-in-policy",
+      "waiting-period",
+      "pre-existing-disease"
+    ]
+  },
+  "migration": {
+    "plain": "Moving to a different policy with the same insurer while keeping the waiting-period credit you have already built up. A group plan to an individual one, or an old product to a current one.",
+    "whyItMatters": "This is the route out of employer group cover when you leave a job. Done at the right moment, the years you spent covered under the group policy still count. Done late, they do not, and you start over as a new customer in your forties instead of your twenties.",
+    "related": [
+      "portability",
+      "waiting-period",
+      "break-in-policy"
+    ]
+  },
+  "sum-insured": {
+    "plain": "The maximum the insurer will pay in a policy year. Once it is used up, further claims that year come out of your pocket unless the policy restores it.",
+    "whyItMatters": "Most people buy too little of it. The figure that matters is not last year's hospital bill but what the same treatment costs in a decent hospital in your city in ten years, with medical inflation running well ahead of general inflation. A floater shared across a family is also one shared limit, not one each.",
+    "related": [
+      "base-sum-insured",
+      "deductible",
+      "co-payment",
+      "room-rent"
+    ]
+  },
+  "domiciliary-hospitalization": {
+    "plain": "Treatment taken at home that would normally have required a hospital bed, either because the patient could not be moved or because no bed was available.",
+    "whyItMatters": "It is a genuine benefit that most people never learn they have. It usually requires the treatment to run beyond three days and to be certified as hospital-grade care, so it does not cover ordinary illness at home — but for elderly patients who cannot safely be moved, it is the clause that turns a refused claim into a paid one.",
+    "related": [
+      "hospitalization",
+      "in-patient-care",
+      "medically-necessary-treatment"
+    ]
+  },
+  "material-facts": {
+    "plain": "Anything an insurer would want to know when deciding whether to cover you and on what terms — your medical history, habits, occupation and existing policies.",
+    "whyItMatters": "The proposal form is a legal declaration, and this is the standard it is judged against. A claim can be declined years later for a fact left out at the start, even one that had nothing to do with the illness being claimed for. If you are unsure whether something counts, the safe answer is always to disclose it.",
+    "related": [
+      "disclosure-of-information-norm",
+      "pre-existing-disease",
+      "notification-of-claim"
+    ]
+  },
+  "medically-necessary-treatment": {
+    "plain": "Treatment that is appropriate for your condition, matches accepted medical standards, and is no more extensive or expensive than it needs to be. It must also genuinely have required admission.",
+    "whyItMatters": "This is the test used to trim or refuse a claim after the fact. It is why a hospital stay arranged mainly for convenience, or an admission that could have been an OPD visit, can be cut back at settlement even though the treatment itself was real. It is also the clause that keeps premiums honest for everyone else.",
+    "related": [
+      "hospitalization",
+      "in-patient-care",
+      "day-care-treatment",
+      "opd-treatment"
+    ]
+  },
+  "hospitalization": {
+    "plain": "Being admitted to a hospital as an in-patient for at least 24 consecutive hours — except for procedures on the day-care list, which are covered in less.",
+    "whyItMatters": "The 24-hour rule is the hinge most health claims turn on. An overnight stay for observation may not qualify; a listed day-care procedure lasting two hours does. If a doctor suggests admission, the useful question is not \"how long\" but \"does this qualify\", because that is what the insurer will ask.",
+    "related": [
+      "in-patient-care",
+      "day-care-treatment",
+      "room-rent",
+      "domiciliary-hospitalization",
+      "medically-necessary-treatment"
+    ]
+  },
+  "in-patient-care": {
+    "plain": "Treatment where you occupy a hospital bed for more than 24 hours for a covered condition.",
+    "whyItMatters": "Almost every benefit in a health policy — room rent, surgeon's fees, ICU, pre- and post-hospitalisation — is triggered by in-patient care. Outpatient treatment usually is not covered at all unless you have bought an OPD benefit separately.",
+    "related": [
+      "hospitalization",
+      "opd-treatment",
+      "day-care-treatment",
+      "room-rent"
+    ]
+  },
+  "opd-treatment": {
+    "plain": "Treatment where you visit a clinic or hospital for consultation and treatment without being admitted.",
+    "whyItMatters": "Standard health insurance is built for hospitalisation, so routine consultations, tests and medicines are typically excluded. This is the single largest gap between what people expect insurance to do and what it does. If you want day-to-day medical costs covered, it has to be bought deliberately as an add-on.",
+    "related": [
+      "in-patient-care",
+      "hospitalization",
+      "day-care-treatment",
+      "medically-necessary-treatment"
+    ]
+  },
+  "renewal": {
+    "plain": "Continuing the same policy for another term by paying the premium, keeping everything you have already accrued.",
+    "whyItMatters": "Health policies in India are renewable for life, and an insurer cannot refuse renewal because you claimed. What they can do is reprice the whole product. Renewing on time is what protects your waiting-period credit — the value of a health policy is mostly the years already served on it.",
+    "related": [
+      "grace-period",
+      "break-in-policy",
+      "portability",
+      "waiting-period"
+    ]
+  },
+  "notification-of-claim": {
+    "plain": "Telling the insurer or their TPA that a claim is coming, through any of the channels the policy recognises.",
+    "whyItMatters": "There are deadlines — commonly 24 hours for an emergency admission and 48 to 72 hours before a planned one — and missing them gives the insurer grounds to question the claim even when the treatment was entirely covered. Intimate first, sort out the paperwork afterwards.",
+    "related": [
+      "network-provider",
+      "non-network-provider",
+      "hospitalization",
+      "material-facts"
+    ]
+  },
+  "disclosure-of-information-norm": {
+    "plain": "The clause stating that the policy is void, and premiums forfeited, if information was misrepresented, mis-described or withheld.",
+    "whyItMatters": "This is the legal teeth behind the proposal form. It is not aimed at honest mistakes about detail, but it does mean a deliberately omitted condition can void the entire contract rather than just that one claim. It is the reason to over-disclose rather than under-disclose.",
+    "related": [
+      "material-facts",
+      "pre-existing-disease",
+      "notification-of-claim"
+    ]
+  },
+  "associated-medical-expenses": {
+    "plain": "The charges that ride alongside the room bill — consultation fees, operation theatre, surgical appliances, nursing, anaesthesia, blood and oxygen.",
+    "whyItMatters": "This is why a room-rent cap costs more than the room. In hospitals that price by room category, these charges scale with the room you occupy, so exceeding your cap can proportionately reduce what the insurer pays across the entire bill, not just the bed.",
+    "related": [
+      "room-rent",
+      "icu-charges",
+      "hospitalization",
+      "sum-insured"
+    ]
+  },
+  "icu-charges": {
+    "plain": "What a hospital charges for an intensive-care bed, including the general medical support services provided there.",
+    "whyItMatters": "Some policies cap ICU separately from the ordinary room, and ICU is where bills escalate fastest. A plan with no ordinary room-rent limit but a capped ICU has a limit exactly where you are least able to shop around.",
+    "related": [
+      "room-rent",
+      "associated-medical-expenses",
+      "intensive-care-unit",
+      "hospitalization"
+    ]
+  },
+  "base-sum-insured": {
+    "plain": "The core annual limit on your policy, before any bonus, restoration or top-up is added on.",
+    "whyItMatters": "Comparing plans on the headline cover figure is misleading, because part of it is often bonus or restoration that only exists under conditions. The base sum insured is the like-for-like number, and it is what a fresh claim in a bad year actually draws on first.",
+    "related": [
+      "sum-insured",
+      "deductible",
+      "co-payment"
+    ]
+  },
+  "day-care-centre": {
+    "plain": "A registered medical facility set up for day-care treatment, with qualified staff and a supervising medical practitioner, but without in-patient beds.",
+    "whyItMatters": "It matters because a claim can be refused on where treatment happened rather than what it was. A procedure done in a clinic that does not meet this definition may fall outside the policy even though the same procedure in a qualifying centre is covered.",
+    "related": [
+      "day-care-treatment",
+      "hospitalization",
+      "network-provider"
+    ]
+  },
+  "non-network-provider": {
+    "plain": "Any hospital or day-care centre the insurer has no cashless agreement with.",
+    "whyItMatters": "You are still covered — but you pay the bill yourself and claim it back, which means finding the money at the worst possible moment and waiting weeks for reimbursement. In a genuine emergency you go to the nearest capable hospital regardless; for anything planned, checking the network first is the difference between an inconvenience and a crisis.",
+    "related": [
+      "network-provider",
+      "notification-of-claim",
+      "hospitalization"
+    ]
+  },
+  "intensive-care-unit": {
+    "plain": "A dedicated hospital section with the equipment and specially trained staff for continuous monitoring of critically ill patients.",
+    "whyItMatters": "The definition matters when an insurer decides whether ICU rates applied legitimately. Where a policy caps ICU separately, whether a bed counts as ICU under this definition decides which limit your bill is measured against.",
+    "related": [
+      "icu-charges",
+      "room-rent",
+      "hospitalization"
+    ]
+  }
+}

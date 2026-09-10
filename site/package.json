@@ -4,13 +4,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "predev": "node scripts/sync-public.mjs && node scripts/build-lastmod.mjs",
+    "predev": "node scripts/sync-public.mjs && node scripts/build-lastmod.mjs && node scripts/build-glossary.mjs",
     "dev": "astro dev",
-    "prebuild": "node scripts/sync-public.mjs && node scripts/build-lastmod.mjs",
+    "prebuild": "node scripts/sync-public.mjs && node scripts/build-lastmod.mjs && node scripts/build-glossary.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "migrate": "node scripts/migrate-policy-data.mjs"
+    "migrate": "node scripts/migrate-policy-data.mjs",
+    "glossary": "node scripts/extract-glossary.mjs && node scripts/build-glossary.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.2.0",

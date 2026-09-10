@@ -92,3 +92,47 @@ export function planSchema(plan: Plan, url: string) {
       : {}),
   }
 }
+
+/**
+ * DefinedTerm inside a DefinedTermSet — SEO_ASTRO_PLAN.md §10.5, which flags this as
+ * "underused and highly extractable". A glossary entry is exactly the shape an assistant
+ * wants to quote, and this is what tells it so.
+ *
+ * `description` carries our plain-English gloss rather than the lifted legal text: the legal
+ * definition belongs to the insurer's wording, and it is the gloss that is ours to publish
+ * as the answer.
+ */
+export function definedTermSchema(term: {
+  term: string
+  slug: string
+  plain: string
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'DefinedTerm',
+    '@id': `${SITE}/glossary/${term.slug}/#term`,
+    name: term.term,
+    description: term.plain,
+    url: `${SITE}/glossary/${term.slug}/`,
+    inDefinedTermSet: {
+      '@type': 'DefinedTermSet',
+      '@id': `${SITE}/glossary/#set`,
+      name: 'Myinsurancebro insurance glossary',
+      url: `${SITE}/glossary/`,
+    },
+  }
+}
+
+/** The set itself, for the glossary index. */
+export function definedTermSetSchema(count: number) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'DefinedTermSet',
+    '@id': `${SITE}/glossary/#set`,
+    name: 'Myinsurancebro insurance glossary',
+    url: `${SITE}/glossary/`,
+    description:
+      `Plain-English explanations of ${count} insurance terms, each shown beside the ` +
+      `verbatim definition from an IRDAI-filed policy wording.`,
+  }
+}

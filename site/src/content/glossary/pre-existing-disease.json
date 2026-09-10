@@ -1,0 +1,19 @@
+{
+  "slug": "pre-existing-disease",
+  "term": "Pre-existing disease (PED)",
+  "definition": "means any condition, ailment, injury or disease: a) that is/are diagnosed by a physician not more than 36 months prior to the date of commencement of the policy issued by the insurer; or b) for which medical advice or treatment was recommended by, or received from, a physician, not more than 36 months prior to the date of commencement of the policy.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "Any condition you were diagnosed with, or got medical advice or treatment for, in the years before the policy started. Insurers usually look back 36 months, and will not cover it until a waiting period has passed.",
+  "whyItMatters": "This is the single biggest cause of rejected health claims in India, and almost always for the same reason: the condition was not declared on the proposal form. Declaring it does not usually mean refusal — it means a waiting period, a loading, or an exclusion you can see. Not declaring it means the insurer can decline the claim years later, when you need it. Declare everything, including things you consider trivial or long resolved.",
+  "related": [
+    "waiting-period",
+    "specific-waiting-period",
+    "material-facts",
+    "disclosure-of-information-norm"
+  ]
+}

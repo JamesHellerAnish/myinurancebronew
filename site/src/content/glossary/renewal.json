@@ -1,0 +1,19 @@
+{
+  "slug": "renewal",
+  "term": "Renewal",
+  "definition": "means the terms on which the contract of insurance can be renewed on mutual consent with a provision of grace period for treating the renewal continuous for the purpose of gaining credit for pre-existing diseases, time-bound exclusions and for all Waiting Periods.",
+  "source": {
+    "insurer": "Aditya Birla Health",
+    "document": "Activ One policy wording",
+    "uin": "ADIHLIP27048V022627",
+    "file": "extracted/health-abhi-activ-one-max.txt"
+  },
+  "plain": "Continuing the same policy for another term by paying the premium, keeping everything you have already accrued.",
+  "whyItMatters": "Health policies in India are renewable for life, and an insurer cannot refuse renewal because you claimed. What they can do is reprice the whole product. Renewing on time is what protects your waiting-period credit — the value of a health policy is mostly the years already served on it.",
+  "related": [
+    "grace-period",
+    "break-in-policy",
+    "portability",
+    "waiting-period"
+  ]
+}

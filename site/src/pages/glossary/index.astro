@@ -1,0 +1,117 @@
+---
+// /glossary/ — the index. SEO_ASTRO_PLAN.md §6.2 and §10.5.
+//
+// Carries the DefinedTermSet the individual terms point back into, and lists every term with
+// its gloss so the index is a usable page in its own right rather than a bare link farm.
+import { getCollection } from 'astro:content'
+import Base from '../../layouts/Base.astro'
+import Disclaimer from '../../components/seo/Disclaimer.astro'
+import { breadcrumbSchema, definedTermSetSchema, faqSchema } from '../../lib/schema'
+import { fitDescription, fitTitle } from '../../lib/seo'
+
+const entries = (await getCollection('glossary')).sort((a, b) =>
+  a.data.term.localeCompare(b.data.term),
+)
+
+// Grouped by first letter, which is how people scan a glossary.
+const groups = new Map<string, typeof entries>()
+for (const entry of entries) {
+  const letter = entry.data.term[0].toUpperCase()
+  if (!groups.has(letter)) groups.set(letter, [])
+  groups.get(letter)!.push(entry)
+}
+const letters = [...groups.keys()].sort()
+
+const trail = [
+  { name: 'Home', path: '/' },
+  { name: 'Glossary', path: '/glossary/' },
+]
+
+const faqs = [
+  {
+    q: 'Where do these definitions come from?',
+    a:
+      'The legal definition on each page is quoted verbatim from an IRDAI-filed policy ' +
+      'wording, with the insurer, document and UIN named. The plain-English explanation and ' +
+      'the "why it matters" are ours.',
+  },
+  {
+    q: 'Are these definitions the same across all insurers?',
+    a:
+      'The standard definitions are largely standardised by IRDAI, so the wording changes ' +
+      'little between insurers. What changes — often a great deal — are the limits attached ' +
+      'to them: the waiting period, the co-pay percentage, the room-rent cap. Always read ' +
+      'your own policy schedule for those.',
+  },
+]
+
+const pageTitle = fitTitle([
+  'Insurance Glossary — Plain English',
+  'Insurance Glossary',
+  'Glossary',
+])
+
+const description = fitDescription(
+  `${entries.length} insurance terms explained in plain English, each beside the verbatim ` +
+    `definition from an IRDAI-filed policy wording.`,
+  ['What each one does to a claim.', 'Free and unpaid.'],
+)
+---
+
+<Base
+  title={pageTitle}
+  description={description}
+  expectNumber={false}
+  keywords={['insurance glossary India', 'insurance terms explained', 'health insurance jargon']}
+  schemas={[breadcrumbSchema(trail), definedTermSetSchema(entries.length), faqSchema(faqs)]}
+>
+  <article class="plan-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><span aria-current="page">Glossary</span></li>
+      </ol>
+    </nav>
+
+    <h1>Insurance glossary</h1>
+    <p class="plan-subtitle">
+      The words that decide whether a claim gets paid, in plain English.
+    </p>
+
+    <p class="answer-block">
+      {entries.length} terms, each with a plain-English explanation, what it does to a claim,
+      and the verbatim definition from an IRDAI-filed policy wording so you can see exactly
+      what your insurer means by it.
+    </p>
+
+    <nav class="glossary-jump" aria-label="Jump to letter">
+      {letters.map((letter) => <a href={`#letter-${letter}`}>{letter}</a>)}
+    </nav>
+
+    {letters.map((letter) => (
+      <section>
+        <h2 id={`letter-${letter}`}>{letter}</h2>
+        <dl class="glossary-list">
+          {groups.get(letter)!.map((entry) => (
+            <div>
+              <dt><a href={`/glossary/${entry.data.slug}/`}>{entry.data.term}</a></dt>
+              <dd>{entry.data.plain}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+    ))}
+
+    <section>
+      <h2>Frequently asked questions</h2>
+      {faqs.map((faq) => (
+        <details>
+          <summary><h3>{faq.q}</h3></summary>
+          <p>{faq.a}</p>
+        </details>
+      ))}
+    </section>
+
+    <Disclaimer />
+  </article>
+</Base>
