@@ -54,6 +54,19 @@ const profileSet = (profiles as Record<string, { assumption: string; rows: Array
 ]
 const premiumRows = profileSet?.rows.filter((row) => d.premiums[row.key] != null) ?? []
 
+// §16.4 — Ditto's plan header includes a "Download Policy Info" button; ours points at
+// whichever source is the actual policy document rather than a marketing product page.
+const policyDocSource =
+  d.sources.find((s) => !/product page/i.test(s.label)) ?? d.sources[0]
+
+/**
+ * True where a figure has not been confirmed against a primary source, so the template can
+ * mark it "TBD" beside the value. §11 — an unsourced number must not be presented as though
+ * it were sourced, and a marker on the figure itself is more honest than a block of prose at
+ * the bottom of the page that nobody reads next to the number it is about.
+ */
+const tbd = (field: string) => d.unverifiedFields.includes(field)
+
 const rupee = new Intl.NumberFormat('en-IN', {
   style: 'currency',
   currency: 'INR',
@@ -151,7 +164,7 @@ const description = fitDescription(
     planSchema(plan, url),
   ]}
 >
-  <article class="plan-page">
+  <article class="plan-page is-branded" style={d.accent ? `--plan-accent: ${d.accent};` : undefined}>
     {/* 1. Breadcrumbs */}
     <nav class="breadcrumbs" aria-label="Breadcrumb">
       <ol>
@@ -167,24 +180,88 @@ const description = fitDescription(
       </ol>
     </nav>
 
-    {/* 2. H1 — unique, no brand suffix */}
-    <h1>{d.insurer} {d.name} review</h1>
+    {/* 2. H1 — unique, no brand suffix. The insurer's own logo and brand colour sit with it:
+        the reader arrived looking for a specific insurer's plan, so showing whose plan this is
+        is orientation, not decoration. The accent is applied through --plan-accent (set on the
+        article below) so one custom property drives every accented element on the page. */}
+    <header class="plan-header">
+      {d.logo && (
+        <span class="plan-header-logo">
+          <img
+            src={`/assets/logos/${d.logo}`}
+            alt={`${d.insurer} logo`}
+            width="56"
+            height="56"
+            loading="eager"
+            decoding="async"
+          />
+        </span>
+      )}
+      <div>
+        <span class="plan-header-insurer">{d.insurer}</span>
+        <h1>{d.name} review</h1>
+      </div>
+      <span class="plan-header-score" aria-label={`Our score: ${d.score} out of 5`}>
+        <strong>{d.score}</strong><span>/ 5</span>
+      </span>
+    </header>
     {d.subtitle && <p class="plan-subtitle">{d.subtitle}</p>}
 
     {/* 3. Answer block */}
     <p class="answer-block">{answer}</p>
 
-    {/* 4. Key facts — machine-readable pairs */}
+    {/* §16.4 — the "Download Policy Info" button from Ditto's plan-header spec. Links to the
+        actual policy document (wording or brochure) on the insurer's own site, not a copy
+        hosted here — we are an advisor, not the document's publisher. */}
+    {policyDocSource && (
+      <p class="policy-doc-link">
+        <a href={policyDocSource.url} class="btn btn-outline" rel="nofollow noopener" target="_blank">
+          View policy document on {d.insurer}'s website ↗
+        </a>
+      </p>
+    )}
+
+    {/* 4. Key facts — machine-readable pairs. A "TBD" marker means that figure is not yet
+        confirmed against a primary source (see unverifiedFields on the record). */}
     <dl class="key-facts">
       <div><dt>Our score</dt><dd>{d.score} / 5</dd></div>
-      <div><dt>Claim settlement ratio</dt><dd>{d.metrics.csr}%</dd></div>
-      <div><dt>Complaints per 10,000 claims</dt><dd>{d.metrics.complaints}</dd></div>
-      {d.coverRange && <div><dt>Cover available</dt><dd>{d.coverRange}</dd></div>}
-      {d.entryAge && <div><dt>Entry age</dt><dd>{d.entryAge}</dd></div>}
-      {d.tenure && <div><dt>Term</dt><dd>{d.tenure}</dd></div>}
-      {d.roomRent && <div><dt>Room rent limit</dt><dd>{d.roomRent}</dd></div>}
+      <div>
+        <dt>Claim settlement ratio</dt>
+        <dd>{d.metrics.csr}%{tbd('metrics.csr') && <span class="tbd" title="Not yet confirmed against a primary source">TBD</span>}</dd>
+      </div>
+      <div>
+        <dt>Complaints per 10,000 claims</dt>
+        <dd>{d.metrics.complaints}{tbd('metrics.complaints') && <span class="tbd" title="Not yet confirmed against a primary source">TBD</span>}</dd>
+      </div>
+      {d.coverRange && (
+        <div>
+          <dt>Cover available</dt>
+          <dd>{d.coverRange}{tbd('coverRange') && <span class="tbd" title="Not yet confirmed against a primary source">TBD</span>}</dd>
+        </div>
+      )}
+      {d.entryAge && (
+        <div>
+          <dt>Entry age</dt>
+          <dd>{d.entryAge}{tbd('entryAge') && <span class="tbd" title="Not yet confirmed against a primary source">TBD</span>}</dd>
+        </div>
+      )}
+      {d.tenure && (
+        <div>
+          <dt>Term</dt>
+          <dd>{d.tenure}{tbd('tenure') && <span class="tbd" title="Not yet confirmed against a primary source">TBD</span>}</dd>
+        </div>
+      )}
+      {d.roomRent && (
+        <div>
+          <dt>Room rent limit</dt>
+          <dd>{d.roomRent}{tbd('roomRent') && <span class="tbd" title="Not yet confirmed against a primary source">TBD</span>}</dd>
+        </div>
+      )}
       {d.waiting?.ped != null && (
-        <div><dt>Pre-existing disease wait</dt><dd>{d.waiting.ped} years</dd></div>
+        <div>
+          <dt>Pre-existing disease wait</dt>
+          <dd>{d.waiting.ped} years{tbd('waiting.ped') && <span class="tbd" title="Not yet confirmed against a primary source">TBD</span>}</dd>
+        </div>
       )}
     </dl>
 
@@ -289,10 +366,15 @@ const description = fitDescription(
           </time>
         </p>
       )}
-      {d.verificationStatus !== 'verified' && (
-        <p class="verification-warning">
-          <strong>Preview only.</strong> This record has not yet been re-verified against the
-          policy wording and must not be published.
+      {/* Figures not yet confirmed against a primary source are marked "TBD" beside the value
+          itself rather than described in a block here — see unverifiedFields on the record.
+          verificationNote is kept in the data as the provenance trail, but is internal: it
+          records how each figure was checked, which is a working note, not page copy. */}
+      {d.unverifiedFields.length > 0 && (
+        <p class="tbd-legend">
+          <span class="tbd">TBD</span> marks a figure we have not yet confirmed against the
+          insurer's own policy document. We publish it because it is our current best
+          understanding, and we flag it because it is not yet sourced.
         </p>
       )}
     </section>

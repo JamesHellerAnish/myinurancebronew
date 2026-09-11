@@ -224,6 +224,36 @@
   /* ═══════════════════════════════════════════════════════
      RENDER — EXPLORE GRID
      ═══════════════════════════════════════════════════════ */
+  /**
+   * Plan-page URLs, handed over by the Astro build as a data attribute on #cmpGrid (see
+   * Compare.astro). Absent on the legacy one-pager, where those pages do not exist — so the
+   * card renders no link there rather than a dead one. Read once, not per render.
+   */
+  function readUrlMap(attr) {
+    try {
+      var raw = el.grid && el.grid.getAttribute(attr);
+      return raw ? JSON.parse(raw) : {};
+    } catch (err) {
+      return {};
+    }
+  }
+
+  var planUrls = readUrlMap('data-plan-urls');
+
+  /** Insurer pages, keyed "<product>|<insurer name>" — absent where no page exists. */
+  var insurerUrls = readUrlMap('data-insurer-urls');
+
+  /**
+   * Wrap text in a link to a plan page where one exists, otherwise return it unchanged.
+   * Callers pass already-escaped HTML, since some wrap markup rather than plain text.
+   */
+  function planLink(planId, innerHtml, className) {
+    var url = planUrls[planId];
+    if (!url) return innerHtml;
+    return '<a href="' + esc(url) + '"' + (className ? ' class="' + className + '"' : '') +
+      '>' + innerHtml + '</a>';
+  }
+
   function planCard(plan) {
     var isSelected = state.selected.indexOf(plan.id) !== -1;
     var metrics = state.product === 'term'
@@ -267,13 +297,23 @@
     });
     html += '</div>';
 
+    var planUrl = planUrls[plan.id];
+
     html += '<div class="plan-actions">' +
       '<button type="button" class="btn btn-ghost btn-sm" data-action="select" data-plan="' + plan.id + '"' +
       ' aria-pressed="' + isSelected + '">' + icon(isSelected ? 'check' : 'plus') +
       ' ' + (isSelected ? 'Added' : 'Compare') + '</button>' +
       '<button type="button" class="btn btn-primary btn-sm" data-action="deep" data-plan="' + plan.id + '">' +
-      'Full review</button>' +
-      '</div>';
+      (planUrl ? 'Quick view' : 'Full review') + '</button>';
+
+    // Only where the plan page exists — see the planUrls note above. Labelled to be clearly
+    // distinct from the in-page "Quick view", which stays on this page.
+    if (planUrl) {
+      html += '<a class="btn btn-outline btn-sm plan-card-link" href="' + esc(planUrl) + '">' +
+        'Full review &amp; sources &rarr;</a>';
+    }
+
+    html += '</div>';
 
     html += '</article>';
     return html;
@@ -320,7 +360,7 @@
       html += '<th scope="col"><div class="cmp-col-head">' +
         brandTile(p.insurer, 'plan-monogram') +
         '<div><span class="plan-insurer">' + esc(p.insurerShort) + '</span>' +
-        '<div class="plan-name">' + esc(p.name) + '</div></div>' +
+        '<div class="plan-name">' + planLink(p.id, esc(p.name)) + '</div></div>' +
         '</div></th>';
     });
 
@@ -472,7 +512,16 @@
       '</div>';
 
     html += '<div class="pr-cta"><p>Want to know whether this is the right plan for your situation?</p>' +
-      '<a href="#cta" class="btn btn-primary btn-lg">Talk to the Chief Advisor</a></div>';
+      '<a href="#cta" class="btn btn-primary btn-lg">Talk to the Chief Advisor</a>';
+
+    // The full page carries what this in-page panel cannot: the cited sources, the clause
+    // references and the verification status for every figure above.
+    if (planUrls[plan.id]) {
+      html += ' <a href="' + esc(planUrls[plan.id]) + '" class="btn btn-outline btn-lg">' +
+        'Full review &amp; sources &rarr;</a>';
+    }
+
+    html += '</div>';
 
     html += '</div>';
 
@@ -492,8 +541,10 @@
     var html = '<div class="premium-table-wrap"><table class="premium-table"><thead><tr>' +
       '<th scope="col">Profile</th>';
     plans.forEach(function (p) {
+      // Each column is one plan, so the heading links to that plan's page where it exists.
       html += '<th scope="col"><span class="premium-brand">' +
-        brandTile(p.insurer, 'brand-tile xs') + esc(p.insurerShort) + '</span></th>';
+        brandTile(p.insurer, 'brand-tile xs') +
+        planLink(p.id, esc(p.insurerShort)) + '</span></th>';
     });
     html += '</tr></thead><tbody>';
 
@@ -540,10 +591,17 @@
 
     rows.forEach(function (c, i) {
       var pct = (c.score / 5) * 100;
+      // Insurer pages exist only where we stock a plan from that insurer — the note under
+      // this table says so explicitly — so the rest stay plain text rather than 404s.
+      var insurerUrl = insurerUrls[state.product + '|' + c.name];
+      var insurerName = insurerUrl
+        ? '<a href="' + esc(insurerUrl) + '">' + esc(c.name) + '</a>'
+        : esc(c.name);
+
       html += '<div class="league-row">' +
         '<span class="league-rank">' + (i + 1) + '</span>' +
         '<div class="league-brand">' + brandTile(c.name, 'brand-tile') +
-        '<div class="league-brand-text"><div class="league-name">' + esc(c.name) + '</div>' +
+        '<div class="league-brand-text"><div class="league-name">' + insurerName + '</div>' +
         '<div class="league-bar"><span data-width="' + pct.toFixed(1) + '"></span></div></div></div>' +
         '<span><strong>' + c.score.toFixed(2) + '</strong></span>' +
         '<span class="hide-sm">' + c.csr.toFixed(2) + '%</span>' +

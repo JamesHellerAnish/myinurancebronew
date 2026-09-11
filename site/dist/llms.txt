@@ -4,6 +4,22 @@
 > and health insurance plans, scored against IRDAI claim-settlement and grievance
 > disclosures. We are an advisor, not an insurer — we do not underwrite any product.
 
+## Term Life Insurance
+
+- [Axis Max Life Smart Term Plan Plus](/term-insurance/axis-max-life/smart-term-plan-plus/): Score 4.7/5, CSR 99.71%, 3 complaints per 10,000 claims
+- [HDFC Life Click2Protect Supreme Plus](/term-insurance/hdfc-life/click2protect-supreme-plus/): Score 4.4/5, CSR 99.66%, 1 complaint per 10,000 claims (unsourced fields: entryAge)
+- [ICICI Prudential iProtect Smart Plus](/term-insurance/icici-prudential/iprotect-smart-plus/): Score 4.3/5, CSR 99.3%, 8 complaints per 10,000 claims
+- [Bajaj Life eTouch II](/term-insurance/bajaj-life/etouch-ii/): Score 4.2/5, CSR 99.32%, 2.77 complaints per 10,000 claims (unsourced fields: coverRange, tenure)
+- [Aditya Birla Sun Life Super Term Plan](/term-insurance/aditya-birla-sun-life/super-term-plan/): Score 4/5, CSR 98.7%, 1.33 complaints per 10,000 claims
+
+## Health Insurance
+
+- [HDFC ERGO Optima Secure+](/health-insurance/hdfc-ergo/optima-secure/): Score 4.6/5, CSR 97.61%, 8.87 complaints per 10,000 claims
+- [Care Health Care Supreme](/health-insurance/care-health/care-supreme/): Score 4.5/5, CSR 95.45%, 42.67 complaints per 10,000 claims (unsourced fields: coverRange, roomRent)
+- [Aditya Birla Health Activ One MAX](/health-insurance/aditya-birla-health/activ-one-max/): Score 4.4/5, CSR 96.25%, 18.67 complaints per 10,000 claims
+- [Niva Bupa ReAssure 2.0 Platinum+](/health-insurance/niva-bupa/reassure-2-0-platinum/): Score 4.3/5, CSR 92.92%, 37.13 complaints per 10,000 claims
+- [SBI General Super Health Platinum Infinite](/health-insurance/sbi-general/super-health-platinum-infinite/): Score 4.1/5, CSR 95.94%, 14.04 complaints per 10,000 claims (unsourced fields: coverRange)
+
 ## Glossary
 
 - [Adventure / Hazardous Sports](/glossary/adventure-hazardous-sports/): Sport or activity involving physical exertion and skill — rock climbing, rafting, motor racing, scuba diving, sky diving and similar.

@@ -31,6 +31,24 @@ export function organizationSchema() {
   }
 }
 
+/**
+ * The Chief Advisor as a Person — §11's "named author + reviewer, with IRDAI certification".
+ * Name and IRDAI licence number supplied by the owner 2026-09-11. Not independently verified
+ * against IRDAI's own register — no lookup tool is available in this session — so this is
+ * accepted as owner-stated fact, the same trust model CLAUDE.md invariant 7 uses for the team
+ * roles: never invented, used once the owner states it.
+ */
+export function advisorPersonSchema() {
+  return {
+    '@type': 'Person',
+    '@id': `${SITE}/#chief-advisor`,
+    name: 'Danish Pandita',
+    jobTitle: 'Chief Advisor & Owner',
+    worksFor: { '@id': `${SITE}/#organization` },
+    identifier: { '@type': 'PropertyValue', name: 'IRDAI Licence Number', value: 'MBHNOC5128059' },
+  }
+}
+
 /** BreadcrumbList from an ordered trail. §8 block 1. */
 export function breadcrumbSchema(trail: Array<{ name: string; path: string }>) {
   return {
@@ -143,9 +161,9 @@ export function definedTermSetSchema(count: number) {
  * Deliberately not FAQPage: a guide is one argument, and marking it up as a set of questions
  * to chase a rich result would misrepresent the page to the crawler that trusts the markup.
  *
- * `author` is the organisation rather than an invented byline. CLAUDE.md invariant 7 — a
- * named author on an IRDAI-licensed advisory site is a credential claim, and there is no
- * person to attribute these to yet.
+ * `author` is now the Chief Advisor (§11's "named author + reviewer, with IRDAI certification")
+ * — previously the organisation, because CLAUDE.md invariant 7 blocked an invented byline and
+ * there was no person to attribute these to. There is now: see advisorPersonSchema().
  */
 export function articleSchema(guide: {
   title: string
@@ -162,7 +180,7 @@ export function articleSchema(guide: {
     datePublished: guide.published.toISOString(),
     dateModified: (guide.updated ?? guide.published).toISOString(),
     mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE}${guide.url}` },
-    author: { '@id': `${SITE}/#organization` },
+    author: advisorPersonSchema(),
     publisher: { '@id': `${SITE}/#organization` },
   }
 }

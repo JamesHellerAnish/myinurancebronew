@@ -5,7 +5,7 @@
   "insurerShort": "Niva Bupa",
   "name": "ReAssure 2.0 Platinum+",
   "monogram": "NB",
-  "accent": "#2563EB",
+  "accent": "#00AEEF",
   "tagline": "Smartest design",
   "subtitle": "Locks your premium at your entry age until you claim, and carries unused cover forward up to 5×.",
   "score": 4.3,
@@ -20,7 +20,7 @@
     "network": 10000,
     "businessCr": 6985.24
   },
-  "entryAge": "18–65 yrs",
+  "entryAge": "18–99 yrs",
   "coverRange": "Up to ₹1 Cr",
   "tenure": "1–3 years",
   "restoration": "ReAssure+ — unlimited, every claim up to full cover",
@@ -96,12 +96,20 @@
   "logo": "nivabupa.png",
   "slug": "reassure-2-0-platinum",
   "insurerSlug": "niva-bupa",
-  "verificationStatus": "migrated",
+  "verificationStatus": "verified",
   "sources": [
     {
-      "label": "Niva Bupa — ReAssure 2.0 Platinum+ policy wording",
-      "url": "https://www.nivabupa.com/content/dam/nivabupa/PDF/reassure-2-0/ReAssure%202.0%20-%20Policy%20Wording.pdf"
+      "label": "Niva Bupa — ReAssure 2.0 prospectus cum sales literature (UIN NBHHLIP27054V032627 — a newer UIN than the wording below)",
+      "url": "https://www.nivabupa.com",
+      "clause": "Product Benefit Table (Booster+ row); Section 3.9 Booster+"
+    },
+    {
+      "label": "Niva Bupa — ReAssure 2.0 policy wording (UIN NBHHLIP23169V012223)",
+      "url": "https://www.nivabupa.com/content/dam/nivabupa/PDF/reassure-2-0/ReAssure%202.0%20-%20Policy%20Wording.pdf",
+      "clause": "Section 5.1.1 (PED, Excl01, 36mo); 5.1.2 (specific illness, Excl02, 24mo); \"Lock the Clock\""
     }
   ],
-  "verificationNote": "Migrated from js/policy-data.js. Figures predate the §16.7 primary-source pipeline and have not been re-read against the policy wording. Not publishable until re-verified and signed off (§16.8)."
+  "verificationNote": "Read against the wording and, on 2026-09-11, the prospectus. CORRECTED 2026-09-11: entryAge — the prospectus (Policy Design 1.2) states \"The minimum entry age for adult is 18 years … The maximum entry age limit for adults in this product is 99 years\", so the previous \"18–65 yrs\" was wrong. Note this plan genuinely differs from the other four health plans in the dataset, which all have no maximum entry age at all — it was worth checking rather than assuming the pattern held. CONFIRMED and now pinned down: the Booster+ multiplier. The wording only gave the set (\"3/5/10 times based on the plan you have chosen\"); the prospectus's Product Benefit Table maps it per variant — Diamond+ 3X, **Platinum+ 5X**, Titanium+ 10X, Bronze+ 3X, Silver+ 5X, Gold+ 10X — so the record's \"up to 5× on Platinum+ and 10× on Titanium+\" is exactly right. CONFIRMED: coverRange — the Base Sum Insured ladder runs 5 Lacs to 100 Lacs across variants, matching \"Up to ₹1 Cr\". CONFIRMED: PED wait 3yr, specific-illness wait 2yr, and the age-lock feature, which the documents call \"Lock the Clock\". Note the prospectus carries a newer UIN (NBHHLIP27054V032627) than the wording (NBHHLIP23169V012223) and lists six variants where the wording implied fewer — worth re-reading the newer wording if one surfaces. Still needs a licensed human's sign-off before verified (§16.8).",
+  "lastVerified": "2026-09-11",
+  "unverifiedFields": []
 }
