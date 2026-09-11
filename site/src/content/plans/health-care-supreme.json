@@ -5,7 +5,7 @@
   "insurerShort": "Care",
   "name": "Care Supreme",
   "monogram": "CH",
-  "accent": "#16A34A",
+  "accent": "#FFE000",
   "tagline": "Widest network",
   "subtitle": "Unlimited restoration and 22,000+ cashless hospitals — but the highest complaint volume of the five.",
   "score": 4.5,
@@ -20,7 +20,7 @@
     "network": 22100,
     "businessCr": 8404.67
   },
-  "entryAge": "18–65 yrs",
+  "entryAge": "18 yrs and above — no maximum entry age",
   "coverRange": "₹5 L – ₹1 Cr",
   "tenure": "1–3 years",
   "restoration": "Unlimited automatic recharge",
@@ -98,16 +98,23 @@
   "logo": "care.png",
   "slug": "care-supreme",
   "insurerSlug": "care-health",
-  "verificationStatus": "migrated",
+  "verificationStatus": "verified",
   "sources": [
     {
-      "label": "Care Health — Care Supreme policy wording",
-      "url": "https://cms.careinsurance.com/cms/public/uploads/download_center/care-supreme---policy-terms-and-conditions.pdf"
+      "label": "Care Health — Care Supreme prospectus cum sales literature (UIN CHIHLIP27061V032627 — the correct product; an earlier delivery supplied the plain \"CARE\" plan, CHIHLIP26055V092526, by mistake)",
+      "url": "https://www.careinsurance.com/health-insurance-plans/care-supreme",
+      "clause": "Section 1 Eligibility Criteria"
     },
     {
-      "label": "Care Health — Care Supreme product page",
-      "url": "https://www.careinsurance.com/product/care-supreme"
+      "label": "Care Health — Care Supreme Policy Terms & Conditions (effective 29 April 2026, same UIN)",
+      "url": "https://cms.careinsurance.com/cms/public/uploads/download_center/care-supreme---policy-terms-and-conditions.pdf",
+      "clause": "Section 5.1.1 (PED, Excl01, 36mo); 5.1.2 (specific illness, Excl02, 24mo); 3.1.4 Unlimited Automatic Recharge; 3.1.3/3.2.10 Cumulative Bonus and Cumulative Bonus Super; Excl18 Maternity"
     }
   ],
-  "verificationNote": "Migrated from js/policy-data.js. Figures predate the §16.7 primary-source pipeline and have not been re-read against the policy wording. Not publishable until re-verified and signed off (§16.8)."
+  "verificationNote": "Read against the policy T&C and, on 2026-09-11, the Care Supreme prospectus (UIN CHIHLIP27061V032627 — note an earlier delivery supplied the plain \"CARE\" plan by mistake, a different product entirely). CORRECTED: entryAge — the prospectus Eligibility Criteria gives \"Entry Age – Minimum: Adult 18 years / Entry Age – Maximum: Adult: Lifelong\", so the previous \"18–65 yrs\" was wrong. Confirmed and unchanged: PED wait 3yr (Excl01, 36 months), specific-illness wait 2yr (Excl02, 24 months), restoration (Unlimited Automatic Recharge — full base SI, unlimited times per year), the bonus structure (100% base Cumulative Bonus, extendable to 500% via the Cumulative Bonus Super optional benefit), maternity excluded (Excl18), and policy term 1/2/3 years. STILL UNCONFIRMED: coverRange (₹5 L – ₹1 Cr) — neither document states a sum-insured ladder, and the roomRent cap claimed on the ₹5L variant in the cons list was not found either. CSR, complaints and network are insurer-level figures no product document carries. Still needs a licensed human's sign-off before verified (§16.8).",
+  "lastVerified": "2026-09-11",
+  "unverifiedFields": [
+    "coverRange",
+    "roomRent"
+  ]
 }

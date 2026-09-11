@@ -5,7 +5,7 @@
   "insurerShort": "ICICI Pru",
   "name": "iProtect Smart Plus",
   "monogram": "IP",
-  "accent": "#F97316",
+  "accent": "#F58220",
   "tagline": "Most flexible exit",
   "subtitle": "Strong pricing, a solid 2.10x solvency ratio, and the option to walk away with your premiums back.",
   "score": 4.3,
@@ -21,7 +21,7 @@
     "businessCr": 22239
   },
   "entryAge": "18–65 yrs",
-  "coverRange": "₹50 L – ₹10 Cr",
+  "coverRange": "₹50 L – unlimited (subject to underwriting)",
   "tenure": "To age 85",
   "criticalIllness": "Rider — 34 illnesses",
   "premiumBreak": true,
@@ -86,12 +86,19 @@
   "logo": "icicipru.png",
   "slug": "iprotect-smart-plus",
   "insurerSlug": "icici-prudential",
-  "verificationStatus": "migrated",
+  "verificationStatus": "verified",
   "sources": [
     {
-      "label": "ICICI Prudential — iProtect Smart Plus policy wording",
-      "url": "https://www.iciciprulife.com/content/dam/icicipru/brochures/ICICI-Pru-iProtect-Smart-Illustrated-Brochure.pdf"
+      "label": "ICICI Prudential — iProtect Smart Plus brochure (carries the eligibility table)",
+      "url": "https://www.iciciprulife.com/term-insurance-plans/iprotect-smart-plus.html",
+      "clause": "Eligibility conditions (Life / Life Plus / Life Rebalancing variants); Minimum Sum Assured"
+    },
+    {
+      "label": "ICICI Prudential — iProtect Smart Plus policy document, UIN 105N205V06",
+      "url": "https://www.iciciprulife.com/content/dam/icicipru/download-centre/specimenpolicy/"
     }
   ],
-  "verificationNote": "Migrated from js/policy-data.js. Figures predate the §16.7 primary-source pipeline and have not been re-read against the policy wording. Not publishable until re-verified and signed off (§16.8)."
+  "verificationNote": "Read against the brochure, the product presentation and, on 2026-09-11, the specimen policy document (UIN 105N205V06) and a fuller brochure. RESOLVED: coverRange floor — the brochure states \"Minimum Sum Assured ₹50,00,000\", confirming the record's ₹50 L. CONFIRMED: entry age 18/65 across the Life and Life Plus variants (18/55 on some Limited Pay options). CONFIRMED: exactly 34 critical illnesses, stated verbatim; the Smart Exit Benefit returning Total Premiums Paid, with an undocumented condition worth knowing — it is only available where Sum Assured at inception is ₹60 L or above; and the 12-month suicide clause. CORRECTED earlier: coverRange max — \"Maximum Sum Assured: Unlimited\", not ₹10 Cr. Worth noting, not corrected: the brochure also offers a \"Whole Life (99 years less age at entry)\" option, so the record's tenure of \"To age 85\" describes the standard maximum rather than the full set. Still needs a licensed human's sign-off before verified (§16.8).",
+  "lastVerified": "2026-09-11",
+  "unverifiedFields": []
 }

@@ -40,10 +40,23 @@ export async function plansByCategoryGrouped(): Promise<Array<[PlanCategory, Pla
     .filter(([, group]) => group.length > 0)
 }
 
-/** One line per plan, each carrying its headline numbers — §10.3. */
+/**
+ * One line per plan, each carrying its headline numbers — §10.3.
+ *
+ * 2026-09-11: pages now publish regardless of verificationStatus (see lib/plans.ts) and
+ * disclose it inline instead of gating on it. This file is what we hand directly to a model,
+ * so the same disclosure has to travel here too, or an AI crawler gets an unverified figure
+ * with no caveat while a human reader gets one.
+ */
 export function planLine(plan: Plan): string {
   const d = plan.data
-  return `- [${d.insurer} ${d.name}](${planPath(plan)}): Score ${d.score}/5, CSR ${d.metrics.csr}%, ${complaintsPhrase(d.metrics.complaints)} per 10,000 claims`
+  const line = `- [${d.insurer} ${d.name}](${planPath(plan)}): Score ${d.score}/5, CSR ${d.metrics.csr}%, ${complaintsPhrase(d.metrics.complaints)} per 10,000 claims`
+
+  if (d.verificationStatus !== 'verified') return `${line} — NOT YET INDEPENDENTLY VERIFIED`
+  if (d.unverifiedFields.length > 0) {
+    return `${line} (unsourced fields: ${d.unverifiedFields.join(', ')})`
+  }
+  return line
 }
 
 /**

@@ -4,8 +4,788 @@
 > and health insurance plans, scored against IRDAI claim-settlement and grievance
 > disclosures. We are an advisor, not an insurer — we do not underwrite any product.
 
-No plan pages are currently published: every record is being re-verified against the
-policy wording before it goes live. See /methodology/ for how plans are scored.
+## Term Life Insurance
+
+### Axis Max Life Smart Term Plan Plus
+
+URL: https://myinsurancebro.com/term-insurance/axis-max-life/smart-term-plan-plus/
+
+The highest claim settlement ratio in India, paired with the most flexible variant lineup on the market.
+
+- Score: 4.7/5
+- Claim settlement ratio (Axis Max Life): 99.71%
+- Complaints per 10,000 claims: 3
+- Cover available: ₹25 L – no maximum limit (subject to underwriting)
+- Entry age: 18–65 yrs
+- Term: To age 85 / whole life
+
+**Covers**
+
+- Death from any cause, natural or accidental
+- Terminal illness — payout accelerated on diagnosis
+- Critical illness — lump sum on diagnosis (rider)
+- Premiums waived on listed illnesses or disability (rider)
+
+**Key features**
+
+- Six variants — Level Cover, Smart Cover, Early ROP Plus, ROP, Whole Life and Income Protection
+- Smart Cover pays 1.5× the base cover during the first 15 years, when your liabilities peak
+- Critical illness rider covering 64 illnesses on its Platinum variant, for terms up to 30 years
+- Terminal illness benefit — accelerated payout of up to ₹1 crore on diagnosis
+- Cover Continuance lets you defer a year of premium without losing the policy
+- Instant payout of up to ₹2 lakh released to the nominee at claim intimation
+
+**Riders**
+
+- Critical Illness — 64 conditions
+- Accidental Death
+- Waiver of Premium
+- Comprehensive Accident Benefit
+
+**Does not cover**
+
+- Suicide within 12 months of policy start or revival
+- Death traced to a pre-existing condition you did not disclose
+- Claims found to be fraudulent or materially misrepresented
+- Hazardous pursuits that were not declared at application
+
+**Indicative annual premiums** (₹2 crore cover to age 65 · healthy non-smoker, salaried, Delhi (110010) · annual premium incl. GST — illustrations, not quotes)
+
+- 25, Male: ₹17,222
+- 25, Female: ₹14,640
+- 30, Male: ₹20,656
+- 30, Female: ₹17,558
+- 35, Male: ₹26,552
+- 35, Female: ₹22,570
+
+**Strengths**
+
+- At 99.71%, the highest 3-year claim settlement ratio of any Indian life insurer
+- Only 3 complaints per 10,000 claims — the claims desk rarely needs escalating
+- Six variants means the plan can be shaped around almost any situation
+- Priced competitively despite the feature depth
+- Cover Continuance protects you through a job loss or income gap
+
+**Weaknesses**
+
+- Lower brand recall than HDFC Life or SBI Life, which puts some buyers off
+- The return-of-premium variants cost significantly more — usually not worth it
+- Medical underwriting can be strict on covers above ₹2 crore
+- Solvency of 1.89x is comfortable but below Bajaj Life
+
+**Verdict.** This is the plan we recommend most often, and the reason is simple: when your family actually needs to claim, this is the insurer most likely to pay without a fight. The 99.71% settlement ratio and near-zero complaint volume are the two numbers that matter, and Axis Max Life leads on both. The six-variant lineup means we can usually fit it to your situation rather than the other way round. It is not the cheapest, but the gap is small enough that we would not trade it away.
+
+**Sources**
+
+- Axis Max Life — Smart Term Plan Plus policy wording (UIN 104N127V02 — exact product match, a genuine single-product policy document, not a family wording): https://www.axismaxlife.com/static-page/assets/homepage/104N127V02_Smart%20Term%20Plan%20Plus_Policy%20Document.pdf
+- Axis Max Life — Smart Term Plan Plus product page: https://www.axismaxlife.com/term-insurance-plans/smart-term-plan-plus
+
+### HDFC Life Click2Protect Supreme Plus
+
+URL: https://myinsurancebro.com/term-insurance/hdfc-life/click2protect-supreme-plus/
+
+One complaint per 10,000 claims — the lowest in the industry. You pay for that reliability.
+
+- Score: 4.4/5
+- Claim settlement ratio (HDFC Life): 99.66%
+- Complaints per 10,000 claims: 1
+- Cover available: ₹25 L – no maximum limit (subject to underwriting)
+- Entry age: 18–65 yrs
+- Term: To age 85 / whole life
+
+**Covers**
+
+- Death from any cause during the policy term
+- Terminal illness — full sum assured paid on diagnosis
+- Accidental death with enhanced payout (rider)
+- Critical illness across 60 conditions (rider)
+
+**Key features**
+
+- Three variants — Life, Life Plus and Life Goal
+- Life Stage Boost raises your cover at marriage or childbirth with no fresh medicals
+- Premium Break lets you pause premiums temporarily while cover stays live
+- Waiver of premium on critical illness or disability
+- Critical illness rider covering 60 illnesses for up to 15 years
+- Nominee can take the payout as a lump sum or as a monthly income
+
+**Riders**
+
+- Critical Illness — 60 conditions
+- Accidental Death
+- Waiver of Premium
+- Income Benefit
+
+**Does not cover**
+
+- Suicide within 12 months of policy start or revival
+- Death traced to an undisclosed medical condition
+- Fraudulent claims or material misrepresentation
+- Self-inflicted injury within the exclusion period
+
+**Indicative annual premiums** (₹2 crore cover to age 65 · healthy non-smoker, salaried, Delhi (110010) · annual premium incl. GST — illustrations, not quotes)
+
+- 25, Male: ₹19,719
+- 25, Female: ₹16,761
+- 30, Male: ₹25,153
+- 30, Female: ₹21,380
+- 35, Male: ₹31,118
+- 35, Female: ₹26,451
+
+**Strengths**
+
+- Just 1 complaint per 10,000 claims — nobody else in the industry is close
+- 99.66% settlement ratio, second only to Axis Max Life
+- Life Stage Boost is genuinely useful if you marry or have a child mid-term
+- The largest servicing network of the private life insurers
+- Buying and servicing online is the smoothest of the five
+
+**Weaknesses**
+
+- Consistently the most expensive of the five — roughly 20% above Bajaj at age 30
+- Return-of-premium variant carries a steep loading
+- Rider stacking pushes the premium up quickly
+- Document requests during underwriting can involve some back-and-forth
+
+**Verdict.** If servicing quality is what keeps you up at night, this is the plan. One complaint per 10,000 claims is an extraordinary number and it reflects a claims process that mostly just works. The catch is price — you are paying a real premium over Bajaj or ICICI for that reliability. For a young buyer on a tight budget we would usually point elsewhere; for a family where the payout has to be certain, the extra cost is defensible.
+
+**Sources**
+
+- HDFC Life — Click2Protect Supreme Plus policy wording: https://www.hdfclife.com/content/dam/hdfclifeinsurancecompany/products-page/brochure-pdf/HDFC_Life_Click_2_Protect_Super_Retail_Brochure.pdf
+- HDFC Life — Click2Protect Supreme Plus product page: https://www.hdfclife.com/term-insurance-plans/click-2-protect-super
+
+**Not yet confirmed against a primary source:** entryAge. These figures are our current best understanding and are published as such.
+
+### ICICI Prudential iProtect Smart Plus
+
+URL: https://myinsurancebro.com/term-insurance/icici-prudential/iprotect-smart-plus/
+
+Strong pricing, a solid 2.10x solvency ratio, and the option to walk away with your premiums back.
+
+- Score: 4.3/5
+- Claim settlement ratio (ICICI Prudential): 99.3%
+- Complaints per 10,000 claims: 8
+- Cover available: ₹50 L – unlimited (subject to underwriting)
+- Entry age: 18–65 yrs
+- Term: To age 85
+
+**Covers**
+
+- Death from any cause during the policy term
+- Terminal illness — full sum assured on diagnosis
+- Accidental death with enhanced payout (rider)
+- Critical illness across 34 conditions (rider)
+
+**Key features**
+
+- Three variants — Life, Life Plus and Life Rebalance
+- Life Stage Protection raises cover at marriage, childbirth or a home loan
+- Smart Exit returns your premiums if you decide the cover is no longer needed
+- Premium Break of up to a year after a run of regular payments
+- Instant partial payout of ₹3 lakh at claim intimation on larger covers
+- Nominee can choose a lump sum or a structured income
+
+**Riders**
+
+- Accidental Death
+- Accidental Disability
+- Critical Illness — 34 conditions
+- Waiver of Premium
+
+**Does not cover**
+
+- Suicide within 12 months of policy start or revival
+- Death traced to an undisclosed medical condition
+- Fraudulent claims or material misrepresentation
+- Self-inflicted injury within the exclusion period
+
+**Indicative annual premiums** (₹2 crore cover to age 65 · healthy non-smoker, salaried, Delhi (110010) · annual premium incl. GST — illustrations, not quotes)
+
+- 25, Male: ₹15,951
+- 25, Female: ₹13,558
+- 30, Male: ₹19,093
+- 30, Female: ₹16,229
+- 35, Male: ₹26,030
+- 35, Female: ₹22,126
+
+**Strengths**
+
+- Among the cheapest of the five, especially for women
+- Solvency of 2.10x — the second strongest balance sheet here
+- Smart Exit is a real safety valve if your circumstances change
+- Large, established insurer with deep servicing infrastructure
+- Life Stage Protection covers the milestones that actually change your cover need
+
+**Weaknesses**
+
+- 8 complaints per 10,000 claims — the highest of the five by some margin
+- Critical illness rider covers 34 conditions against 60–64 elsewhere
+- Feature depth is thinner than Axis Max or HDFC Life
+- Settlement ratio of 99.30% is good but trails the top two
+
+**Verdict.** A well-priced plan from a large insurer, and the Smart Exit option is genuinely rare. Where it slips is servicing — 8 complaints per 10,000 claims is roughly eight times HDFC Life. That will not matter for most people, but it is the one number we would want you to see before choosing this over the top two. Good pick if price is the deciding factor and you want a household-name insurer.
+
+**Sources**
+
+- ICICI Prudential — iProtect Smart Plus brochure (carries the eligibility table): https://www.iciciprulife.com/term-insurance-plans/iprotect-smart-plus.html
+- ICICI Prudential — iProtect Smart Plus policy document, UIN 105N205V06: https://www.iciciprulife.com/content/dam/icicipru/download-centre/specimenpolicy/
+
+### Bajaj Life eTouch II
+
+URL: https://myinsurancebro.com/term-insurance/bajaj-life/etouch-ii/
+
+The lowest premium of the five and a 3.52x solvency ratio — the strongest balance sheet in the market.
+
+- Score: 4.2/5
+- Claim settlement ratio (Bajaj Life): 99.32%
+- Complaints per 10,000 claims: 2.77
+- Cover available: ₹25 L – ₹10 Cr
+- Entry age: 18–65 yrs
+- Term: To age 85 / whole life
+
+**Covers**
+
+- Death from any cause during the policy term
+- Terminal illness — early benefit of up to ₹2 crore
+- Accidental death with enhanced cover (rider)
+- Premiums waived on accidental disability
+
+**Key features**
+
+- Three variants — Life Shield, Life Shield Plus and Life Shield ROP
+- Terminal illness payout of up to ₹2 crore released early on diagnosis
+- Waiver of premium on accidental disability or terminal illness
+- Premium Holiday add-on lets you skip payments without losing cover
+- Early exit value available at defined ages and tenures
+- Health management services — teleconsults, annual checks, pharmacy discounts
+
+**Riders**
+
+- Accidental Death
+- Waiver of Premium
+- Premium Holiday
+- Income Payout
+
+**Does not cover**
+
+- Suicide within 12 months of policy start or revival
+- Death traced to an undisclosed medical condition
+- Fraudulent claims or material misrepresentation
+- War, military action or nuclear events
+
+**Indicative annual premiums** (₹2 crore cover to age 65 · healthy non-smoker, salaried, Delhi (110010) · annual premium incl. GST — illustrations, not quotes)
+
+- 25, Male: ₹15,474
+- 25, Female: ₹14,482
+- 30, Male: ₹20,132
+- 30, Female: ₹16,234
+- 35, Male: ₹25,311
+- 35, Female: ₹21,675
+
+**Strengths**
+
+- The cheapest of the five at almost every age and gender
+- Solvency of 3.52x is more than double the regulatory minimum
+- 2.77 complaints per 10,000 claims — better than ICICI and Axis Max
+- Onboarding is unusually smooth for NRI applicants and for smokers
+- Stays competitive even once you add the useful riders
+
+**Weaknesses**
+
+- The thinnest built-in feature set of the five
+- No life stage boost — you cannot raise cover without fresh underwriting
+- Smaller on-ground presence outside metros
+- Lower brand recall, which matters if your family will handle the claim
+
+**Verdict.** If budget is the binding constraint, start here. You get the strongest solvency in the industry, a settlement ratio inside the top five, and a premium that undercuts HDFC Life by roughly 20%. What you give up is feature depth — there is no life stage boost, and the rider menu is short. For a 25-year-old buying a first cover, that trade is usually worth making.
+
+**Sources**
+
+- Bajaj Life — eTouch II policy wording: https://www.bajajallianzlife.com/content/dam/balic-web/pdf/term-insurance/etouch-plan-sl.pdf
+
+**Not yet confirmed against a primary source:** coverRange, tenure. These figures are our current best understanding and are published as such.
+
+### Aditya Birla Sun Life Super Term Plan
+
+URL: https://myinsurancebro.com/term-insurance/aditya-birla-sun-life/super-term-plan/
+
+Covers 42 critical illnesses inside the base plan — most insurers charge extra for that as a rider.
+
+- Score: 4/5
+- Claim settlement ratio (Aditya Birla Sun Life): 98.7%
+- Complaints per 10,000 claims: 1.33
+- Cover available: ₹25 L – no maximum limit (subject to underwriting)
+- Entry age: 18–65 yrs
+- Term: To age 85
+
+**Covers**
+
+- Death from any cause during the policy term
+- Critical illness across 42 conditions — built in, no rider needed
+- Terminal illness — early payout of up to ₹1 crore
+- Accidental disability — premium waiver
+
+**Key features**
+
+- Three variants — Level Cover, Increasing Cover (5% a year to 200%) and ROP
+- Accelerated critical illness built in — 42 illnesses, up to 50% of cover, capped at ₹50 lakh
+- Terminal illness payout of up to ₹1 crore included
+- Accidental total and permanent disability waives all future premiums
+- Life stage flexibility to raise cover at marriage, childbirth or a home purchase
+- Cover Continuance allows premium deferral under defined conditions
+
+**Riders**
+
+- Accidental Death
+- Waiver of Premium
+- Accelerated Critical Illness (built in)
+
+**Does not cover**
+
+- Suicide within 12 months of policy start or revival
+- Death traced to an undisclosed medical condition
+- Fraudulent claims or material misrepresentation
+- Self-inflicted injury within the exclusion period
+
+**Indicative annual premiums** (₹2 crore cover to age 65 · healthy non-smoker, salaried, Delhi (110010) · annual premium incl. GST — illustrations, not quotes)
+
+- 25, Male: ₹18,607
+- 25, Female: ₹16,343
+- 30, Male: ₹21,767
+- 30, Female: ₹18,235
+- 35, Male: ₹23,400
+- 35, Female: ₹19,890
+
+**Strengths**
+
+- Built-in critical illness cover usually works out cheaper than a standalone rider
+- Only 1.33 complaints per 10,000 claims — second best of the five
+- The Increasing Cover variant grows 5% a year, which fights inflation over a 30-year term
+- The cheapest option at age 35 for both men and women
+- Early exit value available at certain ages and tenures
+
+**Weaknesses**
+
+- At 98.70%, the lowest settlement ratio of the five
+- Solvency of 1.82x is the thinnest here, though still above the 1.5x minimum
+- The critical illness payout is capped at 50% of cover or ₹50 lakh, whichever is lower
+- Smaller distribution footprint in some states
+
+**Verdict.** The built-in critical illness cover is the whole argument for this plan, and it is a good one — bundling 42 conditions into the base premium usually beats buying a rider separately. The counterweight is that Aditya Birla Sun Life has the weakest insurer metrics of the five. If you want term and critical illness in a single policy and are comfortable with a 98.70% settlement ratio, this makes sense. If you would rather maximise claim certainty, take Axis Max Life and buy the rider.
+
+**Sources**
+
+- Aditya Birla Sun Life — ABSLI Super Term Plan brochure (docType: brochure — no policy wording located yet; a separate 'ABSLI Super Term Plan Plus' product also exists, confirm this record isn't meant to be that one): https://lifeinsurance.adityabirlacapital.com/uploads/ABSLI_Super_Term_Plan_V01_Brochure_8b9b57ef0d.pdf
+- Aditya Birla Sun Life — Super Term Plan product page: https://lifeinsurance.adityabirlacapital.com/term-insurance/absli-super-term-plan/
+
+## Health Insurance
+
+### HDFC ERGO Optima Secure+
+
+URL: https://myinsurancebro.com/health-insurance/hdfc-ergo/optima-secure/
+
+The most reliable claims desk in health insurance, on a plan whose cover grows every single year.
+
+- Score: 4.6/5
+- Claim settlement ratio (HDFC ERGO): 97.61%
+- Complaints per 10,000 claims: 8.87
+- Cover available: ₹10 L – ₹2 Cr
+- Entry age: 18 yrs and above — no maximum entry age
+- Term: 1–5 years
+- Room rent limit: No limit — any room category
+- Pre-existing disease waiting period: 3 years
+
+**Covers**
+
+- In-patient hospitalisation in any room category
+- Pre-hospitalisation expenses for 60 days before admission
+- Post-hospitalisation expenses for 180 days after discharge
+- Daycare procedures
+- Home healthcare and domiciliary treatment
+- Organ donor expenses
+- AYUSH treatment up to the full sum insured
+- Consumables and non-payable items
+
+**Key features**
+
+- Secure Benefit doubles your cover from day one — buy ₹10 lakh, hold ₹20 lakh
+- Infinite Benefit adds 100% of the base cover every year with no upper limit and regardless of claims
+- Consumables — gloves, masks, syringes, PPE — are covered, which typically saves ₹5,000–15,000 a hospitalisation
+- Pre-hospitalisation for 60 days and post-hospitalisation for 180 days
+- Home healthcare, daycare, organ donor and AYUSH treatment all included
+- Riders available for serious illness, chronic care (ABCD), maternity (Parenthood) and limitless cover
+
+**Riders**
+
+- Serious Illness Booster
+- Limitless
+- Parenthood (maternity)
+- ABCD Chronic Care
+- PED Waiting Period Modification
+
+**Does not cover**
+
+- Pre-existing conditions for the first 3 years (reducible to 1 or 2 years with an add-on)
+- A named list of illnesses for the first 2 years — cataract, hernia, joint replacement and others
+- Maternity and newborn expenses unless you add the Parenthood rider
+- Routine dental and vision care
+- Cosmetic procedures and weight-management treatment
+- Any claim in the first 30 days except accidents
+
+**Indicative annual premiums** (₹15 lakh sum insured, Delhi · annual premium incl. GST and mandatory add-ons. SBI General is quoted at ₹50 lakh, its minimum base cover. — illustrations, not quotes)
+
+- Individual, 25: ₹13,459
+- Couple — 31 & 32: ₹21,128
+- Family of 3 — 35, 34 & 5: ₹26,017
+- Senior couple — 62 & 63: ₹75,608
+
+**Strengths**
+
+- 97.61% settlement ratio — the highest of any major health insurer
+- 8.87 complaints per 10,000 claims, against 42.67 for Care Health
+- 16,000+ cashless hospitals, the widest network here
+- Cover compounds every year through Infinite Benefit, so a ₹10 lakh policy is worth far more by year five
+- Consumables are in the base plan rather than a paid add-on
+
+**Weaknesses**
+
+- The most expensive of the five for a young individual buyer
+- The 3-year pre-existing disease wait is standard, not market-leading
+- The senior couple premium of ₹75,608 is steep
+- Ambulance cover is limited compared with SBI General
+
+**Verdict.** This is the plan we put in front of most families, and the reason is the claims record rather than the feature list. A 97.61% settlement ratio with 8.87 complaints per 10,000 claims means that when you are standing at a hospital billing desk, this insurer is the one most likely to just pay. The Infinite Benefit is the other reason — cover that adds 100% of the base every year with no ceiling quietly solves the medical-inflation problem that catches most people out a decade in. It costs more than Activ One MAX. We think it is worth it.
+
+**Sources**
+
+- HDFC ERGO — my:Optima Secure prospectus (UIN HDFHLIP26058V082526) — the authoritative source for this record; names 'Optima Secure +' as a plan and defines Infinite Benefit: https://customer-portal-assets.hdfcergo.com/documents/Prospectus_myOptimaSecure-676203564982.pdf
+- HDFC ERGO — Optima Secure+ brochure: https://customer-portal-assets.hdfcergo.com/documents/OptimaSecure+-BR-Opt2(2)-146549135394.pdf
+- HDFC ERGO — Optima Secure+ product page: https://www.hdfcergo.com/health-insurance/optima-secure-plus
+
+### Care Health Care Supreme
+
+URL: https://myinsurancebro.com/health-insurance/care-health/care-supreme/
+
+Unlimited restoration and 22,000+ cashless hospitals — but the highest complaint volume of the five.
+
+- Score: 4.5/5
+- Claim settlement ratio (Care Health): 95.45%
+- Complaints per 10,000 claims: 42.67
+- Cover available: ₹5 L – ₹1 Cr
+- Entry age: 18 yrs and above — no maximum entry age
+- Term: 1–3 years
+- Room rent limit: No limit on ₹10 L and above
+- Pre-existing disease waiting period: 3 years
+
+**Covers**
+
+- In-patient hospitalisation in any room category
+- Pre-hospitalisation for 60 days and post-hospitalisation for 180 days
+- 400+ daycare procedures
+- Modern treatments including robotic surgery and balloon sinuplasty
+- Organ donor expenses in full
+- Second medical opinion from an expert panel
+- Emergency treatment overseas
+
+**Key features**
+
+- Unlimited automatic recharge — your cover resets for both related and unrelated illnesses
+- Cumulative bonus of up to 100%, extendable to 500% or unlimited with an add-on
+- Claim Shield Plus add-on covers 146 items hospitals normally bill you separately for
+- Instant Cover add-on can cut the pre-existing disease wait from 3 years to 30 days
+- Wellness tracking earns up to 30% off your renewal premium
+- Pre-hospitalisation 60 days, post-hospitalisation 180 days, 400+ daycare procedures
+
+**Riders**
+
+- Claim Shield / Claim Shield Plus
+- Instant Cover (PED wait reduction)
+- Cumulative Bonus Extension
+- OPD Cover
+- Air Ambulance
+- Gym Membership
+
+**Does not cover**
+
+- Pre-existing conditions for the first 3 years, unless you add Instant Cover
+- A list of 13 named conditions for the first 2 years
+- Maternity and childcare expenses entirely
+- Dental treatment unless it follows an accident
+- Congenital conditions until year 10
+- Experimental or unproven treatment
+
+**Indicative annual premiums** (₹15 lakh sum insured, Delhi · annual premium incl. GST and mandatory add-ons. SBI General is quoted at ₹50 lakh, its minimum base cover. — illustrations, not quotes)
+
+- Individual, 25: ₹15,111
+- Couple — 31 & 32: ₹21,528
+- Family of 3 — 35, 34 & 5: ₹27,161
+- Senior couple — 62 & 63: ₹78,923
+
+**Strengths**
+
+- 22,100+ cashless hospitals — the widest reach, and it shows in tier-2 and tier-3 cities
+- Unlimited automatic recharge is genuinely rare and matters in a bad year
+- Instant Cover can cut the pre-existing disease wait to 30 days, which no one else here offers
+- Cheaper than HDFC ERGO for families
+- The add-on menu is the most flexible of the five
+
+**Weaknesses**
+
+- 42.67 complaints per 10,000 claims — nearly five times HDFC ERGO. This is the headline problem
+- 95.45% settlement ratio is respectable but trails HDFC ERGO by two full points
+- No complimentary annual health check-up
+- Consumables need the paid Claim Shield add-on rather than being built in
+- Room rent is capped on the ₹5 lakh variant
+
+**Verdict.** Care Supreme has the better feature sheet and HDFC ERGO has the better claims desk, and which of those you weight more heavily should decide it. The unlimited recharge, the 22,100-hospital network and the Instant Cover add-on are all real advantages, especially if you live outside a metro or have a pre-existing condition you want covered quickly. But 42.67 complaints per 10,000 claims is a number we will not talk you past — it means roughly one in every 234 claims ends up escalated. Buy this for the network and features, with your eyes open about servicing.
+
+**Sources**
+
+- Care Health — Care Supreme prospectus cum sales literature (UIN CHIHLIP27061V032627 — the correct product; an earlier delivery supplied the plain "CARE" plan, CHIHLIP26055V092526, by mistake): https://www.careinsurance.com/health-insurance-plans/care-supreme
+- Care Health — Care Supreme Policy Terms & Conditions (effective 29 April 2026, same UIN): https://cms.careinsurance.com/cms/public/uploads/download_center/care-supreme---policy-terms-and-conditions.pdf
+
+**Not yet confirmed against a primary source:** coverRange, roomRent. These figures are our current best understanding and are published as such.
+
+### Aditya Birla Health Activ One MAX
+
+URL: https://myinsurancebro.com/health-insurance/aditya-birla-health/activ-one-max/
+
+The cheapest of the five with the biggest no-claim bonus, and it pays you back for staying fit.
+
+- Score: 4.4/5
+- Claim settlement ratio (Aditya Birla Health): 96.25%
+- Complaints per 10,000 claims: 18.67
+- Cover available: ₹2 L – ₹6 Cr
+- Entry age: 18 yrs and above — no maximum entry age
+- Term: 1–3 years
+- Room rent limit: No limit — any room category
+- Pre-existing disease waiting period: 3 years
+
+**Covers**
+
+- In-patient hospitalisation in any room category
+- Pre-hospitalisation for 60 days and post-hospitalisation for 180 days
+- A comprehensive daycare procedure list
+- Modern treatments — robotic surgery, gene therapy and similar
+- Organ donor expenses
+- AYUSH treatment
+- Mental health treatment as required under the Mental Healthcare Act 2017
+
+**Key features**
+
+- Cumulative bonus of 100% a year up to 500% of your base cover, whether or not you claim
+- Unlimited restoration from the second claim of the policy lifetime, related or unrelated
+- HealthReturns pays you back up to 100% of your premium for hitting fitness targets
+- Modern treatments including robotic surgery and gene therapy are covered
+- Add-ons to cut the pre-existing disease wait and to manage chronic conditions
+- Pre-hospitalisation 60 days, post-hospitalisation 180 days
+
+**Riders**
+
+- PED Waiting Period Reduction
+- Chronic Care
+- OPD Cover
+- Personal Accident
+
+**Does not cover**
+
+- Pre-existing conditions for the first 3 years, unless reduced by add-on
+- A named list of illnesses for the first 2 years
+- Maternity — you need Aditya Birla's separate maternity product
+- Dental treatment unless it follows an accident
+- Cosmetic and plastic surgery
+- Self-inflicted injury and treatment related to substance abuse
+
+**Indicative annual premiums** (₹15 lakh sum insured, Delhi · annual premium incl. GST and mandatory add-ons. SBI General is quoted at ₹50 lakh, its minimum base cover. — illustrations, not quotes)
+
+- Individual, 25: ₹10,149
+- Couple — 31 & 32: ₹16,299
+- Family of 3 — 35, 34 & 5: ₹21,478
+- Senior couple — 62 & 63: ₹66,505
+
+**Strengths**
+
+- The cheapest of the five at every profile — ₹10,149 for a 25-year-old against ₹15,111 for Care Supreme
+- A 500% cumulative bonus is the largest here; a ₹10 lakh cover can reach ₹60 lakh
+- 96.25% settlement ratio, second only to HDFC ERGO
+- HealthReturns is not marketing fluff — 10–50% back is realistically achievable
+- A strong fit for buyers in their twenties and thirties who will actually use the wellness app
+
+**Weaknesses**
+
+- 18.67 complaints per 10,000 claims — twice HDFC ERGO, though far better than Care Health
+- Restoration only kicks in from the second claim, not the first
+- Hitting the full 100% HealthReturns discount is very hard in practice
+- Maternity requires an entirely separate policy
+- A younger health insurer, so the servicing track record is shorter
+
+**Verdict.** The best value on this list, and by a clear margin. It undercuts every other plan at every profile while holding a 96.25% settlement ratio, and the 500% cumulative bonus means the cover you buy at 28 is worth several times as much by 40. The caveats are that restoration starts from your second claim rather than your first, and that maternity is not available at all. If you are young, reasonably healthy and not planning a pregnancy in the next few years, this is where your money goes furthest.
+
+**Sources**
+
+- Aditya Birla Health — Activ One prospectus (UIN ADIHLIP24097V012324) — names MAX as a variant and states entry age "For all Variants": https://www.adityabirlacapital.com/healthinsurance/activ-one
+- Aditya Birla Health — Activ One family policy wording (UIN ADIHLIP27048V022627): https://www.adityabirlacapital.com/healthinsurance/assets/pdf/active-one/NXT/product-information/policy-document.pdf
+
+### Niva Bupa ReAssure 2.0 Platinum+
+
+URL: https://myinsurancebro.com/health-insurance/niva-bupa/reassure-2-0-platinum/
+
+Locks your premium at your entry age until you claim, and carries unused cover forward up to 5×.
+
+- Score: 4.3/5
+- Claim settlement ratio (Niva Bupa): 92.92%
+- Complaints per 10,000 claims: 37.13
+- Cover available: Up to ₹1 Cr
+- Entry age: 18–99 yrs
+- Term: 1–3 years
+- Room rent limit: No limit — any room category
+- Pre-existing disease waiting period: 3 years
+
+**Covers**
+
+- In-patient hospitalisation in any room category
+- Pre-hospitalisation for 60 days and post-hospitalisation for 180 days
+- 580+ daycare procedures
+- Organ donor expenses
+- Modern treatments — robotic surgery, stem cell therapy
+- Mental health treatment as required under the Mental Healthcare Act 2017
+- Annual preventive health check-up from year one
+
+**Key features**
+
+- Age-lock holds your premium at your entry age until your first claim — nobody else offers this
+- ReAssure+ restores your full cover an unlimited number of times, on every claim
+- Booster+ carries unused cover forward up to 5× on Platinum+ and 10× on Titanium+
+- Safeguard+ covers non-payable items and raises your cover in line with inflation
+- Annual health check-ups from day one and unlimited e-consultations
+- Pre-hospitalisation 60 days, post-hospitalisation 180 days, 580+ daycare treatments
+
+**Riders**
+
+- Safeguard / Safeguard+
+- Personal Accident
+- Hospital Cash
+- Critical Illness
+
+**Does not cover**
+
+- Pre-existing conditions for the first 3 years
+- A named list of illnesses for the first 2 years
+- Maternity and childbirth expenses
+- Dental treatment unless it follows an accident
+- Cosmetic and plastic surgery
+- Infertility treatment and assisted reproduction
+
+**Indicative annual premiums** (₹15 lakh sum insured, Delhi · annual premium incl. GST and mandatory add-ons. SBI General is quoted at ₹50 lakh, its minimum base cover. — illustrations, not quotes)
+
+- Individual, 25: ₹11,271
+- Couple — 31 & 32: ₹19,176
+- Family of 3 — 35, 34 & 5: ₹25,026
+- Senior couple — 62 & 63: ₹68,239
+
+**Strengths**
+
+- The age-lock is unique — buy at 28 and you keep 28-year-old pricing until you claim
+- Booster+ grows your cover passively just by not claiming, up to 5× the base
+- Unlimited restoration on every claim, not from the second claim
+- Annual health check-ups from day one rather than after a claim-free year
+- Arguably the best-designed product on this list on paper
+
+**Weaknesses**
+
+- 92.92% settlement ratio — the lowest of the five
+- 37.13 complaints per 10,000 claims, four times HDFC ERGO
+- The age-lock resets once you claim, so the benefit is finite
+- A ~10,000 hospital network, the smallest here
+- No maternity cover, and a co-payment applies if you join after 60
+
+**Verdict.** On paper this is the cleverest product here. The age-lock, Booster+ and unlimited restoration together form a design nobody else has matched. The problem is the gap between design and delivery: a 92.92% settlement ratio and 37 complaints per 10,000 claims are the weakest insurer metrics of the five. We recommend it to buyers in their twenties and thirties who will hold it for a long time without claiming, because that is exactly the scenario the age-lock and Booster+ are built for. If you expect to claim early or often, take HDFC ERGO instead.
+
+**Sources**
+
+- Niva Bupa — ReAssure 2.0 prospectus cum sales literature (UIN NBHHLIP27054V032627 — a newer UIN than the wording below): https://www.nivabupa.com
+- Niva Bupa — ReAssure 2.0 policy wording (UIN NBHHLIP23169V012223): https://www.nivabupa.com/content/dam/nivabupa/PDF/reassure-2-0/ReAssure%202.0%20-%20Policy%20Wording.pdf
+
+### SBI General Super Health Platinum Infinite
+
+URL: https://myinsurancebro.com/health-insurance/sbi-general/super-health-platinum-infinite/
+
+The shortest waiting periods on the market, global cover and OPD built in — at a price to match.
+
+- Score: 4.1/5
+- Claim settlement ratio (SBI General): 95.94%
+- Complaints per 10,000 claims: 14.04
+- Cover available: ₹50 L – ₹2 Cr
+- Entry age: 18 yrs and above — no maximum entry age
+- Term: 1–3 years
+- Room rent limit: No limit — any room category
+- Pre-existing disease waiting period: 2 years
+
+**Covers**
+
+- In-patient hospitalisation in any room category
+- Pre-hospitalisation and post-hospitalisation expenses
+- A comprehensive daycare procedure list
+- Treatment abroad for 16 listed conditions
+- Air ambulance up to ₹10 lakh
+- OPD consultations and pharmacy, built in
+- Organ donor expenses
+
+**Key features**
+
+- Pre-existing disease wait of just 2 years and specific illness wait of 1 year — the shortest here
+- ReInsure Benefit restores cover from the very first claim, up to 200% of the sum insured per claim
+- Health Multiplier raises your cover up to 3× for 37 listed serious illnesses
+- Global cover for 16 listed conditions plus a ₹10 lakh air ambulance benefit
+- OPD and consumables are built into the base plan, not sold as add-ons
+- Wellness package — AI fitness coaching, dietitian access and unlimited gym membership
+
+**Riders**
+
+- Claim Shield
+- Hospital Cash
+- Personal Accident
+- Critical Illness
+
+**Does not cover**
+
+- Pre-existing conditions for the first 2 years
+- Named illnesses for the first year
+- Global cover and the Health Multiplier apply only to the listed conditions
+- Dental treatment unless it follows an accident
+- Cosmetic and plastic surgery
+- War and nuclear events
+
+**Indicative annual premiums** (₹15 lakh sum insured, Delhi · annual premium incl. GST and mandatory add-ons. SBI General is quoted at ₹50 lakh, its minimum base cover. — illustrations, not quotes)
+
+- Individual, 25: ₹45,944
+- Couple — 31 & 32: ₹61,568
+- Family of 3 — 35, 34 & 5: ₹62,758
+- Senior couple — 62 & 63: ₹1,13,250
+
+**Strengths**
+
+- A 2-year pre-existing disease wait against 3 years everywhere else — a full year of exposure removed
+- Restoration from the first claim, not the second
+- 18,000+ cashless hospitals, second only to Care Health
+- OPD and consumables included rather than bolted on
+- Global cover for 16 conditions is unusual at this price point
+
+**Weaknesses**
+
+- By far the most expensive — ₹45,944 for a 25-year-old, over four times Activ One MAX
+- The ₹50 lakh minimum base cover forces you into a large policy whether you want one or not
+- Global cover and the Health Multiplier are restricted to listed conditions only
+- Renewal discounts are tied to step counts, which will not suit everyone
+- Note that the premiums shown are at ₹50 lakh cover, not the ₹15 lakh used for the others
+
+**Verdict.** The most feature-complete plan on this list and, unavoidably, the most expensive. The two features worth paying for are the 2-year pre-existing disease wait and restoration from the first claim — both directly reduce the odds of a claim being declined in the early years. That combination makes it worth a serious look if you are covering parents with existing conditions, where the third waiting year is a genuine risk. For a healthy 25-year-old it is dramatic overkill; Activ One MAX does the job for a quarter of the price.
+
+**Sources**
+
+- SBI General — Super Health Platinum Infinite policy wording: https://content.sbigeneral.in/uploads/a5bb86f65fde4f72a5def81ea2f3c6b7.pdf
+
+**Not yet confirmed against a primary source:** coverRange. These figures are our current best understanding and are published as such.
 
 ## Notes
 

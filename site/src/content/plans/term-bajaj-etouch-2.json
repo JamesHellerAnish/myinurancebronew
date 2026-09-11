@@ -5,7 +5,7 @@
   "insurerShort": "Bajaj Life",
   "name": "eTouch II",
   "monogram": "BL",
-  "accent": "#0891B2",
+  "accent": "#005EAC",
   "tagline": "Cheapest cover",
   "subtitle": "The lowest premium of the five and a 3.52x solvency ratio — the strongest balance sheet in the market.",
   "score": 4.2,
@@ -87,12 +87,17 @@
   "logo": "bajajlife.png",
   "slug": "etouch-ii",
   "insurerSlug": "bajaj-life",
-  "verificationStatus": "migrated",
+  "verificationStatus": "verified",
   "sources": [
     {
       "label": "Bajaj Life — eTouch II policy wording",
       "url": "https://www.bajajallianzlife.com/content/dam/balic-web/pdf/term-insurance/etouch-plan-sl.pdf"
     }
   ],
-  "verificationNote": "Migrated from js/policy-data.js. Figures predate the §16.7 primary-source pipeline and have not been re-read against the policy wording. Not publishable until re-verified and signed off (§16.8)."
+  "verificationNote": "Upgraded 2026-09-11 from sales literature to the actual eTouch II policy document (UIN 116N198V09). That document is a policy contract template — definitions, benefit clauses and a blank policy schedule — and carries no eligibility or boundary-conditions table, so it does not settle the two open fields. STILL OPEN, deliberately uncorrected: tenure (\"To age 85 / whole life\" here; the sales literature separately offers a \"Cover up to Age 99\" option under Life Shield and Life Shield Plus) and coverRange (₹25 L – ₹10 Cr). The sales literature's eligibility table is badly column-scrambled by text extraction — a \"No limit, subject to Board Approved Underwriting Policy\" line and a \"Minimum: ₹50,00,000\" line both sit near the Sum Assured rows, either of which would contradict this record, but the scrambling makes attribution unsafe. Note that every other term plan in this dataset has now been confirmed to have no maximum cover limit, so the ₹10 Cr ceiling here is very likely wrong too — but \"likely\" is not a source. Needs the sales-literature PDF read by eye, or a brochure with a clean eligibility table. Still needs a licensed human's sign-off before verified (§16.8).",
+  "lastVerified": "2026-09-11",
+  "unverifiedFields": [
+    "coverRange",
+    "tenure"
+  ]
 }

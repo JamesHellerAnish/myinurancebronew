@@ -15,10 +15,38 @@
 // so an unverified figure cannot be published here either. While nothing is verified this
 // renders no rows, and the interactive engine still works from js/policy-data.js, exactly
 // as it does on the live site today.
-import { publishablePlans, planPath, CATEGORY_LABELS } from '../../lib/plans'
+import { publishablePlans, planPath, CATEGORY_LABELS, categoryPath } from '../../lib/plans'
+import { insurersWithPlans, insurerPath } from '../../lib/insurers'
 import { complaintsPhrase } from '../../lib/format'
 
 const plans = (await publishablePlans()).sort((a, b) => b.data.score - a.data.score)
+
+// compare.js replaces #cmpGrid's innerHTML with its own interactive cards, which know nothing
+// about Astro's routes — so before this, the only link to a plan page was in the static table
+// the engine overwrites, i.e. invisible to anyone with JavaScript on.
+//
+// Hand the engine a plan-id → URL map rather than reimplementing slugify() in compare.js:
+// planPath() stays the single source of truth for plan URLs, so the two cannot drift. The
+// attribute is also how compare.js knows it is running in the Astro build at all — on the
+// legacy one-pager it is absent, no links are rendered, and nothing 404s. Same trick as
+// `data-astro-chrome` in Header.astro.
+const planUrls = Object.fromEntries(plans.map((plan) => [plan.data.id, planPath(plan)]))
+
+// The league table lists insurers, not plans — including ones we rate but stock no plan from,
+// whose pages therefore do not exist (companies/[insurer].astro only generates where an
+// insurer has a plan). So this map is built from insurersWithPlans(), i.e. only real pages,
+// and compare.js renders a plain name for anything missing. Keyed by category too: the same
+// insurer resolves to a different URL under health vs term.
+const insurerEntries = await Promise.all(
+  (['health', 'term'] as const).map(async (category) => {
+    const withPlans = await insurersWithPlans(category)
+    return withPlans.map(({ insurer }) => [
+      `${category}|${insurer.data.name}`,
+      insurerPath(categoryPath(category), insurer.data.slug),
+    ])
+  }),
+)
+const insurerUrls = Object.fromEntries(insurerEntries.flat())
 ---
 
     <section class="section-padding cmp section-alt" id="compare">
@@ -56,7 +84,12 @@ const plans = (await publishablePlans()).sort((a, b) => b.data.score - a.data.sc
         <!-- ── Mode: Explore ────────────────────────────── -->
         <div class="cmp-panel active" id="cmpExplore">
           <div class="cmp-filters" id="cmpFilters"></div>
-          <div class="cmp-grid" id="cmpGrid">
+          <div
+            class="cmp-grid"
+            id="cmpGrid"
+            data-plan-urls={JSON.stringify(planUrls)}
+            data-insurer-urls={JSON.stringify(insurerUrls)}
+          >
             {/* Replaced by compare.js on hydration — see the note above. */}
             {plans.length > 0 && (
               <div class="table-scroll">

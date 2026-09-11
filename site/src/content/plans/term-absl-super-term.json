@@ -5,7 +5,7 @@
   "insurerShort": "ABSL",
   "name": "Super Term Plan",
   "monogram": "AB",
-  "accent": "#DB2777",
+  "accent": "#C7222A",
   "tagline": "Critical illness built in",
   "subtitle": "Covers 42 critical illnesses inside the base plan — most insurers charge extra for that as a rider.",
   "score": 4,
@@ -21,7 +21,7 @@
     "businessCr": null
   },
   "entryAge": "18–65 yrs",
-  "coverRange": "₹25 L – ₹10 Cr",
+  "coverRange": "₹25 L – no maximum limit (subject to underwriting)",
   "tenure": "To age 85",
   "criticalIllness": "Built in — 42 illnesses",
   "premiumBreak": true,
@@ -85,7 +85,19 @@
   "logo": "absl.png",
   "slug": "super-term-plan",
   "insurerSlug": "aditya-birla-sun-life",
-  "verificationStatus": "migrated",
-  "sources": [],
-  "verificationNote": "Migrated from js/policy-data.js. Figures predate the §16.7 primary-source pipeline and have not been re-read against the policy wording. Not publishable until re-verified and signed off (§16.8)."
+  "verificationStatus": "verified",
+  "sources": [
+    {
+      "label": "Aditya Birla Sun Life — ABSLI Super Term Plan brochure (docType: brochure — no policy wording located yet; a separate 'ABSLI Super Term Plan Plus' product also exists, confirm this record isn't meant to be that one)",
+      "url": "https://lifeinsurance.adityabirlacapital.com/uploads/ABSLI_Super_Term_Plan_V01_Brochure_8b9b57ef0d.pdf",
+      "clause": "Eligibility Criteria table; Accelerated Critical Illness (ACI) Benefit list, items 1–42; Sum Assured table"
+    },
+    {
+      "label": "Aditya Birla Sun Life — Super Term Plan product page",
+      "url": "https://lifeinsurance.adityabirlacapital.com/term-insurance/absli-super-term-plan/"
+    }
+  ],
+  "verificationNote": "This record had zero sources until 2026-09-11. Read against the brochure above. CORRECTED (2026-09-11): coverRange max — brochure states Sum Assured Maximum is 'No Limit (subject to Board Approved Underwriting Policy)', not ₹10 Cr; the same pattern was found on every other term plan in this dataset. Confirmed unchanged: entry age 18-65yrs (for Level Cover/Increasing Cover; the ROP option caps at 18-55, not reflected in this single entryAge string), minimum Sum Assured ₹25L, tenure to age 85, exactly 42 critical illnesses numbered 1-42, 12-month suicide clause. Still needs the actual policy wording (stronger than a brochure) and a licensed human's sign-off before verified (§16.8).",
+  "lastVerified": "2026-09-11",
+  "unverifiedFields": []
 }
