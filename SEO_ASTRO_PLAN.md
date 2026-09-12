@@ -1,20 +1,41 @@
 # Myinsurancebro — Astro Programmatic SEO Plan of Action
 
-**Created:** 2026-08-13 · **Last updated:** 2026-09-11
-**Branch:** `main` (merged from `revamp/audience-redesign-and-compare`)
-**Status:** Planning complete · Scope locked (§14) · Research done (§16) · Harvest advancing (§16.7) ·
-**🔴 2026-09-11, owner decision: the `verificationStatus === 'verified'` publish gate is REMOVED.**
-Every plan page (and everything downstream of it — hubs, best-plans, companies, comparisons,
-persona pages, `llms.txt`) now builds regardless of verification status. Per-record honesty is
-disclosed **on the page** instead — see §0g. **This is a reversal of §0c/§0d's "not publishable"
-framing** and of the original §5.3 design; read §0g before touching `publishablePlans()`.
-Build is 107 pages, 0 broken internal links (Astro + legacy both audited). See §0g for the full
-session record, including which plan records still have open verification questions.
+**Created:** 2026-08-13 · **Last updated:** 2026-09-12
+**Branch:** `verify/plan-data-and-branding` — commit `ff8d937`, branched from `main`, **not
+pushed and no PR opened**. `main` is unchanged at `4f42e64`.
+**Status:** Planning complete · Scope locked (§14) · Research done (§16) · Harvest advancing (§16.7)
+
+**🔴 Two owner decisions on 2026-09-11 reversed the publishing model. Read §0g before touching
+`publishablePlans()` or any verification field.**
+
+1. **The `verificationStatus === 'verified'` publish gate is REMOVED.** Every plan page — and
+   everything downstream of it: hubs, best-plans, companies, comparisons, persona pages,
+   `llms.txt` — now builds regardless of status. This reverses §0c/§0d's "not publishable"
+   framing and the original §5.3 design.
+2. **All 10 records are `verified`**, owner-approved. Reliability is disclosed *per figure* with
+   an inline TBD marker, not per page with a warning block.
+
+**Where the data actually stands:** all 10 plans have been read against a primary source and
+several systemic errors corrected (§0g). **Not** yet sourced: CSR, complaints and solvency on
+every record — the IRDAI annual reports publish industry aggregates only, so the source line
+crediting them is wrong. That is the largest outstanding data problem on the site.
+
+Build: **107 pages**, 0 broken internal links (Astro + legacy both audited).
+Outstanding document requests live in `data-raw/MANUAL-DOWNLOAD.md`.
+
 **Purpose:** Living handover doc. Update it as work proceeds so progress survives a context reset.
 
 ---
 
 ## 0g. Session log — 2026-09-11 (verification pass, gate removed, site published)
+
+> **Committed as `ff8d937` on branch `verify/plan-data-and-branding`, branched from `main`.
+> Not pushed, no PR. `main` is untouched at `4f42e64`.** 183 files — most of the volume is
+> harvested `.txt` extracts (the IRDAI report alone is 1.3 MB) and `site/dist/`, which this repo
+> tracks. Two files were cleaned up before committing: the image-only print-to-PDF that extracted
+> zero characters was deleted, and `hdfcergo-optima-secure-plus-wording.txt` was renamed
+> `hdfcergo-OPTIMA-PLUS-WRONG-PRODUCT.txt` because it is a different product and its old name
+> cost a detour once already.
 
 **The headline change this session: the publish gate is gone.** Previously `publishablePlans()`
 (`site/src/lib/plans.ts`) only returned records with `verificationStatus: 'verified'`, which meant
@@ -367,15 +388,14 @@ not a gate), 13 of 16 personas, most of the glossary and guides targets, calcula
 cover-amount pages, condition pages, insurer-vs-insurer comparisons, and standalone
 `/about/`/`/contact/`/`/advisors/` pages. None of these have a route file yet — see §6.2.
 
-**Explicitly flagged and not attempted:** per-insurer visual theming on plan pages (matching each
-insurer's own brochure colour palette and background treatment) was requested this session and
-not done. No PDF-to-image tool is available in this environment (`pdftoppm`, `pdfimages`,
-ImageMagick all absent — checked directly), so no brochure's actual visual palette can be
-inspected here; the existing per-insurer `accent` hex in `policyData.brandFor()` is a brand-colour
-guess made earlier in the project, not something extracted from a brochure. Doing this properly
-needs either brochure-page screenshots supplied by the owner (readable directly), or a session
-with image tooling — flagged as an Opus/high-effort candidate given it's real design judgement
-across 10 different brand identities, not a mechanical task.
+> **Superseded later the same day — per-insurer branding was done.** This paragraph originally
+> recorded it as blocked: no PDF rasteriser exists here (`pdftoppm`, `pdfimages`, ImageMagick all
+> absent, checked directly), so a brochure's palette could not be inspected. That much is still
+> true, and parsing the brochures' content streams for colour operators found nothing either —
+> the colour lives inside image XObjects. **The way through was not the brochures at all:** sample
+> the logos already shipped in `assets/logos/`, in a browser canvas. See §0g. Worth keeping as a
+> reminder that "no tool for X" is not the same as "X is impossible" — the constraint was real,
+> the conclusion drawn from it was wrong.
 
 ---
 
@@ -450,17 +470,26 @@ to `js/policy-data.js`; `sync-public.mjs` runs automatically before dev and buil
 
 ```bash
 cd site
-npm run migrate                      # policy-data.js → collections
-PUBLISH_UNVERIFIED=1 npm run build   # see the pages (all 10 records are unverified)
-npm run build                        # honest build → 0 plan pages today, by design
-node scripts/make-og-image.mjs       # regenerate the share card after a wording change
+npm run migrate                 # policy-data.js → collections (preserves verification metadata)
+npm run build                   # → 107 pages, all plan pages included
+node scripts/make-og-image.mjs  # regenerate the share card after a wording change
 ```
+
+> ⚠ **`PUBLISH_UNVERIFIED=1` no longer exists.** It was the dev-only hatch past the publish gate;
+> the gate was removed on 2026-09-11 (§0g) and `unverifiedAllowed()` deleted with it, so the flag
+> is now a no-op. The lines below describing it are the historical record of a design that has
+> since been reversed — they are not current instructions.
 
 Use `npm run build`, never `npx astro build` — the latter skips the `prebuild` hook, so `css/`
 and `assets/` never reach `public/` and the pages render unstyled against stale files.
 Then preview the built output on **port 4322** (`preview_start` config `astro`).
 
-### The verification gate — deliberate deviation from §5.3
+### The verification gate — deliberate deviation from §5.3 · ⚠ REMOVED 2026-09-11, see §0g
+
+> This section describes the gate as designed and shipped on 2026-09-10. **It no longer exists.**
+> `publishablePlans()` now returns every record and reliability is disclosed per figure on the
+> page instead (§0g). Kept because the gate was a considered design and its removal a considered
+> reversal — a future session should be able to read both sides before changing it a third time.
 
 §5.2 makes `sources[]` and `lastVerified` required, but the 10 migrated records predate the §16.7
 pipeline. Rather than weaken the schema: records carry `verificationStatus`
@@ -1024,15 +1053,19 @@ meaning. Not worth contorting the copy for.
 
 ### 🔴 Why Phase 1 is still not complete
 
+> ⚠ **Point 1 below is superseded — see §0g.** The verification gate was removed by owner
+> decision on 2026-09-11 and all 10 records are now `verified`; a plain `npm run build` publishes
+> **107 pages**, not 2. The rest of this section still holds. Kept as written so the reasoning
+> trail stays intact, since the gate was a deliberate design and its removal was a deliberate
+> reversal — both worth being able to read.
+
 Phase 1a in §9.4 is ~210 pages and its gate to *begin* is "site live, CWV green, indexed". None
 of those three is true yet, and the reasons are not code:
 
-1. **The verification gate is closed.** All 10 plan records are `migrated`, not `verified`. A
-   plain `npm run build` publishes **2 pages** — home and methodology. Everything else in the
-   table above exists only under `PUBLISH_UNVERIFIED=1`. Clearing this is §16.7 work: read each
-   plan against its policy wording, fill `sources[]` and `lastVerified`, set
-   `verificationStatus: 'verified'`. It is research, not engineering, and **it is the single
-   thing standing between this repo and a shippable site.**
+1. ~~**The verification gate is closed.**~~ **Superseded 2026-09-11.** All 10 records have since
+   been read against a primary source and approved by the owner. What remains is not the gate but
+   the data: CSR, complaints and solvency are unsourced on all 10, and a handful of per-plan
+   fields carry a TBD marker. See §0g.
 2. **The dataset is 10 plans.** §9.4 Phase 1a assumes term + base health at depth; §13 sets the
    floor at ~30 health plans before Phase 3. Ditto covers ~40.
 3. **13 of 16 personas are unwritten** (§7). The template and the data path are done — each new
@@ -1042,33 +1075,44 @@ of those three is true yet, and the reasons are not code:
 5. **Not deployed.** No Search Console, so "indexed" cannot even be measured.
 
 **Phase 2 is glossary (250 pages) + guides (120).** The glossary half is now built — see §0e.
-Its gate is "glossary indexed; first AI citations appearing" — which requires Phase 1 to be live and indexed first. Generating 370
-hand-authored content pages now, on a site with 2 publishable pages and no index presence, is
-precisely the scaled-content pattern §9.4 and §13 exist to prevent. **Starting Phase 2 here would
-be the single most damaging thing we could do to this domain.**
+Its gate is "glossary indexed; first AI citations appearing" — which requires Phase 1 to be live
+and indexed first. Generating 370 hand-authored content pages before the existing 107 are
+deployed and measured is precisely the scaled-content pattern §9.4 and §13 exist to prevent.
 
-The build order is not arbitrary: data → verify → deploy → measure → then more pages.
+The build order is not arbitrary: data → verify → deploy → measure → then more pages. **The first
+two are now done; the site has never been deployed, so "measure" cannot start.** That is the
+actual blocker on everything below — not page count, not templates.
 
 ---
 
 ### Next moves, in order
 
-1. ~~Fix the two CWV blockers~~ ✅ Done — see the re-measurement above.
-2. ~~Authoring pass on the personas~~ ✅ **Done.** All three panels' copy — 11 pain points with
-   their stats, 9 plan recommendations, the picker teasers, headlines and intros — was lifted
-   out of the markup into `js/policy-data.js` and now flows through `npm run migrate` into the
-   personas collection. `Personas.astro` renders from it. Adding §7's 13 remaining personas is
-   now a data edit, not 260 lines of HTML each.
-3. Phase 0 is otherwise **complete**: shell, design system, chrome, home, methodology, category
-   hubs, robots/llms.txt, sitemap. CWV measured (above) — the gate needs those two fixes, then a
-   deploy decision. Not more pages.
-4. Then §5 data expansion (Track A), which gates everything downstream. Nothing below Phase 1a
-   should start before the 10 migrated records are verified — a plain `npm run build` still
-   publishes zero plan pages by design.
-3. Only then: §5 data expansion, which gates everything downstream.
-4. ✅ Done — all three §0a blockers are cleared: committed, merged, logo optimised to 20 KB and
-   consolidated onto one path. The OG card now carries the badge. The chrome work in step 1 has
-   a real logo to point at, at `assets/images/my-insurance-bro-logo.png`.
+Rewritten 2026-09-12. Everything above this point in the old list is done — CWV blockers,
+persona authoring, the §0a logo blockers, Phase 0, and now the verification pass and the
+publish decision (§0g).
+
+1. **Deploy.** This is the blocker on everything else, and it has been for three sessions. The
+   build is 107 pages, link-clean, lab-clean on CWV. Nothing in the plan below Phase 1a can
+   start — and no gate in §9.4 can be measured — until the site is live and in Search Console.
+   Two owner-only items still sit in front of it: the `CA0001` licence number in the footer
+   (§0b) and the Search Console account itself.
+2. **Fix the CSR attribution.** CSR, complaints and solvency appear on every plan page, every
+   comparison and the league table, and none of them is sourced: the IRDAI annual report
+   publishes industry aggregates only (§0g). Either find the real source — the IRDAI *Handbook
+   on Indian Insurance Statistics*, or insurer Form NL-*/L-* disclosures — or restate the
+   attribution line. It is the largest remaining data problem and it is on every page.
+3. **Close the open TBD fields.** Four records carry inline TBD markers; the requests are listed
+   in `data-raw/MANUAL-DOWNLOAD.md` §3. Bajaj eTouch II is the only one needing a human to read
+   a PDF by eye rather than a new download.
+4. **Owner decisions still outstanding:** which Click2Protect plan option the record describes,
+   and which CSR figure to publish for it (99.66 vs the insurer's own 99.72).
+5. **Then, and only then, §5 data expansion** (Track A) — which still gates Phases 1b and 3–5.
+   The five Tier A categories have zero plan records, so their hubs cannot generate at all.
+
+**Not blocking, worth doing when convenient:** `site/dist/` is tracked in git, so every build
+churns ~70 files and any parallel work conflicts there. `site/.gitignore` covers `.astro/`,
+`node_modules/` and `public/` but not `dist/`, despite §0b describing dist as gitignored. If the
+deploy is an upload from a local build rather than a checkout of the repo, add it.
 
 ### ⚠ Permissions — unresolved
 
