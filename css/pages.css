@@ -141,6 +141,14 @@ main {
   margin: 0 0 var(--space-8);
 }
 
+/* The label runs to ~45 characters with the insurer's name in it; .btn is nowrap by
+   default, so on a phone it has to be allowed to wrap and fill the column instead. */
+.policy-doc-link .btn {
+  white-space: normal;
+  text-align: center;
+  max-width: 100%;
+}
+
 /* The compare engine's plan cards gain a third action in the Astro build — a real link to
    the plan page (see Compare.astro / compare.js). components.css lays .plan-actions out as a
    single flex row of two, which three buttons overflow, so the link takes its own row.
