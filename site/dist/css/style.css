@@ -1252,8 +1252,10 @@ h6 {
   padding: var(--space-8);
   box-shadow: var(--shadow-card);
   border: 1px solid var(--color-border);
-  min-width: 340px;
-  flex-shrink: 0;
+  /* An explicit basis: with only min-width the flex item sizes to its
+     max-content and the quote runs as one 1300px line. */
+  flex: 0 0 340px;
+  width: 340px;
 }
 
 .review-stars {
@@ -1975,9 +1977,12 @@ h6 {
     justify-content: center;
   }
 
+  /* Copy first, portrait second: the headline and the two CTAs are what
+     a visitor came for, and the portrait was pushing them a screen and a
+     half down on a phone. */
   .hero-visual {
-    order: -1;
-    margin-bottom: var(--space-6);
+    order: 1;
+    margin-top: var(--space-4);
   }
 
   .hero-illustration {
@@ -1998,6 +2003,40 @@ h6 {
 
   .hamburger {
     display: flex;
+  }
+
+  /* The bar has to hold logo + wordmark + toggle + burger inside 360px.
+     The desktop 48px logo and 20px wordmark pushed the burger past the
+     right edge on a 390px phone, where body{overflow-x:hidden} hid it. */
+  .navbar .container {
+    gap: var(--space-3);
+  }
+
+  .nav-brand {
+    gap: var(--space-2);
+    font-size: 1.0625rem;
+    min-width: 0;
+  }
+
+  .nav-brand img {
+    height: 40px;
+  }
+
+  .nav-brand span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .nav-right {
+    gap: var(--space-2);
+    flex: none;
+  }
+
+  .theme-toggle {
+    width: 36px;
+    height: 36px;
+    font-size: 1.125rem;
   }
 
   .mobile-drawer {
@@ -2060,7 +2099,8 @@ h6 {
   }
 
   .review-card {
-    min-width: 280px;
+    flex-basis: 300px;
+    width: 300px;
   }
 
   .final-cta-contact {
@@ -2069,53 +2109,473 @@ h6 {
   }
 }
 
-/* Mobile */
-@media (max-width: 576px) {
-  .container {
-    padding: 0 var(--space-4);
+/* ── Phone ───────────────────────────────────────────────
+   Everything below 640px is laid out for a hand-held column, not just
+   collapsed to one. Rhythm: 48px between sections, 20px gutters, 16px
+   body copy, cards padded 16–20px so the text column stays ≥300px.
+   Section-specific phone rules for the components live in
+   components.css under the same breakpoint. */
+@media (max-width: 640px) {
+  :root {
+    --navbar-height: 60px;
+    --text-lg: 1rem;
+    --text-xl: 1.125rem;
+    --text-2xl: 1.25rem;
+    --text-3xl: 1.5rem;
   }
 
-  .hero-content h1 {
-    font-size: 1.75rem;
+  .container {
+    padding: 0 var(--space-5);
+  }
+
+  .section-padding {
+    padding: var(--space-12) 0;
+  }
+
+  .section-header {
+    margin-bottom: var(--space-8);
   }
 
   .section-header h2 {
-    font-size: 1.5rem;
+    font-size: 1.625rem;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-3);
   }
 
+  .section-header p {
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  h3 {
+    line-height: 1.25;
+  }
+
+  /* Nav: the CTA moves into the drawer and the sticky bottom bar already
+     carries "Call Advisor", so the bar keeps only what has to be there. */
+  #navCta {
+    display: none;
+  }
+
+  .mobile-drawer {
+    padding-top: calc(var(--navbar-height) + var(--space-6));
+  }
+
+  /* Buttons: comfortable 44px+ tap targets without the desktop width. */
+  .btn {
+    padding: var(--space-3) var(--space-5);
+    font-size: 0.9375rem;
+  }
+
+  .btn-lg {
+    padding: 14px var(--space-6);
+    font-size: 1rem;
+  }
+
+  .btn-sm {
+    padding: 9px var(--space-4);
+    font-size: 0.875rem;
+  }
+
+  /* Hero */
+  .hero {
+    padding: calc(var(--navbar-height) + var(--space-8)) 0 var(--space-12);
+  }
+
+  .hero .container {
+    gap: var(--space-6);
+  }
+
+  .hero-content .eyebrow {
+    margin-bottom: var(--space-3);
+  }
+
+  .hero-content h1 {
+    font-size: 2.125rem;
+    line-height: 1.08;
+    margin-bottom: var(--space-4);
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+    line-height: 1.55;
+    margin-bottom: var(--space-5);
+  }
+
+  /* Two CTAs side by side — each still ≥160px wide at 360px. */
   .hero-actions {
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
   }
 
   .hero-actions .btn {
     width: 100%;
+    padding-inline: var(--space-3);
+    font-size: 0.9375rem;
   }
 
-  .product-card,
+  .hero-trust {
+    font-size: 0.875rem;
+  }
+
+  .hero-advisor-visual {
+    max-width: 250px;
+    padding: var(--space-2);
+  }
+
+  .hero-floating-badge {
+    gap: var(--space-2);
+  }
+
+  .hero-floating-badge.badge-top {
+    right: -14px;
+    top: -6px;
+  }
+
+  .hero-floating-badge.badge-bottom {
+    left: -14px;
+    bottom: -8px;
+  }
+
+  .hero-floating-badge .badge-icon-wrap {
+    width: 34px;
+    height: 34px;
+  }
+
+  .hero-floating-badge .badge-title {
+    font-size: 0.75rem;
+  }
+
+  .hero-floating-badge .badge-subtitle {
+    font-size: 0.6875rem;
+  }
+
+  .advisor-bg-circle {
+    width: 220px;
+    height: 220px;
+  }
+
+  /* Product cards: icon beside the copy instead of a centred stack. */
+  .product-grid {
+    gap: var(--space-4);
+  }
+
+  .product-card {
+    padding: var(--space-5);
+    text-align: left;
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    column-gap: var(--space-4);
+    align-items: start;
+  }
+
+  .product-card-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0;
+    border-radius: var(--radius-md);
+    grid-row: 1 / span 2;
+  }
+
+  .product-card-icon .icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .product-card h3 {
+    font-size: 1.125rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .product-card p {
+    font-size: 0.875rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .product-card .btn {
+    grid-column: 2;
+    justify-self: start;
+    padding: 9px var(--space-4);
+    font-size: 0.875rem;
+  }
+
   .experience-card {
-    padding: var(--space-6);
+    padding: var(--space-5);
   }
 
-  .final-cta-card {
-    padding: var(--space-10) var(--space-6);
-  }
-
+  /* Journey: tabs scroll as one row instead of wrapping to two. */
   .journey-tabs {
-    gap: var(--space-1);
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: var(--space-2);
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: var(--space-1);
+    margin-inline: calc(-1 * var(--space-5));
+    padding-inline: var(--space-5);
+    scroll-padding-inline: var(--space-5);
+    margin-bottom: var(--space-6);
+  }
+
+  .journey-tabs::-webkit-scrollbar {
+    display: none;
   }
 
   .journey-tab {
+    flex: none;
     padding: var(--space-2) var(--space-4);
+    font-size: 0.8125rem;
+    white-space: nowrap;
+  }
+
+  .journey-comparison {
+    gap: var(--space-4);
+  }
+
+  .journey-col {
+    padding: var(--space-5);
+  }
+
+  .journey-col-header {
+    margin-bottom: var(--space-4);
+    gap: var(--space-3);
+  }
+
+  .journey-col-header .badge {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .journey-col-header h4 {
+    font-size: 0.9375rem;
+  }
+
+  .journey-list {
+    gap: var(--space-3);
+  }
+
+  .journey-list li {
+    font-size: 0.875rem;
+    padding: var(--space-3);
+    line-height: 1.5;
+  }
+
+  /* Reviews: one card per view, full column width. */
+  .trust-badge {
+    font-size: 0.875rem;
+  }
+
+  .reviews-track {
+    gap: var(--space-4);
+  }
+
+  .review-card {
+    flex-basis: 100%;
+    width: 100%;
+    padding: var(--space-5);
+  }
+
+  .trust-badge {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: var(--space-3) var(--space-5);
+    gap: var(--space-2);
+  }
+
+  .review-card blockquote {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    margin-bottom: var(--space-4);
+  }
+
+  /* Checklist */
+  .checklist-grid {
+    gap: var(--space-3);
+  }
+
+  .checklist-card {
+    padding: var(--space-4) var(--space-5);
+    gap: var(--space-4);
+  }
+
+  .checklist-card-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .checklist-card h3 {
+    font-size: 1rem;
+  }
+
+  /* FAQ */
+  .faq-question {
+    padding: var(--space-4) var(--space-4);
+    font-size: 0.9375rem;
+    line-height: 1.4;
+  }
+
+  .faq-answer p,
+  .faq-answer li {
+    font-size: 0.9375rem;
+  }
+
+  /* Booking form */
+  .final-cta {
+    padding: var(--space-12) 0;
+  }
+
+  .final-cta-card {
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .cta-header {
+    margin-bottom: var(--space-5);
+  }
+
+  .cta-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .cta-header p {
+    font-size: 0.9375rem;
+  }
+
+  /* Scoped so it outranks the .form-grid block further down the file. */
+  .booking-form .form-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .booking-form .form-field.full-width {
+    grid-column: span 1;
+  }
+
+  .form-field input,
+  .form-field select {
+    /* 16px stops iOS zooming the page on focus. */
+    font-size: 1rem;
+    padding: 12px 14px;
+  }
+
+  .final-cta-contact {
+    font-size: 0.875rem;
+  }
+
+  /* Footer: brand block full width, then the three link groups side by
+     side instead of a 12-link column. */
+  .footer {
+    padding-top: var(--space-10);
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6) var(--space-4);
+    padding-bottom: var(--space-8);
+  }
+
+  .footer-grid > div:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .footer h4 {
+    font-size: 0.75rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .footer ul li {
+    margin-bottom: var(--space-2);
+  }
+
+  .footer ul a {
     font-size: 0.8125rem;
   }
 
-  .form-grid {
-    grid-template-columns: 1fr;
+  .footer-legal {
+    font-size: 0.75rem;
   }
 
-  .form-field.full-width {
-    grid-column: span 1;
+  /* Review panel (deep dive) */
+  .policy-review-panel {
+    margin-top: var(--space-6);
+  }
+
+  .pr-header {
+    flex-direction: row;
+    text-align: left;
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+  }
+
+  .pr-insurer-logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .pr-header-text h3 {
+    font-size: 1.125rem;
+  }
+
+  .pr-header-text .pr-subtitle {
+    font-size: 0.875rem;
+  }
+
+  .pr-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2);
+    margin-bottom: var(--space-5);
+  }
+
+  .pr-stat {
+    padding: var(--space-3);
+  }
+
+  .pr-stat-label {
+    font-size: 0.625rem;
+  }
+
+  .pr-stat-value {
+    font-size: 0.9375rem;
+  }
+
+  .pr-section {
+    margin-bottom: var(--space-5);
+  }
+
+  .pr-section-title {
+    font-size: 0.9375rem;
+  }
+
+  .pr-list-item {
+    font-size: 0.875rem;
+  }
+
+  .pr-verdict {
+    padding: var(--space-5);
+    margin-top: var(--space-5);
+  }
+
+  .pr-cta {
+    margin-top: var(--space-5);
+    padding-top: var(--space-5);
+  }
+
+  .pr-cta .btn {
+    width: 100%;
+    margin-top: var(--space-2);
+  }
+
+  .policy-disclaimer {
+    margin-top: var(--space-6);
+  }
+
+  .policy-disclaimer p {
+    font-size: 0.75rem;
+    line-height: 1.55;
   }
 }
 

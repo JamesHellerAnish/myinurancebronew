@@ -353,7 +353,10 @@
     var rows = policyData.compareRows[state.product];
     var numeric = ['score', 'percent', 'number', 'x', 'crore', 'rupee', 'years'];
 
-    var html = '<div class="cmp-matrix-wrap"><table class="cmp-matrix"><thead><tr>' +
+    // --cmp-cols drives the phone layout in components.css, where each row
+    // becomes a label plus one equal column per plan instead of a table.
+    var html = '<div class="cmp-matrix-wrap"><table class="cmp-matrix" style="--cmp-cols:' +
+      plans.length + '"><thead><tr>' +
       '<th scope="col">Compare</th>';
 
     plans.forEach(function (p) {
@@ -562,6 +565,34 @@
     });
 
     html += '</tbody></table></div>';
+
+    // Phone rendering of the same figures: one block per plan with its
+    // profile premiums as small tiles, since a 5-plan table only works as a
+    // side-scroll at 360px. components.css shows exactly one of the two.
+    var mins = {};
+    profile.rows.forEach(function (row) {
+      var valid = plans.map(function (p) { return p.premiums[row.key]; })
+        .filter(function (v) { return typeof v === 'number'; });
+      mins[row.key] = valid.length ? Math.min.apply(null, valid) : null;
+    });
+
+    html += '<div class="premium-list" data-rows="' + profile.rows.length + '">';
+    plans.forEach(function (p) {
+      html += '<div class="premium-item"><div class="premium-item-head">' +
+        brandTile(p.insurer, 'plan-monogram', '; width:34px; height:34px') +
+        '<div><div class="premium-item-insurer">' + esc(p.insurerShort) + '</div>' +
+        '<div class="premium-item-name">' + planLink(p.id, esc(p.name)) + '</div></div></div>' +
+        '<div class="premium-item-rows">';
+      profile.rows.forEach(function (row) {
+        var v = p.premiums[row.key];
+        var cheapest = typeof v === 'number' && v === mins[row.key];
+        html += '<div class="premium-item-row' + (cheapest ? ' cheapest' : '') + '">' +
+          '<span class="label">' + esc(row.label) + '</span>' +
+          '<span class="value">' + (typeof v === 'number' ? '₹' + inr(v) : '—') + '</span></div>';
+      });
+      html += '</div></div>';
+    });
+    html += '</div>';
 
     html += '<p class="cmp-matrix-note" style="background:none; padding-left:0">';
     if (state.product === 'health') {

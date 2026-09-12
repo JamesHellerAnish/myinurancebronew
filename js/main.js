@@ -174,7 +174,9 @@
     currentSlide = index;
 
     var card = cards[0];
-    var gap = 24; // matches --space-6
+    // The track's gap differs per breakpoint (24px desktop, 16px phone),
+    // so read it rather than hard-coding one.
+    var gap = parseFloat(getComputedStyle(track).columnGap) || 24;
     var cardWidth = card.offsetWidth + gap;
     track.style.transform = 'translateX(-' + (currentSlide * cardWidth) + 'px)';
 

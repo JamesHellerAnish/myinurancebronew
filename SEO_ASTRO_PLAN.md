@@ -1,8 +1,8 @@
 # Myinsurancebro — Astro Programmatic SEO Plan of Action
 
 **Created:** 2026-08-13 · **Last updated:** 2026-09-12
-**Branch:** `verify/plan-data-and-branding` — commit `ff8d937`, branched from `main`, **not
-pushed and no PR opened**. `main` is unchanged at `4f42e64`.
+**Branch:** `design/mobile-first-pass` — branched from `verify/plan-data-and-branding` (`5bc436c`,
+which is `main`'s merge of PR #3 plus one doc commit). Not pushed, no PR. See §0h.
 **Status:** Planning complete · Scope locked (§14) · Research done (§16) · Harvest advancing (§16.7)
 
 **🔴 Two owner decisions on 2026-09-11 reversed the publishing model. Read §0g before touching
@@ -24,6 +24,75 @@ Build: **107 pages**, 0 broken internal links (Astro + legacy both audited).
 Outstanding document requests live in `data-raw/MANUAL-DOWNLOAD.md`.
 
 **Purpose:** Living handover doc. Update it as work proceeds so progress survives a context reset.
+
+---
+
+## 0h. Session log — 2026-09-12 (phone layout pass)
+
+> Branch `design/mobile-first-pass`. Touches only the shared CSS (`css/style.css`,
+> `css/components.css`), `css/pages.css`, `js/compare.js`, `js/main.js` and the tracked
+> `site/dist/` copies. **No markup changed** in `index.html` or the Astro components — the
+> Astro home mirrors the legacy class names, so both trees picked the layout up from CSS alone.
+
+**Why:** the owner's brief — the site was responsive, but nothing was *designed* for a phone.
+Measured at 390×844 the page was **24,577px tall (~29 screens)**; the compare section alone was
+6,106px. Every desktop card kept its 24–40px padding and 18px copy in a 358px column. And one
+outright bug: the navbar overflowed, so the hamburger sat at x=411–439 — off-screen on a 390px
+phone and clipped by `body{overflow-x:hidden}`. Phone visitors could not open the menu.
+
+**What changed (all under a new `@media (max-width: 640px)` band, one block at the end of each
+CSS file; the old 576px block in style.css was folded into it):**
+
+- **Rhythm:** sections 48px apart, 20px gutters, `section-header` margin 32px, h2 26px, body
+  16px, `--navbar-height` 60px, the `--text-*` tokens stepped down. `.btn` sizes reduced but
+  kept ≥44px tall.
+- **Navbar:** 40px logo, 17px wordmark, 36px toggle, tighter gaps; `#navCta` hidden below
+  640px (the drawer and the sticky bottom bar both already carry the CTA). Burger now at
+  x=342–370.
+- **Hero:** copy first, portrait second (`.hero-visual{order:1}` replaces the old `order:-1`),
+  the two CTAs side by side as a 2-column grid, portrait capped at 250px.
+- **Personas:** the three tab cards become a 3-up row of compact tiles (icon, age, label;
+  teaser `<p>` hidden). 660px of picker → 135px. Panel head/body/aside padding and type
+  tightened.
+- **Products:** icon-beside-copy grid instead of centred stacks.
+- **Compare engine:** both `.segmented` controls full-width with equal-flex buttons (the mode
+  switch used to wrap to two rows). Filter groups are horizontally scrolling rows that bleed
+  to the screen edge (367px of wrapped chips → 76px). Plan cards tightened, subtitle clamped
+  to two lines. **The matrix is no longer a side-scrolling table on phones:** `compare.js` sets
+  `--cmp-cols` on the table and CSS re-lays each `<tr>` as a grid — label across the top, one
+  equal column per plan, plan heads sticky under the navbar. **The premium table is replaced
+  by a per-plan list** (`.premium-list`, rendered by `renderPremiums()` alongside the table;
+  CSS shows exactly one of the two — `data-rows` picks 3-up tiles for term's six profiles,
+  2-up for health's four). Methodology cards go weight-left/copy-right; the deep-dive picker
+  is one scrolling row.
+- **Advisor:** 230px portrait, smaller promise tiles and type, CTAs stacked.
+- **Team (owner ask #4):** portraits are now **152px circles at every width** (`aspect-ratio:1`,
+  `object-position: 50% 0`, 12% inset so the hairline clears the disc — the cutouts are framed
+  edge-to-edge). On phones each person is one row: 84px disc beside name/role/bio.
+- **Claim support, bento, journey, reviews, checklist, FAQ, form, footer:** padding/type
+  tightened; bento items go icon-beside-copy; journey tabs scroll as one row; footer link
+  groups sit 3-up under the brand block.
+- **Two latent bugs fixed on the way:** `.review-card` only had `min-width`, so as a
+  `flex-shrink:0` item it sized to max-content and the quote ran as one 1,340px line (now
+  `flex: 0 0 <width>`; `main.js` reads the track gap from computed style instead of a
+  hard-coded 24). `.booking-form .form-grid` — the phone single-column rule was being
+  overridden by the later `.form-grid` block; scoped to win.
+- `css/pages.css`: the plan page's "View policy document…" pill is allowed to wrap.
+
+**Result at 390×844:** 24,577px → **~18,450px** (−25%), with every data view legible without a
+horizontal scroll. Verified in headless Chrome at 390 and 360 (light and dark), desktop 1280
+for regressions, plus the Astro home and a plan page on the 4322 preview. Astro builds: 107 pages.
+
+**Screenshot method that actually works here** (the in-app Browser pane times out on
+screenshots and Chrome refuses windows narrower than ~500px): wrap the page in a 390px
+`<iframe>` inside a throwaway frame page, and run
+`chrome --headless=new --window-size=520,H --force-device-scale-factor=1 --screenshot=… URL`.
+A throwaway copy of index.html with `.fade-up{opacity:1!important}` and a `?off=` body
+`margin-top` gets each strip. Both throwaway files were deleted before committing.
+
+**Not done / open:** the compare section is still the longest block (~4,900px) because it
+lists five plan cards plus three data views; a "show 3, expand" pattern is the next lever if
+the owner wants it shorter. Nothing in the markup or dataset changed.
 
 ---
 
