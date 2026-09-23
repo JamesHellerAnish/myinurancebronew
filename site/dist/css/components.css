@@ -2817,8 +2817,27 @@
     line-height: 1.45;
   }
 
+  /* Grid blowout guard. Grid items are min-width:auto by default, so a child whose
+     min-content is wider than the card — here the nowrap button row — sizes the card's
+     column past the card itself and pushes the whole block off-screen. Measured at 360px:
+     the column came out 354px inside a 293px card, putting content at right=386. */
+  .orphan-card > * {
+    min-width: 0;
+  }
+
+  /* Stack the actions. 1fr is minmax(auto, 1fr), so with nowrap labels the columns cannot
+     shrink below their text and two of them will not fit a 300px card. Same single-column
+     treatment .advisor .hero-actions already gets above. */
   .orphan-copy .hero-actions {
+    grid-template-columns: 1fr;
     margin-bottom: 0;
+  }
+
+  /* The plain tel: duplicate — the sticky bottom bar carries Call at this width. The
+     WhatsApp button beside it stays: its link prefills the claim message, so it is not
+     the same action as the bar's generic one. */
+  #claimCtaCall {
+    display: none;
   }
 
   .orphan-visual {
