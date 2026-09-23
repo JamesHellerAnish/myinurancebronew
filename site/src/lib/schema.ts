@@ -32,6 +32,35 @@ export function organizationSchema() {
 }
 
 /**
+ * The site name Google prints above the result (§10.5).
+ *
+ * Without this, Google had nothing authoritative to read and fell back to the bare domain,
+ * so results were headed "myinsurancebro.com". `og:site_name` and the <title> were already
+ * right, but WebSite structured data is the signal Google documents as primary for the
+ * site name — the others are fallbacks it may or may not take.
+ *
+ * Deliberately narrow:
+ *   · Homepage only. Google reads this from the root document; repeating it on ~107 pages
+ *     would add bytes everywhere and signal nothing extra.
+ *   · `url` is the root with its trailing slash, which is the form Google matches against.
+ *   · No `alternateName`. It exists to offer Google a second string to choose from, and
+ *     the whole point here is that there is exactly one correct name.
+ *   · Separate @id from the organisation: the site and the business are different things,
+ *     and `publisher` links them rather than conflating them.
+ */
+export function websiteSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${SITE}/#website`,
+    name: 'My Insurance Bro',
+    url: `${SITE}/`,
+    publisher: { '@id': `${SITE}/#organization` },
+    inLanguage: 'en-IN',
+  }
+}
+
+/**
  * The Chief Advisor as a Person — §11's "named author + reviewer, with IRDAI certification".
  * Name and IRDAI licence number supplied by the owner 2026-09-11. Not independently verified
  * against IRDAI's own register — no lookup tool is available in this session — so this is

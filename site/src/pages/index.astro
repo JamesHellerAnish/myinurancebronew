@@ -28,7 +28,7 @@ import Journey from '../components/home/Journey.astro'
 import Checklist from '../components/home/Checklist.astro'
 import Faq from '../components/home/Faq.astro'
 import FinalCta from '../components/home/FinalCta.astro'
-import { faqSchema } from '../lib/schema'
+import { faqSchema, websiteSchema } from '../lib/schema'
 import { fitDescription } from '../lib/seo'
 import { homeFaqs } from '../lib/home'
 
@@ -60,7 +60,7 @@ const description = fitDescription(
     'insurance advisor',
     'compare insurance India',
   ]}
-  schemas={[faqSchema(homeFaqs)]}
+  schemas={[websiteSchema(), faqSchema(homeFaqs)]}
 >
   <Sprite />
   <Hero />
