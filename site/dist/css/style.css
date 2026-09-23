@@ -1134,7 +1134,7 @@ h6 {
    Hidden below 900px, where the columns stack and an arrow pointing right would be wrong. */
 @media (min-width: 900px) {
   .journey-comparison::after {
-    content: '92';
+    content: '→';
     position: absolute;
     top: 50%;
     left: 50%;
