@@ -6,6 +6,7 @@
 import { getCollection } from 'astro:content'
 import Base from '../../layouts/Base.astro'
 import Disclaimer from '../../components/seo/Disclaimer.astro'
+import Cta from '../../components/Cta.astro'
 import { breadcrumbSchema } from '../../lib/schema'
 import { fitDescription, fitTitle } from '../../lib/seo'
 
@@ -61,13 +62,18 @@ const description = fitDescription(
       ))}
     </section>
 
-    <section class="internal-links">
+    <section class="internal-links fade-up">
       <h2>Also useful</h2>
       <p>
         <a href="/glossary/">Insurance glossary</a> ·
         <a href="/methodology/">How we score plans</a>
       </p>
     </section>
+
+    <Cta class="fade-up"
+      heading="Rather just ask someone?"
+      body="Every guide here is also a five-minute conversation. Free, and no sales pressure."
+    />
 
     <Disclaimer />
   </article>

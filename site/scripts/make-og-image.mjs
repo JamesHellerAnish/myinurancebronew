@@ -53,7 +53,7 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" 
   <rect x="88" y="150" width="96" height="8" rx="4" fill="#FFEB3C"/>
 
   <text x="88" y="268" font-family="${SANS}" font-size="82" font-weight="700" fill="#FFFFFF">
-    Myinsurancebro
+    My Insurance Bro
   </text>
 
   <text x="88" y="352" font-family="${SANS}" font-size="42" font-weight="600" fill="#C7CEDB">

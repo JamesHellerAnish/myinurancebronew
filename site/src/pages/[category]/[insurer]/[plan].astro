@@ -9,6 +9,7 @@
 import type { GetStaticPaths } from 'astro'
 import Base from '../../../layouts/Base.astro'
 import Disclaimer from '../../../components/seo/Disclaimer.astro'
+import Cta from '../../../components/Cta.astro'
 import {
   publishablePlans,
   planPath,
@@ -298,7 +299,7 @@ const description = fitDescription(
     </section>
 
     {/* 11. Internal links — the mesh (§9.3). Without this, pages are orphans. */}
-    <section class="internal-links">
+    <section class="internal-links fade-up">
       <h2>Compare {d.name} with other {categoryLabel.toLowerCase()} plans</h2>
       <ul>
         {siblings.map((sibling) => (
@@ -313,10 +314,17 @@ const description = fitDescription(
       </p>
     </section>
 
-    {/* 10. CTA — the existing booking form. Field names are frozen (CLAUDE.md invariant 1). */}
+    {/* 10. CTA — the existing booking form. Field names are frozen (CLAUDE.md invariant 1).
+        The form stays because this is the one page that knows which product to prefill; the
+        phone and WhatsApp row above it is for the visitor who would rather not type. */}
+    <Cta class="fade-up"
+      heading={`Questions about ${d.insurer} ${d.name}?`}
+      body="Ask a licensed advisor before you buy. Free, and there is no sales pressure."
+    />
+
     <section class="plan-cta">
-      <h2>Not sure if this is the right plan for you?</h2>
-      <p>Talk to a licensed advisor. No spam, no sales pressure.</p>
+      <h2>Prefer a callback about this plan?</h2>
+      <p>We will call you back about {d.insurer} {d.name}. No spam, no sales pressure.</p>
       <form action="/send-mail.php" method="post">
         <input type="hidden" name="product" value={`${d.insurer} ${d.name}`} />
         <label>Name <input type="text" name="name" required /></label>

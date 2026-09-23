@@ -1,0 +1,58 @@
+---
+// The sitewide "talk to a person" block.
+//
+// Until now the booking form existed on the home page and on plan pages, and nowhere else —
+// a visitor who landed on a guide, a glossary entry, a category hub or the methodology page
+// had no way to act without navigating back to the home page first. That is most of the
+// organic traffic the programmatic routes are built to win.
+//
+// One component rather than a block per template, so the phone number, the WhatsApp link
+// and the wording cannot drift across the route families. It renders no form: the form is
+// the deeper commitment and it belongs where a specific product is on screen (the plan page
+// keeps its own, with the product prefilled). Here the ask is a call.
+interface Props {
+  /** Overrides the heading where a route can be more specific about what is being offered. */
+  heading?: string
+  /** One line under the heading. */
+  body?: string
+  /** Set on a dark/inked page so the block inverts rather than tinting. */
+  tone?: 'light' | 'ink'
+  /**
+   * Extra classes, merged rather than replacing the component's own. Astro does not forward
+   * `class` to the root element on its own, so without this a caller's `class="fade-up"`
+   * would be silently dropped — and the reveal would look like it simply did not work.
+   */
+  class?: string
+}
+
+const {
+  heading = 'Not sure which plan fits you?',
+  body = 'Talk to an IRDAI-licensed advisor. It is free, and there is no sales pressure.',
+  tone = 'light',
+  class: extraClass = '',
+} = Astro.props
+
+// One place, so a change of number is one edit. Matches the home page and the header.
+const PHONE = '+919910963123'
+const PHONE_DISPLAY = '+91 99109 63123'
+---
+
+<aside class={`site-cta${tone === 'ink' ? ' site-cta-ink' : ''}${extraClass ? ` ${extraClass}` : ''}`}>
+  <div class="site-cta-copy">
+    <h2>{heading}</h2>
+    <p>{body}</p>
+  </div>
+  <div class="site-cta-actions">
+    <a href={`tel:${PHONE}`} class="btn btn-primary">Call advisor today</a>
+    <a href="/#cta" class="btn btn-outline">Get a quotation</a>
+    <a
+      href={`https://wa.me/${PHONE.replace('+', '')}`}
+      class="btn btn-whatsapp"
+      target="_blank"
+      rel="noopener"
+    >
+      WhatsApp
+    </a>
+  </div>
+  <p class="site-cta-phone">Or dial <a href={`tel:${PHONE}`}>{PHONE_DISPLAY}</a> directly.</p>
+</aside>

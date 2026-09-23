@@ -1,31 +1,52 @@
-    <!-- ═══════════ 7. INSURANCE CHECKLIST ═══════════ -->
-    <section class="checklist section-padding" id="checklist">
-      <div class="container">
-        <div class="section-header fade-up">
-          <h2>Not Sure What to Look For?</h2>
-          <p>Download our free checklists so you never miss an important detail when choosing insurance.</p>
-        </div>
+---
+// Section 7 — was "Insurance Checklist", now the guides teaser.
+//
+// Two things were wrong with the old version. The cards were `href="#"` — dead links
+// offering a "free checklist" download that does not exist, which is a promise the site
+// cannot keep. And the home page was carrying explanatory copy that the guides already
+// carry better. So the section now points at real pages: three guides pulled from the
+// collection, plus the index.
+//
+// Titles come from the collection rather than being retyped here, so renaming a guide
+// cannot leave a stale label on the home page.
+import { getCollection } from 'astro:content'
 
-        <div class="checklist-grid">
-          <a href="#" class="checklist-card fade-up" id="termChecklist">
-            <div class="checklist-card-icon"><svg class="icon"><use href="#i-file-text"></use></svg></div>
-            <div>
-              <h3>Term Insurance Checklist</h3>
-              <p style="color:var(--color-text-secondary); font-size:0.875rem; margin-top:4px;">7 things to check before
-                buying</p>
-            </div>
-            <span class="arrow">→</span>
-          </a>
+// The three that answer the questions people actually arrive with. Ordered deliberately.
+const FEATURED = ['room-rent-limits', 'waiting-periods-timeline', 'reading-a-claim-settlement-ratio']
 
-          <a href="#" class="checklist-card fade-up" id="healthChecklist">
-            <div class="checklist-card-icon"><svg class="icon"><use href="#i-download"></use></svg></div>
-            <div>
-              <h3>Health Insurance Checklist</h3>
-              <p style="color:var(--color-text-secondary); font-size:0.875rem; margin-top:4px;">9 must-knows before you
-                compare</p>
-            </div>
-            <span class="arrow">→</span>
-          </a>
-        </div>
+const all = await getCollection('guides')
+const byId = new Map(all.map((guide) => [guide.id, guide]))
+const featured = FEATURED.map((id) => byId.get(id)).filter(Boolean) as typeof all
+---
+
+<section class="checklist section-padding" id="checklist">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2>Know what to look for</h2>
+      <p>The three clauses that decide most claims, explained in plain English.</p>
+    </div>
+
+    <div class="checklist-grid stagger">
+      {featured.map((guide) => (
+        <a href={`/guides/${guide.id}/`} class="checklist-card">
+          <div class="checklist-card-icon"><svg class="icon"><use href="#i-file-text"></use></svg></div>
+          <div>
+            <h3>{guide.data.shortTitle ?? guide.data.title}</h3>
+            <p style="color:var(--color-text-secondary); font-size:0.875rem; margin-top:4px;">
+              {guide.data.title}
+            </p>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+      ))}
+    </div>
+
+    <div class="section-cta fade-up">
+      <p>Read all {all.length} guides, or skip the reading and ask.</p>
+      <div class="section-cta-actions">
+        <a href="/guides/" class="btn btn-outline">Browse all guides</a>
+        <a href="tel:+919910963123" class="btn btn-primary">Call advisor today</a>
       </div>
-    </section>
+    </div>
+  </div>
+</section>

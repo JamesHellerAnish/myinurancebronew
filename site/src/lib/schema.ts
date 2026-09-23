@@ -19,7 +19,7 @@ export function organizationSchema() {
     '@context': 'https://schema.org',
     '@type': 'InsuranceAgency',
     '@id': `${SITE}/#organization`,
-    name: 'Myinsurancebro',
+    name: 'My Insurance Bro',
     url: SITE,
     description:
       'IRDAI-licensed independent insurance advisory in India. Data-led comparison of ' +
@@ -117,7 +117,7 @@ export function definedTermSchema(term: {
     inDefinedTermSet: {
       '@type': 'DefinedTermSet',
       '@id': `${SITE}/glossary/#set`,
-      name: 'Myinsurancebro insurance glossary',
+      name: 'My Insurance Bro insurance glossary',
       url: `${SITE}/glossary/`,
     },
   }
@@ -129,7 +129,7 @@ export function definedTermSetSchema(count: number) {
     '@context': 'https://schema.org',
     '@type': 'DefinedTermSet',
     '@id': `${SITE}/glossary/#set`,
-    name: 'Myinsurancebro insurance glossary',
+    name: 'My Insurance Bro insurance glossary',
     url: `${SITE}/glossary/`,
     description:
       `Plain-English explanations of ${count} insurance terms, each shown beside the ` +

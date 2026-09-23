@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════
-   MYINSURANCEBRO — COMPARISON ENGINE
+   MY INSURANCE BRO — COMPARISON ENGINE
 
    Three modes, driven by the dataset in policy-data.js:
      Explore   — filter chips over a grid of plan cards
@@ -189,7 +189,21 @@
   /* ═══════════════════════════════════════════════════════
      RENDER — FILTER CHIPS
      ═══════════════════════════════════════════════════════ */
+
+  /* ── Optional hosts ─────────────────────────────────────
+     Every block below renders into an element it looks up by id, and until now every one
+     of those ids was assumed to exist. The home page now ships a deliberately short
+     version of this section — no deep dive, no premium table, no league table, no
+     methodology block, because those live on /methodology/ and the category hubs — so
+     those ids are absent there while the legacy one-pager still has all of them.
+
+     A missing host therefore has to be a no-op rather than a TypeError: one throw inside
+     renderAll() aborts the whole pass and leaves the grid on the page empty. Each render
+     function guards its own host; nothing else about the engine changes. */
+
   function renderFilters() {
+    if (!el.filters) return;
+
     /* Each chip set is a labelled group, so a screen reader announces
        "Life stage, group" rather than a bare run of toggle buttons.
        .filter-group is display:contents — the chips must stay flex items
@@ -224,21 +238,58 @@
   /* ═══════════════════════════════════════════════════════
      RENDER — EXPLORE GRID
      ═══════════════════════════════════════════════════════ */
+  /* ── The score ring ─────────────────────────────────────
+     A number in a corner is the same rectangle as everything around it, so the score is
+     drawn as a ring instead: one glance says "4.6, and that is most of the way round".
+
+     The geometry is fixed rather than computed per card — r=16 gives C = 2πr ≈ 100.53, so
+     the dash length is very nearly the percentage, which keeps the arithmetic here to one
+     multiply. `pathLength="100"` would be tidier but Safari has historically ignored it on
+     <circle>, and this has to be right on the device most of this traffic arrives on.
+
+     aria-hidden because the figure is repeated as text beside it — a screen reader should
+     hear "4.6 out of 5" once, not twice. */
+  var RING_C = 2 * Math.PI * 16;
+
+  function scoreRing(score) {
+    var pct = Math.max(0, Math.min(1, score / 5));
+
+    return '<span class="score-ring" aria-hidden="true">' +
+      '<svg viewBox="0 0 40 40" focusable="false">' +
+      '<circle class="score-ring-track" cx="20" cy="20" r="16"></circle>' +
+      '<circle class="score-ring-fill" cx="20" cy="20" r="16"' +
+      ' stroke-dasharray="' + (pct * RING_C).toFixed(2) + ' ' + RING_C.toFixed(2) + '"></circle>' +
+      '</svg>' +
+      '<span class="score-ring-value">' + score.toFixed(1) + '</span>' +
+      '</span>';
+  }
+
+  /* ── The plan card ──────────────────────────────────────
+     Deliberately small. The card used to carry a tagline ribbon, the insurer, the plan
+     name, the score, a subtitle paragraph, three bordered metrics, a row of tags and two
+     full-width buttons — eleven pieces of information in a grid where six of these sit on
+     screen at once. Nobody reads the sixth line of the fourth card.
+
+     What is left is what a shortlist actually needs: who, what, how good, and the two
+     numbers that differ most between plans. Everything dropped from here still exists on
+     the plan's own page, which is what "Full review" opens — the card's job is to get a
+     visitor there, not to be the page. */
   function planCard(plan) {
     var isSelected = state.selected.indexOf(plan.id) !== -1;
+
+    // Two metrics, not three. The third was the one nobody compared on.
     var metrics = state.product === 'term'
       ? [
-        { label: 'Claims paid', value: plan.metrics.csr.toFixed(2) + '%' },
-        { label: 'Complaints', value: plan.metrics.complaints.toFixed(2) },
-        { label: '30M / year', value: '₹' + inr(plan.premiums.m30) }
+        { label: 'Claims paid', value: plan.metrics.csr.toFixed(1) + '%' },
+        { label: '30M / yr', value: '₹' + inr(plan.premiums.m30) }
       ]
       : [
-        { label: 'Claims paid', value: plan.metrics.csr.toFixed(2) + '%' },
-        { label: 'Hospitals', value: inr(plan.metrics.network) },
-        { label: 'PED wait', value: plan.waiting.ped + ' yrs' }
+        { label: 'Claims paid', value: plan.metrics.csr.toFixed(1) + '%' },
+        { label: 'PED wait', value: plan.waiting.ped + ' yr' }
       ];
 
-    var html = '<article class="plan-card' + (isSelected ? ' selected' : '') + '" data-plan="' + plan.id + '">';
+    var html = '<article class="plan-card' + (isSelected ? ' selected' : '') +
+      '" data-plan="' + plan.id + '">';
 
     if (plan.tagline) {
       html += '<span class="plan-tagline">' + esc(plan.tagline) + '</span>';
@@ -246,13 +297,10 @@
 
     html += '<div class="plan-card-top">' +
       brandTile(plan.insurer, 'plan-monogram') +
-      '<div><span class="plan-insurer">' + esc(plan.insurerShort) + '</span>' +
+      '<div class="plan-card-id"><span class="plan-insurer">' + esc(plan.insurerShort) + '</span>' +
       '<div class="plan-name">' + esc(plan.name) + '</div></div>' +
-      '<div class="plan-score"><div class="plan-score-value">' + plan.score.toFixed(1) + '</div>' +
-      '<div class="plan-score-max">out of 5</div></div>' +
+      scoreRing(plan.score) +
       '</div>';
-
-    html += '<p class="plan-sub">' + esc(plan.subtitle) + '</p>';
 
     html += '<div class="plan-metrics">';
     metrics.forEach(function (m) {
@@ -261,25 +309,24 @@
     });
     html += '</div>';
 
-    html += '<div class="plan-tags">';
-    (plan.tags || []).forEach(function (t) {
-      html += '<span class="plan-tag">' + esc(t) + '</span>';
-    });
-    html += '</div>';
-
     html += '<div class="plan-actions">' +
       '<button type="button" class="btn btn-ghost btn-sm" data-action="select" data-plan="' + plan.id + '"' +
       ' aria-pressed="' + isSelected + '">' + icon(isSelected ? 'check' : 'plus') +
       ' ' + (isSelected ? 'Added' : 'Compare') + '</button>' +
-      '<button type="button" class="btn btn-primary btn-sm" data-action="deep" data-plan="' + plan.id + '">' +
-      'Full review</button>' +
+      '<button type="button" class="btn btn-primary btn-sm plan-review" data-action="deep" data-plan="' + plan.id + '">' +
+      'Full review <span class="arrow">→</span></button>' +
       '</div>';
+
+    // The score, once, for anything that does not render the ring.
+    html += '<span class="sr-only">Score ' + plan.score.toFixed(1) + ' out of 5.</span>';
 
     html += '</article>';
     return html;
   }
 
   function renderGrid() {
+    if (!el.grid) return;
+
     var plans = filteredPlans();
 
     if (!plans.length) {
@@ -298,6 +345,8 @@
      RENDER — COMPARE MATRIX
      ═══════════════════════════════════════════════════════ */
   function renderMatrix() {
+    if (!el.matrixHost) return;
+
     var plans = state.selected.map(planById).filter(Boolean);
 
     if (plans.length < 2) {
@@ -379,6 +428,8 @@
      RENDER — DEEP DIVE
      ═══════════════════════════════════════════════════════ */
   function renderDeepPicker() {
+    if (!el.deepPicker) return;
+
     el.deepPicker.innerHTML = plansFor(state.product).map(function (p) {
       var on = p.id === state.deepId;
       return '<button type="button" class="chip" data-action="deep" data-plan="' + p.id + '"' +
@@ -396,6 +447,8 @@
   }
 
   function renderDeepDive() {
+    if (!el.deepBody) return;
+
     // The id must belong to the product currently on screen. A term plan has
     // no `waiting` block and a health plan has no `solvency`, so rendering
     // one under the other's layout throws and aborts the whole render pass.
@@ -468,7 +521,7 @@
 
     html += '<div class="pr-verdict"><h4>' + icon('scale') + ' Our verdict</h4>' +
       '<p>' + esc(plan.verdict) + '</p>' +
-      '<span class="pr-score">' + icon('star') + ' Myinsurancebro score ' + plan.score.toFixed(1) + ' / 5</span>' +
+      '<span class="pr-score">' + icon('star') + ' My Insurance Bro score ' + plan.score.toFixed(1) + ' / 5</span>' +
       '</div>';
 
     html += '<div class="pr-cta"><p>Want to know whether this is the right plan for your situation?</p>' +
@@ -484,6 +537,8 @@
      RENDER — PREMIUM ILLUSTRATIONS
      ═══════════════════════════════════════════════════════ */
   function renderPremiums() {
+    if (!el.premiumHost || !el.premiumNote) return;
+
     var profile = policyData.profiles[state.product];
     var plans = plansFor(state.product);
 
@@ -528,6 +583,8 @@
      RENDER — INSURER LEAGUE TABLE
      ═══════════════════════════════════════════════════════ */
   function renderLeague() {
+    if (!el.leagueHost) return;
+
     var rows = policyData.companies[state.product];
     var isTerm = state.product === 'term';
 
@@ -591,6 +648,8 @@
   }
 
   function renderMethodology() {
+    if (!el.methodHost) return;
+
     var headStyle = 'font-size:var(--text-sm); text-transform:uppercase; letter-spacing:.06em;' +
       ' color:var(--color-text-secondary); margin:var(--space-8) 0 var(--space-2)';
 
@@ -607,6 +666,8 @@
      COMPARE TRAY
      ═══════════════════════════════════════════════════════ */
   function renderTray() {
+    if (!el.tray) return;
+
     var count = state.selected.length;
     el.tray.classList.toggle('open', count > 0 && state.mode !== 'compare');
 
@@ -692,8 +753,10 @@
       b.tabIndex = on ? 0 : -1;
     });
 
+    // Same reason as the host guards above: the home page ships explore and compare but
+    // no deep-dive panel, so a panel that is not on this page is simply skipped.
     Object.keys(el.panels).forEach(function (key) {
-      el.panels[key].classList.toggle('active', key === mode);
+      if (el.panels[key]) el.panels[key].classList.toggle('active', key === mode);
     });
 
     if (mode === 'compare') renderMatrix();

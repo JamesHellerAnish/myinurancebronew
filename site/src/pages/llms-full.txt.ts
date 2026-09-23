@@ -84,7 +84,7 @@ export const GET: APIRoute = async ({ site }) => {
   )
 
   const body = [
-    '# Myinsurancebro — full plan data',
+    '# My Insurance Bro — full plan data',
     '',
     INTRO,
     '',

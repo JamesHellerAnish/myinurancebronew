@@ -11,6 +11,7 @@
 // they are ever recalculated, this page changes with them — there is no second copy to drift.
 import Base from '../layouts/Base.astro'
 import Disclaimer from '../components/seo/Disclaimer.astro'
+import Cta from '../components/Cta.astro'
 import { breadcrumbSchema, faqSchema } from '../lib/schema'
 import { fitDescription } from '../lib/seo'
 import { CATEGORY_LABELS } from '../lib/plans'
@@ -27,7 +28,7 @@ const trail = [
 
 const faqs = [
   {
-    q: 'Are Myinsurancebro scores paid for or influenced by insurers?',
+    q: 'Are My Insurance Bro scores paid for or influenced by insurers?',
     a:
       'No. Scores are calculated from the published data described on this page. Insurers cannot ' +
       'pay to raise a score, to be included, or to have a weakness removed.',
@@ -55,7 +56,7 @@ const faqs = [
 ]
 
 const description = fitDescription(
-  'How Myinsurancebro scores insurance plans: plan features 45%, insurer strength 45%, premium 10%, ' +
+  'How My Insurance Bro scores insurance plans: plan features 45%, insurer strength 45%, premium 10%, ' +
     'from IRDAI disclosures.',
   ['No insurer can pay to change a score.', 'Independent and unpaid.'],
 )
@@ -185,7 +186,7 @@ const description = fitDescription(
           about it. A plan with no listed weaknesses has not been reviewed properly.
         </li>
         <li>
-          Myinsurancebro is an IRDAI-licensed advisor and earns commission on policies placed
+          My Insurance Bro is an IRDAI-licensed advisor and earns commission on policies placed
           through us. That is disclosed rather than hidden — and it is why the scores are computed
           from published data instead of from judgement we would have an interest in.
         </li>
@@ -212,6 +213,11 @@ const description = fitDescription(
         </details>
       ))}
     </section>
+
+    <Cta class="fade-up"
+      heading="Want the score applied to your situation?"
+      body="The weights are public. What they mean for you is a ten-minute call with a licensed advisor."
+    />
 
     <Disclaimer />
   </article>

@@ -16,9 +16,8 @@ const team = [
     city: 'Kolkata',
     image: 'assets/images/team/apratim-chatterjee.webp',
     bio:
-      'Apratim works on the health side — matching families to the right cover, and reading ' +
-      'the room-rent limits, sub-limits and waiting periods that decide what a policy is ' +
-      'actually worth at claim time.',
+      'Health cover: room-rent limits, sub-limits and waiting periods — the clauses that ' +
+      'decide what a policy is worth at claim time.',
   },
   {
     name: 'Isha Raghuvanshi',
@@ -26,9 +25,8 @@ const team = [
     city: 'Indore',
     image: 'assets/images/team/isha-raghuvanshi.webp',
     bio:
-      'Isha works on term life — sizing cover against what a family would actually need, and ' +
-      'walking through the disclosure questions properly, because an honest application is ' +
-      'what keeps a claim from being contested years later.',
+      'Term life: sizing cover against what a family would actually need, and getting the ' +
+      'disclosures right so the claim is not contested later.',
   },
 ]
 ---
@@ -38,15 +36,15 @@ const team = [
     <div class="section-header fade-up">
       <span class="eyebrow"><svg class="icon"><use href="#i-users"></use></svg> Meet our team</span>
       <h2>The people you'll <span class="highlight">actually talk to</span></h2>
-      <p>A small team on purpose. You get the same faces from your first question to your first claim.</p>
+      <p>A small team on purpose — the same faces from your first question to your first claim.</p>
     </div>
 
-    <div class="team-grid">
+    <div class="team-grid stagger">
       {team.map((person) => (
-        <article class="team-card fade-up">
+        <article class="team-card">
           <img
-            src={person.image}
-            alt={`${person.name}, Myinsurancebro`}
+            src={`/${person.image}`}
+            alt={`${person.name}, My Insurance Bro`}
             width="800"
             height="1000"
             loading="lazy"
@@ -57,6 +55,14 @@ const team = [
           <p class="team-bio">{person.bio}</p>
         </article>
       ))}
+    </div>
+
+    <div class="section-cta fade-up">
+      <p>Speak to the specialist for the cover you are looking at.</p>
+      <div class="section-cta-actions">
+        <a href="tel:+919910963123" class="btn btn-primary">Call advisor today</a>
+        <a href="#cta" class="btn btn-outline">Get a quotation</a>
+      </div>
     </div>
   </div>
 </section>

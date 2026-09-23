@@ -41,6 +41,18 @@ function recommendationsFor(persona: (typeof personas)[number]) {
       Boolean(entry.plan),
     )
 }
+
+// The home panel shows the first two pain points and links to /for/<key>/ for the rest.
+// Three full pain blocks per persona, on a page that also carries the compare section and
+// seven bento tiles, was the section reading as a wall — and it left the persona pages
+// orphaned, reachable only from the sitemap. Two here, the rest one click away.
+const PAINS_ON_HOME = 2
+
+// Exactly the condition /for/[persona].astro filters on, so a link here can never point at
+// a page the publication gate did not generate. Do not loosen one without the other.
+function hasOwnPage(persona: (typeof personas)[number]) {
+  return persona.pains.length > 0 && recommendationsFor(persona).length > 0
+}
 ---
 
 <section class="section-padding" id="personas">
@@ -51,7 +63,7 @@ function recommendationsFor(persona: (typeof personas)[number]) {
       <p>Insurance advice that ignores your life stage is just a sales pitch. Pick the one that sounds like you.</p>
     </div>
 
-    <div class="persona-picker" role="tablist" aria-label="Choose your life stage">
+    <div class="persona-picker stagger" role="tablist" aria-label="Choose your life stage">
       {personas.map((persona, i) => (
         <button
           class="persona-card"
@@ -85,7 +97,7 @@ function recommendationsFor(persona: (typeof personas)[number]) {
         </div>
         <div class="persona-panel-body">
           <div class="pain-list">
-            {persona.pains.map((pain) => (
+            {persona.pains.slice(0, PAINS_ON_HOME).map((pain) => (
               <div class="pain">
                 <span class="icon-tile sm danger">
                   <svg class="icon"><use href={`#i-${pain.icon}`}></use></svg>
@@ -97,6 +109,15 @@ function recommendationsFor(persona: (typeof personas)[number]) {
                 </div>
               </div>
             ))}
+
+            {hasOwnPage(persona) && (
+              <a class="pain-more" href={`/for/${persona.key}/`}>
+                {persona.pains.length > PAINS_ON_HOME
+                  ? `${persona.pains.length - PAINS_ON_HOME} more risk${persona.pains.length - PAINS_ON_HOME === 1 ? '' : 's'} at this stage`
+                  : `The full picture for ${persona.label.toLowerCase()}`}
+                <span class="arrow">→</span>
+              </a>
+            )}
           </div>
 
           <aside class="persona-aside">
@@ -109,7 +130,7 @@ function recommendationsFor(persona: (typeof personas)[number]) {
                   {plan.data.logo ? (
                     <img
                       class="brand-logo"
-                      src={`assets/logos/${plan.data.logo}`}
+                      src={`/assets/logos/${plan.data.logo}`}
                       alt={plan.data.insurer}
                       width="34"
                       height="34"
@@ -125,7 +146,10 @@ function recommendationsFor(persona: (typeof personas)[number]) {
                 </div>
               </div>
             ))}
-            <a href="#compare" class="btn btn-primary" data-persona-jump={persona.key}>Compare these plans</a>
+            <div class="plan-actions">
+              <a href="#compare" class="btn btn-primary btn-sm" data-persona-jump={persona.key}>Compare these plans</a>
+              <a href="tel:+919910963123" class="btn btn-ghost btn-sm">Call advisor</a>
+            </div>
           </aside>
         </div>
       </div>

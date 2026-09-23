@@ -32,7 +32,7 @@ const {
   brand = true,
   expectNumber = true,
   image = '/assets/images/og-default.png',
-  imageAlt = 'Myinsurancebro — independent, IRDAI-licensed insurance advice',
+  imageAlt = 'My Insurance Bro — independent, IRDAI-licensed insurance advice',
   keywords = [],
   noindex = false,
   modified,
@@ -55,7 +55,7 @@ assertDescription(description, Astro.url.pathname, { expectNumber })
 {noindex && <meta name="robots" content="noindex, follow" />}
 
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="Myinsurancebro" />
+<meta property="og:site_name" content="My Insurance Bro" />
 <meta property="og:title" content={composed} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />

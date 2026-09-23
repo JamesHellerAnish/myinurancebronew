@@ -19,10 +19,10 @@ export const GET: APIRoute = async ({ site }) => {
 
   const body = {
     '@context': 'https://schema.org',
-    name: 'Myinsurancebro insurance glossary',
+    name: 'My Insurance Bro insurance glossary',
     url: new URL('glossary/', site).href,
     licence:
-      'The plain-English explanations are Myinsurancebro editorial. The quoted legal ' +
+      'The plain-English explanations are My Insurance Bro editorial. The quoted legal ' +
       'definitions belong to the insurers whose IRDAI-filed wordings they are taken from, ' +
       'and each carries its source and UIN.',
     count: terms.length,

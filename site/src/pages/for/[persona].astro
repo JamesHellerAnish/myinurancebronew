@@ -13,6 +13,7 @@ import type { GetStaticPaths } from 'astro'
 import { getCollection } from 'astro:content'
 import Base from '../../layouts/Base.astro'
 import Disclaimer from '../../components/seo/Disclaimer.astro'
+import Cta from '../../components/Cta.astro'
 import { publishablePlans, planPath, categoryPath, CATEGORY_LABELS, type Plan } from '../../lib/plans'
 import { breadcrumbSchema, faqSchema } from '../../lib/schema'
 import { fitDescription, fitTitle } from '../../lib/seo'
@@ -167,7 +168,7 @@ const description = fitDescription(
       ))}
     </section>
 
-    <section class="internal-links">
+    <section class="internal-links fade-up">
       <h2>Compare for yourself</h2>
       <p>
         {categories.map((category) => (
@@ -178,6 +179,11 @@ const description = fitDescription(
         {' · '}<a href="/methodology/">How we score</a>
       </p>
     </section>
+
+    <Cta class="fade-up"
+      heading="Get this sized for your own situation"
+      body="Cover you actually need, worked out on a call with a licensed advisor. Free, no pressure."
+    />
 
     <Disclaimer />
   </article>

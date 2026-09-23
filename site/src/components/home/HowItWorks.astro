@@ -1,61 +1,97 @@
-    <!-- ═══════════ 4. THE MYINSURANCEBRO EXPERIENCE ═══════════ -->
-    <section class="section-padding" id="how-it-works">
-      <div class="container">
-        <div class="section-header fade-up">
-          <h2>The <span class="highlight">Myinsurancebro</span> Experience</h2>
-          <p>From choosing the right plan to lifetime claim support — we're with you at every step.</p>
-        </div>
+---
+// Section 4 — the bento grid.
+//
+// Ported from index.html:1080. The tiles and their icons are unchanged; the copy is not.
+// Each tile used to carry a two-to-four-line paragraph, seven of them stacked, which made
+// the section read as an essay laid out in boxes. A bento grid is a scanning pattern — the
+// heading is the message and the line under it is the proof, so each body is now one line.
+//
+// The long version of "how claim support works" was the one tile that genuinely needed the
+// words; it links to #claim-support, which carries the four steps in full.
+const tiles = [
+  {
+    class: 'bento-item wide ink',
+    tone: '',
+    icon: 'target',
+    title: 'We start with what you actually need',
+    body: 'Half the people who come to us need less cover than they were about to buy.',
+  },
+  {
+    class: 'bento-item',
+    tone: 'teal',
+    icon: 'scale',
+    title: 'Numbers, not brochures',
+    body: 'Settlement ratios, complaints and waiting periods.',
+  },
+  {
+    class: 'bento-item',
+    tone: 'warm',
+    icon: 'file-text',
+    title: 'Wording in plain English',
+    body: 'We read the exclusions out loud before you buy.',
+  },
+  {
+    class: 'bento-item wide',
+    tone: 'danger',
+    icon: 'life-buoy',
+    title: 'Lifetime claim support — even on a policy you bought elsewhere',
+    body: 'Paperwork, pre-authorisation, insurer follow-ups, and the Ombudsman if it comes to that.',
+    link: { href: '#claim-support', label: 'How claim support works' },
+  },
+  {
+    class: 'bento-item',
+    tone: '',
+    icon: 'lock',
+    title: 'Zero spam, ever',
+    body: 'Your number is not a lead to be resold.',
+  },
+  {
+    class: 'bento-item',
+    tone: 'teal',
+    icon: 'wallet',
+    title: 'Free, and it stays free',
+    body: 'Same premium either way — you just get an advisor with it.',
+  },
+  {
+    class: 'bento-item wide',
+    tone: 'warm',
+    icon: 'calendar',
+    title: 'We check in at renewal, not just at the sale',
+    body: 'Marriage, a child, a home loan, parents crossing 60 — the file gets revisited.',
+  },
+]
+---
 
-        <div class="bento stagger">
-          <div class="bento-item wide ink">
-            <span class="icon-tile"><svg class="icon"><use href="#i-target"></use></svg></span>
-            <h3>We start with what you actually need</h3>
-            <p>Before any plan gets mentioned, we work out your real cover requirement — income, liabilities,
-              dependants, existing group cover and what your parents already have. Half the people who come to us need
-              less cover than they were about to buy.</p>
-          </div>
+<section class="section-padding" id="how-it-works">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2>The <span class="highlight">My Insurance Bro</span> Experience</h2>
+      <p>From the right plan to lifetime claim support.</p>
+    </div>
 
-          <div class="bento-item">
-            <span class="icon-tile teal"><svg class="icon"><use href="#i-scale"></use></svg></span>
-            <h3>Compared on numbers, not brochures</h3>
-            <p>Settlement ratios, complaint volumes and waiting periods — the figures that decide a claim.</p>
-          </div>
-
-          <div class="bento-item">
-            <span class="icon-tile warm"><svg class="icon"><use href="#i-file-text"></use></svg></span>
-            <h3>Policy wording in plain English</h3>
-            <p>We read the exclusions out loud before you buy, so nothing is a surprise at claim time.</p>
-          </div>
-
-          <div class="bento-item wide">
-            <span class="icon-tile danger"><svg class="icon"><use href="#i-life-buoy"></use></svg></span>
-            <h3>Lifetime claim support — including on policies you bought elsewhere</h3>
-            <p>Filing a claim is the worst possible time to be figuring out paperwork alone. We handle documentation,
-              pre-authorisation and insurer follow-ups, and escalate to the Ombudsman if a rejection does not hold up.
-              This applies even if you never bought anything from us.</p>
+    <div class="bento stagger">
+      {tiles.map((tile) => (
+        <div class={tile.class}>
+          <span class={`icon-tile${tile.tone ? ` ${tile.tone}` : ''}`}>
+            <svg class="icon"><use href={`#i-${tile.icon}`}></use></svg>
+          </span>
+          <h3>{tile.title}</h3>
+          <p>{tile.body}</p>
+          {tile.link && (
             <div class="experience-card-links" style="margin-top:var(--space-4)">
-              <a href="#claim-support">How claim support works <span class="arrow">→</span></a>
+              <a href={tile.link.href}>{tile.link.label} <span class="arrow">→</span></a>
             </div>
-          </div>
-
-          <div class="bento-item">
-            <span class="icon-tile"><svg class="icon"><use href="#i-lock"></use></svg></span>
-            <h3>Zero spam, ever</h3>
-            <p>Your number is not a lead to be resold. One advisor, and only when you ask.</p>
-          </div>
-
-          <div class="bento-item">
-            <span class="icon-tile teal"><svg class="icon"><use href="#i-wallet"></use></svg></span>
-            <h3>Free, and it stays free</h3>
-            <p>Insurers pay our commission. You pay the same premium either way — you just get an advisor with it.</p>
-          </div>
-
-          <div class="bento-item wide">
-            <span class="icon-tile warm"><svg class="icon"><use href="#i-calendar"></use></svg></span>
-            <h3>We check in at renewal, not just at the sale</h3>
-            <p>Cover needs change when you marry, have a child, take a home loan or your parents cross 60. We revisit
-              the file at every renewal instead of letting it quietly go stale.</p>
-          </div>
+          )}
         </div>
+      ))}
+    </div>
+
+    <div class="section-cta fade-up">
+      <p>Fifteen minutes on a call covers all seven of these for your situation.</p>
+      <div class="section-cta-actions">
+        <a href="#cta" class="btn btn-primary">Get a quotation</a>
+        <a href="tel:+919910963123" class="btn btn-outline">Call advisor today</a>
       </div>
-    </section>
+    </div>
+  </div>
+</section>

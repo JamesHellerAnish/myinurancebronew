@@ -2,9 +2,14 @@
 // Section 9 — FAQ. Ported from index.html:1344.
 //
 // The markup is the legacy structure unchanged (js/main.js binds .faq-question and toggles
-// .faq-item.active), but the nine questions now come from src/lib/home.ts, which is also
-// what builds the FAQPage JSON-LD on the page. One source, so the schema cannot drift from
-// what a visitor actually reads.
+// .faq-item.active), but the questions come from src/lib/home.ts, which is also what builds
+// the FAQPage JSON-LD on the page. One source, so the schema cannot drift from what a
+// visitor actually reads.
+//
+// `faq.a` is rendered as a text node on purpose. It used to carry a blob of HTML for the
+// insurer row, which Astro escaped — the markup and an HTML comment showed up as visible
+// copy on the page. Anything visual now comes through a typed field and is rendered here as
+// real elements; see the note on HomeFaq.
 import { homeFaqs } from '../../lib/home'
 ---
 
@@ -23,10 +28,39 @@ import { homeFaqs } from '../../lib/home'
             <span class="faq-icon">+</span>
           </button>
           <div class="faq-answer">
-            <div class="faq-answer-inner">{faq.a}</div>
+            <div class="faq-answer-inner">
+              <p>{faq.a}</p>
+              {faq.insurers && (
+                <div class="brand-row">
+                  {faq.insurers.map((insurer) => (
+                    <span class="brand-chip">
+                      <span class="brand-tile xs has-logo">
+                        <img
+                          class="brand-logo"
+                          src={`/assets/logos/${insurer.logo}`}
+                          alt=""
+                          width="22"
+                          height="22"
+                          loading="lazy"
+                        />
+                      </span>
+                      {insurer.name}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       ))}
+    </div>
+
+    <div class="section-cta fade-up">
+      <p>Still unsure? Ask a licensed advisor — it is free, and there is no obligation.</p>
+      <div class="section-cta-actions">
+        <a href="#cta" class="btn btn-primary">Get a quotation</a>
+        <a href="tel:+919910963123" class="btn btn-outline">Call advisor today</a>
+      </div>
     </div>
   </div>
 </section>

@@ -33,15 +33,24 @@ const { schemas = [], current, ...seo } = Astro.props
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Applies the saved theme before first paint. This has to be inline and blocking:
-         deferred, the page paints light and then flips, which is worse than not having a
-         toggle. Same `mib-theme` key as js/main.js, so a preference set on the legacy
-         one-pager carries over to the generated pages during the migration. -->
+    {/* Dark mode is switched off for now at the owner's instruction, so there is no
+        theme-restoring script here and `data-theme` stays "light" on <html>. The dark
+        palette itself is left intact in style.css/components.css — turning the toggle
+        back on means restoring the button in Header.astro and the read of `mib-theme`
+        here, not rewriting the design system. Note the legacy one-pager still has its
+        own toggle, so a visitor may have "dark" sitting in localStorage; not reading
+        that key is what keeps it from leaking into these pages.
+
+        An Astro comment, not an HTML one: this is a note to the next person editing the
+        layout, and an HTML comment here would ship on all ~2,900 pages. */}
+
+    {/* Marks the document as scripted, before first paint. Every reveal animation's
+        hidden state is scoped to .js, so a page whose scripts never arrive renders its
+        content rather than a blank column — see the note above .fade-up in style.css.
+        Inline and blocking on purpose: deferred, the page paints the content and then
+        hides it, which is a worse flash than having no animation at all. */}
     <script is:inline>
-      try {
-        var t = localStorage.getItem('mib-theme')
-        if (t) document.documentElement.setAttribute('data-theme', t)
-      } catch (e) {}
+      document.documentElement.classList.add('js')
     </script>
 
     <SEO {...seo} />
@@ -70,10 +79,103 @@ const { schemas = [], current, ...seo } = Astro.props
   </head>
 
   <body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
     <Header current={current} />
     <main>
       <slot />
     </main>
     <Footer />
+
+    {/* Mobile action bar. The legacy one-pager has had this since the start; the generated
+        pages did not, so on a phone — which is most of this traffic — a guide or a plan
+        page had no visible way to call until you scrolled to the CTA block. */}
+    <div class="sticky-cta">
+      <a
+        href="https://wa.me/919910963123"
+        class="btn btn-whatsapp"
+        target="_blank"
+        rel="noopener"
+      >
+        WhatsApp
+      </a>
+      <a href="tel:+919910963123" class="btn btn-primary">Call advisor</a>
+    </div>
+
+    <script>
+      /* Scroll behaviour for every generated page.
+         --------------------------------------------------------------------------------
+         js/main.js has done all of this since the beginning, but it only loads on the home
+         page — so a guide, a glossary entry or a plan page had no reveal animation and no
+         reading progress at all. Worse, anything marked .fade-up on those pages would have
+         stayed at opacity:0 forever, because the class only becomes visible when something
+         adds .visible to it.
+
+         So this module owns reveals and progress for the Astro tree, and main.js skips its
+         own copies when it sees data-astro-chrome on the header (the same guard it already
+         uses for the navbar and the drawer). One observer per page, not two.
+
+         Astro bundles and defers this into the one small module the chrome already ships. */
+
+      // Respect the OS setting. The CSS also neutralises the transforms under
+      // prefers-reduced-motion, but an element must still get .visible or it never appears.
+      const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+      const revealables = document.querySelectorAll<HTMLElement>('.fade-up, .stagger')
+
+      if (still || !('IntersectionObserver' in window)) {
+        revealables.forEach((el) => el.classList.add('visible'))
+      } else {
+        // Children of a .stagger group get their index, which the CSS turns into a delay.
+        document.querySelectorAll<HTMLElement>('.stagger').forEach((group) => {
+          Array.from(group.children).forEach((child, i) => {
+            ;(child as HTMLElement).style.setProperty('--i', String(i))
+          })
+        })
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return
+              entry.target.classList.add('visible')
+              observer.unobserve(entry.target)
+            })
+          },
+          // Same numbers as js/main.js, so the two trees reveal at the same point.
+          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
+        )
+
+        revealables.forEach((el) => observer.observe(el))
+      }
+
+      // Reading progress. rAF-throttled: this runs on every scroll frame and writing a
+      // style property straight from the scroll handler is a layout thrash on long pages,
+      // which the plan pages very much are.
+      const progress = document.getElementById('scrollProgress')
+
+      if (progress) {
+        let ticking = false
+
+        const paint = () => {
+          const doc = document.documentElement
+          const scrollable = doc.scrollHeight - doc.clientHeight
+          const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0
+          progress.style.width = `${Math.min(pct, 100)}%`
+          ticking = false
+        }
+
+        window.addEventListener(
+          'scroll',
+          () => {
+            if (ticking) return
+            ticking = true
+            requestAnimationFrame(paint)
+          },
+          { passive: true },
+        )
+
+        paint()
+      }
+    </script>
   </body>
 </html>

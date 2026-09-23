@@ -2,9 +2,12 @@
     <section class="final-cta" id="cta">
       <div class="container">
         <div class="final-cta-card fade-up">
+          {/* The port left a stray </main> at the end of this file — Base.astro owns <main>,
+              so this closed it early. The Astro compiler absorbed it, which is how it went
+              unnoticed. Do not reintroduce it: this is a section, not a page. */}
           <div class="cta-header">
             <h2>Book a Free 1-on-1 Consultation</h2>
-            <p>100% free call with our Chief Advisor & team. Zero spam, no pressure — just honest advice tailored to you.</p>
+            <p>Free call with the Chief Advisor. Zero spam, no pressure.</p>
           </div>
 
           <form class="booking-form" id="bookingForm" action="send-mail.php" method="POST">
@@ -55,10 +58,9 @@
 
           <div class="final-cta-contact">
             <span>📞 Direct Call: <a href="tel:+919910963123">+91 99109 63123</a></span>
+            <span>💬 <a href="https://wa.me/919910963123" target="_blank" rel="noopener">WhatsApp us</a></span>
             <span>✉️ Email Us: <a href="mailto:support@myinsurancebro.com">support@myinsurancebro.com</a></span>
           </div>
         </div>
       </div>
     </section>
-
-  </main>

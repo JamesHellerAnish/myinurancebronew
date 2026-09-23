@@ -35,11 +35,10 @@ import { homeFaqs } from '../lib/home'
 
 // §8.1: the homepage is the one page where the brand is the whole title, so no suffix.
 //
-// Kept verbatim from index.html at 64 characters, four over the §9.2 budget. assertTitle()
-// warns rather than throws for exactly this case: this is the live homepage title, it is
-// what the domain is currently known by, and rewriting it is an SEO decision about existing
-// rankings — not a porting decision to make in passing. Change it deliberately or not at all.
-const title = 'Myinsurancebro — Compare & Buy the Best Insurance Plans in India'
+// The brand spacing change ("Myinsurancebro" → "My Insurance Bro") added two characters to a
+// title that was already four over the §9.2 budget, so the tail was shortened to fit rather
+// than left to truncate in the SERP. 55 characters, inside TITLE_MAX.
+const title = 'My Insurance Bro — Compare Term & Health Plans in India'
 
 // §9.2 wants a number in every description. Using the IRDAI period rather than a customer
 // count: it is checkable against a primary source, and it says what the site actually does.

@@ -56,11 +56,11 @@ const links = [
     <a href="/" class="nav-brand">
       <img
         src="/assets/images/my-insurance-bro-logo.png"
-        alt="Myinsurancebro Logo"
+        alt="My Insurance Bro Logo"
         width="134"
         height="136"
       />
-      <span>Myinsurancebro</span>
+      <span>My Insurance Bro</span>
     </a>
 
     <nav class="nav-links" id="navLinks">
@@ -72,8 +72,12 @@ const links = [
     </nav>
 
     <div class="nav-right">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
-      <a href="/#cta" class="btn btn-primary btn-sm" id="navCta">Get Free Advice</a>
+      {/* The dark-mode toggle is removed, not hidden — see the note in Base.astro. */}
+      {/* No <use href="#i-…"> here: the icon sprite is rendered by Sprite.astro on the
+          home page only, so an icon in the sitewide chrome would be an empty box on every
+          generated page. Text label instead. */}
+      <a href="tel:+919910963123" class="btn btn-ghost btn-sm nav-call">Call advisor</a>
+      <a href="/#cta" class="btn btn-primary btn-sm" id="navCta">Get a Quotation</a>
       <button class="hamburger" id="hamburger" aria-label="Toggle menu">
         <span></span>
         <span></span>
@@ -84,7 +88,16 @@ const links = [
 
   <div class="mobile-drawer" id="mobileDrawer">
     {links.map((link) => <a href={link.href}>{link.label}</a>)}
-    <a href="/#cta" class="btn btn-primary">Get Free Advice</a>
+    <a href="/#cta" class="btn btn-primary">Get a Quotation</a>
+    <a href="tel:+919910963123" class="btn btn-outline">Call advisor — +91 99109 63123</a>
+    <a
+      href="https://wa.me/919910963123"
+      class="btn btn-whatsapp"
+      target="_blank"
+      rel="noopener"
+    >
+      WhatsApp us
+    </a>
   </div>
 </header>
 
@@ -98,8 +111,6 @@ const links = [
   const navbar = document.getElementById('navbar')
   const hamburger = document.getElementById('hamburger')
   const drawer = document.getElementById('mobileDrawer')
-  const themeToggle = document.getElementById('themeToggle')
-  const html = document.documentElement
 
   // Transparent → solid on scroll.
   if (navbar) {
@@ -122,28 +133,5 @@ const links = [
     })
 
     drawer.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeDrawer))
-  }
-
-  // The theme itself is applied by the inline script in Base.astro before first paint;
-  // this only handles the toggle and keeps the icon in sync with it.
-  if (themeToggle) {
-    const setIcon = () => {
-      themeToggle.textContent = html.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙'
-    }
-
-    setIcon()
-
-    themeToggle.addEventListener('click', () => {
-      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
-      html.setAttribute('data-theme', next)
-      setIcon()
-      // Same storage key as js/main.js, so the preference carries between the legacy
-      // one-pager and the generated pages during the migration.
-      try {
-        localStorage.setItem('mib-theme', next)
-      } catch {
-        /* private mode — the toggle still works for this page view */
-      }
-    })
   }
 </script>

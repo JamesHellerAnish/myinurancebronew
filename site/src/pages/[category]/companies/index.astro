@@ -11,6 +11,7 @@
 import type { GetStaticPaths } from 'astro'
 import Base from '../../../layouts/Base.astro'
 import Disclaimer from '../../../components/seo/Disclaimer.astro'
+import Cta from '../../../components/Cta.astro'
 import {
   publishablePlans,
   categoryPath,
@@ -214,7 +215,7 @@ const description = fitDescription(
       ))}
     </section>
 
-    <section class="internal-links">
+    <section class="internal-links fade-up">
       <h2>Next</h2>
       <p>
         <a href={`${categoryUrl}best-plans/`}>Best {lower} plans</a> ·
@@ -222,6 +223,11 @@ const description = fitDescription(
         <a href="/methodology/">How we score</a>
       </p>
     </section>
+
+    <Cta class="fade-up"
+      heading="Not sure which insurer to trust?"
+      body="The track record is here; which one suits you is a call. Free, and no sales pressure."
+    />
 
     <Disclaimer />
   </article>

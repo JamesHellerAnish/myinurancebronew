@@ -1,9 +1,63 @@
+---
+// Section 6 — reviews.
+//
+// Was six copies of the same nine elements. As data the cards gain a circular initial
+// avatar — the quotes are otherwise six identical grey rectangles, and the only thing
+// telling them apart was the name on the last line.
+//
+// js/main.js builds the carousel dots by counting .review-card, so the class names and the
+// nesting are unchanged.
+const reviews = [
+  {
+    quote:
+      "I had no idea what term insurance was until My Insurance Bro explained it to me. The advisor spent 45 minutes on call \u2014 no rush, no push. Bought a \u20b91 Crore cover at just \u20b9780/month.",
+    name: "Rajesh Mehta",
+    city: "Mumbai",
+  },
+  {
+    quote:
+      "Finally, someone who speaks plain English about insurance! They compared 5 health plans for me and helped me choose the best one for my family. Zero spam calls after.",
+    name: "Priya Sharma",
+    city: "Delhi",
+  },
+  {
+    quote:
+      "Filed a claim for my father's surgery. My Insurance Bro handled everything \u2014 from documents to follow-ups with the insurer. Settled in 8 days. Truly lifetime support!",
+    name: "Ankit Gupta",
+    city: "Bangalore",
+  },
+  {
+    quote:
+      "I was skeptical about free advice, but these guys are legit. They recommended a plan that costs less than what I was already paying \u2014 with better coverage. Highly recommend!",
+    name: "Sneha Patel",
+    city: "Ahmedabad",
+  },
+  {
+    quote:
+      "As a first-time buyer, I was overwhelmed with options. My advisor explained everything patiently and even helped me fill out the application. Couldn't have done it without them.",
+    name: "Vikram Singh",
+    city: "Jaipur",
+  },
+  {
+    quote:
+      "What impressed me most was their honesty. They actually told me I didn't need a specific rider, saving me money. That's rare in this industry. Thank you, My Insurance Bro!",
+    name: "Meera Krishnan",
+    city: "Chennai",
+  },
+]
+
+/** First letter of the given name. Enough to individuate a card; it is not identity. */
+function initial(name: string) {
+  return name.trim().charAt(0).toUpperCase()
+}
+---
+
     <!-- ═══════════ 6. REVIEWS / TRUST ═══════════ -->
     <section class="section-padding" id="reviews">
       <div class="container">
         <div class="trust-header fade-up">
           <h2>India's Top-Rated Insurance Advisor</h2>
-          <p>Don't just take our word for it — hear from people we've helped.</p>
+          <p>From people we've helped.</p>
           <div class="trust-badge">
             <span class="google-icon">
               <svg width="24" height="24" viewBox="0 0 24 24">
@@ -29,52 +83,29 @@
 
         <div class="reviews-track-wrapper fade-up" id="reviewsCarousel">
           <div class="reviews-track" id="reviewsTrack">
-            <div class="review-card">
-              <div class="review-stars">★★★★★</div>
-              <blockquote>"I had no idea what term insurance was until Myinsurancebro explained it to me. The advisor
-                spent 45 minutes on call — no rush, no push. Bought a ₹1 Crore cover at just ₹780/month."</blockquote>
-              <div class="review-author">Rajesh Mehta <span>· Mumbai</span></div>
-            </div>
-
-            <div class="review-card">
-              <div class="review-stars">★★★★★</div>
-              <blockquote>"Finally, someone who speaks plain English about insurance! They compared 5 health plans for
-                me and helped me choose the best one for my family. Zero spam calls after."</blockquote>
-              <div class="review-author">Priya Sharma <span>· Delhi</span></div>
-            </div>
-
-            <div class="review-card">
-              <div class="review-stars">★★★★★</div>
-              <blockquote>"Filed a claim for my father's surgery. Myinsurancebro handled everything — from documents to
-                follow-ups with the insurer. Settled in 8 days. Truly lifetime support!"</blockquote>
-              <div class="review-author">Ankit Gupta <span>· Bangalore</span></div>
-            </div>
-
-            <div class="review-card">
-              <div class="review-stars">★★★★★</div>
-              <blockquote>"I was skeptical about free advice, but these guys are legit. They recommended a plan that
-                costs less than what I was already paying — with better coverage. Highly recommend!"</blockquote>
-              <div class="review-author">Sneha Patel <span>· Ahmedabad</span></div>
-            </div>
-
-            <div class="review-card">
-              <div class="review-stars">★★★★★</div>
-              <blockquote>"As a first-time buyer, I was overwhelmed with options. My advisor explained everything
-                patiently and even helped me fill out the application. Couldn't have done it without them."</blockquote>
-              <div class="review-author">Vikram Singh <span>· Jaipur</span></div>
-            </div>
-
-            <div class="review-card">
-              <div class="review-stars">★★★★★</div>
-              <blockquote>"What impressed me most was their honesty. They actually told me I didn't need a specific
-                rider, saving me money. That's rare in this industry. Thank you, Myinsurancebro!"</blockquote>
-              <div class="review-author">Meera Krishnan <span>· Chennai</span></div>
-            </div>
+            {reviews.map((review) => (
+              <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <blockquote>"{review.quote}"</blockquote>
+                <div class="review-author">
+                  <span class="review-avatar" aria-hidden="true">{initial(review.name)}</span>
+                  <span>{review.name} <span>· {review.city}</span></span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
         <div class="carousel-controls" id="carouselControls">
           <!-- Dots generated by JS -->
+        </div>
+
+        <div class="section-cta fade-up">
+          <p>Your turn. One call, no pressure, nothing to pay.</p>
+          <div class="section-cta-actions">
+            <a href="#cta" class="btn btn-primary">Get a quotation</a>
+            <a href="tel:+919910963123" class="btn btn-outline">Call advisor today</a>
+          </div>
         </div>
       </div>
     </section>

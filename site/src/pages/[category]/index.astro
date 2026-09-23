@@ -10,6 +10,7 @@
 import type { GetStaticPaths } from 'astro'
 import Base from '../../layouts/Base.astro'
 import Disclaimer from '../../components/seo/Disclaimer.astro'
+import Cta from '../../components/Cta.astro'
 import {
   publishablePlans,
   plansByCategory,
@@ -207,6 +208,11 @@ const description = fitDescription(
         </details>
       ))}
     </section>
+
+    <Cta class="fade-up"
+      heading="Want this narrowed to two or three plans?"
+      body="Tell a licensed advisor your age, city and who you are covering. Free, and no sales pressure."
+    />
 
     <Disclaimer />
   </article>
