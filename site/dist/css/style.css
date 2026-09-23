@@ -2269,10 +2269,14 @@ h6 {
     padding-top: calc(var(--navbar-height) + var(--space-6));
   }
 
-  /* Buttons: comfortable 44px+ tap targets without the desktop width. */
+  /* Buttons: comfortable 44px+ tap targets without the desktop width.
+     min-height enforces that floor rather than leaving it to padding plus line-height,
+     which landed .btn at 40px and .btn-sm at 35px — the compare tray's "Compare" and the
+     product cards were both under it. It only grows buttons that fall short. */
   .btn {
     padding: var(--space-3) var(--space-5);
     font-size: 0.9375rem;
+    min-height: 44px;
   }
 
   .btn-lg {
@@ -2316,6 +2320,13 @@ h6 {
     grid-template-columns: 1fr 1fr;
     gap: var(--space-3);
     margin-bottom: var(--space-5);
+  }
+
+  /* The hero gained a third "Call advisor today" button, which lands alone on a second
+     row here and repeats what the sticky bottom bar is already showing, unmissably, at
+     this width. Same subtraction and same reason as #navCta above. */
+  #heroCtaCall {
+    display: none;
   }
 
   .hero-actions .btn {

@@ -1223,3 +1223,105 @@ main {
 .cmp-grid th[scope='row'] .monogram {
   flex: 0 0 auto;
 }
+
+/* ═══════════════════════════════════════════════════════
+   16. Phone layout (≤640px)
+   ═══════════════════════════════════════════════════════
+   The phone pass in style.css and components.css predates the CTA rails and link cards
+   below, so none of them had a rule under this breakpoint and all of them kept desktop
+   padding and a desktop row layout in a 335px column. Nothing overflowed, but nothing was
+   laid out for a phone either — the ask each block makes was being squeezed into whatever
+   space the buttons left over.
+
+   Same breakpoint and the same one-block-at-the-end convention as the other two files. */
+@media (max-width: 640px) {
+
+  /* The repeated "ask a human" rail. On a phone the copy goes above the buttons rather
+     than competing with them for the same row, and the buttons take the full column —
+     space-between across 287px was giving the sentence about 8 characters a line. */
+  .section-cta {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+    padding: var(--space-5);
+  }
+
+  .section-cta > p {
+    flex: none;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  .section-cta-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .section-cta-actions .btn {
+    width: 100%;
+  }
+
+  /* The sitewide CTA block on every content route. Same treatment, and one subtraction:
+     the WhatsApp button goes. The sticky bottom bar is on screen at this width and
+     already carries WhatsApp and Call, so a third copy of the same action here is the
+     kind of triplication the nav rules above already strip out (#navCta hides for the
+     same reason). Call and Get a quotation stay, stacked and full width — pairing them
+     two-up wraps "Call advisor today" onto two lines at 137px. */
+  .site-cta {
+    gap: var(--space-4);
+    margin-block: var(--space-10);
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .site-cta h2 {
+    font-size: 1.375rem;
+    line-height: 1.2;
+  }
+
+  .site-cta-copy p {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+  }
+
+  .site-cta-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .site-cta-actions .btn {
+    width: 100%;
+  }
+
+  .site-cta-actions .btn-whatsapp {
+    display: none;
+  }
+
+  /* Link-out cards under the compare section. Already one per row at this width; this is
+     just the padding and type coming down to the phone rhythm. */
+  .cmp-more {
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  .cmp-more-card {
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .cmp-more-text strong {
+    font-size: 0.9375rem;
+  }
+
+  .cmp-more-text span {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  /* The "rest of this persona's risks" link. */
+  .pain-more {
+    font-size: 0.8125rem;
+  }
+}

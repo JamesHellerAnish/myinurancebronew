@@ -2316,9 +2316,11 @@
     box-shadow: none;
   }
 
+  /* No margin-bottom here (or on .plan-metrics below): .plan-card became a gap-based
+     flex column when the card was made compact, so a margin added on top of that gap
+     spaced the card out twice. The padding drop above does the tightening. */
   .plan-card-top {
     gap: var(--space-3);
-    margin-bottom: var(--space-3);
   }
 
   .plan-monogram {
@@ -2330,8 +2332,16 @@
     font-size: 1rem;
   }
 
-  .plan-score-value {
-    font-size: 1.25rem;
+  /* The score is an SVG ring now, not a number stacked over "out of 5" — compare.js
+     stopped emitting .plan-score-value when the card was rewritten. Sized to match the
+     40px monogram opposite it, so the card header reads as one row of equal weights. */
+  .score-ring {
+    width: 40px;
+    height: 40px;
+  }
+
+  .score-ring-value {
+    font-size: 0.8125rem;
   }
 
   .plan-tagline {
@@ -2351,8 +2361,7 @@
 
   .plan-metrics {
     gap: var(--space-2);
-    padding: var(--space-3) 0;
-    margin-bottom: var(--space-3);
+    padding-top: var(--space-3);
   }
 
   .plan-metric-label {
