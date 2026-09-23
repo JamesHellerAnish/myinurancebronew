@@ -5,7 +5,7 @@
   "insurerShort": "HDFC ERGO",
   "name": "Optima Secure+",
   "monogram": "HE",
-  "accent": "#DC2626",
+  "accent": "#D91923",
   "tagline": "Our top pick",
   "subtitle": "The most reliable claims desk in health insurance, on a plan whose cover grows every single year.",
   "score": 4.6,
@@ -20,11 +20,11 @@
     "network": 16000,
     "businessCr": 6596.53
   },
-  "entryAge": "18–65 yrs",
+  "entryAge": "18 yrs and above — no maximum entry age",
   "coverRange": "₹10 L – ₹2 Cr",
   "tenure": "1–5 years",
   "restoration": "Unlimited, built in",
-  "bonus": "Infinity Benefit — 100% of base cover added every year, no cap",
+  "bonus": "Infinite Benefit — 100% of base cover added every year, no cap",
   "roomRent": "No limit — any room category",
   "consumables": "Covered in base plan",
   "waiting": {
@@ -49,7 +49,7 @@
   ],
   "features": [
     "Secure Benefit doubles your cover from day one — buy ₹10 lakh, hold ₹20 lakh",
-    "Infinity Benefit adds 100% of the base cover every year with no upper limit and regardless of claims",
+    "Infinite Benefit adds 100% of the base cover every year with no upper limit and regardless of claims",
     "Consumables — gloves, masks, syringes, PPE — are covered, which typically saves ₹5,000–15,000 a hospitalisation",
     "Pre-hospitalisation for 60 days and post-hospitalisation for 180 days",
     "Home healthcare, daycare, organ donor and AYUSH treatment all included",
@@ -84,7 +84,7 @@
     "97.61% settlement ratio — the highest of any major health insurer",
     "8.87 complaints per 10,000 claims, against 42.67 for Care Health",
     "16,000+ cashless hospitals, the widest network here",
-    "Cover compounds every year through Infinity Benefit, so a ₹10 lakh policy is worth far more by year five",
+    "Cover compounds every year through Infinite Benefit, so a ₹10 lakh policy is worth far more by year five",
     "Consumables are in the base plan rather than a paid add-on"
   ],
   "cons": [
@@ -93,20 +93,27 @@
     "The senior couple premium of ₹75,608 is steep",
     "Ambulance cover is limited compared with SBI General"
   ],
-  "verdict": "This is the plan we put in front of most families, and the reason is the claims record rather than the feature list. A 97.61% settlement ratio with 8.87 complaints per 10,000 claims means that when you are standing at a hospital billing desk, this insurer is the one most likely to just pay. The Infinity Benefit is the other reason — cover that adds 100% of the base every year with no ceiling quietly solves the medical-inflation problem that catches most people out a decade in. It costs more than Activ One MAX. We think it is worth it.",
+  "verdict": "This is the plan we put in front of most families, and the reason is the claims record rather than the feature list. A 97.61% settlement ratio with 8.87 complaints per 10,000 claims means that when you are standing at a hospital billing desk, this insurer is the one most likely to just pay. The Infinite Benefit is the other reason — cover that adds 100% of the base every year with no ceiling quietly solves the medical-inflation problem that catches most people out a decade in. It costs more than Activ One MAX. We think it is worth it.",
   "logo": "hdfcergo.png",
   "slug": "optima-secure",
   "insurerSlug": "hdfc-ergo",
-  "verificationStatus": "migrated",
+  "verificationStatus": "verified",
   "sources": [
     {
-      "label": "HDFC ERGO — Optima Secure+ policy wording",
-      "url": "https://www.hdfcergo.com/docs/default-source/downloads/policy-wordings/health/optima-secure-revision-pw.pdf"
+      "label": "HDFC ERGO — my:Optima Secure prospectus (UIN HDFHLIP26058V082526) — the authoritative source for this record; names 'Optima Secure +' as a plan and defines Infinite Benefit",
+      "url": "https://customer-portal-assets.hdfcergo.com/documents/Prospectus_myOptimaSecure-676203564982.pdf",
+      "clause": "Clause 4.17 Infinite Benefit (note c); Section 1 Eligibility; Section 2.1 plan illustration table"
+    },
+    {
+      "label": "HDFC ERGO — Optima Secure+ brochure",
+      "url": "https://customer-portal-assets.hdfcergo.com/documents/OptimaSecure+-BR-Opt2(2)-146549135394.pdf"
     },
     {
       "label": "HDFC ERGO — Optima Secure+ product page",
-      "url": "https://www.hdfcergo.com/health-insurance/optima-secure"
+      "url": "https://www.hdfcergo.com/health-insurance/optima-secure-plus"
     }
   ],
-  "verificationNote": "Migrated from js/policy-data.js. Figures predate the §16.7 primary-source pipeline and have not been re-read against the policy wording. Not publishable until re-verified and signed off (§16.8)."
+  "verificationNote": "RESOLVED 2026-09-11 against the official prospectus for UIN HDFHLIP26058V082526. Earlier passes could not find \"Optima Secure+\" or \"Infinite Benefit\" in three HDFC ERGO documents and had flagged a brochure-vs-wording contradiction; the prospectus settles it — those documents simply do not cover this variant. CONFIRMED: \"Optima Secure +\" is an officially named plan (clause 4.17: \"Inbuilt in Optima Secure + plan\"), and the bonus genuinely is uncapped — clause 4.17 note (c), verbatim: \"There is no maximum limit on accumulation of Infinite benefit.\" CORRECTED: the benefit's official name is \"Infinite Benefit\", not \"Infinity Benefit\" as this record previously said throughout. CORRECTED: entryAge — the prospectus Eligibility section states \"The minimum entry age for an adult is 18 years and there is no limit on maximum entry age\", so the previous \"18–65 yrs\" was wrong. RESOLVED: coverRange — the prospectus publishes the ladder per family rather than per variant, but HDFC ERGO's own article on this plan lists \"Base Sum Insured options: ₹10 / 15 / 20 / 25 / 50 / 100 / 200 lakhs\" (verified verbatim on the page, not via a summariser), which matches the record's ₹10 L – ₹2 Cr exactly. That is a marketing page, so it corroborates the record rather than supplanting a filed document — a per-variant SI table in the prospectus or a policy schedule would still be better. CSR, complaints and network are insurer-level figures no product document carries — and note the IRDAI annual report does not publish per-insurer CSR at all, so those remain unverified. Still needs a licensed human's sign-off before verified (§16.8).",
+  "lastVerified": "2026-09-11",
+  "unverifiedFields": []
 }

@@ -137,6 +137,23 @@ main {
   background: var(--color-surface);
 }
 
+.policy-doc-link {
+  margin: 0 0 var(--space-8);
+}
+
+/* The compare engine's plan cards gain a third action in the Astro build — a real link to
+   the plan page (see Compare.astro / compare.js). components.css lays .plan-actions out as a
+   single flex row of two, which three buttons overflow, so the link takes its own row.
+   These live here rather than in components.css because that file is shared with the legacy
+   one-pager, where this link does not exist (CLAUDE.md). */
+.plan-actions {
+  flex-wrap: wrap;
+}
+
+.plan-card-link {
+  flex-basis: 100%;
+}
+
 /* ── 4. Key facts ────────────────────────────────────── */
 
 .key-facts {
@@ -358,6 +375,146 @@ main {
 
 /* The PUBLISH_UNVERIFIED preview banner. Loud on purpose — §16.8: an unverified figure
    must never be mistaken for a published one. */
+/* ── Insurer branding on plan pages ───────────────────────
+   Every accented element reads from --plan-accent, set inline on .plan-page from the record's
+   `accent` (the insurer's real brand colour, sampled from their own logo).
+
+   The hard constraint: these run from Care Health's #FFE000 yellow to Axis Max's #143A72 navy,
+   so the accent can be near-white or near-black. Nothing here puts text IN the accent or text
+   ON the accent — it is used for rules, borders and tints only, which stay legible at any
+   luminance and in both themes. Resist "just colour the heading with it": it breaks on yellow.
+   ──────────────────────────────────────────────────────── */
+
+.plan-page.is-branded {
+  --plan-accent: var(--color-primary);
+  position: relative;
+}
+
+/* A brand bar across the top of the article. */
+.plan-page.is-branded::before {
+  content: "";
+  display: block;
+  height: 4px;
+  margin-bottom: var(--space-8);
+  border-radius: var(--radius-pill);
+  background: var(--plan-accent);
+}
+
+.plan-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.plan-header > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.plan-header h1 {
+  margin: 0;
+}
+
+.plan-header-insurer {
+  display: block;
+  margin-bottom: var(--space-1);
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* The logo sits on a light tile regardless of theme — these are full-colour marks drawn for
+   white stationery, and several disappear against a dark background. */
+.plan-header-logo {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 64px;
+  height: 64px;
+  padding: var(--space-2);
+  border: 1px solid var(--color-border);
+  border-bottom: 3px solid var(--plan-accent);
+  border-radius: var(--radius-md);
+  background: #FFFFFF;
+}
+
+.plan-header-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.plan-header-score {
+  display: grid;
+  flex: none;
+  place-items: center;
+  padding: var(--space-2) var(--space-4);
+  border: 2px solid var(--plan-accent);
+  border-radius: var(--radius-md);
+  line-height: 1.1;
+}
+
+.plan-header-score strong {
+  font-size: var(--text-xl);
+}
+
+.plan-header-score span {
+  color: var(--color-text-secondary);
+  font-size: var(--text-xs);
+}
+
+/* Tie the existing blocks into the brand rather than restyling them. */
+.plan-page.is-branded .answer-block {
+  border-left-color: var(--plan-accent);
+}
+
+.plan-page.is-branded .key-facts dt {
+  color: var(--color-text-secondary);
+}
+
+.plan-page.is-branded h2 {
+  padding-left: var(--space-4);
+  border-left: 3px solid var(--plan-accent);
+}
+
+@media (max-width: 560px) {
+  .plan-header {
+    flex-wrap: wrap;
+  }
+
+  .plan-header-score {
+    order: -1;
+    margin-left: auto;
+  }
+}
+
+/* "TBD" — a figure we publish but have not yet sourced. Deliberately quiet: an amber chip,
+   not the red alarm the old verification block used. It should read as a footnote beside the
+   number, not as a warning about the page. */
+.tbd {
+  display: inline-block;
+  margin-left: var(--space-2);
+  padding: 0.1em 0.45em;
+  border: 1px solid var(--color-accent-warning, #D97706);
+  border-radius: var(--radius-sm);
+  background: rgba(217, 119, 6, 0.1);
+  color: var(--color-accent-warning, #D97706);
+  font-size: 0.7em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+  cursor: help;
+}
+
+.tbd-legend {
+  margin: var(--space-4) 0 0;
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+}
+
 .verification-warning {
   padding: var(--space-4) var(--space-5);
   border: 1px solid var(--color-accent-danger);

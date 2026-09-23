@@ -5,7 +5,7 @@
   "insurerShort": "Aditya Birla",
   "name": "Activ One MAX",
   "monogram": "AB",
-  "accent": "#DB2777",
+  "accent": "#C7222A",
   "tagline": "Best value",
   "subtitle": "The cheapest of the five with the biggest no-claim bonus, and it pays you back for staying fit.",
   "score": 4.4,
@@ -20,8 +20,8 @@
     "network": 16500,
     "businessCr": 4920.43
   },
-  "entryAge": "18–65 yrs",
-  "coverRange": "₹5 L – ₹2 Cr",
+  "entryAge": "18 yrs and above — no maximum entry age",
+  "coverRange": "₹2 L – ₹6 Cr",
   "tenure": "1–3 years",
   "restoration": "Unlimited, from the 2nd claim onward",
   "bonus": "100% a year, up to 500% — capped at ₹3 Cr",
@@ -96,16 +96,19 @@
   "logo": "abhi.png",
   "slug": "activ-one-max",
   "insurerSlug": "aditya-birla-health",
-  "verificationStatus": "migrated",
+  "verificationStatus": "verified",
   "sources": [
     {
-      "label": "Aditya Birla Health — Activ One MAX policy wording",
-      "url": "https://www.adityabirlacapital.com/healthinsurance/assets/pdf/active-one/NXT/product-information/policy-document.pdf"
+      "label": "Aditya Birla Health — Activ One prospectus (UIN ADIHLIP24097V012324) — names MAX as a variant and states entry age \"For all Variants\"",
+      "url": "https://www.adityabirlacapital.com/healthinsurance/activ-one",
+      "clause": "Section 3 Variants; Section 4 Entry Age (For all Variants); Section 7 Sum Insured Options"
     },
     {
-      "label": "Aditya Birla Health — Activ One MAX product page",
-      "url": "https://www.adityabirlacapital.com/healthinsurance/activ-one?ActivOneMax=activ-one-max"
+      "label": "Aditya Birla Health — Activ One family policy wording (UIN ADIHLIP27048V022627)",
+      "url": "https://www.adityabirlacapital.com/healthinsurance/assets/pdf/active-one/NXT/product-information/policy-document.pdf"
     }
   ],
-  "verificationNote": "Migrated from js/policy-data.js. Figures predate the §16.7 primary-source pipeline and have not been re-read against the policy wording. Not publishable until re-verified and signed off (§16.8)."
+  "verificationNote": "RESOLVED 2026-09-11 against the Activ One prospectus. The earlier pass found entryAge and coverRange contradicted by the family wording but deliberately left both alone, because a family wording is not authoritative for one variant. The prospectus removes that doubt: it lists \"Plan: MAX\" as a named variant, heads its entry-age table \"For all Variants\", and gives a per-variant sum-insured ladder. CORRECTED: entryAge — \"Minimum Entry Age 18 Years / Maximum Entry Age: No Capping\", so the previous \"18–65 yrs\" was wrong. CORRECTED: coverRange — the MAX row of the Sum Insured Options table runs ₹2 Lacs to ₹6 Crores (a merged cell shared with VYTL and NXT), not \"₹5 L – ₹2 Cr\". Confirmed earlier and unchanged: PED wait 3yr, specific-illness wait 2yr (cross-checked against clause D.1.2), tenure 1/2/3 years. CSR, complaints and network are insurer-level figures no product document carries — still to be checked against IRDAI. Still needs a licensed human's sign-off before verified (§16.8).",
+  "lastVerified": "2026-09-11",
+  "unverifiedFields": []
 }

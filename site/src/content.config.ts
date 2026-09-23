@@ -53,6 +53,13 @@ const plans = defineCollection({
       subtitle: z.string().optional(),
       monogram: z.string().optional(),
       accent: z.string().optional(),
+      /**
+       * Insurer logo filename in assets/logos/. Present in the migrated data all along but
+       * absent from this schema until 2026-09-11, so Zod silently stripped it and the plan
+       * template could not show a logo — worth remembering that a field missing HERE looks
+       * exactly like a field missing from the data.
+       */
+      logo: z.string().optional(),
 
       score: z.number().min(0).max(5),
       scoreBreakdown: z
@@ -112,6 +119,16 @@ const plans = defineCollection({
       sources: z.array(source).default([]),
       /** Free-text note on what still needs checking before this record can be published. */
       verificationNote: z.string().optional(),
+      /**
+       * Field names whose value has NOT been confirmed against a primary source — rendered as
+       * a "TBD" marker beside that figure on the page (§11: never present an unsourced number
+       * as though it were sourced). Use the same names the template reads: 'coverRange',
+       * 'entryAge', 'tenure', 'roomRent', 'metrics.csr', and so on.
+       *
+       * A record can be `verified` and still list fields here: verified means the owner has
+       * approved publishing the record, not that every figure in it has a citation.
+       */
+      unverifiedFields: z.array(z.string()).default([]),
     })
     .superRefine((plan, ctx) => {
       // The §5.2 contract, enforced only where the record claims to be verified.

@@ -1,67 +1,25 @@
-// SEO_ASTRO_PLAN.md §5.2 / §11 / §16.8 — the publication gate.
+// SEO_ASTRO_PLAN.md §5.2 / §11 / §16.8 — plan publication.
 //
-// Every route that generates a plan page MUST source its paths from publishablePlans().
-// Calling getCollection('plans') directly in a route bypasses the gate and can publish an
-// unverified figure under an IRDAI-licensed advisor's name. That is a compliance problem,
-// not a style preference.
+// 2026-09-11, owner decision: publish every record regardless of verificationStatus, and
+// disclose verification state ON THE PAGE instead of hiding the page. Previously this file
+// hard-gated on verificationStatus === 'verified' (a per-record binary), which meant a
+// record with nine confirmed fields and one open question was invisible in its entirety.
+// The owner's call was that per-field honesty on a live page is the more useful posture for
+// this site than an all-or-nothing publish gate — see each record's verificationNote and the
+// "Verification status" block on the plan page template, which renders it. §16.8 (a licensed
+// human should still review the content) still stands as a separate, ongoing obligation; it
+// is no longer what decides whether a page exists.
+//
+// Every route that generates a plan page still sources its paths from publishablePlans(),
+// not getCollection('plans') directly, so there is one place this policy is implemented.
 import { getCollection, type CollectionEntry } from 'astro:content'
 
 export type Plan = CollectionEntry<'plans'>
 export type PlanCategory = Plan['data']['category']
 
-/**
- * Dev-only escape hatch.
- *
- * Right now all 10 migrated records are `migrated`, so a strict gate yields zero plan
- * pages and there is nothing to look at while building the template — and §2.1 lesson 4
- * is that you must look at one page before generating thousands.
- *
- * So: unverified records render in `astro dev` and in an explicit opt-in build, and never
- * in a plain production build. Fails closed — anything other than the exact string '1'
- * leaves the gate shut.
- */
-function unverifiedAllowed(): boolean {
-  if (process.env.PUBLISH_UNVERIFIED === '1') return true
-  return import.meta.env.DEV === true
-}
-
-let warned = false
-
-/**
- * The only sanctioned source of plan pages.
- *
- * Returns records cleared for publication: `verified` always, plus `migrated`/`extracted`
- * when the dev hatch above is open.
- */
+/** The only sanctioned source of plan pages. Currently: everything. */
 export async function publishablePlans(): Promise<Plan[]> {
-  const all = await getCollection('plans')
-  const verified = all.filter((p) => p.data.verificationStatus === 'verified')
-
-  if (!unverifiedAllowed()) {
-    if (verified.length === 0 && !warned) {
-      warned = true
-      console.warn(
-        '[plans] 0 of ' +
-          all.length +
-          ' plan records are verified, so no plan pages will be generated.\n' +
-          '        Verify records against the policy wording (§16.7) and set\n' +
-          "        verificationStatus: 'verified' with sources[] and lastVerified.\n" +
-          '        To preview unverified records anyway: PUBLISH_UNVERIFIED=1 npm run build',
-      )
-    }
-    return verified
-  }
-
-  const unverified = all.filter((p) => p.data.verificationStatus !== 'verified')
-  if (unverified.length > 0 && !warned) {
-    warned = true
-    console.warn(
-      `[plans] ⚠ PUBLISHING ${unverified.length} UNVERIFIED plan record(s). ` +
-        'Preview only — these must not be deployed (§16.8).',
-    )
-  }
-
-  return all
+  return getCollection('plans')
 }
 
 /** Plans in one category, best score first. */

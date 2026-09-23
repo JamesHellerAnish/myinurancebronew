@@ -1,14 +1,381 @@
 # Myinsurancebro — Astro Programmatic SEO Plan of Action
 
-**Created:** 2026-08-13 · **Last updated:** 2026-09-10
-**Branch:** `revamp/audience-redesign-and-compare`
-**Status:** Planning complete · Scope locked (§14) · Research done (§16) · Harvest started (§16.7) ·
-**Phase 0 COMPLETE bar two owner-only items (IRDAI licence number, Search Console). Phase 1a route
-families BUILT but not publishable — the verification gate is closed, see §0c. — shell builds, 10 plan pages, §1.2 thesis verified, plan template
-styled and inspected in a browser, robots/llms.txt shipped, chrome + home + methodology + category
-hubs live, personas data-driven, CWV blockers fixed, lead pipeline tested end to end, every internal
-link resolving. §0a blockers all cleared. See §0b.**
+**Created:** 2026-08-13 · **Last updated:** 2026-09-11
+**Branch:** `main` (merged from `revamp/audience-redesign-and-compare`)
+**Status:** Planning complete · Scope locked (§14) · Research done (§16) · Harvest advancing (§16.7) ·
+**🔴 2026-09-11, owner decision: the `verificationStatus === 'verified'` publish gate is REMOVED.**
+Every plan page (and everything downstream of it — hubs, best-plans, companies, comparisons,
+persona pages, `llms.txt`) now builds regardless of verification status. Per-record honesty is
+disclosed **on the page** instead — see §0g. **This is a reversal of §0c/§0d's "not publishable"
+framing** and of the original §5.3 design; read §0g before touching `publishablePlans()`.
+Build is 107 pages, 0 broken internal links (Astro + legacy both audited). See §0g for the full
+session record, including which plan records still have open verification questions.
 **Purpose:** Living handover doc. Update it as work proceeds so progress survives a context reset.
+
+---
+
+## 0g. Session log — 2026-09-11 (verification pass, gate removed, site published)
+
+**The headline change this session: the publish gate is gone.** Previously `publishablePlans()`
+(`site/src/lib/plans.ts`) only returned records with `verificationStatus: 'verified'`, which meant
+a record with nine confirmed fields and one open question was invisible in its entirety — and
+since §16.8 requires a **licensed human**, not an AI reading pass, to set `verified`, that meant
+zero plan pages, permanently, until that sign-off happened. Owner's call: publish everything, and
+disclose verification state on the page instead of hiding the page. `publishablePlans()` is now
+`return getCollection('plans')`, full stop. Every route already sourced from that one function
+(§5.2's own rule), so removing the gate there cascaded to all of them — no route file needed
+touching. **Build went from 58 → 107 pages.** Nav (`Header.astro`) and the footer both derive
+their category links from the same function, so "Health"/"Term Life" appeared in the nav
+automatically, with no separate code change.
+
+**§16.8 has not gone away — it changed what it gates.** No record has been set to `verified` and
+none should be without an actual licensed sign-off. What changed is that a record's existence as a
+page no longer waits on that; its *labelled reliability* does. `verificationStatus` moved from
+`migrated` to `extracted` on all 10 records this session (meaning: read against a primary source,
+not merely ported from `js/policy-data.js`) — never `verified`.
+
+### The reading pass — all 10 plan records checked against a primary source
+
+Every one of the 10 published plans was read against a policy wording, brochure, or presentation
+this session (several previously had none at all — Care Supreme and Niva Bupa ReAssure were
+`blocked`, ABSL and ICICI had nothing). Findings are recorded two places: the terse per-plan
+`verification` block in `data-raw/manifest.json`, and — new this session — the full prose
+in each record's own `verificationNote` field, which is what actually renders on the live page
+(see "Per-page disclosure" below). Four factual corrections were applied at the source
+(`js/policy-data.js`, then `npm run migrate`), so both the legacy site and the Astro rebuild
+reflect them:
+
+| Plan | Correction |
+|---|---|
+| HDFC Life Click2Protect Supreme Plus | `coverRange` max ₹10 Cr → "no maximum limit (subject to underwriting)" |
+| Aditya Birla Sun Life Super Term Plan | same correction, same reason |
+| ICICI Prudential iProtect Smart Plus | `coverRange` max ₹10 Cr → "unlimited (subject to underwriting)" |
+| SBI General Super Health Platinum Infinite | `waiting.maternity` "Not covered" → covered on Platinum Infinite, ₹2L cap, stated waiting period — the wording directly contradicted the migrated figure |
+
+**The pattern worth remembering:** every term plan checked states "no maximum" / "unlimited" for
+the top of its cover range in its actual source document, where the dataset had a flat ₹10 Cr on
+all five. That is very likely one systemic placeholder, not five independent errors — worth
+keeping in mind if a sixth term plan is ever added with the same figure unverified.
+
+**Two genuine product-identity mistakes were found and fixed**, both the same shape: a URL that
+*looked* right pointed at the wrong product.
+
+- **HDFC Life Click2Protect** — the dataset says "Supreme Plus"; the only document on file was
+  for "Click2Protect Super", a different plan. The real product (UIN `101N189V03`) exists at
+  `/term-insurance-plans/click-2-protect-supreme-plus`; its brochure isn't linked from any static
+  `<a href>` on the page (it's populated into a hidden `#fileDownloader` link by JS), so it had to
+  be found via a full-page JS/HTML regex scan for `.pdf` strings. Re-verified against the correct
+  document; see the correction above plus several confirmed-clean fields (60 critical illnesses,
+  12-month suicide clause, Life Stage Boost mechanics).
+- **HDFC ERGO Optima Secure+** — this one is **not fully resolved**, and is the most important
+  open item in the dataset. The wording originally fetched (and a second, newer revision, and a
+  Customer Information Sheet — three official documents, two UINs) never mentions "Optima Secure+"
+  or "Infinite Benefit" at all, and caps every named variant's bonus at 100%. It looked like the
+  product didn't exist. It does: confirmed directly on `/health-insurance/optima-secure-plus` (not
+  `/optima-secure` — the missing "+" was the whole bug) and in two brochure printings, both citing
+  UIN `HDFHLIP26058V082526` — the **same UIN as the wording that contradicts it**. HDFC ERGO's own
+  brochure and HDFC ERGO's own policy wording, filed under the identical UIN, disagree on whether
+  the flagship plan's headline benefit is capped. This is now the top of `data-raw/manifest.json`'s
+  open-items list for that record; it does not look resolvable by finding a fourth document.
+
+**Everything else found is recorded per-plan, not restated here** — read a plan's `verificationNote`
+directly (`site/src/content/plans/*.json`) or `data-raw/manifest.json` for the full detail. In
+outline: Activ One MAX's entry age/cover range are contradicted by its wording but deliberately
+*not* corrected (family wording, MAX-variant-specific limits not confirmed); Bajaj eTouch II's
+tenure is contradicted but the source table is too column-scrambled by `pdftotext` to safely edit;
+Axis Max's critical-illness rider and several plans' entry ages are unconfirmed rather than wrong
+— the document type just doesn't carry that table. Care Supreme, ABSL and ICICI are still only
+backed by a brochure/CIS, not the stronger policy wording.
+
+**Not touched this session, still open:** the IRDAI registration number in the footer
+(`CA0001`) and the FY2024–26 attribution question — both from §0b, both still need the owner.
+CSR/complaints/solvency figures were never cross-checked against IRDAI's own disclosures on any
+of the 10 — the IRDAI annual reports are still stuck behind WebFetch's 10 MB limit (see
+`data-raw/MANUAL-DOWNLOAD.md`).
+
+### Per-page disclosure, not a gate
+
+`site/src/pages/[category]/[insurer]/[plan].astro`'s Sources section now renders the record's full
+`verificationNote` prose whenever `verificationStatus !== 'verified'`, inside the existing
+`.verification-warning` block (restyled copy, same CSS class — §2.1 lesson 4 says reuse a styled
+class rather than ship a new unstyled one). A reader sees exactly what was confirmed, what was
+corrected, and what's still open, in the plan's own words — not a blanket "preview only" notice.
+
+**The same disclosure was extended to `llms.txt` and `llms-full.txt`** — the files handed directly
+to AI crawlers. They inherited the old gate too, and without this fix would have shipped
+unverified figures to a model with zero caveat while a human reader got one. `planLine()`
+(`lib/llms.ts`) now appends `— NOT YET INDEPENDENTLY VERIFIED` per plan; `llms-full.txt`'s
+`planBlock()` appends the full verification note.
+
+### The Chief Advisor now has a name and a credential
+
+Owner-supplied 2026-09-11: **Danish Pandita**, IRDAI licence `MBHNOC5128059` — the *individual*
+advisor's licence, explicitly distinct from the Organization's own Corporate Agent registration
+(`CA0001`, still unresolved, see above). Not independently verified against IRDAI's own register —
+no lookup tool is available in this environment — accepted as owner-stated fact, same trust model
+CLAUDE.md invariant 7 already uses for the team roles.
+
+Applied in both halves of the migration: the "Chief Advisor & Owner" byline and credential chip in
+`index.html` and `site/src/components/home/Advisor.astro` (kept identical, as they were before).
+Wired into structured data too — `site/src/lib/schema.ts` gained `advisorPersonSchema()`, and
+`articleSchema()` (every guide's `Article` JSON-LD) now sets `author` to this Person instead of the
+organisation. This was a stub explicitly waiting for exactly this ("no person to attribute these
+to yet") — now there is one.
+
+### Smaller fixes this session
+
+- **A real "View policy document" button** on every plan page (§16.4's Ditto teardown listed this
+  as part of the plan header — "Download Policy Info" — and it had never been built). Links to
+  whichever `sources[]` entry isn't labelled a product page, i.e. the actual wording/brochure, on
+  the insurer's own site.
+- **The home page compare cards now link to the plan pages.** This was a real hole: the
+  server-rendered fallback table in `#cmpGrid` did link each plan, but `compare.js` overwrites
+  that table's `innerHTML` on hydration, so *every visitor with JavaScript on* saw cards with no
+  route to a plan page — the only "Full review" button switched to the in-page deep-dive tab.
+  Fixed by having `Compare.astro` hand the engine a plan-id → URL map as `data-plan-urls` on
+  `#cmpGrid` (built from `planPath()`, so plan URLs keep one source of truth rather than
+  reimplementing `slugify()` in the engine). `compare.js` reads it once and renders a
+  "Full review & sources →" link per card; the existing deep-dive button is relabelled
+  "Quick view" so the two destinations aren't both called "Full review".
+  **The attribute doubles as the Astro-context flag** — the legacy one-pager doesn't emit it, so
+  there `planUrls` is `{}`, no link renders, and the button keeps its original "Full review"
+  label. Verified in a browser on both: Astro serves 5 links resolving 200, legacy serves 0 links
+  and unchanged behaviour. The two layout rules this needed went in `css/pages.css`, not
+  `components.css` — that file is shared with the legacy site (CLAUDE.md).
+- **…and the same hole existed in the engine's other four views**, found by checking after the
+  explore grid was fixed. All now link through, via a shared `planLink()` helper:
+  **compare matrix** (plan name in each column head), **deep dive** (had *no* route to the plan
+  page at all — the worst of them, since it's the full in-page review; link added beside its CTA),
+  **premium table** (each column is one plan, so its head links), and the **insurer league table**.
+  The league table needed a second map: it lists insurers we rate but stock no plan from, whose
+  pages don't exist, so `Compare.astro` emits `data-insurer-urls` built from `insurersWithPlans()`
+  and keyed `"<category>|<insurer name>"` — the unstocked ones stay plain text. Verified: on
+  health, 5 insurers link and 5 (Bajaj General, Go Digit, Generali Central, ICICI Lombard,
+  TATA AIG) correctly do not; every URL rendered across all views returns 200; legacy renders
+  zero links in all four views with matrix and deep dive still working.
+- **Footer** (`Footer.astro`) gained links to best-plans and companies pages per live category, and
+  a link per published persona — all previously-live route families the footer's own site map
+  didn't mention. The legacy `index.html` footer was deliberately **not** given the same links:
+  those pages only exist in the Astro build, which isn't deployed, so linking them from the
+  currently-live legacy site would add dead links to production.
+- **Two full link audits**, Astro `dist/` (3,860 internal `href`/`src` checked) and the legacy
+  `index.html` (66 checked) — **zero broken links** in either.
+
+### 🔴→✅ The Optima Secure+ question is resolved — and the lesson generalises
+
+Later the same session, **the prospectus settled it**:
+`https://customer-portal-assets.hdfcergo.com/documents/Prospectus_myOptimaSecure-676203564982.pdf`
+(same UIN, `HDFHLIP26058V082526`). Clause **4.17 Infinite Benefit** is headed
+*"[Inbuilt in 'Optima Secure +' plan …]"* and its note (c) reads, verbatim:
+**"There is no maximum limit on accumulation of Infinite benefit."** The plan is real, the
+benefit is real, and the uncapped claim is correct — now backed by a regulatory filing rather
+than a brochure. The apparent brochure-vs-wording contradiction was a false alarm: the wording
+PDF on the download page covers the *other* variants and simply does not describe this one.
+
+Two corrections fell out of the same document, both applied to `js/policy-data.js`:
+**the benefit's official name is "Infinite Benefit"**, not "Infinity Benefit" as the dataset said
+throughout; and **entry age has no upper limit** — Section 1 Eligibility: *"The minimum entry age
+for an adult is 18 years and there is no limit on maximum entry age"* — so the record's
+"18–65 yrs" was simply wrong. Still open on this plan: the cover-range *floor* for the "+"
+variant specifically (the ladder is published per-family, not per-variant).
+
+**The generalisable lesson — check the prospectus before concluding anything is missing.** Across
+this dataset the policy *wording* repeatedly failed to carry eligibility tables, sum-insured
+ladders and variant-specific benefits; the **prospectus** carries all three. Several plans still
+marked "unconfirmed" here (Care Supreme's entry age and SI ladder, SBI's 24-vs-12-month specific
+wait, Activ One MAX's MAX-variant limits, Niva Bupa's Booster+ tier mapping) are most likely
+answerable the same way, and their prospectus URLs are listed in `data-raw/MANUAL-DOWNLOAD.md`.
+
+### Second document delivery, same day — six prospectuses, and what they settled
+
+The owner supplied both IRDAI annual reports plus prospectuses for SBI Super Health, Activ One,
+ReAssure 2.0, Axis Max STPP, the Axis Max CI rider, an ICICI specimen policy and a Care
+prospectus. Outcomes, all recorded per-record in `verificationNote`:
+
+| Plan | Settled |
+|---|---|
+| **Activ One MAX** | Prospectus names **"Plan: MAX"** and heads its age table *"For all Variants"* — the family-wording caveat that blocked the last pass is gone. entryAge → no maximum (was 18–65); coverRange → **₹2 L – ₹6 Cr** (was ₹5 L – ₹2 Cr), from the MAX row of the SI table |
+| **SBI Super Health** | entryAge → **"No Limit"** (was 18–65). The "65 years" directly beneath it in the table belongs to the optional Domestic Help cover — a different row |
+| **Niva Bupa ReAssure Platinum+** | Booster+ mapping finally pinned: Diamond+ 3× · **Platinum+ 5×** · Titanium+ 10×. The record was already right. Cover to ₹1 Cr confirmed. Note the prospectus carries a **newer UIN** (NBHHLIP27054V032627) than the wording |
+| **Axis Max STPP** | entry age 18–65 confirmed. coverRange max → "No Limit …Board approved underwriting policy". The CI rider's 64 illnesses are real but **only on its Platinum variants** (Gold covers 22), and the rider term is 5–30 years, so the record's "20 yrs" matched neither bound |
+| **Care Supreme** | ❌ **Wrong product supplied** — UIN `CHIHLIP26055V092526` is the plain "CARE" plan, zero mentions of Care Supreme. Entry age and SI ladder still open |
+| **ICICI iProtect** | Specimen policy is a T&C document with no eligibility table, so the ₹50 L floor is still unconfirmed |
+
+**That makes five term plans out of five** with a wrong `₹10 Cr` cover ceiling, and now **three
+health plans out of three checked** (HDFC ERGO, SBI, Activ One) whose real answer is "no maximum
+entry age" where the dataset said "18–65 yrs". Both look like single placeholders propagated
+across the dataset rather than per-plan errors — worth assuming the same of any plan added later.
+
+### 🔴 The IRDAI annual reports do not contain the figures the site credits to them
+
+Both reports arrived and were extracted (16,536 lines for FY2024-25). The finding is more
+significant than the download:
+
+**There is no per-insurer claim settlement ratio anywhere in the IRDAI Annual Report.** Table
+I.11 gives industry aggregates only — 97.82% of individual death claims settled, across all life
+insurers. Insurer names appear barely a dozen times each in the whole document, nearly all in
+footnotes about the Sahara/SBI Life portfolio transfer.
+
+So every per-insurer CSR, complaint and solvency figure on the site — on every plan page, every
+comparison page and the league table — **remains unverified, and the source line crediting them
+to the "IRDAI Annual Report" cannot be right.** This upgrades §11's flagged risk and §16.7's
+suspicion to a confirmed attribution problem. The figures must have come from the IRDAI
+*Handbook on Indian Insurance Statistics* or from insurer public disclosures (Form NL-*/L-*);
+`data-raw/MANUAL-DOWNLOAD.md` §1 now says so and lists where to look.
+
+### Third delivery — the entry-age placeholder, and a near-miss on assuming a pattern
+
+Care Supreme's **correct** prospectus (UIN `CHIHLIP27061V032627`), the SBI brochure, the ICICI
+brochure and Bajaj's real policy document (UIN `116N198V09`) arrived. Outcomes:
+
+- **Care Supreme** — entryAge corrected: *"Entry Age – Maximum: Adult: Lifelong"*.
+- **SBI Super Health** — the specific-illness wait is **resolved to 1 year**, which the record
+  already said. The wording and prospectus both only gave "24/12 months as specified in the
+  policy schedule"; the brochure's variant table settles it under the header row
+  *Prime | Elite | Premier | Platinum | Platinum Infinite*.
+- **ICICI iProtect** — *"Minimum Sum Assured ₹50,00,000"*, confirming the record's floor; entry
+  age 18/65 confirmed from its eligibility table.
+- **HDFC ERGO Optima Secure+** — cover range corroborated: HDFC ERGO's own article lists
+  *"Base Sum Insured options: ₹10 / 15 / 20 / 25 / 50 / 100 / 200 lakhs"*, matching the record
+  exactly. Verified verbatim on the page rather than through a summariser. It is marketing copy,
+  so it corroborates rather than supplants a filed document.
+- **Bajaj eTouch II** — source upgraded to the real policy document, but it is a contract
+  template with no eligibility table, so its two open fields stay open.
+
+**`entryAge: '18–65 yrs'` was a placeholder on all five health plans.** Four are now corrected to
+"no maximum entry age". The fifth is the important one: **Niva Bupa genuinely differs** — its
+prospectus (Policy Design 1.2) caps adults at **99 years**, so the answer there is "18–99 yrs",
+not "no maximum". With four identical results in a row it would have been easy to assume the
+fifth and be wrong. Checking took one grep. Worth remembering when the next plan is added: the
+pattern tells you where to look, never what to write.
+
+### Owner sign-off, and the switch from a warning block to inline "TBD"
+
+**2026-09-11: the owner approved all ten records.** That is the §16.8 sign-off — the licence
+number supplied earlier is a *credential* (who the advisor is); sign-off is the separate act of
+a qualified person approving what gets published. All ten are now
+`verificationStatus: 'verified'` with `lastVerified: 2026-09-11`.
+
+The red `.verification-warning` block is **gone from the plan template**, replaced by a
+per-field marker at the owner's direction: a small amber **TBD** chip beside any individual
+figure not yet confirmed against a primary source, plus a one-line legend. This is better than
+what it replaced — a block of prose at the foot of the page described uncertainty far away from
+the number it concerned; the chip sits on the number itself.
+
+New schema field: **`unverifiedFields: string[]`** on the plans collection, holding field names
+(`'coverRange'`, `'entryAge'`, `'metrics.csr'`, …). `verified` and a populated
+`unverifiedFields` are not contradictory — verified means the owner approved publishing the
+record, not that every figure in it carries a citation. Preserved across `npm run migrate`
+alongside the other verification metadata.
+
+Currently flagged: Care Supreme (coverRange, roomRent) · SBI Super Health (coverRange) ·
+Bajaj eTouch II (coverRange, tenure) · HDFC Click2Protect (entryAge). The other six carry none.
+
+`verificationNote` is **no longer rendered** — it stays in the data as the provenance trail, but
+it is a working record of how each figure was checked, not page copy.
+
+The same disclosure reaches the AI-facing files, as before: `llms.txt` appends
+`(unsourced fields: …)` per plan and `llms-full.txt` names them in a sentence. A model gets
+exactly the caveat a human reader gets.
+
+> **⚠ Not covered by the above, and deliberately so: `metrics.csr`, `complaints`, `solvency`
+> and `network` are unsourced on all ten records** — the IRDAI annual reports do not publish
+> per-insurer figures (see above). They are *not* currently flagged TBD, because doing that
+> would put a chip on the headline number of every plan page, every comparison and the league
+> table. That is a sitewide presentation decision for the owner, not one to make silently in a
+> script. Raised; awaiting a call.
+
+### Insurer branding on plan pages — and the accents were all wrong
+
+Plan pages now carry the insurer's own identity: their logo on a tile in the header, an eyebrow
+with the insurer name, a score chip, a brand bar across the top of the article, and the accent
+picked up on the answer-block rule and every `h2`. All of it reads from one CSS custom property,
+`--plan-accent`, set inline on `.plan-page` from the record's `accent`.
+
+**The accents in the dataset were placeholders, and nobody had noticed.** Every one was a
+Tailwind palette default — `#DC2626` is red-600, `#2563EB` is blue-600, `#7C3AED` is violet-600.
+They were invisible because `accent` is only used as a *fallback monogram tile* in the compare
+engine, and every insurer we stock has a logo, so the value was never rendered anywhere.
+
+Getting real ones: there is still no PDF rasteriser here, and parsing the brochures' content
+streams for colour operators found nothing (the colour lives inside image XObjects). What worked
+was sampling **the logos we already ship** — load each PNG into a browser canvas, drop
+transparent/white/black/grey pixels, quantise the rest and take the dominant cluster. The logo is
+the mark being displayed next to the accent, so deriving one from the other guarantees they
+agree. Axis Max is the exception: its shipped logo is 32×32 and yielded 13 usable pixels, so that
+one came from the header colour of axismaxlife.com.
+
+| Insurer | Was (Tailwind) | Now | How wrong |
+|---|---|---|---|
+| Care Health | `#16A34A` green | **`#FFE000`** | Care's brand is **yellow** |
+| HDFC Life | `#0EA5E9` sky | **`#E2101A`** | brand is **red** |
+| Aditya Birla (both) | `#DB2777` pink | **`#C7222A`** | brand is **red** |
+| Axis Max Life | `#7C3AED` violet | **`#143A72`** | brand is **navy** |
+| Bajaj Life | `#0891B2` cyan | `#005EAC` | wrong shade |
+| Niva Bupa | `#2563EB` blue | `#00AEEF` | wrong shade |
+| SBI General | `#1E3A8A` navy | `#0094D9` | wrong shade |
+| HDFC ERGO · ICICI Pru | — | `#D91923` · `#F58220` | close already |
+
+**The design constraint worth keeping in mind before touching this CSS:** these accents run from
+Care's `#FFE000` yellow to Axis Max's `#143A72` navy, so the accent can be near-white or
+near-black. Nothing in `.plan-page.is-branded` puts text *in* the accent or text *on* it — it is
+used for rules, borders and tints only, which stay legible at any luminance and in both themes.
+Verified in light and dark: headings stay theme-coloured, only borders take the accent, and the
+logo tile stays white in dark mode because these are full-colour marks drawn for white
+stationery and several vanish on a dark ground. "Just colour the heading with it" breaks on
+yellow.
+
+**One bug found on the way:** `logo` was missing from the plans Zod schema, so Astro silently
+stripped it and `d.logo` was always undefined — the field was in the data the whole time. A field
+missing from `content.config.ts` looks exactly like a field missing from the data.
+
+### Glossary: a second source was tried and rejected
+
+§0e wanted more wordings to widen the glossary beyond its single Aditya Birla source. SBI's
+wording parses cleanly — 40 definitions match the reader — **and every one is corrupt.** It is a
+two-column PDF, and `pdftotext -layout` interleaves the columns, splicing two unrelated
+definitions into one plausible-looking sentence:
+
+> *"Mental Illness means a substantial disorder of thinking, mood, **Sub-limits to which benets
+> under the Policy are subject to**, us"*
+
+That is text SBI never wrote. Since this file publishes definitions verbatim with the insurer's
+UIN attached, a plausible splice is far worse than a missing term — it misquotes a regulated
+document. Added, caught, reverted the same session; `extract-glossary.mjs` now carries a loud
+comment block so nobody re-adds it. **Single-column wordings only** until column-aware
+extraction exists. The reader was generalised to accept SBI's no-colon `"N. Term means …"` form
+along the way, which legitimately lifted the Aditya Birla harvest 61 → 64; published terms stay
+at 47 (the rest still await an editorial layer).
+
+### Tooling fix: `npm run migrate` no longer destroys verification work
+
+`migrate-policy-data.mjs` used to reset `verificationStatus`, `verificationNote` and `sources` to
+the "migrated" defaults on **every run** — those three fields are the human record of reading a
+plan against its wording and do not exist in `js/policy-data.js` at all, so a routine re-migrate
+silently threw them away. It cost a full re-entry of ten records' notes this session before
+anyone noticed. The script now reads the existing content files first and carries that metadata
+forward (including hand-curated `sources` that carry clause references), defaulting only for
+records that have none. Plan *data* still comes from `js/policy-data.js` — correct a figure
+there, never in the generated file.
+
+### What's still not done (unchanged in kind, just re-confirmed)
+
+Everything in §"Why Phase 1 is still not complete" below is still true *except* the "verification
+gate is closed" framing — pages exist now regardless. Still genuinely missing: the five Tier A
+categories have zero plan records (so their hubs/best-plans can't generate — that's a data gap,
+not a gate), 13 of 16 personas, most of the glossary and guides targets, calculators, tax pages,
+cover-amount pages, condition pages, insurer-vs-insurer comparisons, and standalone
+`/about/`/`/contact/`/`/advisors/` pages. None of these have a route file yet — see §6.2.
+
+**Explicitly flagged and not attempted:** per-insurer visual theming on plan pages (matching each
+insurer's own brochure colour palette and background treatment) was requested this session and
+not done. No PDF-to-image tool is available in this environment (`pdftoppm`, `pdfimages`,
+ImageMagick all absent — checked directly), so no brochure's actual visual palette can be
+inspected here; the existing per-insurer `accent` hex in `policyData.brandFor()` is a brand-colour
+guess made earlier in the project, not something extracted from a brochure. Doing this properly
+needs either brochure-page screenshots supplied by the owner (readable directly), or a session
+with image tooling — flagged as an Opus/high-effort candidate given it's real design judgement
+across 10 different brand identities, not a mechanical task.
 
 ---
 

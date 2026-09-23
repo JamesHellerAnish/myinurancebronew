@@ -24,7 +24,25 @@
       "productPage": "https://www.hdfcergo.com/health-insurance/optima-secure",
       "extractedFile": "extracted/hdfcergo-optima-secure.txt",
       "fetchedAt": "2026-08-14",
-      "notes": "PIPELINE PROVEN HERE. 3,275 lines. 73 Standard Definitions, Excl01-Excl18, PED 36mo w/ buy-down to 24mo. Product page also fetchable and cross-validates."
+      "notes": "PIPELINE PROVEN HERE. 3,275 lines. 73 Standard Definitions, Excl01-Excl18, PED 36mo w/ buy-down to 24mo. Product page also fetchable and cross-validates.",
+      "verification": {
+        "correction_2026_09_11": "RETRACTING the earlier 'product doesn't exist' finding — it was wrong. Verified directly in a real browser (not WebFetch summarization) at https://www.hdfcergo.com/health-insurance/optima-secure-plus and https://www.hdfcergo.com/download/brochure/health : 'Optima Secure+' is a real, currently-marketed product, and 'Infinite Benefit' (dataset spells it 'Infinity') is real, described on the live product page and in a dedicated 'Optima Secure+ Brochure' (https://customer-portal-assets.hdfcergo.com/documents/OptimaSecure+-BR-Opt2(2)-146549135394.pdf, extracted to extracted/health-hdfcergo-optima-secure-plus-brochure.txt) as: 'Since there is no maximum capping on Infinite Benefit, this cycle of additional 100% every year never stops & continues for infinite times.' This directly matches the dataset's claim.",
+        "confirmed": [
+          "bonus/Infinite Benefit — 100% of base SI added annually, no cap, per the dedicated Optima Secure+ brochure — matches dataset"
+        ],
+        "RESOLVED_2026_09_11": "✅ The prospectus settles it. https://customer-portal-assets.hdfcergo.com/documents/Prospectus_myOptimaSecure-676203564982.pdf (UIN HDFHLIP26058V082526, 15,080 lines, extracted/hdfcergo-optima-secure-prospectus.txt) names 'Optima Secure +' as a plan in its own right and defines the benefit at clause 4.17 — '[Inbuilt in Optima Secure + plan]' — with note (c) stating verbatim: 'There is no maximum limit on accumulation of Infinite benefit.' So the dataset's uncapped claim is correct and is now backed by a regulatory document, not just a brochure. The earlier 'brochure vs wording' contradiction was a false alarm: the policy-wording PDF on the download page covers the other variants and simply does not describe this one. Two dataset corrections fell out of the same document — the benefit's real name is 'Infinite Benefit' (was 'Infinity Benefit' throughout) and entry age has no upper limit (was '18–65 yrs'). Prospectus Section 1: 'The minimum entry age for an adult is 18 years and there is no limit on maximum entry age.'",
+        "stillOpen": "coverRange floor for this specific variant. The prospectus lists the family ladder (5L/7.5L/10L/15L/20L/25L/50L/75L/1Cr/2Cr) 'depending on the Plan opted' without breaking it down per variant; the Optima Secure+ illustration uses ₹15L. The ₹2 Cr ceiling matches the record. Needs the per-variant SI table or a policy schedule.",
+        "recommendation": "Do not publish the 'no cap' claim as verified from a wording — it is verified from a brochure only (docType: brochure = weaker, cross-check only). Triangulated across THREE independent official HDFC ERGO documents now (two full policy wordings, UIN HDFHLIP25041V062425 and HDFHLIP26058V082526, plus a Customer Information Sheet, UIN HDFHLIP23123V022223) — all three agree with each other (same 7-variant family, bonus capped at 100%, no 'Infinite Benefit') and all three disagree with two separate brochure printings (both UIN HDFHLIP26058V082526, both describing an uncapped Infinite Benefit). This is a settled, well-corroborated brochure-vs-wording discrepancy, not a missing-document problem — further document searches are unlikely to change the answer. Owner should raise with HDFC ERGO directly if resolution is needed before launch; otherwise publish the bonus field as brochure-sourced with that caveat.",
+        "documentsChecked_2026_09_11": [
+          "extracted/hdfcergo-optima-secure-plus-brochure.txt (brochure, UIN HDFHLIP26058V082526) — describes Infinite Benefit, uncapped",
+          "extracted/health-hdfcergo-optima-secure-plus-2.txt (second brochure printing, same UIN) — same claim, corroborates",
+          "extracted/hdfcergo-OPTIMA-PLUS-WRONG-PRODUCT.txt (WRONG PRODUCT — 'Optima Plus', UIN HDHHLIP21336V022021, an unrelated older plan: different benefit numbers, no Secure/Plus Benefit/Cumulative Bonus mechanics at all. Kept, and renamed to say so, because its original filename read like a match and cost a detour once already)",
+          "extracted/optima_secure_policywordings.txt (Customer Information Sheet, UIN HDFHLIP23123V022223, an older revision of the my:Optima Secure family) — corroborates the wording-side finding, no Infinite Benefit"
+        ],
+        "supersedes": "The webSearchAttempted / newerWordingFetched notes below are kept for the record but the 'product doesn't exist' conclusion they supported is wrong.",
+        "webSearchAttempted": ["https://www.google.com/search?q=HDFC+ERGO+%22Infinity+Benefit%22+Optima+Secure (blocked, no server-rendered results)", "https://html.duckduckgo.com/html/?q=HDFC+ERGO+%22Infinity+Benefit%22+health+insurance (CAPTCHA wall)"],
+        "newerWordingFetched": "extracted/hdfcergo-optima-secure-2026-04.txt (UIN HDFHLIP26058V082526, pulled 2026-09-11 from https://customer-portal-assets.hdfcergo.com/documents/PolicyWordings_myOptimaSecure-76673175551.pdf) — no Infinite/Infinity Benefit text found, but see unresolvedDiscrepancy above."
+      }
     },
     {
       "id": "health-care-supreme",
@@ -36,7 +54,25 @@
       "sourceUrl": "https://cms.careinsurance.com/cms/public/uploads/download_center/care-supreme---policy-terms-and-conditions.pdf",
       "productPage": "https://www.careinsurance.com/product/care-supreme",
       "notes": "www.careinsurance.com returns 403. PDF is on cms.careinsurance.com — DIFFERENT HOST, may not be blocked. Test before assuming manual download is needed.",
-      "blockedNote": "Plain curl returned 406 on 2026-09-10. Do not spoof a User-Agent to get around it (README). Use WebFetch, which saves the PDF, or download by hand."
+      "blockedNote": "Plain curl returned 406 on 2026-09-10. Do not spoof a User-Agent to get around it (README). Use WebFetch, which saves the PDF, or download by hand.",
+      "status_note_2026_09_11": "Owner manually downloaded and extracted 2026-09-11. See verification below — status left as 'blocked' in this field only because the automated fetch is still refused; the document itself is now in hand.",
+      "extractedFile": "extracted/care-supreme---policy-terms---conditions--effective-from-29-april-2026-.txt",
+      "docNote": "Two PDFs exist in wordings/: an older one (UIN CHIHLIP23128V012223, ver SEPT/24) and the current one (UIN CHIHLIP27061V032627, effective 29 Apr 2026). The current one is authoritative and is what verification below uses.",
+      "verification": {
+        "confirmed": [
+          "PED waiting 3 years / 36 months (Excl01)",
+          "Specific/named-ailment waiting 2 years / 24 months (Excl02)",
+          "Restoration — 'Unlimited Automatic Recharge': full base SI reinstated, unlimited times per policy year — matches dataset",
+          "Bonus — base Cumulative Bonus 100% cap; 'Cumulative Bonus Super' optional benefit extends to 500% — matches dataset 'up to 100%, extendable to 500% via add-on'",
+          "Maternity excluded (Excl18) — matches dataset 'Not covered'"
+        ],
+        "unconfirmable": [
+          "entryAge and coverRange (sum-insured ladder) are not stated anywhere in this document — this 'Policy Terms and Conditions' wording carries definitions/benefits/exclusions but no eligibility table. That table normally lives in the Prospectus, a separate document not yet obtained.",
+          "roomRent cap on the ₹5L variant (dataset's cons line) — 'Room Rent Modification' is described only as an optional benefit mechanism, no default cap number found by SI band.",
+          "network hospital count (22,100+) — marketing figure; the wording lists individual hospital names in annexures but no total count. Needs the product page (printed copy supplied had no extractable text — image-only PDF, see notes)."
+        ],
+        "printedProductPage": "Owner supplied a print-to-PDF of https://www.careinsurance.com/product/care-supreme (wordings/web page care.pdf) — 8 pages, 0 extractable characters on every page (image-only capture, no OCR available in this environment). Not usable as a source; would need a screenshot instead."
+      }
     },
     {
       "id": "health-abhi-activ-one-max",
@@ -73,7 +109,19 @@
       "docType": "wording",
       "sourceUrl": "https://www.nivabupa.com/content/dam/nivabupa/PDF/reassure-2-0/ReAssure%202.0%20-%20Policy%20Wording.pdf",
       "notes": "Self-hosted on /content/dam/. Confirm this covers the Platinum+ variant specifically.",
-      "blockedNote": "Plain curl returned 406 on 2026-09-10. Do not spoof a User-Agent to get around it (README). Use WebFetch, which saves the PDF, or download by hand."
+      "blockedNote": "Plain curl returned 406 on 2026-09-10. Do not spoof a User-Agent to get around it (README). Use WebFetch, which saves the PDF, or download by hand.",
+      "status_note_2026_09_11": "UNBLOCKED — curl/WebFetch-as-markdown both fail, but WebFetch's underlying fetch still downloaded and saved the PDF body even while reporting the 406. Extracted successfully.",
+      "extractedFile": "extracted/health-nivabupa-reassure-2-platinum.txt",
+      "lines": 1509,
+      "verification": {
+        "confirmedProductMatch": "Document is 'ReAssure 2.0' (UIN NBHHLIP23169V012223) covering the Platinum+/Titanium+ variant family via a shared Booster+ multiplier table (3/5/10x by plan chosen).",
+        "confirmed": [
+          "PED waiting 3 years / 36 months (Excl01)",
+          "Specific-illness waiting 2 years / 24 months (Excl02)",
+          "Booster+ mechanism confirmed — 'unutilized Base Sum Insured carries forward, up to 3/5/10 times based on the plan you have chosen' — matches dataset's 5×/10× by tier, though the exact tier→multiplier mapping (which gets 5x vs 10x) wasn't located in this excerpt, only the 3/5/10 structure.",
+          "'Age-lock' confirmed as a real benefit — the wording calls it 'Lock the Clock' (marketing renamed it): 'Your age is locked at entry when you buy the policy, till you make a claim' — mechanism matches dataset exactly, just a different name."
+        ]
+      }
     },
     {
       "id": "health-sbi-super-health-platinum-infinite",
@@ -89,7 +137,18 @@
       "fetchedAt": "2026-09-10",
       "lines": 2990,
       "verification": {
-        "note": "Extracted but not yet read against the dataset."
+        "confirmed": [
+          "PED waiting 2 years / 24 months (Excl01) — matches dataset waiting.ped: 2",
+          "Product variant 'Platinum Infinite' (pdftotext renders as 'Platinum Innite', a dropped fi-ligature) confirmed as a real named variant among 5 — Prime, Elite, Premier, Platinum, Platinum Infinite — in the plan-comparison benefit table, and is consistently the top tier (highest E-Opinion count, highest annual health checkup, etc.)",
+          "Health Multiplier confirmed — 'Health Multiplier (Listed 37 Serious Illness)' — matches dataset's 37 serious illnesses"
+        ],
+        "contradicted": [
+          "maternity: dataset says \"Not covered\"; the benefit table shows the Platinum Infinite column carries 'Maternity Expenses ... Up to 2 Lac' and 'New Born Baby Cover ... Up to Maternity SI', and Section E.VI states a maternity waiting period (Single Adult 48 months / other combinations 24 months) rather than an outright exclusion. Maternity appears to be COVERED on this variant, not excluded."
+        ],
+        "uncertain": [
+          "specific-illness waiting: dataset says 1 year; wording states '24/12 months (as specified in the Policy Schedule)' — variant-dependent, and the Policy Schedule (not present) decides which applies to Platinum Infinite. Plausible but not a hard confirm.",
+          "The variant benefit table (~line 2813 onward) is column-scrambled by pdftotext -layout — values are visible but exact column-to-variant attribution should be double-checked against the PDF directly before any figure is edited."
+        ]
       }
     },
     {
@@ -106,7 +165,14 @@
       "fetchedAt": "2026-09-10",
       "lines": 2192,
       "verification": {
-        "note": "Extracted but not yet read against the dataset."
+        "confirmedProductMatch": "Document title is an exact match — 'Axis Max Life Smart Term Plan Plus (UIN: 104N127V02)' — unlike the HDFC ERGO case, this is a genuine single-product wording, not a multi-variant family doc.",
+        "confirmed": [
+          "Smart Cover: Sum Assured on death = 150% of Base Sum Assured until the 15th Policy Anniversary, then 100% after — exact match to dataset 'pays 1.5× the base cover during the first 15 years'"
+        ],
+        "unconfirmable": [
+          "entryAge (18-65 dataset) — no eligibility/boundary-conditions table found in this document at all.",
+          "Critical illness rider — 64 illnesses, 20 yrs (dataset) — the base policy document has no 'critical illness rider' section and no count of 64 anywhere (the only '64' hit is definition clause number 64, unrelated). The CI rider is very likely a separately-filed product with its own UIN/wording that was not fetched. Needs its own document before this field can be verified."
+        ]
       }
     },
     {
@@ -122,11 +188,22 @@
       "extractedFile": "extracted/term-hdfc-click2protect-supreme-plus.txt",
       "fetchedAt": "2026-09-10",
       "lines": 1312,
+      "namingMismatchResolved_2026_09_11": "RESOLVED. 'Click 2 Protect Supreme Plus' IS a real, separate HDFC Life product — UIN 101N189V03 — confirmed via https://www.hdfclife.com/term-insurance-plans/click-2-protect-supreme-plus (distinct from 'Click2Protect Super', a different plan). Its brochure lives at https://www.hdfclife.com/content/dam/hdfclifeinsurancecompany/products-page/brochure-pdf/HDFC-Life-click-2-protect-supreme-plus.pdf — this URL 403s to WebFetch directly but works in a real browser (triggers a download); owner downloaded it manually and it's now extracted.",
+      "extractedFileCorrect": "extracted/term-hdfc-click2protect-supreme-plus-actual.txt",
       "verification": {
-        "contradicted": [
-          "coverRange max: dataset says \"₹10 Cr\"; wording says \"For all other cases: There is no maximum limit\", subject to BAUP"
+        "confirmed": [
+          "Critical illness rider: '60 Critical Illnesses' stated verbatim — exact match to dataset",
+          "Suicide exclusion 12 months — matches standard dataset language",
+          "Min entry age 18 years",
+          "Life Stage Option confirmed — 50% Sum Assured increase on marriage (max ₹50L) or home loan (max ₹50L), 25% on 1st/2nd child birth (max ₹25L), no fresh medicals — matches dataset's 'Life Stage Boost raises your cover at marriage or childbirth'"
         ],
-        "caveat": "Eligibility table is column-scrambled by pdftotext -layout. Read the PDF directly before editing."
+        "contradicted": [
+          "coverRange max: dataset says '₹10 Cr'; the CORRECT product's own wording (not the wrong-product brochure checked earlier) also says 'For all other cases: There is no maximum limit' — this contradiction now confirmed twice, against both the wrong and the right document, and fits the same pattern found on every other term plan (ABSL, ICICI, Bajaj).",
+          "CSR: dataset says 99.66%; the product's own brochure states '99.72% Individual Claim Settlement Ratio' (by number of policies, FY 2026). Different figure — though CSR is meant to come from IRDAI's own disclosures per §16.7, not an insurer's self-reported marketing figure, so this may be a different measurement basis (period/method) rather than a straightforward error. Worth resolving against IRDAI data directly rather than either self-reported number."
+        ],
+        "uncertain": [
+          "Max entry age: dataset says 65; the wording's eligibility table shows Max. Age at Entry = 85 for the 'Life' and 'Life Plus' plan options, but 65 for 'Life Goal'. Depends which of the three options the dataset record represents — not stated in the dataset."
+        ]
       }
     },
     {
@@ -139,7 +216,22 @@
       "sourceUrl": "https://www.iciciprulife.com/content/dam/icicipru/brochures/ICICI-Pru-iProtect-Smart-Illustrated-Brochure.pdf",
       "presentationUrl": "https://www.iciciprulife.com/content/dam/icicipru/download-centre/product-presentations/individual/ICICI_Pru_iProtect_Smart_Plus_Presentation.pdf",
       "notes": "⚠ Brochure + presentation only. Specimen policy docs live under /download-centre/specimenpolicy/ — look there for the wording.",
-      "blockedNote": "Plain curl returned 403 on 2026-09-10. Do not spoof a User-Agent to get around it (README). Use WebFetch, which saves the PDF, or download by hand."
+      "blockedNote": "Plain curl returned 403 on 2026-09-10. Do not spoof a User-Agent to get around it (README). Use WebFetch, which saves the PDF, or download by hand.",
+      "retry_2026_09_11": "WebFetch still 403s directly, but the owner manually downloaded both the brochure and the presentation. Still missing: the actual specimen policy document (stronger source than either) — https://www.iciciprulife.com/content/dam/icicipru/download-centre/specimenpolicy/ (exact filename unknown, worth a manual look if precision on Sum Assured min/max is needed later).",
+      "status": "extracted",
+      "extractedFile": ["extracted/term-icici-iprotect-smart-plus-brochure.txt", "extracted/term-icici-iprotect-smart-plus-presentation.txt"],
+      "verification": {
+        "confirmed": [
+          "Entry age 18/65 (both Regular Pay and Limited Pay, standard options) — exact match to dataset",
+          "Critical illness rider: 'coverage against 34 critical illnesses' stated twice verbatim — exact match to dataset's 'Rider — 34 illnesses'",
+          "Smart Exit Benefit confirmed — 'cancel the policy and receive Smart Exit Benefit, equal to Total Premiums Paid' — matches dataset. Note an undocumented condition: only available where Sum Assured at inception is ₹60 L or above.",
+          "Suicide exclusion: 12 months from revival — matches standard dataset language"
+        ],
+        "contradicted": [
+          "coverRange max: dataset says '₹10 Cr'; the presentation states 'Maximum Sum Assured: Unlimited' twice (for different payment structures). Third term plan in a row (after HDFC Click2Protect and ABSL) where the source says no cap and the dataset states ₹10 Cr — this looks like a systemic placeholder in the dataset rather than three independent errors."
+        ],
+        "unconfirmed": "Base Sum Assured minimum (dataset implies ₹50 L as the coverRange floor) — the brochure's Sum Assured table is column-scrambled by pdftotext; only the Accidental Death Benefit minimum (₹1,00,000) was clearly attributable, not the base Life cover minimum."
+      }
     },
     {
       "id": "term-bajaj-etouch-2",
@@ -165,10 +257,27 @@
       "insurer": "Aditya Birla Sun Life",
       "name": "Super Term Plan",
       "category": "term",
-      "status": "pending",
-      "docType": null,
+      "status": "extracted",
+      "docType": "brochure",
       "sourceUrl": null,
-      "notes": "🔴 NOT FOUND. Needs discovery — try lifeinsurance.adityabirlacapital.com downloads."
+      "notes": "Owner manually downloaded ABSLI_Super_Term_Plan_V01_Brochure. No UIN found for the base plan in this document (only a rider UIN, 109B018V03) — still worth getting the actual policy wording if findable, but this brochure is detailed enough to verify most fields.",
+      "extractedFile": "extracted/term-absl-super-term.txt",
+      "lines": 1830,
+      "sourceUrl": "https://lifeinsurance.adityabirlacapital.com/uploads/ABSLI_Super_Term_Plan_V01_Brochure_8b9b57ef0d.pdf",
+      "productPage": "https://lifeinsurance.adityabirlacapital.com/term-insurance/absli-super-term-plan/",
+      "retry_2026_09_11": "URL confirmed by browsing the site directly — matches the exact filename supplied. Note: a separate 'ABSLI Super Term Plan Plus' product also exists at a different URL — worth confirming this dataset record isn't meant to be that one instead.",
+      "verification": {
+        "confirmed": [
+          "Entry age 18–65 years (Plan Options 1 & 2 — Level Cover, Increasing Cover) — exact match to dataset. (Option 3, Level Cover with Return of Premium, caps at 18–55.)",
+          "Minimum Sum Assured ₹25,00,000 — exact match to dataset's coverRange floor",
+          "Tenure 'till age 85' confirmed via the illustrative example and the eligibility table's max maturity age",
+          "Critical illness: exactly 42 illnesses listed and numbered 1–42 (Annexure-style list) — exact match to dataset's 'Built in — 42 illnesses'",
+          "Suicide exclusion: 12 months from commencement or revival — matches standard dataset language"
+        ],
+        "contradicted": [
+          "coverRange max: dataset says '₹10 Cr'; brochure states Sum Assured Maximum is 'No Limit (subject to Board Approved Underwriting Policy)' — same pattern seen on HDFC Click2Protect and ICICI iProtect (see below). Worth treating '₹10 Cr' as a likely-wrong ceiling across the whole term-plan dataset, not a one-off error."
+        ]
+      }
     },
     {
       "id": "supertopup-sbi-health-super-top-up",

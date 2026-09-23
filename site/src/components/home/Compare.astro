@@ -8,7 +8,7 @@
 // the point of the migration. So #cmpGrid is server-rendered with a real <table>;
 // compare.js overwrites its innerHTML on hydration.
 //
-// What this section no longer carries, and where it went. The home page was running four
+// What this section no longer carries, and where it went. The home page was running three
 // long blocks below the fold — the premium illustration table, the insurer league table and
 // the full scoring methodology — each of which already has a page of its own that ranks for
 // its own query. Duplicating them here made the home page long without making any of them
@@ -16,14 +16,39 @@
 // js/compare.js treats as a no-op (see the "Optional hosts" note there).
 //
 // The deep-dive panel stays: its hosts are empty divs with no visual weight until a visitor
-// presses "Full review" on a plan card, and removing them would break that button.
-//
-// The rows come from publishablePlans(), the same verification gate as every plan page — so
-// an unverified figure cannot be published here either.
+// presses "Quick view" on a plan card, and removing them would break that button.
 import { publishablePlans, planPath, categoryPath, CATEGORY_LABELS } from '../../lib/plans'
+import { insurersWithPlans, insurerPath } from '../../lib/insurers'
 import Disclaimer from '../seo/Disclaimer.astro'
 
 const plans = (await publishablePlans()).sort((a, b) => b.data.score - a.data.score)
+
+// compare.js replaces #cmpGrid's innerHTML with its own interactive cards, which know nothing
+// about Astro's routes — so before this, the only link to a plan page was in the static table
+// the engine overwrites, i.e. invisible to anyone with JavaScript on.
+//
+// Hand the engine a plan-id → URL map rather than reimplementing slugify() in compare.js:
+// planPath() stays the single source of truth for plan URLs, so the two cannot drift. The
+// attribute is also how compare.js knows it is running in the Astro build at all — on the
+// legacy one-pager it is absent, no links are rendered, and nothing 404s. Same trick as
+// `data-astro-chrome` in Header.astro.
+const planUrls = Object.fromEntries(plans.map((plan) => [plan.data.id, planPath(plan)]))
+
+// The league table lists insurers, not plans — including ones we rate but stock no plan from,
+// whose pages therefore do not exist (companies/[insurer].astro only generates where an
+// insurer has a plan). So this map is built from insurersWithPlans(), i.e. only real pages,
+// and compare.js renders a plain name for anything missing. Keyed by category too: the same
+// insurer resolves to a different URL under health vs term.
+const insurerEntries = await Promise.all(
+  (['health', 'term'] as const).map(async (category) => {
+    const withPlans = await insurersWithPlans(category)
+    return withPlans.map(({ insurer }) => [
+      `${category}|${insurer.data.name}`,
+      insurerPath(categoryPath(category), insurer.data.slug),
+    ])
+  }),
+)
+const insurerUrls = Object.fromEntries(insurerEntries.flat())
 
 // The static table is the crawlable fallback, not the experience — six rows is enough to
 // show what the section is, and the category hubs below carry the rest.
@@ -74,7 +99,12 @@ const hubs = (['term', 'health'] as const)
     <!-- ── Mode: Explore ────────────────────────────── -->
     <div class="cmp-panel active" id="cmpExplore">
       <div class="cmp-filters" id="cmpFilters"></div>
-      <div class="cmp-grid" id="cmpGrid">
+      <div
+        class="cmp-grid"
+        id="cmpGrid"
+        data-plan-urls={JSON.stringify(planUrls)}
+        data-insurer-urls={JSON.stringify(insurerUrls)}
+      >
         {/* Replaced by compare.js on hydration — see the note above. */}
         {topPlans.length > 0 && (
           <div class="table-scroll">

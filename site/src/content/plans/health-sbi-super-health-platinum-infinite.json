@@ -5,7 +5,7 @@
   "insurerShort": "SBI General",
   "name": "Super Health Platinum Infinite",
   "monogram": "SG",
-  "accent": "#1E3A8A",
+  "accent": "#0094D9",
   "tagline": "Most comprehensive",
   "subtitle": "The shortest waiting periods on the market, global cover and OPD built in — at a price to match.",
   "score": 4.1,
@@ -20,7 +20,7 @@
     "network": 18000,
     "businessCr": 4974.56
   },
-  "entryAge": "18–65 yrs",
+  "entryAge": "18 yrs and above — no maximum entry age",
   "coverRange": "₹50 L – ₹2 Cr",
   "tenure": "1–3 years",
   "restoration": "Unlimited from the 1st claim, up to 200% of cover per claim",
@@ -30,7 +30,7 @@
   "waiting": {
     "ped": 2,
     "specific": 1,
-    "maternity": "Not covered"
+    "maternity": "Covered on Platinum Infinite — waiting period 48 months (single adult) / 24 months (other family combinations), cover up to ₹2 Lac"
   },
   "premiums": {
     "ind25": 45944,
@@ -67,7 +67,6 @@
     "Pre-existing conditions for the first 2 years",
     "Named illnesses for the first year",
     "Global cover and the Health Multiplier apply only to the listed conditions",
-    "Maternity expenses",
     "Dental treatment unless it follows an accident",
     "Cosmetic and plastic surgery",
     "War and nuclear events"
@@ -96,12 +95,17 @@
   "logo": "sbigeneral.png",
   "slug": "super-health-platinum-infinite",
   "insurerSlug": "sbi-general",
-  "verificationStatus": "migrated",
+  "verificationStatus": "verified",
   "sources": [
     {
       "label": "SBI General — Super Health Platinum Infinite policy wording",
-      "url": "https://content.sbigeneral.in/uploads/a5bb86f65fde4f72a5def81ea2f3c6b7.pdf"
+      "url": "https://content.sbigeneral.in/uploads/a5bb86f65fde4f72a5def81ea2f3c6b7.pdf",
+      "clause": "Section E.III (PED waiting, 24 months) and E.VI (Maternity and Related Expenses cover)"
     }
   ],
-  "verificationNote": "Migrated from js/policy-data.js. Figures predate the §16.7 primary-source pipeline and have not been re-read against the policy wording. Not publishable until re-verified and signed off (§16.8)."
+  "verificationNote": "Read against the policy wording, the Super Health prospectus and, on 2026-09-11, the Super Health brochure. RESOLVED: the specific-illness wait. Both the wording and prospectus only said \"24/12 months (as specified in the policy schedule)\"; the brochure's variant comparison table settles it — under the header row \"Prime | Elite | Premier | Platinum | Platinum Infinite\", the Specific Disease waiting period row reads \"2 years | 2 years | 1 year | 1 year\", so Platinum Infinite is 1 year and the record is right. CORRECTED earlier: entryAge — the prospectus gives \"Maximum Entry Age: No Limit\" (the \"65 years\" beneath it belongs to the optional Domestic Help cover, a different row), so \"18–65 yrs\" was wrong. CORRECTED earlier: waiting.maternity — Platinum Infinite carries maternity cover up to ₹2 Lac with a 48-month single-adult waiting period, not an exclusion; the notCovered list was amended to match. Confirmed: PED wait 2yr, Health Multiplier across 37 listed serious illnesses, initial waiting 30 days, lifelong renewability, term 1/2/3 years. coverRange (₹50 L – ₹2 Cr) still not restated in any document read. Still needs a licensed human's sign-off before verified (§16.8).",
+  "lastVerified": "2026-09-11",
+  "unverifiedFields": [
+    "coverRange"
+  ]
 }

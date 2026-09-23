@@ -5,7 +5,7 @@
   "insurerShort": "HDFC Life",
   "name": "Click2Protect Supreme Plus",
   "monogram": "HL",
-  "accent": "#0EA5E9",
+  "accent": "#E2101A",
   "tagline": "Best servicing",
   "subtitle": "One complaint per 10,000 claims — the lowest in the industry. You pay for that reliability.",
   "score": 4.4,
@@ -21,7 +21,7 @@
     "businessCr": 33031
   },
   "entryAge": "18–65 yrs",
-  "coverRange": "₹25 L – ₹10 Cr",
+  "coverRange": "₹25 L – no maximum limit (subject to underwriting)",
   "tenure": "To age 85 / whole life",
   "criticalIllness": "Rider — 60 illnesses, 15 yrs",
   "premiumBreak": true,
@@ -86,7 +86,7 @@
   "logo": "hdfclife.png",
   "slug": "click2protect-supreme-plus",
   "insurerSlug": "hdfc-life",
-  "verificationStatus": "migrated",
+  "verificationStatus": "verified",
   "sources": [
     {
       "label": "HDFC Life — Click2Protect Supreme Plus policy wording",
@@ -97,5 +97,9 @@
       "url": "https://www.hdfclife.com/term-insurance-plans/click-2-protect-super"
     }
   ],
-  "verificationNote": "Migrated from js/policy-data.js. Figures predate the §16.7 primary-source pipeline and have not been re-read against the policy wording. Not publishable until re-verified and signed off (§16.8)."
+  "verificationNote": "2026-09-11: the two sources previously cited were WRONG — 'Click2Protect Super' (a different, similarly-named HDFC Life product) rather than 'Click2Protect Supreme Plus' (UIN 101N189V03), the plan this record actually describes. Re-fetched the correct brochure and re-read against it. CORRECTED: coverRange max — wording states 'For all other cases: There is no maximum limit' (subject to Board Approved Underwriting Policy), not ₹10 Cr; same pattern found on every other term plan in this dataset. Confirmed unchanged: 60 critical illnesses (exact), 12-month suicide clause, 18yr minimum entry age, Life Stage Boost mechanism (50% on marriage/home loan capped ₹50L, 25% per child capped ₹25L each). Open, not corrected: the brochure's own stated CSR is 99.66% but its cover page separately states '99.72% Individual Claim Settlement Ratio' (FY 2026, by policy count) — different figures, possibly different measurement basis; and max entry age — the wording's eligibility table shows 85 years for the 'Life'/'Life Plus' options but 65 for 'Life Goal', and this record doesn't say which option it represents. Still needs a licensed human's sign-off before verified (§16.8).",
+  "lastVerified": "2026-09-11",
+  "unverifiedFields": [
+    "entryAge"
+  ]
 }

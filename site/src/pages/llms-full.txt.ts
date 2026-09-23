@@ -70,6 +70,19 @@ function planBlock(plan: Plan, url: string): string {
     ...(d.sources.length > 0
       ? ['', '**Sources**', '', ...d.sources.map((s) => `- ${s.label}: ${s.url}`)]
       : []),
+    // Same reasoning as planLine() in lib/llms.ts: whatever caveat a human reader gets on the
+    // page, a model reading this file gets too. The page marks unsourced figures "TBD" beside
+    // the value; here they are named, since there is no layout to attach a marker to.
+    ...(d.unverifiedFields.length > 0
+      ? [
+          '',
+          `**Not yet confirmed against a primary source:** ${d.unverifiedFields.join(', ')}. ` +
+            `These figures are our current best understanding and are published as such.`,
+        ]
+      : []),
+    ...(d.verificationStatus !== 'verified'
+      ? ['', `**Verification status: NOT YET INDEPENDENTLY VERIFIED.** ${d.verificationNote ?? ''}`]
+      : []),
   ].join('\n')
 }
 

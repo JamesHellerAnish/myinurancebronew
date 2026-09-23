@@ -14,8 +14,15 @@ documented in SEO_ASTRO_PLAN.md §0b. The legacy static site below is what is st
 
 In `site/`: `src/content/` and `public/` are **generated** — rerun `npm run migrate` after touching
 `js/policy-data.js`, and never hand-edit either. Plan pages must source paths from
-`publishablePlans()` (`src/lib/plans.ts`), never `getCollection('plans')` — that gate is what stops
-an unverified figure publishing under an IRDAI-licensed name. Build with `npm run build`, never
+`publishablePlans()` (`src/lib/plans.ts`), never `getCollection('plans')` directly — as of
+2026-09-11 (owner decision, SEO_ASTRO_PLAN.md §0g) that function returns every record regardless
+of `verificationStatus`; it is the one place that policy is implemented, not a verification gate
+any more. A record's reliability is disclosed **on the page** instead (its `verificationNote`,
+rendered whenever `verificationStatus !== 'verified'`) — routing around `publishablePlans()` would
+still skip that disclosure, so the rule to always use it stands, just for a different reason.
+Never set a record to `verificationStatus: 'verified'` without an actual licensed human's sign-off
+(§16.8) — that status is unrelated to whether the page exists now, but it's still a regulated
+claim. Build with `npm run build`, never
 `npx astro build`: only the npm script runs the `prebuild` hook that copies `css/` and `assets/`
 into `public/`. Titles and meta descriptions come from `fitTitle()`/`fitDescription()` in
 `src/lib/seo.ts` — they carry the §9.2 length budgets, so never hand-compose either in a route.

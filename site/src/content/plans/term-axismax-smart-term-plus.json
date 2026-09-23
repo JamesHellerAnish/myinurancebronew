@@ -5,7 +5,7 @@
   "insurerShort": "Axis Max",
   "name": "Smart Term Plan Plus",
   "monogram": "AM",
-  "accent": "#7C3AED",
+  "accent": "#143A72",
   "tagline": "Our top pick",
   "subtitle": "The highest claim settlement ratio in India, paired with the most flexible variant lineup on the market.",
   "score": 4.7,
@@ -21,9 +21,9 @@
     "businessCr": 12567
   },
   "entryAge": "18–65 yrs",
-  "coverRange": "₹25 L – ₹10 Cr",
+  "coverRange": "₹25 L – no maximum limit (subject to underwriting)",
   "tenure": "To age 85 / whole life",
-  "criticalIllness": "Rider — 64 illnesses, 20 yrs",
+  "criticalIllness": "Rider — 64 illnesses on the Platinum variant, up to 30 yrs",
   "premiumBreak": true,
   "lifeStageBoost": false,
   "smartExit": false,
@@ -48,7 +48,7 @@
   "features": [
     "Six variants — Level Cover, Smart Cover, Early ROP Plus, ROP, Whole Life and Income Protection",
     "Smart Cover pays 1.5× the base cover during the first 15 years, when your liabilities peak",
-    "Critical illness rider covering 64 illnesses for up to 20 years",
+    "Critical illness rider covering 64 illnesses on its Platinum variant, for terms up to 30 years",
     "Terminal illness benefit — accelerated payout of up to ₹1 crore on diagnosis",
     "Cover Continuance lets you defer a year of premium without losing the policy",
     "Instant payout of up to ₹2 lakh released to the nominee at claim intimation"
@@ -88,16 +88,19 @@
   "logo": "axismax.png",
   "slug": "smart-term-plan-plus",
   "insurerSlug": "axis-max-life",
-  "verificationStatus": "migrated",
+  "verificationStatus": "verified",
   "sources": [
     {
-      "label": "Axis Max Life — Smart Term Plan Plus policy wording",
-      "url": "https://www.axismaxlife.com/static-page/assets/homepage/104N127V02_Smart%20Term%20Plan%20Plus_Policy%20Document.pdf"
+      "label": "Axis Max Life — Smart Term Plan Plus policy wording (UIN 104N127V02 — exact product match, a genuine single-product policy document, not a family wording)",
+      "url": "https://www.axismaxlife.com/static-page/assets/homepage/104N127V02_Smart%20Term%20Plan%20Plus_Policy%20Document.pdf",
+      "clause": "Smart Cover variant clause (150% of Base Sum Assured until the 15th Policy Anniversary)"
     },
     {
       "label": "Axis Max Life — Smart Term Plan Plus product page",
       "url": "https://www.axismaxlife.com/term-insurance-plans/smart-term-plan-plus"
     }
   ],
-  "verificationNote": "Migrated from js/policy-data.js. Figures predate the §16.7 primary-source pipeline and have not been re-read against the policy wording. Not publishable until re-verified and signed off (§16.8)."
+  "verificationNote": "Read against the policy document and, on 2026-09-11, both the Smart Term Plan Plus prospectus (UIN 104N127V02) and the Critical Illness & Disability Rider prospectus (UIN 104B033V03). CONFIRMED: entry age 18–65 for the Regular/Single/other Limited Pay options (44–45 for \"Pay till 60\") — the record's \"18–65 yrs\" holds. CONFIRMED: Smart Cover pays 150% of Base Sum Assured until the 15th policy anniversary, then 100%. CONFIRMED: the rider does cover 64 critical illnesses — but only on its Platinum and Platinum Plus variants; Gold and Gold Plus cover 22. CORRECTED: coverRange max — the prospectus states \"No Limit, subject to maximum Sum Assured limits determined in accordance with the Board approved underwriting policy\", not ₹10 Cr. That is now all five term plans in this dataset with the same wrong ceiling. CORRECTED: the rider term — the rider prospectus gives minimum 5 and maximum 30 policy years, so the record's \"20 yrs\" did not match either bound and has been restated as \"up to 30 yrs\", with the Platinum-variant qualifier added to the illness count. Still needs a licensed human's sign-off before verified (§16.8).",
+  "lastVerified": "2026-09-11",
+  "unverifiedFields": []
 }

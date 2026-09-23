@@ -198,6 +198,17 @@
     }
   },
   {
+    "slug": "e-consultation",
+    "term": "E-Consultation",
+    "definition": "means opinion from a Medical Practitioner who holds a valid registration from the medical council of any state or medical council of India or council for Indian medicine or for homeopathy set up by the Government of India or a state government and is thereby entitled to practice medicine within its jurisdiction; and is acting within the scope and jurisdiction of his license.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
     "slug": "emergency-assistance-service-provider",
     "term": "Emergency Assistance Service Provider",
     "definition": "means the licensed entity which will provide identified emergency medical assistance and personal services to people travelling more than 150 (one hundred and fifty) kilometres from their declared place of residence in India.",
@@ -234,6 +245,17 @@
     "slug": "end-stage-lung-failure",
     "term": "End Stage Lung Failure",
     "definition": "means End stage lung disease, causing chronic respiratory failure, as confirmed and evidenced by all of the following: a. FEV1 test results consistently less than 1 litre measured on 3 occasions 3 months apart; and b. Requiring continuous permanent supplementary oxygen therapy for hypoxemia; and c. Arterial blood gas analysis with partial oxygen pressures of 55mmHg or less (PaO2 <55 mm Hg); and d. Dyspnea at rest.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "evidence-based-clinical-practice",
+    "term": "Evidence Based Clinical Practice",
+    "definition": "means process of making clinical decisions for Inpatient Care using current best evidence in conjugation with clinical expertise.",
     "source": {
       "insurer": "Aditya Birla Health",
       "document": "Activ One policy wording",
@@ -344,6 +366,17 @@
     "slug": "intensive-care-unit",
     "term": "Intensive Care Unit (ICU)",
     "definition": "means an identified section, ward or wing of a hospital which is under the constant supervision of a dedicated medical practitioner(s), and which is specially equipped for the continuous monitoring and treatment of patients who are in a critical condition, or require life support facilities and where the level of care and supervision is considerably more sophisticated and intensive than in the ordinary and other wards.",
+    "source": {
+      "insurer": "Aditya Birla Health",
+      "document": "Activ One policy wording",
+      "uin": "ADIHLIP27048V022627",
+      "file": "extracted/health-abhi-activ-one-max.txt"
+    }
+  },
+  {
+    "slug": "live-in-partner-shall-for-the-purpose-herein",
+    "term": "Live-in Partner shall, for the purpose herein,",
+    "definition": "means either half of the two unmarried adult persons of any gender and irrespective of the sexual orientation, who have consensually chosen to reside jointly with the other adult person, in a long term relationship and in the same residence. For the purpose of clarity, it is, hereby, mentioned that this definition shall be construed to include persons belonging to the LGBT community, wherein the scope of LGBT shall be in accordance with the standings laws of India, as may be in force from time to time.",
     "source": {
       "insurer": "Aditya Birla Health",
       "document": "Activ One policy wording",

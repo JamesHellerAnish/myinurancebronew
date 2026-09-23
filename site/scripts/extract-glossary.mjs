@@ -35,11 +35,34 @@ const SOURCES = [
     document: 'Activ One policy wording',
     uin: 'ADIHLIP27048V022627',
   },
+  // ⚠ DO NOT add extracted/health-sbi-super-health-platinum-infinite.txt here.
+  //
+  // It parses — 40 definitions match the reader — and every one of them is corrupt. The SBI
+  // wording is a TWO-COLUMN PDF and `pdftotext -layout` interleaves the columns, so each
+  // "definition" is two unrelated definitions spliced together mid-sentence:
+  //
+  //   "Mental Illness means a substantial disorder of thinking, mood, Sub-limits to which
+  //    benets under the Policy are subject to, us"
+  //
+  // That is text SBI never wrote. This file publishes definitions verbatim with the insurer's
+  // UIN attached, so a plausible-looking splice is far worse than a missing term — it is a
+  // misquotation of a regulated document. Tried and reverted 2026-09-11.
+  //
+  // A two-column wording needs either `pdftotext` without -layout (which reads columns in
+  // order but loses the numbering this reader depends on) or a column-aware extraction. Until
+  // one of those is in place, single-column wordings only.
 ]
 
-/** "12. Co-Payment: means a cost-sharing requirement …" up to the next numbered item. */
+/**
+ * "12. Co-Payment: means a cost-sharing requirement …" up to the next numbered item.
+ *
+ * The colon is optional: Aditya Birla writes "12. Co-Payment: means …" and SBI General writes
+ * "12. Co-Payment means …". Same IRDAI-standard definition either way — these are mandated and
+ * near-identical across insurers, which is the whole reason this extraction works at all — so
+ * the reader accepts both rather than needing a parser per insurer.
+ */
 const DEFINITION =
-  /^\s*(\d+)\.\s+([A-Z][A-Za-z0-9 /()'’,.-]{2,60}?):\s*means\s+([\s\S]*?)(?=\n\s*\d+\.\s+[A-Z]|\n\s*Section\s|\n\s*[A-Z]\.\d)/gm
+  /^\s*(\d+)\.\s+([A-Z][A-Za-z0-9 /()'’,.-]{2,60}?):?\s*means\s+([\s\S]*?)(?=\n\s*\d+\.\s+[A-Z]|\n\s*Section\s|\n\s*[A-Z]\.\d)/gm
 
 export function slugify(term) {
   return term
@@ -55,7 +78,16 @@ function tidy(body) {
     .replace(/\r/g, '')
     .split('\n')
     .map((line) => line.trim())
-    .filter((line) => line && !/^(Product Name:|Aditya Birla Health|Trademark|CIN:|IRDA Registration|\d{4} \d{3} \d{4})/.test(line))
+    // Page furniture, per insurer. Left as one list rather than a per-source config because
+    // these are footers repeated on every page, and a stray one ends up mid-sentence in a
+    // regulated definition — which is exactly what must not happen to this text.
+    .filter(
+      (line) =>
+        line &&
+        !/^(Product Name:|Aditya Birla Health|Trademark|CIN:|IRDA Registration|\d{4} \d{3} \d{4})/.test(line) &&
+        !/^(SBI General Insurance|Super Health Insurance UIN|U\d{5}[A-Z]{2}\d{4})/.test(line) &&
+        !/^(Toll ?free|www\.|customer\.care@|IRDAI Reg)/i.test(line),
+    )
     .join(' ')
     .replace(/\s{2,}/g, ' ')
     .replace(/�/g, '—')

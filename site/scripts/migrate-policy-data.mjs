@@ -12,7 +12,7 @@
  * record lands as verificationStatus: 'migrated' — never 'verified'. Promotion to
  * 'verified' is a human decision (§16.8), not something this script can do.
  */
-import { readFileSync, writeFileSync, mkdirSync, rmSync } from 'node:fs'
+import { readFileSync, writeFileSync, mkdirSync, rmSync, readdirSync, existsSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -78,6 +78,43 @@ function writeJson(path, value) {
 const policyData = loadPolicyData()
 const manifest = loadManifest()
 
+/**
+ * Verification metadata is NOT generated — it is the human record of reading a plan against
+ * its policy wording, and it does not exist in js/policy-data.js at all. Before this, every
+ * `npm run migrate` silently reset all three fields to the "migrated" defaults below and
+ * threw that work away; it cost a full re-entry of ten records' notes on 2026-09-11 to
+ * notice. So: read what is on disk first and carry it forward.
+ *
+ * Plan *data* still comes from js/policy-data.js — correct a figure there, not here.
+ */
+function readExistingVerification() {
+  const kept = new Map()
+  const dir = join(contentDir, 'plans')
+  if (!existsSync(dir)) return kept
+
+  for (const file of readdirSync(dir).filter((f) => f.endsWith('.json'))) {
+    try {
+      const prev = JSON.parse(readFileSync(join(dir, file), 'utf8'))
+      if (!prev?.id) continue
+      kept.set(prev.id, {
+        verificationStatus: prev.verificationStatus,
+        verificationNote: prev.verificationNote,
+        lastVerified: prev.lastVerified,
+        unverifiedFields: prev.unverifiedFields,
+        // Hand-curated sources carry clause references the manifest does not have.
+        sources: Array.isArray(prev.sources) && prev.sources.some((s) => s.clause)
+          ? prev.sources
+          : undefined,
+      })
+    } catch {
+      // A malformed leftover file is not a reason to abort the migration.
+    }
+  }
+  return kept
+}
+
+const keptVerification = readExistingVerification()
+
 // Wipe generated collections so a renamed plan does not leave an orphan behind.
 for (const collection of ['plans', 'insurers', 'personas']) {
   rmSync(join(contentDir, collection), { recursive: true, force: true })
@@ -94,18 +131,24 @@ for (const [productKey, product] of Object.entries(policyData.products)) {
 
     if (sources.length === 0) missingSources.push(plan.id)
 
+    const kept = keptVerification.get(plan.id)
+
     const record = {
       ...plan,
       category: plan.category ?? productKey,
       slug: slugify(plan.name),
       insurerSlug: slugify(plan.insurer),
 
-      verificationStatus: 'migrated',
-      sources,
+      // Defaults for a record nobody has verified yet; anything already on disk wins.
+      verificationStatus: kept?.verificationStatus ?? 'migrated',
+      sources: kept?.sources ?? sources,
       verificationNote:
+        kept?.verificationNote ??
         'Migrated from js/policy-data.js. Figures predate the §16.7 primary-source ' +
-        'pipeline and have not been re-read against the policy wording. Not publishable ' +
-        'until re-verified and signed off (§16.8).',
+          'pipeline and have not been re-read against the policy wording. Not publishable ' +
+          'until re-verified and signed off (§16.8).',
+      ...(kept?.lastVerified ? { lastVerified: kept.lastVerified } : {}),
+      ...(kept?.unverifiedFields ? { unverifiedFields: kept.unverifiedFields } : {}),
     }
 
     // `icon` is a presentation concern from the old compare engine, not plan data.
@@ -194,7 +237,11 @@ writeJson(join(dataDir, 'compare-rows.json'), policyData.compareRows)
 console.log(
   `[migrate] ${counts.plans} plans · ${counts.insurers} insurers · ${counts.personas} personas`,
 )
-console.log(`[migrate] all ${counts.plans} plans written as verificationStatus: 'migrated'`)
+console.log(
+  `[migrate] ${counts.plans} plans written. Verification metadata (status, note, curated ` +
+    `sources, lastVerified) is preserved from the previous content files where present — ` +
+    `only records with none default to 'migrated'.`,
+)
 
 if (missingSources.length) {
   console.log(
