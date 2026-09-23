@@ -153,8 +153,19 @@
      6. TESTIMONIAL CAROUSEL
      ═══════════════════════════════════════════════════════ */
 
+  /* The whole section is gone for now — no reviews have been collected, so the six
+     testimonials and the Google badge were placeholder copy (see the note in index.html).
+
+     Guarded rather than deleted, because the mechanism is fine and only the content was
+     the problem: drop the section back in and this wakes up. Without the guard,
+     `track.querySelectorAll` on a null throws, and that throw takes every section BELOW
+     it — the FAQ accordion, the booking form, the modal — down with it. Same failure the
+     theme toggle had. */
   const track = document.getElementById('reviewsTrack');
   const controls = document.getElementById('carouselControls');
+
+  if (track && controls) {
+
   const cards = track.querySelectorAll('.review-card');
   let currentSlide = 0;
   let autoSlideTimer;
@@ -259,6 +270,8 @@
   });
 
   initCarousel();
+
+  } // end if (track && controls) — section 6
 
   /* ═══════════════════════════════════════════════════════
      7. FAQ ACCORDION
