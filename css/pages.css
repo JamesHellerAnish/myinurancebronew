@@ -1028,15 +1028,17 @@ main {
   gap: var(--space-3);
 }
 
-/* Inside a dark section the surface tint disappears, so invert instead of tinting. */
-.advisor .section-cta,
-.journey .section-cta {
+/* Only .advisor is actually a dark/ink section (background: var(--color-surface-ink) in
+   components.css). .journey sits on var(--color-surface) - a near-white surface in light
+   mode - so it was wrongly grouped into the "invert for dark" rule below: light text
+   (--color-on-ink) on a near-white background is what made this box unreadable. Journey's
+   CTA now just inherits the light-surface default from the base .section-cta rule above. */
+.advisor .section-cta {
   border-color: rgba(255, 255, 255, 0.16);
   background: rgba(255, 255, 255, 0.06);
 }
 
-.advisor .section-cta > p,
-.journey .section-cta > p {
+.advisor .section-cta > p {
   color: var(--color-on-ink);
 }
 
