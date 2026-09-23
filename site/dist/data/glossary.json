@@ -1,8 +1,8 @@
 {
   "@context": "https://schema.org",
-  "name": "Myinsurancebro insurance glossary",
+  "name": "My Insurance Bro insurance glossary",
   "url": "https://myinsurancebro.com/glossary/",
-  "licence": "The plain-English explanations are Myinsurancebro editorial. The quoted legal definitions belong to the insurers whose IRDAI-filed wordings they are taken from, and each carries its source and UIN.",
+  "licence": "The plain-English explanations are My Insurance Bro editorial. The quoted legal definitions belong to the insurers whose IRDAI-filed wordings they are taken from, and each carries its source and UIN.",
   "count": 47,
   "terms": [
     {

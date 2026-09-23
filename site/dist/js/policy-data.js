@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════
-   MYINSURANCEBRO — POLICY DATASET
+   MY INSURANCE BRO — POLICY DATASET
 
    All figures are 3-year averages for FY 2024–26 unless noted,
    compiled from:
@@ -7,7 +7,7 @@
      · Insurer public disclosures (Form NL-* / policy brochures)
      · Insurer policy wordings for coverage, exclusions & waiting periods
 
-   Scores are Myinsurancebro's own assessment. Weighting:
+   Scores are My Insurance Bro's own assessment. Weighting:
      Plan features 45% · Insurer strength 45% · Premium 10%
 
    Premiums are indicative illustrations for the stated profile and
@@ -74,7 +74,7 @@ var policyData = {
   /* ── Rows rendered in the side-by-side compare matrix ───────── */
   compareRows: {
     term: [
-      { key: 'score', label: 'Myinsurancebro Score', type: 'score', better: 'high' },
+      { key: 'score', label: 'My Insurance Bro Score', type: 'score', better: 'high' },
       { key: 'metrics.csr', label: 'Claim settlement ratio', type: 'percent', better: 'high', help: '3-year average, individual death claims' },
       { key: 'metrics.complaints', label: 'Complaints per 10,000 claims', type: 'number', better: 'low', help: 'Lower is better — this is how often customers escalate' },
       { key: 'metrics.solvency', label: 'Solvency ratio', type: 'x', better: 'high', help: 'IRDAI requires a minimum of 1.5x' },
@@ -89,7 +89,7 @@ var policyData = {
       { key: 'premiums.f30', label: 'Premium — 30, Female', type: 'rupee', better: 'low' }
     ],
     health: [
-      { key: 'score', label: 'Myinsurancebro Score', type: 'score', better: 'high' },
+      { key: 'score', label: 'My Insurance Bro Score', type: 'score', better: 'high' },
       { key: 'metrics.csr', label: 'Claim settlement ratio', type: 'percent', better: 'high', help: '3-year average' },
       { key: 'metrics.complaints', label: 'Complaints per 10,000 claims', type: 'number', better: 'low', help: 'Lower is better' },
       { key: 'metrics.network', label: 'Cashless hospitals', type: 'number', better: 'high' },
@@ -146,8 +146,9 @@ var policyData = {
      a new insurer renders as a coloured monogram rather than a broken
      image. Both are also what the pre-logo design used.
 
-     These are registered trademarks. We display them as the insurers'
-     appointed corporate agent, which is normal practice — but see §11 of
+     These are registered trademarks, displayed nominatively to identify
+     the insurers whose plans we advise on as an IRDAI-licensed advisor.
+     There is no corporate-agent appointment to lean on here — see §11 of
      the handoff before adding any insurer we do not actually place.
      ──────────────────────────────────────────────────────────── */
   brands: {

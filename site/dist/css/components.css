@@ -99,10 +99,13 @@
 }
 
 /* Icons that sit inside a tinted rounded tile */
+/* Circles, not rounded squares. This is the page's repeating "here is a thing" marker and
+   it appears inside cards that are already rectangles — a disc separates the mark from the
+   box it sits in, where a rounded square just nests one inside another. */
 .icon-tile {
   width: 52px;
   height: 52px;
-  border-radius: var(--radius-md);
+  border-radius: 50%;
   display: grid;
   place-items: center;
   font-size: 1.5rem;
@@ -135,7 +138,8 @@
   width: 38px;
   height: 38px;
   font-size: 1.125rem;
-  border-radius: var(--radius-sm);
+  /* Inherits the circle from .icon-tile — the old radius override is what made the small
+     variant square while the large one was not. */
 }
 
 /* ── Shared bits ─────────────────────────────────────── */
@@ -180,7 +184,8 @@
 }
 
 /* Staggered reveal — child delay set via --i */
-.stagger>* {
+/* Gated on .js for the same reason as .fade-up — see the note in style.css. */
+.js .stagger>* {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity .6s var(--ease-out), transform .6s var(--ease-out);
@@ -193,7 +198,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .stagger>* {
+  .js .stagger>* {
     opacity: 1;
     transform: none;
   }
@@ -1115,14 +1120,17 @@
   gap: var(--space-6);
 }
 
+/* Deliberately small — see the note above planCard() in js/compare.js. Six of these sit on
+   screen at once, so the card is a shortlist entry, not a summary of the plan page. */
 .plan-card {
   position: relative;
   display: flex;
   flex-direction: column;
+  gap: var(--space-4);
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
   background: var(--color-card-bg);
-  padding: var(--space-6);
+  padding: var(--space-5);
   transition: transform var(--transition-normal), box-shadow var(--transition-normal),
     border-color var(--transition-fast);
 }
@@ -1139,15 +1147,25 @@
 
 .plan-card-top {
   display: flex;
-  align-items: flex-start;
-  gap: var(--space-4);
-  margin-bottom: var(--space-4);
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: 0;
 }
 
+/* min-width:0 so a long plan name ellipses instead of shoving the ring off the card. */
+.plan-card-id {
+  min-width: 0;
+  flex: 1;
+}
+
+/* A disc for the coloured-monogram fallback — but NOT for a logo plate. `.has-logo` sets
+   overflow:hidden, and several of these files are boxed wordmarks rather than square
+   icons; a circular mask would cut their left and right edges off, which is the exact
+   thing the `object-fit: contain` note above exists to prevent. Plates stay squared. */
 .plan-monogram {
-  width: 46px;
-  height: 46px;
-  border-radius: var(--radius-md);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
   display: grid;
   place-items: center;
   color: #fff;
@@ -1190,6 +1208,73 @@
   font-weight: 600;
 }
 
+.plan-monogram.has-logo {
+  border-radius: var(--radius-md);
+}
+
+/* ── The score ring ─────────────────────────────────────
+   The score used to be a number stacked over the words "out of 5" in the card's corner:
+   accurate, and completely flat. As a ring the same figure carries its own scale — how far
+   round the arc goes IS out of five — which is the one thing a reader wants at a glance
+   when six cards are on screen.
+
+   Geometry matches scoreRing() in js/compare.js: a 40×40 box, r=16, so the stroke sits
+   inside the box at stroke-width 4. Rotated -90° so the arc starts at twelve o'clock
+   rather than three. */
+.score-ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  flex: none;
+}
+
+.score-ring svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.score-ring circle {
+  fill: none;
+  stroke-width: 4;
+}
+
+.score-ring-track {
+  stroke: var(--color-border);
+}
+
+.score-ring-fill {
+  stroke: var(--color-accent-2);
+  stroke-linecap: round;
+  /* Drawn on reveal by the .in-view hook below; without JS it is simply already drawn. */
+  transition: stroke-dasharray 900ms var(--ease-out);
+}
+
+.score-ring-value {
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* Screen-reader-only text. Used for figures that are drawn rather than written — the ring
+   carries the score visually, this carries it to anything that cannot see the arc. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 .plan-tagline {
   position: absolute;
   top: calc(-1 * var(--space-3));
@@ -1213,11 +1298,14 @@
 
 .plan-metrics {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-3);
-  padding: var(--space-4) 0;
-  border-block: 1px solid var(--color-border);
-  margin-bottom: var(--space-4);
+  padding: 0;
+  /* One hairline above, not a box. Two rules around two figures read as a table cell. */
+  border-block: 0;
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-3);
+  margin-bottom: 0;
 }
 
 .plan-metric-label {
@@ -1253,8 +1341,18 @@
 
 .plan-actions {
   display: flex;
-  gap: var(--space-3);
+  gap: var(--space-2);
   margin-top: auto;
+}
+
+/* The arrow only moves on the card you are pointing at, so it reads as "this one opens". */
+.plan-review .arrow {
+  display: inline-block;
+  transition: transform var(--transition-fast);
+}
+
+.plan-card:hover .plan-review .arrow {
+  transform: translateX(3px);
 }
 
 .plan-actions .btn {

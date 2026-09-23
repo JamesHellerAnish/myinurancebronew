@@ -247,7 +247,14 @@ h6 {
 }
 
 /* ── Scroll Animations ───────────────────────────────── */
-.fade-up {
+/* Scoped to .js, which the inline snippet in the <head> adds before first paint.
+   -----------------------------------------------------------------------------------
+   Without that gate, `opacity: 0` is the page's default state and the content only ever
+   appears because a script adds .visible to it. If that script is blocked, errors, or
+   simply has not arrived yet, the page renders blank — on the legacy one-pager that was
+   one page's risk, and across the generated tree it would be ~2,900. Gating on .js means
+   no-JS gets the content immediately and everyone else gets the animation. */
+.js .fade-up {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.7s ease, transform 0.7s ease;
@@ -256,6 +263,45 @@ h6 {
 .fade-up.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Directional variants, for sections where the movement should track the layout rather
+   than always rise: a two-column block reads better with the halves coming in from their
+   own sides, and a single focal element is better scaled up than slid. They share .fade-up's
+   .visible hook and the same observer, so adding one to an element is the whole change. */
+.js .fade-up.from-left {
+  transform: translateX(-28px);
+}
+
+.js .fade-up.from-right {
+  transform: translateX(28px);
+}
+
+.js .fade-up.zoom-in {
+  transform: scale(0.96);
+}
+
+.fade-up.from-left.visible,
+.fade-up.from-right.visible,
+.fade-up.zoom-in.visible {
+  transform: none;
+}
+
+/* .stagger has had this guard since it was written; .fade-up never did, so the single most
+   widely used animation on the site ignored the OS setting. The element must still end up
+   visible — the observer adds .visible either way, and if it never fires (no JS, no
+   IntersectionObserver) this is also what keeps the page from rendering blank. */
+@media (prefers-reduced-motion: reduce) {
+
+  .js .fade-up,
+  .fade-up.visible,
+  .js .fade-up.from-left,
+  .js .fade-up.from-right,
+  .js .fade-up.zoom-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -1076,9 +1122,37 @@ h6 {
 }
 
 .journey-comparison {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-6);
+}
+
+/* The "others → us" arrow, sitting in the grid gap. Drawn with ::after rather than an
+   element because it is pure decoration: the two column headings already say which side is
+   which, and a real element here would be one more thing for a screen reader to read out.
+   Hidden below 900px, where the columns stack and an arrow pointing right would be wrong. */
+@media (min-width: 900px) {
+  .journey-comparison::after {
+    content: '92';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: var(--color-ink);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: var(--shadow-card);
+    pointer-events: none;
+  }
 }
 
 .journey-col {
@@ -1272,11 +1346,34 @@ h6 {
 }
 
 .review-author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
   font-weight: 600;
   font-size: 0.9375rem;
 }
 
-.review-author span {
+/* The avatar is the only thing that distinguishes one quote card from the next at a glance.
+   An initial, not a photo: these are real customers and we do not have their likeness.
+   aria-hidden in the markup, because the name follows immediately as text. */
+.review-avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.9375rem;
+  line-height: 1;
+}
+
+/* The city, inside the name span. Two levels deep, which is what keeps this off the
+   avatar — the old single-level selector styled both. */
+.review-author span span {
   font-weight: 400;
   color: var(--color-text-secondary);
 }
@@ -1987,6 +2084,16 @@ h6 {
   .footer-grid {
     grid-template-columns: 1fr 1fr;
     gap: var(--space-8);
+  }
+}
+
+/* The header phone link, in the slot the dark-mode toggle used to occupy. Shared by
+   index.html and site/src/components/Header.astro, which is why it lives here rather than
+   in the Astro-only layer. It is the first thing to drop when the bar gets tight — the
+   mobile drawer carries the same number. */
+@media (max-width: 1024px) {
+  .nav-call {
+    display: none;
   }
 }
 
