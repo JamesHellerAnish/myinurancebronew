@@ -1657,6 +1657,32 @@
     </div>
   </div>
 
+  <!-- ═══════════ FLOATING CONTACT BUTTON (DESKTOP) ═══════════ -->
+  <!-- Desktop's equivalent of the sticky bar below. Uses the sprite's own #i-phone /
+       #i-whatsapp / #i-message-circle / #i-x symbols, since this page already has them —
+       unlike the Astro tree, which duplicates the three paths inline (see Base.astro). -->
+  <div class="contact-fab" id="contactFab">
+    <div class="contact-fab-menu" id="contactFabMenu">
+      <a href="tel:+919797383797" class="contact-fab-row" aria-label="Call advisor">
+        <span class="contact-fab-label">Call</span>
+        <span class="contact-fab-item call">
+          <svg class="icon"><use href="#i-phone"></use></svg>
+        </span>
+      </a>
+      <a href="https://wa.me/919797383797" class="contact-fab-row" target="_blank" rel="noopener" aria-label="WhatsApp us">
+        <span class="contact-fab-label">WhatsApp</span>
+        <span class="contact-fab-item whatsapp">
+          <svg class="icon"><use href="#i-whatsapp"></use></svg>
+        </span>
+      </a>
+    </div>
+
+    <button type="button" class="contact-fab-toggle" id="contactFabToggle" aria-expanded="false" aria-controls="contactFabMenu" aria-label="Contact options">
+      <svg class="icon contact-fab-icon-open"><use href="#i-message-circle"></use></svg>
+      <svg class="icon contact-fab-icon-close"><use href="#i-x"></use></svg>
+    </button>
+  </div>
+
   <!-- ═══════════ STICKY MOBILE CONTACT BAR ═══════════ -->
   <div class="sticky-cta">
     <a href="https://wa.me/919797383797" class="btn btn-whatsapp" target="_blank" rel="noopener">

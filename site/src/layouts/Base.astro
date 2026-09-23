@@ -103,6 +103,66 @@ const { schemas = [], current, ...seo } = Astro.props
     {/* Mobile action bar. The legacy one-pager has had this since the start; the generated
         pages did not, so on a phone — which is most of this traffic — a guide or a plan
         page had no visible way to call until you scrolled to the CTA block. */}
+    {/* Floating contact button — desktop's equivalent of the sticky bar above. Both read
+        the same phone number from one place: change it here and in Cta.astro, not in a
+        third spot.
+
+        Self-contained inline SVG paths rather than <use href="#i-…">: the icon sprite is
+        Sprite.astro, rendered only on the home page (see the note in Header.astro) — an
+        Astro-tree page reaching for a sprite symbol here would draw an empty box on all
+        106 pages that are not the home page. These three paths are duplicated from
+        Sprite.astro on purpose, the same trade CLAUDE.md already accepts between the two
+        trees, rather than shipping the whole sprite sitewide for three icons. */}
+    <div class="contact-fab" id="contactFab">
+      <div class="contact-fab-menu" id="contactFabMenu">
+        <a href="tel:+919797383797" class="contact-fab-row" aria-label="Call advisor">
+          <span class="contact-fab-label">Call</span>
+          <span class="contact-fab-item call">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M21.5 16.9v2.6a1.8 1.8 0 0 1-2 1.8 17.6 17.6 0 0 1-7.7-2.7 17.3 17.3 0 0 1-5.3-5.3A17.6 17.6 0 0 1 3.8 5.5a1.8 1.8 0 0 1 1.8-2h2.6a1.8 1.8 0 0 1 1.8 1.5c.1.9.3 1.7.6 2.5a1.8 1.8 0 0 1-.4 1.9l-1.1 1.1a14 14 0 0 0 5.3 5.3l1.1-1.1a1.8 1.8 0 0 1 1.9-.4c.8.3 1.6.5 2.5.6a1.8 1.8 0 0 1 1.6 1.5Z"
+              ></path>
+            </svg>
+          </span>
+        </a>
+        <a
+          href="https://wa.me/919797383797"
+          class="contact-fab-row"
+          target="_blank"
+          rel="noopener"
+          aria-label="WhatsApp us"
+        >
+          <span class="contact-fab-label">WhatsApp</span>
+          <span class="contact-fab-item whatsapp">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 21l1.6-5.2A8.6 8.6 0 1 1 8.4 19.4Z"></path>
+              <path
+                d="M9 8.5c-.3 1.4 1 3.6 2.2 4.7 1.2 1.1 3 1.9 3.9 1.5.5-.2.8-.9.9-1.4l-2-1-.8.9a6 6 0 0 1-2.3-2.3l.9-.8-1-2c-.5.1-1.2.4-1.4.9Z"
+              ></path>
+            </svg>
+          </span>
+        </a>
+      </div>
+
+      <button
+        type="button"
+        class="contact-fab-toggle"
+        id="contactFabToggle"
+        aria-expanded="false"
+        aria-controls="contactFabMenu"
+        aria-label="Contact options"
+      >
+        <svg class="icon contact-fab-icon-open" viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M21 11.5a8.4 8.4 0 0 1-9 8.5 8.9 8.9 0 0 1-4-1L3 20.5l1.5-5a8.9 8.9 0 0 1-1-4 8.4 8.4 0 0 1 8.5-9 8.4 8.4 0 0 1 9 8.5Z"
+          ></path>
+        </svg>
+        <svg class="icon contact-fab-icon-close" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M18.5 5.5l-13 13M5.5 5.5l13 13"></path>
+        </svg>
+      </button>
+    </div>
+
     <div class="sticky-cta">
       <a
         href="https://wa.me/919797383797"
@@ -188,6 +248,31 @@ const { schemas = [], current, ...seo } = Astro.props
         )
 
         paint()
+      }
+
+      // Floating contact button. A plain disclosure toggle: open on click, close on a
+      // second click, an outside click, or Escape. No JS in the two links themselves —
+      // tel: and wa.me work with or without any of this running.
+      const fab = document.getElementById('contactFab')
+      const fabToggle = document.getElementById('contactFabToggle')
+
+      if (fab && fabToggle) {
+        const setOpen = (open: boolean) => {
+          fab.classList.toggle('open', open)
+          fabToggle.setAttribute('aria-expanded', String(open))
+        }
+
+        fabToggle.addEventListener('click', () => {
+          setOpen(!fab.classList.contains('open'))
+        })
+
+        document.addEventListener('click', (e) => {
+          if (!fab.contains(e.target as Node)) setOpen(false)
+        })
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') setOpen(false)
+        })
       }
     </script>
   </body>

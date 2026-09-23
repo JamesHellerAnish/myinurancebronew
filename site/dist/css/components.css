@@ -1809,6 +1809,158 @@
   max-width: 68ch;
 }
 
+/* ── Floating contact button (desktop) ──────────────────
+   .sticky-cta below covers mobile with a full-width bottom bar. This is the same job on
+   wider viewports, where a full-width bar would be an odd, overbearing shape: a single
+   round button, bottom-right, that opens two circular options on click. The two never
+   show together — this activates above the exact breakpoint sticky-cta disappears at. */
+.contact-fab {
+  position: fixed;
+  right: var(--space-6);
+  bottom: var(--space-6);
+  z-index: 940;
+  display: none;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-3);
+}
+
+@media (min-width: 769px) {
+  .contact-fab {
+    display: flex;
+  }
+}
+
+.contact-fab-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px) scale(0.96);
+  transform-origin: bottom right;
+  /* visibility is delayed on the way in and instant on the way out, so a closed menu is
+     unreachable by Tab (visibility: hidden removes it from the tab order) without a JS
+     inert/tabindex dance, and the open transition still gets to animate. */
+  transition: opacity var(--transition-fast), transform var(--transition-fast),
+    visibility 0s linear var(--transition-fast);
+}
+
+.contact-fab.open .contact-fab-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.contact-fab-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+}
+
+/* The label makes the pair unambiguous at a glance — two circles of similar size read as
+   "some contact method" before you notice which brand they are. */
+.contact-fab-label {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--color-card-bg);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  box-shadow: var(--shadow-card);
+  white-space: nowrap;
+}
+
+.contact-fab-item {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  box-shadow: var(--shadow-hover);
+  transition: transform var(--transition-fast);
+}
+
+.contact-fab-row:hover .contact-fab-item {
+  transform: scale(1.08);
+}
+
+.contact-fab-item .icon {
+  width: 22px;
+  height: 22px;
+  stroke-width: 2;
+}
+
+.contact-fab-item.call {
+  background: var(--color-ink);
+  color: var(--color-primary);
+}
+
+.contact-fab-item.whatsapp {
+  background: #25D366;
+  color: #06301A;
+}
+
+.contact-fab-toggle {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-text);
+  box-shadow: var(--shadow-hover);
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.contact-fab-toggle:hover {
+  background: var(--color-primary-dark);
+  transform: scale(1.05);
+}
+
+/* The open (chat bubble) and close (×) glyphs are stacked on top of each other and
+   cross-fade with a quarter-turn, rather than swapping the <use> target — a plain swap has
+   no transition to hook, and this is the one moment on the button that should feel like a
+   deliberate toggle rather than an instant flip. */
+.contact-fab-toggle .icon {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  stroke-width: 2;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.contact-fab-icon-close {
+  opacity: 0;
+  transform: rotate(-45deg) scale(0.5);
+}
+
+.contact-fab.open .contact-fab-icon-open {
+  opacity: 0;
+  transform: rotate(45deg) scale(0.5);
+}
+
+.contact-fab.open .contact-fab-icon-close {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-fab-menu,
+  .contact-fab-toggle,
+  .contact-fab-item,
+  .contact-fab-toggle .icon {
+    transition: none;
+  }
+}
+
 /* ── Sticky mobile contact bar ───────────────────────── */
 .sticky-cta {
   position: fixed;

@@ -274,6 +274,35 @@
   } // end if (track && controls) — section 6
 
   /* ═══════════════════════════════════════════════════════
+     6b. FLOATING CONTACT BUTTON
+     Not gated on astroChrome: this widget is new on both trees, so there is no Astro-side
+     copy of it to avoid double-handling — see the identical block in Base.astro's inline
+     module, which does the same three things for the generated pages.
+     ═══════════════════════════════════════════════════════ */
+
+  var fab = document.getElementById('contactFab');
+  var fabToggle = document.getElementById('contactFabToggle');
+
+  if (fab && fabToggle) {
+    var setFabOpen = function (open) {
+      fab.classList.toggle('open', open);
+      fabToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+
+    fabToggle.addEventListener('click', function () {
+      setFabOpen(!fab.classList.contains('open'));
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!fab.contains(e.target)) setFabOpen(false);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setFabOpen(false);
+    });
+  }
+
+  /* ═══════════════════════════════════════════════════════
      7. FAQ ACCORDION
      ═══════════════════════════════════════════════════════ */
 
