@@ -53,6 +53,19 @@ const { schemas = [], current, ...seo } = Astro.props
       document.documentElement.classList.add('js')
     </script>
 
+    {/* Icons. The port never carried these over from index.html, so every generated page
+        declared no icon and fell back to /favicon.ico — which did not exist either. All of
+        these come from one master via scripts/make-logo-sizes.mjs.
+
+        Order matters a little: browsers take the last matching <link>, so the small PNGs
+        are listed after the large one. The .ico is not declared at all — it lives at the
+        root for clients that ask for it without reading the HTML, and declaring it too
+        would only invite a browser to prefer it over the sharper PNGs. */}
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16.png" />
+    <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png" />
+
     <SEO {...seo} />
 
     <!-- §9.1: fonts are self-hosted. Both page types have a text LCP element, so LCP waited
