@@ -13,7 +13,7 @@
  * Exits non-zero if anything is broken, so it can gate a deploy.
  */
 import { readFileSync, existsSync, statSync, readdirSync } from 'node:fs'
-import { join, dirname, resolve } from 'node:path'
+import { join, dirname, posix } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const here = dirname(fileURLToPath(import.meta.url))
@@ -66,7 +66,13 @@ for (const [url, file] of pages) {
     if (/^(https?:|mailto:|tel:|data:|\/\/)/.test(raw)) continue
 
     const [path, hash] = raw.split('#')
-    const target = path === '' ? url : path.startsWith('/') ? path : resolve('/', dirname(url), path)
+
+    // URL paths are POSIX whatever the host OS. node:path's resolve() on Windows turns a
+    // site-absolute "/assets/x" into a drive-letter path, which made every relative asset on
+    // the home page look missing. A page URL ending in "/" is its own base directory, which is
+    // how a browser resolves a relative reference from it.
+    const base = url.endsWith('/') ? url : posix.dirname(url)
+    const target = path === '' ? url : path.startsWith('/') ? path : posix.resolve('/', base, path)
 
     checked++
 
@@ -96,10 +102,12 @@ for (const cssFile of ['css/style.css', 'css/components.css', 'css/pages.css', '
 
   for (const m of readFileSync(full, 'utf8').matchAll(/url\(\s*['"]?([^'")]+)['"]?\s*\)/g)) {
     const raw = m[1]
-    if (/^(https?:|data:|\/\/)/.test(raw)) continue
+    // %23 or # is an in-document SVG filter reference — the grain texture is a data: URI that
+    // contains filter='url(%23n)', and this pattern finds it inside the string. Not a file.
+    if (/^(https?:|data:|\/\/|%23|#)/.test(raw)) continue
 
     checked++
-    const target = raw.startsWith('/') ? raw : resolve('/', dirname(`/${cssFile}`), raw)
+    const target = raw.startsWith('/') ? raw : posix.resolve('/', posix.dirname(`/${cssFile}`), raw)
     if (!exists(target)) broken.push({ type: 'missing CSS asset', from: cssFile, link: raw })
   }
 }
