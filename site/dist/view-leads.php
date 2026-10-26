@@ -66,7 +66,7 @@ $userOk = hash_equals((string) $config['user'], (string) $authUser);
 $passOk = password_verify((string) $authPass, (string) $config['hash']);
 
 if (!$userOk || !$passOk) {
-    header('WWW-Authenticate: Basic realm="Myinsurancebro leads", charset="UTF-8"');
+    header('WWW-Authenticate: Basic realm="My Insurance Bro leads", charset="UTF-8"');
     http_response_code(401);
     echo 'Authentication required.';
     exit;
@@ -80,7 +80,7 @@ $leads = mib_read_leads();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>Myinsurancebro — Submitted Leads</title>
+    <title>My Insurance Bro — Submitted Leads</title>
     <link rel="icon" type="image/png" href="assets/images/favicon-192.png">
     <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -106,7 +106,7 @@ $leads = mib_read_leads();
     <div class="container">
         <div class="header">
             <div style="display: flex; align-items: center; gap: 12px;">
-                <img src="assets/images/my-insurance-bro-logo.png" alt="Myinsurancebro Logo" style="height: 36px; width: auto;">
+                <img src="assets/images/my-insurance-bro-logo.png" alt="My Insurance Bro Logo" style="height: 36px; width: auto;">
                 <h1>Form Submissions Dashboard</h1>
             </div>
             <span class="count-badge"><?php echo count($leads); ?> Leads Recorded</span>

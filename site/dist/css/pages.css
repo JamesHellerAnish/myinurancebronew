@@ -1001,3 +1001,327 @@ main {
 .compare-matrix thead th a {
   text-decoration: none;
 }
+
+/* ── 14. Home page: CTA rails and link-out cards ──────────
+   These belong here rather than in components.css because only Base.astro links this file,
+   and every element below is Astro-only chrome (the header call button) or Astro-only home
+   markup. components.css stays shared with the legacy one-pager — CLAUDE.md. */
+
+/* The repeated "ask a human" rail that closes most home sections. One rule, so the ask
+   reads identically in eight places instead of eight slightly different button rows. */
+.section-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4) var(--space-6);
+  margin-top: var(--space-10);
+  padding: var(--space-5) var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.section-cta > p {
+  margin: 0;
+  flex: 1 1 22ch;
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.section-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+/* Only .advisor is actually a dark/ink section (background: var(--color-surface-ink) in
+   components.css). .journey sits on var(--color-surface) - a near-white surface in light
+   mode - so it was wrongly grouped into the "invert for dark" rule below: light text
+   (--color-on-ink) on a near-white background is what made this box unreadable. Journey's
+   CTA now just inherits the light-surface default from the base .section-cta rule above. */
+.advisor .section-cta {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.advisor .section-cta > p {
+  color: var(--color-on-ink);
+}
+
+/* The three blocks the compare section used to render inline — premium table, league table,
+   full methodology — as three cards pointing at the pages that carry them. */
+.cmp-more {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.cmp-more-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.cmp-more-card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.cmp-more-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.cmp-more-text strong {
+  font-size: var(--text-base);
+}
+
+.cmp-more-text span {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.cmp-more-card .arrow {
+  color: var(--color-primary);
+  font-size: var(--text-lg);
+  transition: transform var(--transition-fast);
+}
+
+.cmp-more-card:hover .arrow {
+  transform: translateX(3px);
+}
+
+/* The stat band is on the ink background, so its buttons sit on it directly with no card. */
+.stat-band-cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-8);
+}
+
+.stat-band-cta .btn-outline {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: var(--color-on-ink);
+}
+
+.stat-band-cta .btn-outline:hover {
+  border-color: var(--color-on-ink);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── 15. The sitewide CTA block (components/Cta.astro) ────
+   Rendered on every content route, so it has to read the same on a guide, a glossary entry
+   and a category hub without each one restyling it. */
+.site-cta {
+  display: grid;
+  gap: var(--space-5);
+  margin-block: var(--space-12);
+  padding: var(--space-8) var(--space-6);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.site-cta h2 {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-2xl);
+}
+
+.site-cta-copy p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  max-width: 54ch;
+  margin-inline: auto;
+}
+
+.site-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.site-cta-phone {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.site-cta-phone a {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* On an inked page the tint vanishes, so invert. */
+.site-cta-ink {
+  background: var(--color-ink);
+  border-color: transparent;
+  color: var(--color-on-ink);
+}
+
+.site-cta-ink h2 {
+  color: var(--color-on-ink);
+}
+
+.site-cta-ink .site-cta-copy p,
+.site-cta-ink .site-cta-phone {
+  color: var(--color-on-ink-muted);
+}
+
+.site-cta-ink .btn-outline {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: var(--color-on-ink);
+}
+
+.site-cta-ink .btn-outline:hover {
+  border-color: var(--color-on-ink);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* The "read the rest on its own page" link that closes a shortened persona pain list. */
+.pain-more {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  align-self: flex-start;
+  margin-top: var(--space-2);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.pain-more:hover .arrow {
+  transform: translateX(3px);
+}
+
+.pain-more .arrow {
+  transition: transform var(--transition-fast);
+}
+
+/* The insurer mark in the compare section's static fallback table. */
+.cmp-grid th[scope='row'] {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.cmp-grid th[scope='row'] .monogram {
+  flex: 0 0 auto;
+}
+
+/* ═══════════════════════════════════════════════════════
+   16. Phone layout (≤640px)
+   ═══════════════════════════════════════════════════════
+   The phone pass in style.css and components.css predates the CTA rails and link cards
+   below, so none of them had a rule under this breakpoint and all of them kept desktop
+   padding and a desktop row layout in a 335px column. Nothing overflowed, but nothing was
+   laid out for a phone either — the ask each block makes was being squeezed into whatever
+   space the buttons left over.
+
+   Same breakpoint and the same one-block-at-the-end convention as the other two files. */
+@media (max-width: 640px) {
+
+  /* The repeated "ask a human" rail. On a phone the copy goes above the buttons rather
+     than competing with them for the same row, and the buttons take the full column —
+     space-between across 287px was giving the sentence about 8 characters a line. */
+  .section-cta {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+    padding: var(--space-5);
+  }
+
+  .section-cta > p {
+    flex: none;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  .section-cta-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .section-cta-actions .btn {
+    width: 100%;
+  }
+
+  /* The sitewide CTA block on every content route. Same treatment, and one subtraction:
+     the WhatsApp button goes. The sticky bottom bar is on screen at this width and
+     already carries WhatsApp and Call, so a third copy of the same action here is the
+     kind of triplication the nav rules above already strip out (#navCta hides for the
+     same reason). Call and Get a quotation stay, stacked and full width — pairing them
+     two-up wraps "Call advisor today" onto two lines at 137px. */
+  .site-cta {
+    gap: var(--space-4);
+    margin-block: var(--space-10);
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .site-cta h2 {
+    font-size: 1.375rem;
+    line-height: 1.2;
+  }
+
+  .site-cta-copy p {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+  }
+
+  .site-cta-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .site-cta-actions .btn {
+    width: 100%;
+  }
+
+  .site-cta-actions .btn-whatsapp {
+    display: none;
+  }
+
+  /* Link-out cards under the compare section. Already one per row at this width; this is
+     just the padding and type coming down to the phone rhythm. */
+  .cmp-more {
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  .cmp-more-card {
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .cmp-more-text strong {
+    font-size: 0.9375rem;
+  }
+
+  .cmp-more-text span {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  /* The "rest of this persona's risks" link. */
+  .pain-more {
+    font-size: 0.8125rem;
+  }
+}

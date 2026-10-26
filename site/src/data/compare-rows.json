@@ -2,7 +2,7 @@
   "term": [
     {
       "key": "score",
-      "label": "Myinsurancebro Score",
+      "label": "My Insurance Bro Score",
       "type": "score",
       "better": "high"
     },
@@ -79,7 +79,7 @@
   "health": [
     {
       "key": "score",
-      "label": "Myinsurancebro Score",
+      "label": "My Insurance Bro Score",
       "type": "score",
       "better": "high"
     },

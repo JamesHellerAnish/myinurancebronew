@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════
-   MYINSURANCEBRO — Main JavaScript
+   MY INSURANCE BRO — Main JavaScript
    Vanilla JS · No dependencies
    ═══════════════════════════════════════════════════════ */
 
@@ -61,6 +61,13 @@
      ═══════════════════════════════════════════════════════ */
 
   const html = document.documentElement;
+
+  /* The toggle is removed from the markup for now (see the note in index.html). Without this
+     guard the reads below throw, and the throw takes sections 1 and 2 — the navbar scroll
+     state and the hamburger — down with it, which is how a "cosmetic" removal breaks the
+     mobile menu. Putting the button back is all it takes to turn the theme on again. */
+  if (themeToggle) {
+
   const savedTheme = localStorage.getItem('mib-theme');
 
   if (savedTheme) {
@@ -75,6 +82,8 @@
     themeToggle.textContent = next === 'dark' ? '☀️' : '🌙';
     localStorage.setItem('mib-theme', next);
   });
+
+  } // end if (themeToggle)
 
   } // end !astroChrome — sections 1 and 2 only
 
@@ -98,6 +107,11 @@
      4. SCROLL-TRIGGERED FADE-UP ANIMATIONS
      ═══════════════════════════════════════════════════════ */
 
+  /* Skipped on the Astro tree — Base.astro's module owns reveals there, and two observers
+     over the same nodes is pure duplication. Same data-astro-chrome guard as sections 1-2.
+     See the note at the top of this file. */
+  if (!astroChrome) {
+
   const fadeEls = document.querySelectorAll('.fade-up');
 
   const fadeObserver = new IntersectionObserver(function (entries) {
@@ -113,6 +127,8 @@
   });
 
   fadeEls.forEach(function (el) { fadeObserver.observe(el); });
+
+  } // end !astroChrome — section 4
 
   /* ═══════════════════════════════════════════════════════
      5. JOURNEY COMPARISON TABS
@@ -137,8 +153,19 @@
      6. TESTIMONIAL CAROUSEL
      ═══════════════════════════════════════════════════════ */
 
+  /* The whole section is gone for now — no reviews have been collected, so the six
+     testimonials and the Google badge were placeholder copy (see the note in index.html).
+
+     Guarded rather than deleted, because the mechanism is fine and only the content was
+     the problem: drop the section back in and this wakes up. Without the guard,
+     `track.querySelectorAll` on a null throws, and that throw takes every section BELOW
+     it — the FAQ accordion, the booking form, the modal — down with it. Same failure the
+     theme toggle had. */
   const track = document.getElementById('reviewsTrack');
   const controls = document.getElementById('carouselControls');
+
+  if (track && controls) {
+
   const cards = track.querySelectorAll('.review-card');
   let currentSlide = 0;
   let autoSlideTimer;
@@ -245,6 +272,37 @@
   });
 
   initCarousel();
+
+  } // end if (track && controls) — section 6
+
+  /* ═══════════════════════════════════════════════════════
+     6b. FLOATING CONTACT BUTTON
+     Not gated on astroChrome: this widget is new on both trees, so there is no Astro-side
+     copy of it to avoid double-handling — see the identical block in Base.astro's inline
+     module, which does the same three things for the generated pages.
+     ═══════════════════════════════════════════════════════ */
+
+  var fab = document.getElementById('contactFab');
+  var fabToggle = document.getElementById('contactFabToggle');
+
+  if (fab && fabToggle) {
+    var setFabOpen = function (open) {
+      fab.classList.toggle('open', open);
+      fabToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+
+    fabToggle.addEventListener('click', function () {
+      setFabOpen(!fab.classList.contains('open'));
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!fab.contains(e.target)) setFabOpen(false);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setFabOpen(false);
+    });
+  }
 
   /* ═══════════════════════════════════════════════════════
      7. FAQ ACCORDION
@@ -406,6 +464,9 @@
      10. SCROLL PROGRESS BAR
      ═══════════════════════════════════════════════════════ */
 
+  /* Sections 10 and 11 are Base.astro's on the Astro tree too — see section 4. */
+  if (!astroChrome) {
+
   var progressBar = document.getElementById('scrollProgress');
 
   if (progressBar) {
@@ -452,6 +513,8 @@
 
     staggerGroups.forEach(function (g) { staggerObserver.observe(g); });
   }
+
+  } // end !astroChrome — sections 10 and 11
 
   /* ═══════════════════════════════════════════════════════
      10. BOOKING FORM & MODAL HANDLER (Hostinger PHP send-mail.php)

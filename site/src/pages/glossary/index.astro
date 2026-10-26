@@ -6,6 +6,7 @@
 import { getCollection } from 'astro:content'
 import Base from '../../layouts/Base.astro'
 import Disclaimer from '../../components/seo/Disclaimer.astro'
+import Cta from '../../components/Cta.astro'
 import { breadcrumbSchema, definedTermSetSchema, faqSchema } from '../../lib/schema'
 import { fitDescription, fitTitle } from '../../lib/seo'
 
@@ -111,6 +112,11 @@ const description = fitDescription(
         </details>
       ))}
     </section>
+
+    <Cta class="fade-up"
+      heading="Still not sure what your policy says?"
+      body="Send it to a licensed advisor and get it in plain English. Free, and no obligation."
+    />
 
     <Disclaimer />
   </article>

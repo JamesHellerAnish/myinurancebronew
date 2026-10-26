@@ -33,16 +33,38 @@ const { schemas = [], current, ...seo } = Astro.props
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Applies the saved theme before first paint. This has to be inline and blocking:
-         deferred, the page paints light and then flips, which is worse than not having a
-         toggle. Same `mib-theme` key as js/main.js, so a preference set on the legacy
-         one-pager carries over to the generated pages during the migration. -->
+    {/* Dark mode is switched off for now at the owner's instruction, so there is no
+        theme-restoring script here and `data-theme` stays "light" on <html>. The dark
+        palette itself is left intact in style.css/components.css — turning the toggle
+        back on means restoring the button in Header.astro and the read of `mib-theme`
+        here, not rewriting the design system. Note the legacy one-pager still has its
+        own toggle, so a visitor may have "dark" sitting in localStorage; not reading
+        that key is what keeps it from leaking into these pages.
+
+        An Astro comment, not an HTML one: this is a note to the next person editing the
+        layout, and an HTML comment here would ship on all ~2,900 pages. */}
+
+    {/* Marks the document as scripted, before first paint. Every reveal animation's
+        hidden state is scoped to .js, so a page whose scripts never arrive renders its
+        content rather than a blank column — see the note above .fade-up in style.css.
+        Inline and blocking on purpose: deferred, the page paints the content and then
+        hides it, which is a worse flash than having no animation at all. */}
     <script is:inline>
-      try {
-        var t = localStorage.getItem('mib-theme')
-        if (t) document.documentElement.setAttribute('data-theme', t)
-      } catch (e) {}
+      document.documentElement.classList.add('js')
     </script>
+
+    {/* Icons. The port never carried these over from index.html, so every generated page
+        declared no icon and fell back to /favicon.ico — which did not exist either. All of
+        these come from one master via scripts/make-logo-sizes.mjs.
+
+        Order matters a little: browsers take the last matching <link>, so the small PNGs
+        are listed after the large one. The .ico is not declared at all — it lives at the
+        root for clients that ask for it without reading the HTML, and declaring it too
+        would only invite a browser to prefer it over the sharper PNGs. */}
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16.png" />
+    <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png" />
 
     <SEO {...seo} />
 
@@ -70,10 +92,188 @@ const { schemas = [], current, ...seo } = Astro.props
   </head>
 
   <body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
     <Header current={current} />
     <main>
       <slot />
     </main>
     <Footer />
+
+    {/* Mobile action bar. The legacy one-pager has had this since the start; the generated
+        pages did not, so on a phone — which is most of this traffic — a guide or a plan
+        page had no visible way to call until you scrolled to the CTA block. */}
+    {/* Floating contact button — desktop's equivalent of the sticky bar above. Both read
+        the same phone number from one place: change it here and in Cta.astro, not in a
+        third spot.
+
+        Self-contained inline SVG paths rather than <use href="#i-…">: the icon sprite is
+        Sprite.astro, rendered only on the home page (see the note in Header.astro) — an
+        Astro-tree page reaching for a sprite symbol here would draw an empty box on all
+        106 pages that are not the home page. These three paths are duplicated from
+        Sprite.astro on purpose, the same trade CLAUDE.md already accepts between the two
+        trees, rather than shipping the whole sprite sitewide for three icons. */}
+    <div class="contact-fab" id="contactFab">
+      <div class="contact-fab-menu" id="contactFabMenu">
+        <a href="tel:+919797383797" class="contact-fab-row" aria-label="Call advisor">
+          <span class="contact-fab-label">Call</span>
+          <span class="contact-fab-item call">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M21.5 16.9v2.6a1.8 1.8 0 0 1-2 1.8 17.6 17.6 0 0 1-7.7-2.7 17.3 17.3 0 0 1-5.3-5.3A17.6 17.6 0 0 1 3.8 5.5a1.8 1.8 0 0 1 1.8-2h2.6a1.8 1.8 0 0 1 1.8 1.5c.1.9.3 1.7.6 2.5a1.8 1.8 0 0 1-.4 1.9l-1.1 1.1a14 14 0 0 0 5.3 5.3l1.1-1.1a1.8 1.8 0 0 1 1.9-.4c.8.3 1.6.5 2.5.6a1.8 1.8 0 0 1 1.6 1.5Z"
+              ></path>
+            </svg>
+          </span>
+        </a>
+        <a
+          href="https://wa.me/919797383797"
+          class="contact-fab-row"
+          target="_blank"
+          rel="noopener"
+          aria-label="WhatsApp us"
+        >
+          <span class="contact-fab-label">WhatsApp</span>
+          <span class="contact-fab-item whatsapp">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 21l1.6-5.2A8.6 8.6 0 1 1 8.4 19.4Z"></path>
+              <path
+                d="M9 8.5c-.3 1.4 1 3.6 2.2 4.7 1.2 1.1 3 1.9 3.9 1.5.5-.2.8-.9.9-1.4l-2-1-.8.9a6 6 0 0 1-2.3-2.3l.9-.8-1-2c-.5.1-1.2.4-1.4.9Z"
+              ></path>
+            </svg>
+          </span>
+        </a>
+      </div>
+
+      <button
+        type="button"
+        class="contact-fab-toggle"
+        id="contactFabToggle"
+        aria-expanded="false"
+        aria-controls="contactFabMenu"
+        aria-label="Contact options"
+      >
+        <svg class="icon contact-fab-icon-open" viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M21 11.5a8.4 8.4 0 0 1-9 8.5 8.9 8.9 0 0 1-4-1L3 20.5l1.5-5a8.9 8.9 0 0 1-1-4 8.4 8.4 0 0 1 8.5-9 8.4 8.4 0 0 1 9 8.5Z"
+          ></path>
+        </svg>
+        <svg class="icon contact-fab-icon-close" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M18.5 5.5l-13 13M5.5 5.5l13 13"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="sticky-cta">
+      <a
+        href="https://wa.me/919797383797"
+        class="btn btn-whatsapp"
+        target="_blank"
+        rel="noopener"
+      >
+        WhatsApp
+      </a>
+      <a href="tel:+919797383797" class="btn btn-primary">Call advisor</a>
+    </div>
+
+    <script>
+      /* Scroll behaviour for every generated page.
+         --------------------------------------------------------------------------------
+         js/main.js has done all of this since the beginning, but it only loads on the home
+         page — so a guide, a glossary entry or a plan page had no reveal animation and no
+         reading progress at all. Worse, anything marked .fade-up on those pages would have
+         stayed at opacity:0 forever, because the class only becomes visible when something
+         adds .visible to it.
+
+         So this module owns reveals and progress for the Astro tree, and main.js skips its
+         own copies when it sees data-astro-chrome on the header (the same guard it already
+         uses for the navbar and the drawer). One observer per page, not two.
+
+         Astro bundles and defers this into the one small module the chrome already ships. */
+
+      // Respect the OS setting. The CSS also neutralises the transforms under
+      // prefers-reduced-motion, but an element must still get .visible or it never appears.
+      const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+      const revealables = document.querySelectorAll<HTMLElement>('.fade-up, .stagger')
+
+      if (still || !('IntersectionObserver' in window)) {
+        revealables.forEach((el) => el.classList.add('visible'))
+      } else {
+        // Children of a .stagger group get their index, which the CSS turns into a delay.
+        document.querySelectorAll<HTMLElement>('.stagger').forEach((group) => {
+          Array.from(group.children).forEach((child, i) => {
+            ;(child as HTMLElement).style.setProperty('--i', String(i))
+          })
+        })
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return
+              entry.target.classList.add('visible')
+              observer.unobserve(entry.target)
+            })
+          },
+          // Same numbers as js/main.js, so the two trees reveal at the same point.
+          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
+        )
+
+        revealables.forEach((el) => observer.observe(el))
+      }
+
+      // Reading progress. rAF-throttled: this runs on every scroll frame and writing a
+      // style property straight from the scroll handler is a layout thrash on long pages,
+      // which the plan pages very much are.
+      const progress = document.getElementById('scrollProgress')
+
+      if (progress) {
+        let ticking = false
+
+        const paint = () => {
+          const doc = document.documentElement
+          const scrollable = doc.scrollHeight - doc.clientHeight
+          const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0
+          progress.style.width = `${Math.min(pct, 100)}%`
+          ticking = false
+        }
+
+        window.addEventListener(
+          'scroll',
+          () => {
+            if (ticking) return
+            ticking = true
+            requestAnimationFrame(paint)
+          },
+          { passive: true },
+        )
+
+        paint()
+      }
+
+      // Floating contact button. A plain disclosure toggle: open on click, close on a
+      // second click, an outside click, or Escape. No JS in the two links themselves —
+      // tel: and wa.me work with or without any of this running.
+      const fab = document.getElementById('contactFab')
+      const fabToggle = document.getElementById('contactFabToggle')
+
+      if (fab && fabToggle) {
+        const setOpen = (open: boolean) => {
+          fab.classList.toggle('open', open)
+          fabToggle.setAttribute('aria-expanded', String(open))
+        }
+
+        fabToggle.addEventListener('click', () => {
+          setOpen(!fab.classList.contains('open'))
+        })
+
+        document.addEventListener('click', (e) => {
+          if (!fab.contains(e.target as Node)) setOpen(false)
+        })
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') setOpen(false)
+        })
+      }
+    </script>
   </body>
 </html>

@@ -19,7 +19,7 @@ export function organizationSchema() {
     '@context': 'https://schema.org',
     '@type': 'InsuranceAgency',
     '@id': `${SITE}/#organization`,
-    name: 'Myinsurancebro',
+    name: 'My Insurance Bro',
     url: SITE,
     description:
       'IRDAI-licensed independent insurance advisory in India. Data-led comparison of ' +
@@ -28,6 +28,35 @@ export function organizationSchema() {
     areaServed: { '@type': 'Country', name: 'India' },
     // TODO(launch): real IRDAI registration number + expiry. Do not invent one.
     // identifier: { '@type': 'PropertyValue', name: 'IRDAI Registration', value: '...' },
+  }
+}
+
+/**
+ * The site name Google prints above the result (§10.5).
+ *
+ * Without this, Google had nothing authoritative to read and fell back to the bare domain,
+ * so results were headed "myinsurancebro.com". `og:site_name` and the <title> were already
+ * right, but WebSite structured data is the signal Google documents as primary for the
+ * site name — the others are fallbacks it may or may not take.
+ *
+ * Deliberately narrow:
+ *   · Homepage only. Google reads this from the root document; repeating it on ~107 pages
+ *     would add bytes everywhere and signal nothing extra.
+ *   · `url` is the root with its trailing slash, which is the form Google matches against.
+ *   · No `alternateName`. It exists to offer Google a second string to choose from, and
+ *     the whole point here is that there is exactly one correct name.
+ *   · Separate @id from the organisation: the site and the business are different things,
+ *     and `publisher` links them rather than conflating them.
+ */
+export function websiteSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${SITE}/#website`,
+    name: 'My Insurance Bro',
+    url: `${SITE}/`,
+    publisher: { '@id': `${SITE}/#organization` },
+    inLanguage: 'en-IN',
   }
 }
 
@@ -135,7 +164,7 @@ export function definedTermSchema(term: {
     inDefinedTermSet: {
       '@type': 'DefinedTermSet',
       '@id': `${SITE}/glossary/#set`,
-      name: 'Myinsurancebro insurance glossary',
+      name: 'My Insurance Bro insurance glossary',
       url: `${SITE}/glossary/`,
     },
   }
@@ -147,7 +176,7 @@ export function definedTermSetSchema(count: number) {
     '@context': 'https://schema.org',
     '@type': 'DefinedTermSet',
     '@id': `${SITE}/glossary/#set`,
-    name: 'Myinsurancebro insurance glossary',
+    name: 'My Insurance Bro insurance glossary',
     url: `${SITE}/glossary/`,
     description:
       `Plain-English explanations of ${count} insurance terms, each shown beside the ` +

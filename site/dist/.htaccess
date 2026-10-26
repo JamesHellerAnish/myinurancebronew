@@ -1,4 +1,4 @@
-# Myinsurancebro — access rules
+# My Insurance Bro — access rules
 #
 # Every directive is wrapped in <IfModule>. An unguarded Require/Header line
 # fails hard when the module is missing and Apache answers 500 for the whole

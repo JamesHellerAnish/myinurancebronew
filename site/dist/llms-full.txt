@@ -1,4 +1,4 @@
-# Myinsurancebro — full plan data
+# My Insurance Bro — full plan data
 
 > IRDAI-licensed insurance advisory in India. Independent, data-led comparison of term life
 > and health insurance plans, scored against IRDAI claim-settlement and grievance

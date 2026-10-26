@@ -11,6 +11,7 @@ import type { GetStaticPaths } from 'astro'
 import { getCollection, render } from 'astro:content'
 import Base from '../../layouts/Base.astro'
 import Disclaimer from '../../components/seo/Disclaimer.astro'
+import Cta from '../../components/Cta.astro'
 import { breadcrumbSchema, articleSchema } from '../../lib/schema'
 import { fitTitle } from '../../lib/seo'
 
@@ -82,7 +83,7 @@ const dateFormat = new Intl.DateTimeFormat('en-IN', { dateStyle: 'long' })
     </div>
 
     {terms.length > 0 && (
-      <section class="internal-links">
+      <section class="internal-links fade-up">
         <h2>Terms used in this guide</h2>
         <ul>
           {terms.map((t) => (
@@ -110,7 +111,7 @@ const dateFormat = new Intl.DateTimeFormat('en-IN', { dateStyle: 'long' })
     </section>
 
     {siblings.length > 0 && (
-      <section class="internal-links">
+      <section class="internal-links fade-up">
         <h2>More guides</h2>
         <ul>
           {siblings.map((g) => (
@@ -121,6 +122,11 @@ const dateFormat = new Intl.DateTimeFormat('en-IN', { dateStyle: 'long' })
         </ul>
       </section>
     )}
+
+    <Cta class="fade-up"
+      heading="Questions about your own policy?"
+      body="Send it over and a licensed advisor will read the wording with you. Free, and no obligation."
+    />
 
     <Disclaimer />
   </article>

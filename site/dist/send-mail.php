@@ -130,7 +130,7 @@ $body = "
             </div>" : "") . "
         </div>
         <div class='footer'>
-            Sent automatically by Myinsurancebro Website Form Processor
+            Sent automatically by My Insurance Bro Website Form Processor
         </div>
     </div>
 </body>
@@ -141,7 +141,7 @@ $body = "
 $headers = [];
 $headers[] = 'MIME-Version: 1.0';
 $headers[] = 'Content-type: text/html; charset=utf-8';
-$headers[] = 'From: Myinsurancebro Advisory <' . $fromEmail . '>';
+$headers[] = 'From: My Insurance Bro Advisory <' . $fromEmail . '>';
 $headers[] = 'Sender: <' . $fromEmail . '>';
 if (!empty($email)) {
     $headers[] = 'Reply-To: ' . $email;

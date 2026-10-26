@@ -25,21 +25,19 @@ import Team from '../components/home/Team.astro'
 import ClaimSupport from '../components/home/ClaimSupport.astro'
 import HowItWorks from '../components/home/HowItWorks.astro'
 import Journey from '../components/home/Journey.astro'
-import Reviews from '../components/home/Reviews.astro'
 import Checklist from '../components/home/Checklist.astro'
 import Faq from '../components/home/Faq.astro'
 import FinalCta from '../components/home/FinalCta.astro'
-import { faqSchema } from '../lib/schema'
+import { faqSchema, websiteSchema } from '../lib/schema'
 import { fitDescription } from '../lib/seo'
 import { homeFaqs } from '../lib/home'
 
 // §8.1: the homepage is the one page where the brand is the whole title, so no suffix.
 //
-// Kept verbatim from index.html at 64 characters, four over the §9.2 budget. assertTitle()
-// warns rather than throws for exactly this case: this is the live homepage title, it is
-// what the domain is currently known by, and rewriting it is an SEO decision about existing
-// rankings — not a porting decision to make in passing. Change it deliberately or not at all.
-const title = 'Myinsurancebro — Compare & Buy the Best Insurance Plans in India'
+// The brand spacing change ("Myinsurancebro" → "My Insurance Bro") added two characters to a
+// title that was already four over the §9.2 budget, so the tail was shortened to fit rather
+// than left to truncate in the SERP. 55 characters, inside TITLE_MAX.
+const title = 'My Insurance Bro — Compare Term & Health Plans in India'
 
 // §9.2 wants a number in every description. Using the IRDAI period rather than a customer
 // count: it is checkable against a primary source, and it says what the site actually does.
@@ -62,7 +60,7 @@ const description = fitDescription(
     'insurance advisor',
     'compare insurance India',
   ]}
-  schemas={[faqSchema(homeFaqs)]}
+  schemas={[websiteSchema(), faqSchema(homeFaqs)]}
 >
   <Sprite />
   <Hero />
@@ -76,7 +74,6 @@ const description = fitDescription(
   <ClaimSupport />
   <HowItWorks />
   <Journey />
-  <Reviews />
   <Checklist />
   <Faq />
   <FinalCta />

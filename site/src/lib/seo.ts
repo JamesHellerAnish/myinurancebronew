@@ -7,7 +7,7 @@
 //
 // The defence is structural: one function, and an assertion that fails the build.
 
-export const BRAND = 'Myinsurancebro'
+export const BRAND = 'My Insurance Bro'
 
 /** Google truncates around 60 characters. */
 export const TITLE_MAX = 60
@@ -28,9 +28,9 @@ export function title(page: string, opts?: { brand?: boolean }): string {
   // Catch a caller that already appended the brand — the exact Perfecplan failure.
   //
   // Only when a suffix is actually going to be added. `brand: false` is the homepage, where
-  // the brand IS the title ("Myinsurancebro — Compare & Buy…"); rejecting that would be the
+  // the brand IS the title ("My Insurance Bro — Compare & Buy…"); rejecting that would be the
   // guard firing on the one page it was never meant to cover. The duplicate-brand assertion
-  // below still runs either way, so "Myinsurancebro | Myinsurancebro" is still a build error.
+  // below still runs either way, so "My Insurance Bro | My Insurance Bro" is still a build error.
   if (opts?.brand !== false && trimmed.toLowerCase().includes(BRAND.toLowerCase())) {
     throw new TitleError(
       `title() received a page title that already contains "${BRAND}": ${trimmed}\n` +
@@ -87,7 +87,7 @@ export function assertDescription(
   }
 }
 
-/** Characters that `title()` will append: " | Myinsurancebro". */
+/** Characters that `title()` will append: " | My Insurance Bro". */
 export const BRAND_SUFFIX_LENGTH = ` | ${BRAND}`.length
 
 /**

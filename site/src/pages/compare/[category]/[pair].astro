@@ -13,6 +13,7 @@
 import type { GetStaticPaths } from 'astro'
 import Base from '../../../layouts/Base.astro'
 import Disclaimer from '../../../components/seo/Disclaimer.astro'
+import Cta from '../../../components/Cta.astro'
 import {
   publishablePlans,
   plansByCategory,
@@ -254,7 +255,7 @@ const description = fitDescription(
       ))}
     </section>
 
-    <section class="internal-links">
+    <section class="internal-links fade-up">
       <h2>Read the full reviews</h2>
       <ul>
         <li><a href={planPath(a)}>{a.data.insurer} {a.data.name} review</a></li>
@@ -265,6 +266,11 @@ const description = fitDescription(
         <a href={categoryUrl}>All {lower} plans</a>
       </p>
     </section>
+
+    <Cta class="fade-up"
+      heading="Still torn between the two?"
+      body="A licensed advisor will tell you which one fits your age, city and health. Free."
+    />
 
     <Disclaimer />
   </article>

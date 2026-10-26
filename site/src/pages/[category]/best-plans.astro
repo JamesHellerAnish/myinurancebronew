@@ -11,6 +11,7 @@
 import type { GetStaticPaths } from 'astro'
 import Base from '../../layouts/Base.astro'
 import Disclaimer from '../../components/seo/Disclaimer.astro'
+import Cta from '../../components/Cta.astro'
 import {
   publishablePlans,
   plansByCategory,
@@ -260,7 +261,7 @@ const description = fitDescription(
       ))}
     </section>
 
-    <section class="internal-links">
+    <section class="internal-links fade-up">
       <h2>Go deeper</h2>
       <ul>
         {plans.map((plan) => (
@@ -273,6 +274,11 @@ const description = fitDescription(
         <a href="/methodology/">How we score</a>
       </p>
     </section>
+
+    <Cta class="fade-up"
+      heading="Shortlisted, but still deciding?"
+      body="A ten-minute call is usually enough to settle it. Free, and no sales pressure."
+    />
 
     <Disclaimer />
   </article>
