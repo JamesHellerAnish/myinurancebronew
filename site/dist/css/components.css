@@ -792,21 +792,44 @@
   text-align: center;
 }
 
-/* Portraits are round and deliberately small — these two sit under the
-   Chief Advisor, whose portrait is the section's large one. The files
-   are 4:5 transparent cutouts with the head in the top half, so a
-   top-anchored square crop keeps the face centred in the circle; the
-   faint fill makes the circle read as a disc behind the cutout. */
+/* The team is currently one person. In a two-column grid a lone card would sit in the left
+   column with an empty right half, so it spans both and centres at a portrait-friendly width.
+   Desktop only — the phone block at the end of this file already stacks one card per row. */
+@media (min-width: 641px) {
+  .team-card:only-child {
+    grid-column: 1 / -1;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+}
+
+/* Portraits are round and sit under the Chief Advisor, whose portrait is
+   the section's large one. The files are 4:5 transparent cutouts with the
+   head in the top half, so a top-anchored square crop keeps the face
+   centred in the circle; the faint fill makes the circle read as a disc
+   behind the cutout.
+
+   --avatar is the one number that sizes the circle AND its inset. It is
+   fluid, so the portrait grows with the screen instead of staying a
+   152px thumbnail on a wide desktop. */
 .team-card img {
+  --avatar: clamp(160px, 16vw, 232px);
   display: block;
-  width: 152px;
+  width: var(--avatar);
   aspect-ratio: 1 / 1;
   object-fit: cover;
   object-position: 50% 0;
   /* The cutouts are framed edge-to-edge, so a bare cover crop clips the
      hairline against the circle. The inset scales the head down inside
-     the disc instead. */
-  padding: 12% 12% 0;
+     the disc instead.
+
+     It is derived from --avatar rather than written as a percentage. A
+     percentage padding is measured against the CARD's width, not the
+     circle's: on desktop the card is ~340px, so "12%" came to 41px a side
+     inside a 152px circle (27%), leaving the face a 67px thumbnail adrift
+     in an empty disc. On a phone the card is an 84px grid column, which
+     is why it only ever looked wrong on desktop. */
+  padding: calc(var(--avatar) * .12) calc(var(--avatar) * .12) 0;
   margin: 0 auto;
   border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, .16);
@@ -2767,7 +2790,7 @@
   }
 
   .team-card img {
-    width: 84px;
+    --avatar: 84px;
     grid-row: 1 / span 3;
   }
 

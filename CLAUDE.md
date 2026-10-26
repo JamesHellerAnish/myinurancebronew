@@ -80,9 +80,11 @@ Legacy static site served from Apache/Hostinger `public_html`:
    asset directory, and 11.7 s of transfer on Slow 4G.
 7. **Never invent a person's job title or credentials.** This is an IRDAI-licensed advisory site;
    roles under a real face are a regulated claim. Ship a visible placeholder instead.
-   The two team roles were supplied by the owner (Apratim — Health Insurance Specialist,
-   Kolkata; Isha — Term Insurance Specialist, Indore) and the bios describe only what that
-   specialism involves. **Years of experience, certifications, licence numbers, client or
+   The one team role shown (Apratim — Health Insurance Specialist, Kolkata) was supplied by the
+   owner and the bio describes only what that specialism involves. The term-insurance
+   specialist has left the company: her card, photo and bio were removed on 2026-10-26 at the
+   owner's instruction — do not re-add them, and note the team is now one person.
+   **Years of experience, certifications, licence numbers, client or
    claim counts and past employers are deliberately absent** — do not add any of them unless
    the owner states them.
 8. **One logo, one path: `assets/images/my-insurance-bro-logo.png`** (272×272, the 2× copy of the
